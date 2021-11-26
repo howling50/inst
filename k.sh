@@ -38,13 +38,12 @@ yay -S --noconfirm eiskaltdcpp-qt
 yay -S --noconfirm zenmap
 yay -S --noconfirm konsave    
 cd ~/Downloads/
-wget https://drive.google.com/u/2/uc?export=download&confirm=B6RG&id=10Aoazv21kaFRRdMOESmCeyAV7HgEGprH
 wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
 sudo pacman -U ~/Downloads/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
 sudo systemctl enable tor.service
 sudo systemctl start tor.service
 sudo systemctl start ufw
 sudo ufw enable
-konsave -i ~/Downloads/kde.knsv
+konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
 konsave -a kde
