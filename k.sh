@@ -54,6 +54,3 @@ sudo systemctl enable tor.service
 sudo systemctl start tor.service
 sudo systemctl start ufw
 sudo ufw enable
-konsave -i ~/Downloads/inst/kde.knsv
-sleep 1
-konsave -a kde
