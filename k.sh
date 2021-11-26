@@ -6,6 +6,11 @@ sudo balooctl disable
 sudo rm -rf ~/./local/share/baloo
 sudo pacman -R yakuake --noconfirm --needed
 sudo pacman -R elisa --noconfirm --needed
+sudo pacman -S binutils --noconfirm --needed
+sudo pacman -S bison --noconfirm --needed
+sudo pacman -S fakeroot --noconfirm --needed
+sudo pacman -S bind --noconfirm --needed
+sudo pacman -S discover --noconfirm --needed
 sudo pacman -S jdk-openjdk --noconfirm --needed
 sudo pacman -S wine-gecko --noconfirm --needed
 sudo pacman -S vim --noconfirm --needed
