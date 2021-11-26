@@ -4,8 +4,8 @@ sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
 sudo balooctl disable
 sudo rm -rf ~/./local/share/baloo
-sudo pacman -R yakuake --noconfirm --needed
-sudo pacman -R elisa --noconfirm --needed
+sudo pacman -R yakuake --noconfirm
+sudo pacman -R elisa --noconfirm
 sudo pacman -S binutils --noconfirm --needed
 sudo pacman -S make --noconfirm --needed
 sudo pacman -S autoconf --noconfirm --needed
@@ -38,7 +38,7 @@ sudo pacman -S rkhunter --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S gimp --noconfirm --needed
 sudo pacman -S vlc --noconfirm --needed
-sudo pacman -R onlyoffice-desktopeditors --noconfirm --needed
+sudo pacman -R onlyoffice-desktopeditors --noconfirm
 sudo pacman -S libreoffice-fresh --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 yay -S --noconfirm stacer
