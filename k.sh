@@ -32,8 +32,6 @@ sudo pacman -S libreoffice-fresh --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 yay -S --noconfirm stacer
 yay -S --noconfirm brave-bin
-yay -S --noconfirm mangohud
-yay -S --noconfirm mangohud-common
 yay -S --noconfirm ttf-msfonts
 yay -S --noconfirm eiskaltdcpp-qt
 yay -S --noconfirm zenmap
