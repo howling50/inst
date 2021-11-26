@@ -14,7 +14,6 @@ sudo pacman -S gufw --noconfirm --needed
 sudo pacman -S proxychains --noconfirm --needed
 sudo pacman -S tor --noconfirm --needed
 sudo pacman -S pkgconf --noconfirm --needed
-sudo pacman -S mousepad --noconfirm --needed
 sudo pacman -S terminator --noconfirm --needed
 sudo pacman -S gamemode --noconfirm --needed
 sudo pacman -S hardinfo --noconfirm --needed
@@ -39,13 +38,13 @@ yay -S --noconfirm eiskaltdcpp-qt
 yay -S --noconfirm zenmap
 yay -S --noconfirm konsave    
 cd ~/Downloads/
+wget https://drive.google.com/u/2/uc?export=download&confirm=B6RG&id=10Aoazv21kaFRRdMOESmCeyAV7HgEGprH
 wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
 sudo pacman -U ~/Downloads/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
-cd
 sudo systemctl enable tor.service
 sudo systemctl start tor.service
 sudo systemctl start ufw
 sudo ufw enable
-konsave -i ~/Downloads/inst/kde.knsv
+konsave -i ~/Downloads/kde.knsv
 sleep 1
 konsave -a kde
