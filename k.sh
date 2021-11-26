@@ -7,6 +7,12 @@ sudo rm -rf ~/./local/share/baloo
 sudo pacman -R yakuake --noconfirm --needed
 sudo pacman -R elisa --noconfirm --needed
 sudo pacman -S binutils --noconfirm --needed
+sudo pacman -S make --noconfirm --needed
+sudo pacman -S autoconf --noconfirm --needed
+sudo pacman -S flex --noconfirm --needed
+sudo pacman -S gcc --noconfirm --needed
+sudo pacman -S patch --noconfirm --needed
+sudo pacman -S automake --noconfirm --needed
 sudo pacman -S bison --noconfirm --needed
 sudo pacman -S fakeroot --noconfirm --needed
 sudo pacman -S bind --noconfirm --needed
@@ -35,6 +41,7 @@ sudo pacman -S vlc --noconfirm --needed
 sudo pacman -R onlyoffice-desktopeditors --noconfirm --needed
 sudo pacman -S libreoffice-fresh --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
+yay -S --noconfirm stacer
 yay -S --noconfirm brave-bin
 yay -S --noconfirm ttf-msfonts
 yay -S --noconfirm eiskaltdcpp-qt
