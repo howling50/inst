@@ -35,7 +35,6 @@ sudo pacman -S vlc --noconfirm --needed
 sudo pacman -R onlyoffice-desktopeditors --noconfirm --needed
 sudo pacman -S libreoffice-fresh --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
-yay -S --noconfirm stacer
 yay -S --noconfirm brave-bin
 yay -S --noconfirm ttf-msfonts
 yay -S --noconfirm eiskaltdcpp-qt
