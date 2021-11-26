@@ -5,6 +5,7 @@ sudo systemctl disable cups.service cups.socket cups.path
 sudo balooctl disable
 sudo rm -rf ~/./local/share/baloo
 sudo pacman -R yakuake --noconfirm --needed
+sudo pacman -R elisa --noconfirm --needed
 sudo pacman -S jdk-openjdk --noconfirm --needed
 sudo pacman -S wine-gecko --noconfirm --needed
 sudo pacman -S vim --noconfirm --needed
