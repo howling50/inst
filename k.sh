@@ -43,6 +43,7 @@ sudo pacman -S vlc --noconfirm --needed
 sudo pacman -R onlyoffice-desktopeditors --noconfirm
 sudo pacman -S libreoffice-fresh --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
+yay --sudoloop --save
 yay -S --noconfirm stacer
 yay -S --noconfirm spotify
 yay -S --noconfirm brave-bin
