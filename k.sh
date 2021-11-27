@@ -47,7 +47,6 @@ yay -S --noconfirm stacer
 yay -S --noconfirm spotify
 yay -S --noconfirm brave-bin
 yay -S --noconfirm ttf-msfonts
-yay -S --noconfirm zenmap
 yay -S --noconfirm konsave    
 cd ~/Downloads/
 wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
