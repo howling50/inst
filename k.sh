@@ -4,6 +4,9 @@ sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
 sudo balooctl disable
 sudo rm -rf ~/./local/share/baloo
+curl -O https://blackarch.org/strap.sh
+chmod +x strap.sh
+sudo ./strap.sh
 sudo pacman -R yakuake --noconfirm
 sudo pacman -R elisa --noconfirm
 sudo pacman -R thunderbird --noconfirm
@@ -43,6 +46,7 @@ sudo pacman -S vlc --noconfirm --needed
 sudo pacman -R onlyoffice-desktopeditors --noconfirm
 sudo pacman -S libreoffice-fresh --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
+sudo pacman -S burpsuite --noconfirm --needed
 yay --sudoloop --save
 yay -S --noconfirm stacer
 yay -S --noconfirm spotify
