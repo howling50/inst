@@ -47,7 +47,6 @@ yay -S --noconfirm stacer
 yay -S --noconfirm spotify
 yay -S --noconfirm brave-bin
 yay -S --noconfirm ttf-msfonts
-yay -S --noconfirm eiskaltdcpp-qt
 yay -S --noconfirm zenmap
 yay -S --noconfirm konsave    
 cd ~/Downloads/
