@@ -19,7 +19,7 @@ sudo pacman -S fakeroot --noconfirm --needed
 sudo pacman -S bind --noconfirm --needed
 sudo pacman -S jdk-openjdk --noconfirm --needed
 sudo pacman -S wine-gecko --noconfirm --needed
-sudo pacman -S vim --noconfirm --needed
+sudo pacman -S notepadqq --noconfirm --needed
 sudo pacman -S wine-mono --noconfirm --needed
 sudo pacman -S winetricks --noconfirm --needed
 sudo pacman -S gufw --noconfirm --needed
