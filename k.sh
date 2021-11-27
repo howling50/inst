@@ -6,6 +6,7 @@ sudo balooctl disable
 sudo rm -rf ~/./local/share/baloo
 sudo pacman -R yakuake --noconfirm
 sudo pacman -R elisa --noconfirm
+sudo pacman -R thunderbird --noconfirm
 sudo pacman -S binutils --noconfirm --needed
 sudo pacman -S make --noconfirm --needed
 sudo pacman -S autoconf --noconfirm --needed
@@ -41,6 +42,7 @@ sudo pacman -R onlyoffice-desktopeditors --noconfirm
 sudo pacman -S libreoffice-fresh --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 yay -S --noconfirm stacer
+yay -S --noconfirm spotify
 yay -S --noconfirm brave-bin
 yay -S --noconfirm ttf-msfonts
 yay -S --noconfirm eiskaltdcpp-qt
