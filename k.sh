@@ -46,8 +46,6 @@ sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S gimp --noconfirm --needed
 sudo pacman -S vlc --noconfirm --needed
-sudo pacman -R onlyoffice-desktopeditors --noconfirm
-sudo pacman -S libreoffice-fresh --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 sudo pacman -S burpsuite --noconfirm --needed
 yay --sudoloop --save
