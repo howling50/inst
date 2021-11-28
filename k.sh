@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+rm -rf ~/.zshrc
+cp ~/Downloads/inst/.zshrc ~/.zshrc
 sudo pacman -S yay --noconfirm --needed
 sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
