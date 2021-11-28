@@ -51,6 +51,7 @@ sudo pacman -S celluloid --noconfirm --needed
 sudo pacman -S burpsuite --noconfirm --needed
 yay --sudoloop --save
 yay -S --noconfirm stacer
+yay -S --noconfirm dxvk-bin
 yay -S --noconfirm spotify
 yay -S --noconfirm brave-bin
 yay -S --noconfirm ttf-msfonts
