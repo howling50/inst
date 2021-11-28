@@ -43,6 +43,7 @@ sudo pacman -S neofetch --noconfirm --needed
 sudo pacman -S net-tools --noconfirm --needed
 sudo pacman -S rkhunter --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
+sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S gimp --noconfirm --needed
 sudo pacman -S vlc --noconfirm --needed
 sudo pacman -R onlyoffice-desktopeditors --noconfirm
