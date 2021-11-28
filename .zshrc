@@ -38,3 +38,4 @@ ex ()
   fi
 }
 alias grep='grep --color'
+neofetch
