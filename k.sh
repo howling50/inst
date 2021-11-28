@@ -56,7 +56,9 @@ yay -S --noconfirm dxvk-bin
 yay -S --noconfirm spotify
 yay -S --noconfirm brave-bin
 yay -S --noconfirm ttf-msfonts
-yay -S --noconfirm konsave    
+yay -S --noconfirm konsave
+sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
+sudo bash -c 'echo -e "SCRIPTWHITELIST=/usr/bin/egrep\nSCRIPTWHITELIST=/usr/bin/fgrep\nSCRIPTWHITELIST=/usr/bin/ldd\nSCRIPTWHITELIST=/usr/bin/vendor_perl/GET" >> /etc/rkhunter.conf'
 cd ~/Downloads/
 wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
 sudo pacman -U ~/Downloads/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
