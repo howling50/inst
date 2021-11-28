@@ -64,6 +64,10 @@ wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x
 sudo pacman -U ~/Downloads/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
 sudo systemctl enable tor.service
 sudo systemctl start tor.service
+sudo ufw allow 80/tcp  
+sudo ufw allow 1716/tcp  
+sudo ufw default deny incoming  
+sudo ufw default allow outgoing
 sudo ufw enable
 sudo passwd -l root
 konsave -i ~/Downloads/inst/kde.knsv
