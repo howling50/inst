@@ -53,7 +53,7 @@ yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm spotify
 yay -S --noconfirm brave-bin
-yay -S --noconfirm ttf-msfonts
+yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm konsave
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 sudo bash -c 'echo -e "SCRIPTWHITELIST=/usr/bin/egrep\nSCRIPTWHITELIST=/usr/bin/fgrep\nSCRIPTWHITELIST=/usr/bin/ldd\nSCRIPTWHITELIST=/usr/bin/vendor_perl/GET" >> /etc/rkhunter.conf'
