@@ -68,7 +68,8 @@ sudo ufw limit 1716/tcp
 sudo ufw limit 23232/tcp
 sudo ufw default deny incoming  
 sudo ufw default allow outgoing
-sudo ufw enable
+sudo systemctl enable ufw
+sudo systemctl start ufw
 sudo passwd -l root
 konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
