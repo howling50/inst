@@ -65,7 +65,7 @@ sudo systemctl enable tor.service
 sudo systemctl start tor.service
 sudo ufw allow 80/tcp
 sudo ufw limit 1716/tcp
-sudo ufw limit 23232/tcp
+sudo ufw allow 23232/tcp
 sudo ufw default deny incoming  
 sudo ufw default allow outgoing
 sudo systemctl enable ufw
