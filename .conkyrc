@@ -116,15 +116,14 @@ ${font :size=10}${font Montserrat Light:size=8}${color1}TOTAL:${color}${font} ${
 ${voffset -10} 
 ${font Montserrat Light:size=9}${color1}APP NAME: ${goto 160}MEMORY: ${goto 245}CPU: ${color}${font}
 ${voffset -16}
-${font Montserrat Light:size=9}${color1}${top_mem name 1} ${color}${font} ${goto 160}${top mem 1} % ${goto 235}${top cpu 1} %
-${font Montserrat Light:size=9}${color1}${top_mem name 2} ${color}${font} ${goto 160}${top mem 2} % ${goto 235}${top cpu 2} %
-${font Montserrat Light:size=9}${color1}${top_mem name 3} ${color}${font} ${goto 160}${top mem 3} % ${goto 235}${top cpu 3} %
-${font Montserrat Light:size=9}${color1}${top_mem name 4} ${color}${font} ${goto 160}${top mem 4} % ${goto 235}${top cpu 4} %
-${font Montserrat Light:size=9}${color1}${top_mem name 5} ${color}${font} ${goto 160}${top mem 5} % ${goto 235}${top cpu 5} %
-${font Montserrat Light:size=9}${color1}${top_mem name 6} ${color}${font} ${goto 160}${top mem 6} % ${goto 235}${top cpu 6} %
-${font Montserrat Light:size=9}${color1}${top_mem name 7} ${color}${font} ${goto 160}${top mem 7} % ${goto 235}${top cpu 7} %
-${font Montserrat Light:size=9}${color1}${top_mem name 8} ${color}${font} ${goto 160}${top mem 8} % ${goto 235}${top cpu 8} %
-${font Montserrat Light:size=9}${color1}${top_mem name 9} ${color}${font} ${goto 160}${top mem 9} % ${goto 235}${top cpu 9} %
-${font Montserrat Light:size=9}${color1}${top_mem name 10} ${color}${font} ${goto 160}${top mem 10} % ${goto 235}${top cpu 10} %
-
+${font Montserrat Light:size=9}${color1}${top_mem name 1} ${color}${font} ${goto 160}${top_mem mem 1} % ${goto 235}${top cpu 1} %
+${font Montserrat Light:size=9}${color1}${top_mem name 2} ${color}${font} ${goto 160}${top_mem mem 2} % ${goto 235}${top cpu 2} %
+${font Montserrat Light:size=9}${color1}${top_mem name 3} ${color}${font} ${goto 160}${top_mem mem 3} % ${goto 235}${top cpu 3} %
+${font Montserrat Light:size=9}${color1}${top_mem name 4} ${color}${font} ${goto 160}${top_mem mem 4} % ${goto 235}${top cpu 4} %
+${font Montserrat Light:size=9}${color1}${top_mem name 5} ${color}${font} ${goto 160}${top_mem mem 5} % ${goto 235}${top cpu 5} %
+${font Montserrat Light:size=9}${color1}${top_mem name 6} ${color}${font} ${goto 160}${top_mem mem 6} % ${goto 235}${top cpu 6} %
+${font Montserrat Light:size=9}${color1}${top_mem name 7} ${color}${font} ${goto 160}${top_mem mem 7} % ${goto 235}${top cpu 7} %
+${font Montserrat Light:size=9}${color1}${top_mem name 8} ${color}${font} ${goto 160}${top_mem mem 8} % ${goto 235}${top cpu 8} %
+${font Montserrat Light:size=9}${color1}${top_mem name 9} ${color}${font} ${goto 160}${top_mem mem 9} % ${goto 235}${top cpu 9} %
+${font Montserrat Light:size=9}${color1}${top_mem name 10} ${color}${font} ${goto 160}${top_mem mem 10} % ${goto 235}${top cpu 10} %
 ]];
