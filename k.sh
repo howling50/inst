@@ -71,6 +71,7 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo systemctl enable ufw
 sudo systemctl start ufw
+sudo ufw enable
 sudo passwd -l root
 konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
