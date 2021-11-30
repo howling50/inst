@@ -104,6 +104,8 @@ ${voffset 2}${font Montserrat Light:size=8}${color1}WRITE:${color}${font} ${goto
 ${font :size=11}${color}Memory ${color}${hr 2}${color}${voffset 2}
 $font${color DimGray}RAM $alignc $mem / $memmax $alignr ${color 188f18}$memperc%
 ${color 188f18}$membar${voffset 1}
+$font${color DimGray}SWAP $alignc  ${swap} / ${swapmax} $alignr ${color 188f18}$swapperc%
+${color 188f18}$swapbar${voffset 1}
 ${font :size=11}${color}GPU ${color}${hr 2}${color}${voffset 2}
 ${font Montserrat Light:size=9}${color1}GPU Freq.: $alignr ${color}${font}${nvidia gpufreq} Mhz${voffset 3}
 ${font Montserrat Light:size=9}${color1}Memory Freq.: $alignr ${color}${font}${nvidia memfreq} Mhz${voffset 3}
