@@ -48,6 +48,7 @@ sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S gimp --noconfirm --needed
 sudo pacman -S vlc --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
+sudo pacman -S conky --noconfirm --needed
 sudo pacman -S burpsuite --noconfirm --needed
 yay --sudoloop --save
 yay -S --noconfirm stacer
@@ -72,7 +73,12 @@ sudo ufw default allow outgoing
 sudo systemctl enable ufw
 sudo systemctl start ufw
 sudo ufw enable
-sudo passwd -l root
+chmod +x conky-startup.sh
+cp ~/Downloads/inst/.conkyrc ~/
+cp ~/Downloads/inst/conky-startup.sh ~/
+cd  /etc/profile.d
+sudo ln -s ~/conky-startup.sh conky.sh
+cd ~/Downloads/inst
 konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
 konsave -a kde
