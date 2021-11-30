@@ -2,163 +2,153 @@ conky.config = {
 
 	--Various settings
 
-	background = false,
-	cpu_avg_samples = 2,
-	diskio_avg_samples = 10,
-	double_buffer = true,
-	if_up_strictness = 'address',
-	net_avg_samples = 2,
-	no_buffers = true,
-	temperature_unit = 'celsius',
-	update_interval = 2,
-	imlib_cache_size = 0,
+	background = true, 							-- forked to background
+	cpu_avg_samples = 1,						-- The number of samples to average for CPU monitoring.
+	diskio_avg_samples = 10,					-- The number of samples to average for disk I/O monitoring.
+	double_buffer = true,						-- Use the Xdbe extension? (eliminates flicker)
+	if_up_strictness = 'address',				-- how strict if testing interface is up - up, link or address
+	net_avg_samples = 2,						-- The number of samples to average for net data
+	no_buffers = true,							-- Subtract (file system) buffers from used memory?
+	temperature_unit = 'celsius',				-- fahrenheit or celsius
+	text_buffer_size = 2048,					-- size of buffer for display of content of large variables - default 256
+	update_interval = 1,						-- update interval
+	imlib_cache_size = 0,                       -- disable image cache to get a new spotify cover per song
+
 
 	--Placement
 
-	alignment = 'top_left',
-	gap_x = 10,
-	gap_y = 30,
-	minimum_height = 1300,
-	minimum_width = 280,
-	maximum_width = 300,
+	alignment = 'middle_right',						-- top_left,top_middle,top_right,bottom_left,bottom_middle,bottom_right,
+												-- middle_left,middle_middle,middle_right,none
+	--Arch Duoscreen
+	--gap_x = -1910,
+	gap_x = 15,									-- pixels between right or left border
+	gap_y = 0,									-- pixels between bottom or left border
+	minimum_height = 600,						-- minimum height of window
+	minimum_width = 300,						-- minimum height of window
+	maximum_width = 300,						-- maximum height of window
 
 	--Graphical
 
-	border_inner_margin = 10,
-	border_outer_margin = 10,
-	draw_borders = false,
-	draw_graph_borders = true,
-	draw_shades = false,
-	draw_outline = false,
+	border_inner_margin = 10, 					-- margin between border and text
+	border_outer_margin = 5, 					-- margin between border and edge of window
+	border_width = 0, 							-- border width in pixels
+	default_bar_width = 80,					-- default is 0 - full width
+	default_bar_height = 10,					-- default is 6
+	default_gauge_height = 25,					-- default is 25
+	default_gauge_width =40,					-- default is 40
+	default_graph_height = 40,					-- default is 25
+	default_graph_width = 0,					-- default is 0 - full width
+	default_shade_color = '#000000',			-- default shading colour
+	default_outline_color = '#000000',			-- default outline colour
+	draw_borders = false,						-- draw borders around text
+	draw_graph_borders = true,					-- draw borders around graphs
+	draw_shades = false,						-- draw shades
+	draw_outline = false,						-- draw outline
+	stippled_borders = 0,						-- dashing the border
 
 	--Textual
-	
-	format_human_readable = true,
-	max_text_width = 0,
-	short_units = true,
-	use_xft = true,
-	xftalpha = 1,
-	font = 'ubuntu:size=8',
+
+	extra_newline = false,						-- extra newline at the end - for asesome's wiboxes
+	format_human_readable = true,				-- KiB, MiB rather then number of bytes
+	font = 'Roboto Mono:size=10',  				-- font for complete conky unless in code defined
+	max_text_width = 0,							-- 0 will make sure line does not get broken if width too smal
+	max_user_text = 16384,						-- max text in conky default 16384
+	override_utf8_locale = true,				-- force UTF8 requires xft
+	short_units = true,							-- shorten units from KiB to k
+	top_name_width = 21,						-- width for $top name value default 15
+	top_name_verbose = false,					-- If true, top name shows the full command line of  each  process - Default value is false.
+	uppercase = false,							-- uppercase or not
+	use_spacer = 'none',						-- adds spaces around certain objects to align - default none
+	use_xft = true,								-- xft font - anti-aliased font
+	xftalpha = 1,								-- alpha of the xft font - between 0-1
 
 	--Windows
 
-	own_window = true,
-	-- Lambo: 252525
-	-- Solarized: 002B36
-	own_window_colour = '252525',
-	own_window_argb_value = 240,
-	own_window_argb_visual = true,
-	own_window_type = 'desktop',-- # options are: normal/override/dock/desktop/panel
-	
+	own_window = true,							-- create your own window to draw
+	own_window_argb_value = 100,			    -- real transparency - composite manager required 0-255
+	own_window_argb_visual = true,				-- use ARGB - composite manager required
+	own_window_colour = '#000000',				-- set colour if own_window_transparent no
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',  -- if own_window true - just hints - own_window_type sets it
+	own_window_transparent = false,				-- if own_window_argb_visual is true sets background opacity 0%
+	own_window_title = 'system_conky',			-- set the name manually  - default conky "hostname"
+	own_window_type = 'normal',				-- if own_window true options are: normal/override/dock/desktop/panel
+
 
 	--Colours
-	-- Lambo: 9D9D9D
-	-- Solarized: #268BD2
-	default_color = '#9D9D9D',                                          -- default color and border color
-        color1 = '#9D9D9D',                                                 -- title_color
-        color2 = '#9D9D9D',                                                -- top memory or processes, graphs
-        color3 = '#9D9D9D',                                                -- text color
+
+	default_color = '#D9DDE2',  				-- default color and border color
+	color1 = '#FF0000',
+	color2 = '#597AA1',
+	color3 = '#cccccc',
+	color4 = '#D9BC83',
+	color5 = '#00BFFF',
+	color6 = '#FFFFFF',
+
+	--Signal Colours
+	color7 = '#1F7411',  						--green
+	color8 = '#FFA726',  						--orange
+	color9 = '#F1544B',  						--firebrick
+
+    --Lua
+
+
 };
 
-
 conky.text = [[
-# Replace psswrd with your system password
-#--------------------+
-# DEVICE INFO
-#--------------------+
-${color1}${font :size=8:bold}DEVICE INFO ${hr 1}${font}
-${color1}Brand:${color3}${execi 6000 echo psswrd|sudo -S lshw -class system | egrep 'vendor:' | awk '{$1=""; print $0}'}$alignr${color1}Model:${color3}${execi 6000 echo psswrd|sudo -S lshw -class system | egrep 'version:' | awk '{$1=""; print $0}'}
-${color1}Motherboard:${color3}${execi 6000 echo psswrd|sudo -S lshw -class bus | head -n 3 | grep 'product' | awk '{$1=""; print $0}'}$alignr${color1}Device:${color3}${execi 6000 echo psswrd|sudo -S lshw -class system | egrep 'description:' | awk '{$1=""; print $0}'}
-${color1}OS:${color3}${execi 6000 lsb_release -d| awk '{$1=""; print $0}'}$alignr${color1}Kernel:${color3} $kernel
-${color1}Uptime:$alignr${color3} $uptime
-#--------------------+
-#CPU INFO
-#--------------------+
-${voffset 2}${color1}${font :size=8:bold}CPU INFO ${hr 1}${font}
-${color1}Model: ${color3}${execi 6000 lscpu | grep 'Model name:' | awk '{print $3 " " $4 " " $5}'}$alignr${color1}Architecture: ${color3}${execi 6000 lscpu | grep 'Architecture' | awk '{$1=""; print $0}'}
-${color1}Number of sockets: ${color3}${execi 6000 lscpu | grep 'Socket(s):' | awk '{$1=""; print $0}'}$alignr${color1}Cores per socket: ${color3}$alignr${execi 6000 lscpu | grep 'Core(s)' | awk '{$1=$2=$3=""; print $0}'}
-${color1}Threads per core: ${color3}${execi 6000 lscpu | grep 'Thread(s)' | awk '{$1=$2=$3=""; print $0}'}$alignr${color1}Number of logical cores: ${color3}$alignr${execi 6000 lscpu | grep 'CPU(s):' | head -n 1 | awk '{$1=""; print $0}'}
-#${voffset 5}${color1}Name : ${color3}$alignr${execi 6000 cat /proc/cpuinfo | egrep 'processor|model name|cache size|physical id|siblings|core id|cpu cores'}
-${color1}Frequency: ${color3}${execi 2 lscpu | egrep 'CPU MHz' | awk '{print $3}'}MHz (max=${execi 6000 lscpu | egrep 'CPU max' | awk '{print $4}'}MHz)$alignr${color1}Usage: ${color3}${cpu}%
-#--------------------+
-#CPU STATUS
-#--------------------+
-${voffset 2}${color1}${font :size=8}CPU STATUS ${stippled_hr 1 1}
-${color1}1:${goto 35}${color3}${freq_g 1}GHz${goto 95}${color3}${cpu cpu1}%${goto 125}${color2}${cpubar cpu1 10, 30}${goto 165}${color1} 2:${goto 185}${color3}${freq_g 2}GHz${goto 245}${color3}${cpu cpu2}%${goto 275}${color2}${cpubar cpu2 10, 30}
-${color1}3:${goto 35}${color3}${freq_g 3}GHz${goto 95}${color3}${cpu cpu3}%${goto 125}${color2}${cpubar cpu3 10, 30}${goto 165}${color1} 4:${goto 185}${color3}${freq_g 4}GHz${goto 245}${color3}${cpu cpu4}%${goto 275}${color2}${cpubar cpu4 10, 30}
-${color1}5:${goto 35}${color3}${freq_g 5}GHz${goto 95}${color3}${cpu cpu5}%${goto 125}${color2}${cpubar cpu5 10, 30}${goto 165}${color1} 6:${goto 185}${color3}${freq_g 6}GHz${goto 245}${color3}${cpu cpu6}%${goto 275}${color2}${cpubar cpu6 10, 30}
-${color1}7:${goto 35}${color3}${freq_g 7}GHz${goto 95}${color3}${cpu cpu7}%${goto 125}${color2}${cpubar cpu7 10, 30}${goto 165}${color1} 8:${goto 185}${color3}${freq_g 8}GHz${goto 245}${color3}${cpu cpu8}%${goto 275}${color2}${cpubar cpu8 10, 30}
-#--------------------+
-# TEMPS AND FAN SPEED
-#--------------------+
-${voffset 2}${color1}${font :size=8:bold}TEMPS AND FAN SPEED ${hr 1}${font}
-#CPU
-${color1}CPU: ${color3}${execi 2 sensors | grep "Package id 0" | awk '{print "            " $4,$5$6$7$8$9$10}'}
-${color3}${execi 2 sensors | grep "Core" | awk '{print $1,$2"        "$3,$4$5$6$7$8$9}'}
-#GPU
-${color1}GPU: ${color3}${goto 70}${nvidia temp}°C (threshold=${nvidia threshold}°C,ambient=°C)
-#CPU fan Speed
-${color1}CPU fan speed:${color3}${execi 2 sensors | grep "fan" | awk '{$1=""; print $0}'}
-#--------------------+
-# PROCESSES
-#--------------------+
-${voffset 2}${color1}${font :size=8:bold}PROCESSES SORTED BY CPU USAGE ${hr 1}${font}
-${color1}Name${goto 180}CPU%${alignr}MEM%
-${color2}${top name 1} ${goto 180}${top cpu 1}${alignr}${top mem 1}
-${top name 2} ${goto 180}${top cpu 2}${alignr}${top mem 2}
-#${top name 3} ${goto 180}${top cpu 3}${alignr}${top mem 3}
-#${top name 4} ${goto 180}${top cpu 4}${alignr}${top mem 4}
-#--------------------+
-# SOME MEMORY DEVICES
-#--------------------+
-${voffset 2}${color1}${font :size=8:bold}SOME MEMORY DEVICES${hr 1}${font}
-${execi 6000 echo psswrd|sudo -S lshw -short -class memory | sed -n '3,$p' | awk '{$1=$2=""; printf("-%s\n",$0);}'}
-#--------------------+
-# RAM USAGE STATS
-#--------------------+
-${voffset 2}${color1}${font :size=8:bold}RAM USAGE STATS ${hr 1}${font}
-${color1}Used: ${color3}$mem ($memperc%)${goto 150}Free: ${color3}$memfree$alignr Total: $memmax
-${color2}${membar}
-${color1}Name${goto 180}MEM%${alignr}MEM
-${color2}${top_mem name 1} ${goto 180}${top_mem mem 1}${alignr}${top_mem mem_res 1}${color3}
-${top_mem name 2} ${goto 180}${top_mem mem 2}${alignr}${top_mem mem_res 2}
-#--------------------+
-# GPU INFO
-#--------------------+
-${voffset 2}${color1}${font :size=8:bold}GPU INFO ${hr 1}${font}
-${color1}Graphics cards:
-${color3}${execi 6000 echo psswrd|sudo -S hwinfo --gfxcard | grep "Model" | awk '{$1=""; print "- "$0}' | sed 's/"//g'}
-${voffset 2}${color1}MORE INFO ON NVIDIA GPU ${stippled_hr 1 1}
-${color1}Driver:${color3}${execi 6000 nvidia-smi --query-gpu=driver_version --format=csv,noheader,nounits}${goto 140}${color1}Utilization: ${color3}${execi 2 nvidia-smi -i 0 | grep % | awk '{print $13}'}$alignr${color1}Frequency: ${color3}${nvidia gpufreq}
-${color1}VRAM Usage:$alignr${color3}${execi 2 nvidia-smi -i 0 | grep % | awk '{print $9$10$11}'}
-${voffset 2}${color1}PROCESSES USING NVIDIA GPU ${stippled_hr 1 1}
-${color1}Name - VRAM Usage
-${color2}${execi 2 nvidia-smi -i 0 | sed -n '19,$p' | sed '$ d'| awk '{print $7" - "$8}'|head -n 2}
-#--------------------+
-# HDD INFO
-#--------------------+
-${voffset 2}${color1}${font :size=8:bold}HDD INFO ${hr 1}${font}
-${color1}DISKS AND PARTITIONS ${stippled_hr 1 1}
-${color1}Name, Size, Type, Mountpoint 
-${color3}${execi 6000 lsblk | egrep 'disk|part' | awk '{print "- " $1 ", " $4 ", " $6 ", " $7}'}
-# DISK USAGE STATS
-${voffset 2}${color1}DISK USAGE STATS ${stippled_hr 1 1}
-${color1}Used: ${color3}${fs_used /}${color1}${goto 200}Free:${goto 250}${color3}${fs_free /}
-${color2}${fs_bar /}
-${color1}Read: ${color3}${diskio_read}${goto 200}${color1}Write:${goto 250}${color3}${diskio_write}
-${color2}${diskiograph_read 20,130} ${alignr}${diskiograph_write 20,130}
-#--------------------+
-# NETWORK INFO
-#--------------------+
-${voffset -6}${color1}${font :size=8:bold}NETWORK INFO ${hr 1}${font}
-${color3}Up: ${upspeedf wlp4s0} KiB/s${alignr}Down: ${downspeedf wlp4s0} KiB/s
-${color2}${upspeedgraph wlp4s0 20,130 -l}$alignr${downspeedgraph wlp4s0 20, 130 -l}
-#--------------------+
-# BATTERY INFO
-#--------------------+
-${voffset -6}${color1}${font :size=8:bold}BATTERY INFO ${hr 1}${font}
-${color3}Vendor.Model: ${execi 6000 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'vendor' | awk '{$1=""; print $0;}'}.${execi 6000 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'model' | awk '{$1=""; print $0;}'}, Tech: ${execi 6000 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'technology' | awk '{$1=""; print $0;}'} (${execi 6000 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'energy-full-design' | awk '{$1=""; print $0;}'})
-${battery_bar}
-${color3}Status:${battery} (${execi 2 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'energy:' | awk '{ print $2;}'}/${execi 2 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'energy-full:' | awk '{$1=""; print $0;}'})${alignr}Time left:${battery_time}
-#--------------------+
-]]
+${color6}${voffset 4}${font GE Inspira:size=36}${alignc}${time %l}:${time %M} ${time %p}${font}${color}
+${color6}${voffset 4}${font GE Inspira:size=12}${alignc}${time %A} ${time %B} ${time %e}, ${time %Y}${font}${color}
+
+${color5}${font Roboto:size=10}${voffset 2}S Y S T E M   ${hr 2}${font}${color}
+${color2}${voffset 8}Hostname:${color} ${alignr}${nodename}
+${color2}Distro:${color}${alignr}$sysname ${alignr}${execi 6000 lsb_release -a | grep 'Description'|awk {'print $3, $4, $5'}}
+${color2}Kernel:${color}${alignr}${exec uname} ${exec uname -r}
+#Nvidia: ${alignr}${execp  nvidia-smi --query-supported-clocks=gpu_name --format=csv,noheader}
+#Nvidia Driver: ${alignr}${execi 60000 nvidia-smi | grep "Driver Version"| awk {'print $3'}}
+${color2}Uptime:${color} ${alignr}${uptime}
+${color5}${font Roboto:size=10}P R O C E S S O R S  ${hr 2}${font}${color}
+${color2}CPU Freq:${color} $alignr${freq}MHz
+${color2}CPU Temp:${color} $alignr${execi 1 sensor | grep 'Core 0' | awk {'print $3'}}
+${color2}History:${color} ${alignr}${cpugraph 8,100}
+${color2}${offset 30}CPU Core 1:${color} ${alignr}${offset -10}${cpu cpu1}%${alignr}${cpubar cpu1}
+${color2}${offset 30}CPU Core 2:${color} ${alignr}${offset -10}${cpu cpu2}%${alignr}${cpubar cpu2}
+${color2}${offset 30}CPU Core 3:${color} ${alignr}${offset -10}${cpu cpu3}%${alignr}${cpubar cpu3}
+${color2}${offset 30}CPU Core 4:${color} ${alignr}${offset -10}${cpu cpu4}%${alignr}${cpubar cpu4}
+${color2}Top Processes${goto 222}cpu%${goto 274}mem%${color}
+${voffset 4}     1  -  ${top name 1}${alignr}${goto 170} ${goto 222}${top cpu 1} ${goto 274}${top mem 1}
+     2  -  ${top name 2}${alignr} ${goto 222}${top cpu 2} ${goto 274}${top mem 2}
+     3  -  ${top name 3}${alignr} ${goto 222}${top cpu 3} ${goto 274}${top mem 3}
+     4  -  ${top name 4}${alignr} ${goto 222}${top cpu 4} ${goto 274}${top mem 4}
+     5  -  ${top name 5}${alignr} ${goto 222}${top cpu 5} ${goto 274}${top mem 5}
+${color5}${font Roboto:size=10}M E M O R Y   ${hr 2}${font}${color}
+${color2}${offset 30}RAM: ${color}${alignr}${offset -10}${mem} / ${memmax}${alignr}${membar}
+${color2}${offset 30}Swap:${color} ${alignr}${offset -10}${swap} / ${swapmax}${alignr}${swapbar}
+${color2}Top Processes${goto 222}cpu%${goto 274}mem%${color}
+${voffset 4}     1  -  ${top_mem name 1}${alignr}${goto 170} ${goto 222}${top_mem cpu 1} ${goto 274}${top_mem mem 1}
+     2  -  ${top_mem name 2}${alignr}${goto 170} ${goto 222}${top_mem cpu 2} ${goto 274}${top_mem mem 2}
+     3  -  ${top_mem name 3}${alignr}${goto 170} ${goto 222}${top_mem cpu 3} ${goto 274}${top_mem mem 3}
+     4  -  ${top_mem name 4}${alignr}${goto 170} ${goto 222}${top_mem cpu 4} ${goto 274}${top_mem mem 4}
+     5  -  ${top_mem name 5}${alignr}${goto 170} ${goto 222}${top_mem cpu 5} ${goto 274}${top_mem mem 5}
+${color5}${font Roboto:size=10}D R I V E S   ${hr 2}${font}${color}
+${offset 30}${color2}Root  -  SSD:${color} ${alignr}${offset -10}${fs_used /} / ${fs_size /}${alignr}${fs_bar}
+${offset 30}${color2}I/O Read:${color} ${alignr}${offset -10}${diskio_read /dev/nvme0n1p2}${alignr}${diskiograph_read nvme0n1p2 8,100}
+${offset 30}${color2}I/O Write:${color} ${alignr}${offset -10}${diskio_write /dev/nvme0n1p2}${alignr}${diskiograph_write nvme0n1p2 8,100}
+
+${offset 30}${color2}256nvme :${color} ${alignr}${offset -10}${fs_used /home/titus/256nvme} / ${fs_size /home/titus/256nvme}${alignr}${fs_bar}
+${offset 30}${color2}I/O Read:${color} ${alignr}${offset -10}${diskio_read /dev/nvme1n1p1}${alignr}${diskiograph_read nvme1n1p1 8,100}
+${offset 30}${color2}I/O Write:${color} ${alignr}${offset -10}${diskio_write /dev/nvme1n1p1}${alignr}${diskiograph_write nvme1n1p1 8,100}
+
+${offset 30}${color2}Storage :${color} ${alignr}${offset -10}${fs_used /home/titus/1tb} / ${fs_size /home/titus/1tb}${alignr}${fs_bar /home/titus/1tb}
+${offset 30}${color2}I/O Read:${color} ${alignr}${offset -10}${diskio_read /dev/sda5}${alignr}${diskiograph_read sda5 8,100}
+${offset 30}${color2}I/O Write:${color} ${alignr}${offset -10}${diskio_write /dev/sda5}${alignr}${diskiograph_write sda5 8,100}
+${color5}${color5}${font Roboto:size=10}N E T W O R K   ${hr 2}${font}${color}
+${color2}${offset 30}IP Address: ${color} ${alignr}${offset -10$}${addrs enp6s0}
+${color2}${offset 30}Eth Up:${color} ${alignr}${offset -10$}${upspeed enp6s0}${alignr}${upspeedgraph enp6s0 8,100}
+${color2}${offset 30}Eth Down:${color} ${alignr}${offset -10$}${downspeed enp6s0}${alignr}${downspeedgraph enp6s0 8,100}
+#${font Roboto:size=10}N V I D I A   ${hr 2}${font}
+#${font Roboto:size=10,weight:bold}${color5}${execp  nvidia-smi --query-supported-clocks=gpu_name --format=csv,noheader}${font}
+#${font StyleBats:size=20}u${font}${offset 8}${voffset -12}GPU Temp ${alignr}${execi 60 nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader} °C
+#${offset 30}Fan Speed ${alignr}${execi 60 nvidia-settings -q [fan:0]/GPUCurrentFanSpeed -t} %
+#${offset 30}GPU Clock ${alignr}${execi 60 nvidia-settings -q GPUCurrentClockFreqs | grep -m 1 Attribute | awk '{print $4}' | sed -e 's/\.//' | cut -d, -f1} MHz
+#${offset 30}Mem Clock ${alignr}${execi 86400 nvidia-settings -q all| grep -m 1 GPUCurrentProcessorClockFreqs | awk '{print $4}' | sed 's/.$//'} MHz
+#${offset 30}Mem Used ${alignr}${execi 60 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t} / ${exec nvidia-settings -q [gpu:0]/TotalDedicatedGPUMemory -t} MiB0
+]];
