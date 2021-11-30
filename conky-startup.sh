@@ -1,2 +1,2 @@
 killall conky
-sleep 30s && conky -c ~/.conkyrc
+sleep 20 && conky -c ~/.conkyrc
