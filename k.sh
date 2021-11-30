@@ -73,12 +73,6 @@ sudo ufw default allow outgoing
 sudo systemctl enable ufw
 sudo systemctl start ufw
 sudo ufw enable
-chmod +x conky-startup.sh
-cp ~/Downloads/inst/.conkyrc ~/
-cp ~/Downloads/inst/conky-startup.sh ~/
-cd  /etc/profile.d
-sudo ln -s ~/conky-startup.sh conky.sh
-cd ~/Downloads/inst
 konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
 konsave -a kde
