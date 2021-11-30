@@ -1,129 +1,162 @@
-conky.config ={
-  -- CONKY SETTINGS
-  background = true,
-  update_interval = 1,
-  total_run_times = 0,
-  
-  cpu_avg_samples = 1,
-  net_avg_samples = 1,
-  
-  override_utf8_locale = true,
-  
-  double_buffer = true,
-  no_buffers = true,
-  
-  text_buffer_size = 32768,
-  
-  -- CONKY: WINDOW SPECIFICATIONS
-  own_window = true,
-  own_window_argb_value = 192,
-  own_window_argb_visual = true,
-  own_window_class = 'conky-semi',
-  own_window_colour = '#0b0d18',
-  own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
-  -- own_window_transparent = true,
-  own_window_transparent = false,
-  own_window_type = 'normal',
-  -- own_window_type = 'desktop',
+conky.config = {
 
-  border_inner_margin = 6,
-  border_width = 5, 
+	--Various settings
 
-  minimum_height = 1020,
+	background = false,
+	cpu_avg_samples = 1,
+	diskio_avg_samples = 10,
+	double_buffer = true,
+	if_up_strictness = 'address',
+	net_avg_samples = 2,
+	no_buffers = true,
+	temperature_unit = 'celsius',
+	update_interval = 2,
+	imlib_cache_size = 0,
 
-  minimum_width = 280,
-  maximum_width = 280,
+	--Placement
 
-  alignment = 'top_right',
-  gap_x = 10,
-  gap_y = 15,
+	alignment = 'middle_right',
+	gap_x = 10,
+	gap_y = 30,
+	minimum_height = 1300,
+	minimum_width = 280,
+	maximum_width = 300,
 
-  -- GRAPHICS SETTINGS
-  draw_shades = false,
-  draw_outline = true,
-  draw_borders = false,
-  draw_graph_borders = true,
-  -- draw_graph_borders = false,
+	--Graphical
 
-  -- TEXT SETTINGS
-  use_xft = true,
-  font = 'Montserrat Regular:size=10',
-  xftalpha = 0.2,
+	border_inner_margin = 10,
+	border_outer_margin = 10,
+	draw_borders = false,
+	draw_graph_borders = true,
+	draw_shades = false,
+	draw_outline = false,
 
-  uppercase = false,
+	--Textual
+	
+	format_human_readable = true,
+	max_text_width = 0,
+	short_units = true,
+	use_xft = true,
+	xftalpha = 1,
+	font = 'ubuntu:size=8',
 
-  -- Pad percentages to this many decimals (0 = no padding)
-  pad_percents = 2,
+	--Windows
 
-  -- COLOUR SETTINGS
-  default_color = 'AAAAAA',
-  default_shade_color = '333333',
-  -- default_outline_color = '111111',
-  default_outline_color = '010101',
-  color1 = '999999',
-  color2 = 'CCCCCC',
-  color3 = 'EEEEEE',
-  color4 = '444444',
-  color5 = '555555',
-  color6 = '666666',
-  color7 = '3b71a1',
+	own_window = true,
+	-- Lambo: 252525
+	-- Solarized: 002B36
+	own_window_colour = '252525',
+	own_window_argb_value = 240,
+	own_window_argb_visual = true,
+	own_window_type = 'desktop',-- # options are: normal/override/dock/desktop/panel
+	
+
+	--Colours
+	-- Lambo: 9D9D9D
+	-- Solarized: #268BD2
+	default_color = '#9D9D9D',                                          -- default color and border color
+        color1 = '#9D9D9D',                                                 -- title_color
+        color2 = '#9D9D9D',                                                -- top memory or processes, graphs
+        color3 = '#9D9D9D',                                                -- text color
 };
 
 
 conky.text = [[
-${alignc}${color1}${font Montserrat Bold:size=20}${time %H:%M:%S}${font}${color}${alignc}
-${voffset -9}
-${alignc}${font Montserrat Light:size=10}${time %A %d %B %Y}${font}${alignc}
-${color6}${hr 2}${color} 
-${voffset -6}
-${font Montserrat Light:size=8}${color1}SYSTEM:${color}${font} ${alignr}$sysname $nodename 
-${font Montserrat Light:size=8}${color1}UPTIME:${color}${font} ${alignr}$uptime_short
-${font Montserrat Light:size=8}${color1}KERNEL:${color}${font} ${alignr}$kernel ${voffset 5}
-${font :size=11}${color}CPUs ${color}${hr 2}${color}
-${voffset -15}
-${font Montserrat Light:size=10}${color1}CPU:${color}${font} ${alignr}${color}INtel E6850 @ 3.00GHz${color}${font}
-${voffset -15}
-${font Montserrat Light:size=9}${color1}01 - 04:${color}${font} ${goto 100}${cpu cpu1}
-${voffset -8}
-${font Montserrat Light:size=9}${color1}CPU TEMP:${color}${font} ${font :size=10}${alignr}${hwmon 1 temp 1}°${color4}C${color}${voffset 5}
-${font :size=11}${color}Network ${color}${hr 2}${color}
-${voffset -15}
-${font Montserrat Light:size=10}${color1}IP ADDRESS:${color}${font} ${alignr}${addr enp0s3}
-${if_match "${addr enp0s3}"!="No Address"}${voffset 5}${font Montserrat Light:size=10}${font}Download ${alignr}${downspeedf enp0s3}k/s (${totaldown enp0s3})
-${color3}${downspeedgraph enp0s3 50,280 ADFF2F 32CD32 -t}
-${font Montserrat Light:size=10}${font}Upload ${alignr}${upspeedf enp0s3}k/s (${totalup enp0s3})
-${color3}${upspeedgraph enp0s3 50,280 FF0000 8B0000 -t}
-${endif}${voffset 5}${font :size=11}${color}HDD ${color}${hr 2}${color}
+# Replace psswrd with your system password
+#--------------------+
+# DEVICE INFO
+#--------------------+
+${color1}${font :size=8:bold}DEVICE INFO ${hr 1}${font}
+${color1}OS:${color3}${execi 6000 lsb_release -d| awk '{$1=""; print $0}'}$alignr${color1}Kernel:${color3} $kernel
+${color1}Uptime:$alignr${color3} $uptime
+#--------------------+
+#CPU INFO
+#--------------------+
+${voffset 2}${color1}${font :size=8:bold}CPU INFO ${hr 1}${font}
+${color1}Model: ${color3}${execi 6000 lscpu | grep 'Model name:' | awk '{print $3 " " $4 " " $5}'}$alignr${color1}Architecture: ${color3}${execi 6000 lscpu | grep 'Architecture' | awk '{$1=""; print $0}'}
+${color1}Number of sockets: ${color3}${execi 6000 lscpu | grep 'Socket(s):' | awk '{$1=""; print $0}'}$alignr${color1}Cores per socket: ${color3}$alignr${execi 6000 lscpu | grep 'Core(s)' | awk '{$1=$2=$3=""; print $0}'}
+${color1}Threads per core: ${color3}${execi 6000 lscpu | grep 'Thread(s)' | awk '{$1=$2=$3=""; print $0}'}$alignr${color1}Number of logical cores: ${color3}$alignr${execi 6000 lscpu | grep 'CPU(s):' | head -n 1 | awk '{$1=""; print $0}'}
+#${voffset 5}${color1}Name : ${color3}$alignr${execi 6000 cat /proc/cpuinfo | egrep 'processor|model name|cache size|physical id|siblings|core id|cpu cores'}
+${color1}Frequency: ${color3}${execi 2 lscpu | egrep 'CPU MHz' | awk '{print $3}'}MHz (max=${execi 6000 lscpu | egrep 'CPU max' | awk '{print $4}'}MHz)$alignr${color1}Usage: ${color3}${cpu}%
+#--------------------+
+#CPU STATUS
+#--------------------+
+${voffset 2}${color1}${font :size=8}CPU STATUS ${stippled_hr 1 1}
+${color1}1:${goto 35}${color3}${freq_g 1}GHz${goto 95}${color3}${cpu cpu1}%${goto 125}${color2}${cpubar cpu1 10, 30}${goto 165}${color1} 2:${goto 185}${color3}${freq_g 2}GHz${goto 245}${color3}${cpu cpu2}%${goto 275}${color2}${cpubar cpu2 10, 30}
+${color1}3:${goto 35}${color3}${freq_g 3}GHz${goto 95}${color3}${cpu cpu3}%${goto 125}${color2}${cpubar cpu3 10, 30}${goto 165}${color1} 4:${goto 185}${color3}${freq_g 4}GHz${goto 245}${color3}${cpu cpu4}%${goto 275}${color2}${cpubar cpu4 10, 30}
+${color1}5:${goto 35}${color3}${freq_g 5}GHz${goto 95}${color3}${cpu cpu5}%${goto 125}${color2}${cpubar cpu5 10, 30}${goto 165}${color1} 6:${goto 185}${color3}${freq_g 6}GHz${goto 245}${color3}${cpu cpu6}%${goto 275}${color2}${cpubar cpu6 10, 30}
+${color1}7:${goto 35}${color3}${freq_g 7}GHz${goto 95}${color3}${cpu cpu7}%${goto 125}${color2}${cpubar cpu7 10, 30}${goto 165}${color1} 8:${goto 185}${color3}${freq_g 8}GHz${goto 245}${color3}${cpu cpu8}%${goto 275}${color2}${cpubar cpu8 10, 30}
+#--------------------+
+# TEMPS AND FAN SPEED
+#--------------------+
+${voffset 2}${color1}${font :size=8:bold}TEMPS AND FAN SPEED ${hr 1}${font}
+#CPU
+${color1}CPU: ${color3}${execi 2 sensors | grep "Package id 0" | awk '{print "            " $4,$5$6$7$8$9$10}'}
+${color3}${execi 2 sensors | grep "Core" | awk '{print $1,$2"        "$3,$4$5$6$7$8$9}'}
+#GPU
+${color1}GPU: ${color3}${goto 70}${nvidia temp}°C (threshold=${nvidia threshold}°C,ambient=°C)
+#CPU fan Speed
+${color1}CPU fan speed:${color3}${execi 2 sensors | grep "fan" | awk '{$1=""; print $0}'}
+#--------------------+
+# PROCESSES
+#--------------------+
+${voffset 2}${color1}${font :size=8:bold}PROCESSES SORTED BY CPU USAGE ${hr 1}${font}
+${color1}Name${goto 180}CPU%${alignr}MEM%
+${color2}${top name 1} ${goto 180}${top cpu 1}${alignr}${top mem 1}
+${top name 2} ${goto 180}${top cpu 2}${alignr}${top mem 2}
+#${top name 3} ${goto 180}${top cpu 3}${alignr}${top mem 3}
+#${top name 4} ${goto 180}${top cpu 4}${alignr}${top mem 4}
+#--------------------+
+# SOME MEMORY DEVICES
+#--------------------+
+${voffset 2}${color1}${font :size=8:bold}SOME MEMORY DEVICES${hr 1}${font}
+${execi 6000 echo psswrd|sudo -S lshw -short -class memory | sed -n '3,$p' | awk '{$1=$2=""; printf("-%s\n",$0);}'}
+#--------------------+
+# RAM USAGE STATS
+#--------------------+
+${voffset 2}${color1}${font :size=8:bold}RAM USAGE STATS ${hr 1}${font}
+${color1}Used: ${color3}$mem ($memperc%)${goto 150}Free: ${color3}$memfree$alignr Total: $memmax
+${color2}${membar}
+${color1}Name${goto 180}MEM%${alignr}MEM
+${color2}${top_mem name 1} ${goto 180}${top_mem mem 1}${alignr}${top_mem mem_res 1}${color3}
+${top_mem name 2} ${goto 180}${top_mem mem 2}${alignr}${top_mem mem_res 2}
+#--------------------+
+# GPU INFO
+#--------------------+
+${voffset 2}${color1}${font :size=8:bold}GPU INFO ${hr 1}${font}
+${color1}Graphics cards:
+${color3}${execi 6000 echo psswrd|sudo -S hwinfo --gfxcard | grep "Model" | awk '{$1=""; print "- "$0}' | sed 's/"//g'}
+${voffset 2}${color1}MORE INFO ON NVIDIA GPU ${stippled_hr 1 1}
+${color1}Driver:${color3}${execi 6000 nvidia-smi --query-gpu=driver_version --format=csv,noheader,nounits}${goto 140}${color1}Utilization: ${color3}${execi 2 nvidia-smi -i 0 | grep % | awk '{print $13}'}$alignr${color1}Frequency: ${color3}${nvidia gpufreq}
+${color1}VRAM Usage:$alignr${color3}${execi 2 nvidia-smi -i 0 | grep % | awk '{print $9$10$11}'}
+${voffset 2}${color1}PROCESSES USING NVIDIA GPU ${stippled_hr 1 1}
+${color1}Name - VRAM Usage
+${color2}${execi 2 nvidia-smi -i 0 | sed -n '19,$p' | sed '$ d'| awk '{print $7" - "$8}'|head -n 2}
+#--------------------+
+# HDD INFO
+#--------------------+
+${voffset 2}${color1}${font :size=8:bold}HDD INFO ${hr 1}${font}
+${color1}DISKS AND PARTITIONS ${stippled_hr 1 1}
+${color1}Name, Size, Type, Mountpoint 
+${color3}${execi 6000 lsblk | egrep 'disk|part' | awk '{print "- " $1 ", " $4 ", " $6 ", " $7}'}
+# DISK USAGE STATS
+${voffset 2}${color1}DISK USAGE STATS ${stippled_hr 1 1}
 ${color1}Used: ${color3}${fs_used /}${color1}${goto 200}Free:${goto 250}${color3}${fs_free /}
 ${color2}${fs_bar /}
-${font Montserrat Light:size=8}${color1}DISK I/O:${color}${font} ${alignr}$diskio
-${voffset 2}${font Montserrat Light:size=8}${color1}READ: ${color}${font} ${goto 80}${color4}${diskiograph_read  15,210 ADFF2F 32CD32 750}${color}
-${voffset 2}${font Montserrat Light:size=8}${color1}WRITE:${color}${font} ${goto 80}${color4}${diskiograph_write 15,210 FF0000 8B0000 750}${color}
-${font :size=11}${color}Memory ${color}${hr 2}${color}${voffset 2}
-$font${color DimGray}RAM $alignc $mem / $memmax $alignr ${color 188f18}$memperc%
-${color 188f18}$membar${voffset 1}
-${font :size=11}${color}GPU ${color}${hr 2}${color}${voffset 2}
-${font Montserrat Light:size=9}${color1}GPU Freq.: $alignr ${color}${font}${nvidia gpufreq} Mhz${voffset 3}
-${font Montserrat Light:size=9}${color1}Memory Freq.: $alignr ${color}${font}${nvidia memfreq} Mhz${voffset 3}
-${font Montserrat Light:size=9}${color1}Temperature: $alignr ${color}${font}${nvidia temp}°C ${voffset 3}
-${voffset 3}${font :size=11}${color}Processes ${color}${hr 2}${color}
-${voffset -15}
-${font :size=10}${font Montserrat Light:size=8}${color1}TOTAL:${color}${font} ${alignr}${processes}
-${voffset -10} 
-${font Montserrat Light:size=9}${color1}APP NAME: ${goto 160}MEMORY: ${goto 245}CPU: ${color}${font}
-${voffset -16}
-${font Montserrat Light:size=9}${color1}${top_mem name 1} ${color}${font} ${goto 160}${top mem 1} % ${goto 235}${top cpu 1} %
-${font Montserrat Light:size=9}${color1}${top_mem name 2} ${color}${font} ${goto 160}${top mem 2} % ${goto 235}${top cpu 2} %
-${font Montserrat Light:size=9}${color1}${top_mem name 3} ${color}${font} ${goto 160}${top mem 3} % ${goto 235}${top cpu 3} %
-${font Montserrat Light:size=9}${color1}${top_mem name 4} ${color}${font} ${goto 160}${top mem 4} % ${goto 235}${top cpu 4} %
-${font Montserrat Light:size=9}${color1}${top_mem name 5} ${color}${font} ${goto 160}${top mem 5} % ${goto 235}${top cpu 5} %
-${font Montserrat Light:size=9}${color1}${top_mem name 6} ${color}${font} ${goto 160}${top mem 6} % ${goto 235}${top cpu 6} %
-${font Montserrat Light:size=9}${color1}${top_mem name 7} ${color}${font} ${goto 160}${top mem 7} % ${goto 235}${top cpu 7} %
-${font Montserrat Light:size=9}${color1}${top_mem name 8} ${color}${font} ${goto 160}${top mem 8} % ${goto 235}${top cpu 8} %
-${font Montserrat Light:size=9}${color1}${top_mem name 9} ${color}${font} ${goto 160}${top mem 9} % ${goto 235}${top cpu 9} %
-${font Montserrat Light:size=9}${color1}${top_mem name 10} ${color}${font} ${goto 160}${top mem 10} % ${goto 235}${top cpu 10} %
-
-${font Montserrat Light:size=10}${color1}${alignr}by: Mo Abdrabou${color}${font}
-
-
-]];
+${color1}Read: ${color3}${diskio_read}${goto 200}${color1}Write:${goto 250}${color3}${diskio_write}
+${color2}${diskiograph_read 20,130} ${alignr}${diskiograph_write 20,130}
+#--------------------+
+# NETWORK INFO
+#--------------------+
+${voffset -6}${color1}${font :size=8:bold}NETWORK INFO ${hr 1}${font}
+${color3}Up: ${upspeedf wlp4s0} KiB/s${alignr}Down: ${downspeedf wlp4s0} KiB/s
+${color2}${upspeedgraph wlp4s0 20,130 -l}$alignr${downspeedgraph wlp4s0 20, 130 -l}
+#--------------------+
+# BATTERY INFO
+#--------------------+
+${voffset -6}${color1}${font :size=8:bold}BATTERY INFO ${hr 1}${font}
+${color3}Vendor.Model: ${execi 6000 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'vendor' | awk '{$1=""; print $0;}'}.${execi 6000 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'model' | awk '{$1=""; print $0;}'}, Tech: ${execi 6000 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'technology' | awk '{$1=""; print $0;}'} (${execi 6000 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'energy-full-design' | awk '{$1=""; print $0;}'})
+${battery_bar}
+${color3}Status:${battery} (${execi 2 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'energy:' | awk '{ print $2;}'}/${execi 2 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'energy-full:' | awk '{$1=""; print $0;}'})${alignr}Time left:${battery_time}
+#--------------------+
+]]
