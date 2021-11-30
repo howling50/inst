@@ -46,29 +46,34 @@ conky.config ={
   -- draw_graph_borders = false,
 
   -- TEXT SETTINGS
-  use_xft = true,
-  font = 'Montserrat Regular:size=10',
-  xftalpha = 0.2,
-
-  uppercase = false,
-
-  -- Pad percentages to this many decimals (0 = no padding)
-  pad_percents = 2,
+extra_newline = false,						-- extra newline at the end - for asesome's wiboxes
+	format_human_readable = true,				-- KiB, MiB rather then number of bytes
+	font = 'Roboto Mono:size=10',  				-- font for complete conky unless in code defined
+	max_text_width = 0,							-- 0 will make sure line does not get broken if width too smal
+	max_user_text = 16384,						-- max text in conky default 16384
+	override_utf8_locale = true,				-- force UTF8 requires xft
+	short_units = true,							-- shorten units from KiB to k
+	top_name_width = 21,						-- width for $top name value default 15
+	top_name_verbose = false,					-- If true, top name shows the full command line of  each  process - Default value is false.
+	uppercase = false,							-- uppercase or not
+	use_spacer = 'none',						-- adds spaces around certain objects to align - default none
+	use_xft = true,								-- xft font - anti-aliased font
+	xftalpha = 1,								-- alpha of the xft font - between 0-1
 
   -- COLOUR SETTINGS
-  default_color = 'AAAAAA',
-  default_shade_color = '333333',
-  -- default_outline_color = '111111',
-  default_outline_color = '010101',
-  color1 = '999999',
-  color2 = 'CCCCCC',
-  color3 = 'EEEEEE',
-  color4 = '444444',
-  color5 = '555555',
-  color6 = '666666',
-  color7 = '3b71a1',
-};
+  default_color = '#D9DDE2',  				-- default color and border color
+	color1 = '#6BDFFF',
+	color2 = '#B0EEFF',
+	color3 = '#6BDFFF',
+	color4 = '#D9BC83',
+	color5 = '#FFFB2B',
+	color6 = '#FFFFFF',
 
+	--Signal Colours
+	color7 = '#1F7411',  						--green
+	color8 = '#FFA726',  						--orange
+	color9 = '#F1544B',  						--firebrick
+};
 
 conky.text = [[
 ${alignc}${color1}${font Montserrat Bold:size=20}${time %H:%M:%S}${font}${color}${alignc}
