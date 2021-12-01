@@ -73,6 +73,8 @@ sudo ufw default allow outgoing
 sudo systemctl enable ufw
 sudo systemctl start ufw
 sudo ufw enable
+cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
+cd ~/Downloads/inst
 konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
 konsave -a kde
