@@ -76,8 +76,8 @@ sudo ufw enable
 cd ~/Downloads/inst
 chmod +x conky-startup.sh
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
-cp ~/Downloads/inst/conky-startup.sh ~/conky-startup.sh
 cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
 konsave -a kde
+conky -c ~/.conkyrc
