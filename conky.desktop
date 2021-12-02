@@ -2,7 +2,7 @@
 Name=Conky
 GenericName=ConkyStartup
 Comment=Start conky on boot
-Exec=~/conky-startup.sh
+Exec=conky --pause 60
 Terminal=false
 Type=Application
 X-GNOME-Autostart-enabled=true
