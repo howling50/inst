@@ -9,7 +9,6 @@ sudo rm -rf ~/./local/share/baloo
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
 sudo ./strap.sh
-sudo pacman -R yakuake --noconfirm
 sudo pacman -R elisa --noconfirm
 sudo pacman -R thunderbird --noconfirm
 sudo pacman -S binutils --noconfirm --needed
