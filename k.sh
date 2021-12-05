@@ -42,6 +42,8 @@ sudo pacman -S lutris --noconfirm --needed
 sudo pacman -S neofetch --noconfirm --needed
 sudo pacman -S net-tools --noconfirm --needed
 sudo pacman -S zip --noconfirm --needed
+sudo pacman -S unzip --noconfirm --needed
+sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S rkhunter --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S gparted --noconfirm --needed
