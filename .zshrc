@@ -12,6 +12,7 @@ alias listen='sudo lsof -i -P -n | grep LISTEN'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='curl checkip.dyndns.org'
 alias delall='sudo pacman -Rs $(pacman -Qqtd)'
+alias pacign='sudo nano /etc/pacman.conf'
 finds ()
 {
   find / -name "$1" 2>/dev/null
