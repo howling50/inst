@@ -48,7 +48,6 @@ sudo pacman -S rkhunter --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S gimp --noconfirm --needed
-sudo pacman -S vlc --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 sudo pacman -S conky --noconfirm --needed
 sudo pacman -S burpsuite --noconfirm --needed
