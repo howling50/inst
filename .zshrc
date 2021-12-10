@@ -40,3 +40,8 @@ ex ()
   fi
 }
 alias grep='grep --color'
+guiedit ()
+{
+ sudo env SUDO_EDITOR="/usr/bin/leafpad" sudoedit "$1"
+}
+
