@@ -44,4 +44,10 @@ guiedit ()
 {
  sudo env SUDO_EDITOR="/usr/bin/leafpad" sudoedit "$1"
 }
-
+alias pacman-update='sudo pacman-mirrors --geoip'
+alias ll='ls -l'
+alias la='ls -lha'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias zshrc='sudo nano ~/.zshrc'
