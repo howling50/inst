@@ -111,6 +111,8 @@ shopt -s cdspell
 shopt -s histappend
 
 # Alias
+alias torstart='sudo systemctl start tor.service'
+alias torstop='sudo systemctl stop tor.service'
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
