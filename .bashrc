@@ -95,7 +95,10 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
-
+bind '"\e[A": history-search-backward'
+bind '"\eOA": history-search-backward'
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
 xhost +local:root > /dev/null 2>&1
 
 # Bash won't get SIGWINCH if another process is in the foreground.
