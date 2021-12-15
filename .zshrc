@@ -8,6 +8,8 @@ fi
 if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
+alias torstart='sudo systemctl start tor.service'
+alias torstop='sudo systemctl stop tor.service'
 alias listen='sudo lsof -i -P -n | grep LISTEN'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='curl ifconfig.me'
