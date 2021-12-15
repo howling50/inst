@@ -21,6 +21,7 @@ sudo pacman -R thunderbird --noconfirm
 sudo pacman -S binutils --noconfirm --needed
 sudo pacman -S hiredis --noconfirm --needed
 sudo pacman -S ccache --noconfirm --needed
+sudo pacman -S nmap --noconfirm --needed
 sudo pacman -S make --noconfirm --needed
 sudo pacman -S autoconf --noconfirm --needed
 sudo pacman -S flex --noconfirm --needed
