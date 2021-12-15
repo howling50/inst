@@ -54,3 +54,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias zshrc='sudo nano ~/.zshrc'
 alias bashrc='sudo nano ~/.bashrc'
+nmapauto ()
+{
+ sudo nmap -Pn -T4 -A -p- -sV "$1"
+}
