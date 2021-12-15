@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+sudo pacman -S powerline --noconfirm --needed
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
 sudo cp ~/Downloads/inst/.zshrc /root/.zshrc
