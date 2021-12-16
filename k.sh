@@ -59,13 +59,15 @@ sudo pacman -S gimp --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 sudo pacman -S conky --noconfirm --needed
 sudo pacman -S burpsuite --noconfirm --needed
+sudo pacman -S brave-browser --noconfirm --needed
 yay --sudoloop --save
 yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm key-mapper
 yay -S --noconfirm sejda-desktop
+yay -S --noconfirm ttf-meslo
+yay -S --noconfirm ttf-droid
 yay -S --noconfirm spotify
-yay -S --noconfirm brave-bin
 yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm konsave
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
