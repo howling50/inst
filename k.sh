@@ -86,7 +86,8 @@ sudo systemctl enable ufw
 sudo systemctl start ufw
 sudo ufw enable
 cd ~/Downloads/inst
-chmod +x conky-startup.sh
+chmod +x install.sh
+sudo ./install.sh
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 konsave -i ~/Downloads/inst/kde.knsv
