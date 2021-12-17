@@ -11,6 +11,7 @@ sudo cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo pacman -S yay --noconfirm --needed
 sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
+sudo balooctl stop
 sudo balooctl disable
 sudo rm -rf ~/./local/share/baloo
 curl -O https://blackarch.org/strap.sh
