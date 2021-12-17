@@ -124,7 +124,7 @@ alias delall='sudo pacman -Rs $(pacman -Qqtd)'
 alias pacign='sudo nano /etc/pacman.conf'
 finds ()
 {
-  find / -name "$1" 2>/dev/null
+  find / -iname "$1" 2>/dev/null
 }
 ex ()
 {
