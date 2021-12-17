@@ -41,7 +41,7 @@ sudo pacman -S gufw --noconfirm --needed
 sudo pacman -S proxychains --noconfirm --needed
 sudo pacman -S tor --noconfirm --needed
 sudo pacman -S pkgconf --noconfirm --needed
-sudo pacman -S terminator --noconfirm --needed
+sudo pacman -S kitty --noconfirm --needed
 sudo pacman -S gamemode --noconfirm --needed
 sudo pacman -S hardinfo --noconfirm --needed
 sudo pacman -S audacious --noconfirm --needed
@@ -90,6 +90,7 @@ chmod +x install.sh
 sudo ./install.sh
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 cp ~/Downloads/inst/.conkyrc ~/.conkyrc
+cp -r ~/Downloads/inst/files/* ~/.config/
 konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
 konsave -a kde
