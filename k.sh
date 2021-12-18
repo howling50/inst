@@ -46,7 +46,7 @@ sudo pacman -S winetricks --noconfirm --needed
 sudo pacman -S gufw --noconfirm --needed
 sudo pacman -S proxychains --noconfirm --needed
 sudo pacman -S tor --noconfirm --needed
-sudo pacman -S vim --noconfirm --needed
+sudo pacman -S neovim --noconfirm --needed
 sudo pacman -S pkgconf --noconfirm --needed
 sudo pacman -S kitty --noconfirm --needed
 sudo pacman -S gamemode --noconfirm --needed
