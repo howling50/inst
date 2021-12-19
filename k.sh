@@ -84,9 +84,6 @@ sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq'
 sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
 mkdir -p ~/.config/nvim/
 cp ~/Downloads/inst/init.vim ~/.config/nvim/
-mkdir -p ~/.local/share/nvim/site/autoload
-cd ~/.local/share/nvim/site/autoload
-wget https://github.com/junegunn/vim-plug/raw/master/plug.vim
 cd ~/Downloads/inst/
 wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
 sudo pacman -U ~/Downloads/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
@@ -108,3 +105,4 @@ konsave -a kde
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 conky -c ~/.conkyrc
+nvim
