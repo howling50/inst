@@ -14,7 +14,7 @@ set number
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
-Plug 'ap/vim-css-color'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -55,3 +55,4 @@ set ignorecase
 set smartcase
 set showmatch
 set hidden
+lua require'colorizer'.setup()
