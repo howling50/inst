@@ -105,5 +105,5 @@ konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
 konsave -a kde
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
-#cp ~/Downloads/inst/.conkyrc ~/.conkyrc
-#conky -c ~/.conkyrc
+cp ~/Downloads/inst/.conkyrc ~/.conkyrc
+conky -c ~/.conkyrc
