@@ -14,6 +14,7 @@ endif
 filetype off
 filetype plugin on
 filetype indent on
+filetype plugin indent on
 set cursorline
 set visualbell
 set termencoding=utf-8
@@ -107,8 +108,8 @@ let g:lightline = {
     \ }
 
 " remap arrow keys
-nnoremap <Left> :bprev<CR>
-nnoremap <Right> :bnext<CR>
+nnoremap <A-left> :bprev<CR>
+nnoremap <A-right> :bnext<CR>
 
 " lightline-buffer ui settings
 " replace these symbols with ascii characters if your environment does not support unicode
