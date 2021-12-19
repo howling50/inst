@@ -52,9 +52,9 @@ alias la='ls -lha'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias vimrc='sudo vim ~/.vimrc'
-alias bashrc='sudo vim ~/.bashrc'
-alias zshrc='sudo vim ~/.zshrc'
+alias vimrc='vim ~/.vimrc'
+alias bashrc='vim ~/.bashrc'
+alias zshrc='vim ~/.zshrc'
 nmapauto ()
 {
  sudo nmap -Pn -T4 -A -p- -sV "$1"
