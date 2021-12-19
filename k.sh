@@ -5,7 +5,7 @@
 #sudo mkswap /swapfile
 #sudo swapon /swapfile
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-sudo pacman-mirrors --fasttrack 5 && sudo pacman -Syyu --noconfirm --needed
+sudo pacman-mirrors --geoip && sudo pacman -Syyu --noconfirm --needed
 sudo pacman -S powerline-fonts --noconfirm --needed
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
