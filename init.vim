@@ -11,7 +11,6 @@ if (has("termguicolors"))
    set termguicolors
 endif
 
-set mouse=a
 filetype off
 filetype plugin on
 filetype indent on
