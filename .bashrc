@@ -171,6 +171,7 @@ freeram ()
 {
   sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches && sleep 2 && free -h'
 }
+alias neofetch='neofetch --kitty --source ~/.config/neofetch/N51R4iT.jpg'
 ################################################################################
 ##  FUNCTIONS                                                                 ##
 ################################################################################
