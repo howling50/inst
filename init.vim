@@ -11,7 +11,6 @@ if (has("termguicolors"))
    set termguicolors
 endif
 
-set clipboard=unnamed
 set mouse=a
 filetype off
 filetype plugin on
