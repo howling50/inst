@@ -38,7 +38,7 @@ call plug#end()
 " NERDTree configuration
 let g:NERDTreeChDirMode=2
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-nnoremap <C-e> :NERDTree<CR>
+nnoremap <A-e> :NERDTree<CR>
 let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
