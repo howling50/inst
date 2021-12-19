@@ -74,7 +74,7 @@ sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 sudo bash -c 'echo -e "SCRIPTWHITELIST=/usr/bin/egrep\nSCRIPTWHITELIST=/usr/bin/fgrep\nSCRIPTWHITELIST=/usr/bin/ldd\nSCRIPTWHITELIST=/usr/bin/vendor_perl/GET" >> /etc/rkhunter.conf'
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq'
 sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
-mkdir -p ~/.vim/autoload
+mkdir -p ~/.vim ~/.vim/autoload ~/.vim/backup ~/.vim/color ~/.vim/plugged
 cd ~/.vim/autoload
 wget https://github.com/junegunn/vim-plug/raw/master/plug.vim
 cp ~/Downloads/inst/.vimrc ~/
