@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+sudo pacman-mirrors --fasttrack 5 && sudo pacman -Syyu
 sudo pacman -S powerline-fonts --noconfirm --needed
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
@@ -66,6 +67,7 @@ yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm key-mapper
 yay -S --noconfirm sejda-desktop
+yay -S --noconfirm nerd-fonts-fira-code
 yay -S --noconfirm ttf-meslo
 yay -S --noconfirm spotify
 yay -S --noconfirm ttf-ms-fonts
@@ -97,5 +99,5 @@ konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
 konsave -a kde
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
-cp ~/Downloads/inst/.conkyrc ~/.conkyrc
-conky -c ~/.conkyrc
+#cp ~/Downloads/inst/.conkyrc ~/.conkyrc
+#conky -c ~/.conkyrc
