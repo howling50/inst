@@ -159,8 +159,9 @@ alias la='ls -lha'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias bashrc='sudo nano ~/.bashrc'
-alias zshrc='sudo nano ~/.zshrc'
+alias vimrc='sudo vim ~/.vimrc'
+alias bashrc='sudo vim ~/.bashrc'
+alias zshrc='sudo vim ~/.zshrc'
 nmapauto ()
 {
  sudo nmap -Pn -T4 -A -p- -sV "$1"
