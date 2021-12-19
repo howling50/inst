@@ -8,13 +8,14 @@ fi
 if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
+alias vim='nvim'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
 alias listen='sudo lsof -i -P -n | grep LISTEN'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='curl ifconfig.me'
 alias delall='sudo pacman -Rs $(pacman -Qqtd)'
-alias pacign='sudo vim /etc/pacman.conf'
+alias pacign='sudo nvim /etc/pacman.conf'
 finds ()
 {
   find / -iname "$1" 2>/dev/null
@@ -52,9 +53,9 @@ alias la='ls -lha'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias vimrc='vim ~/.vimrc'
-alias bashrc='vim ~/.bashrc'
-alias zshrc='vim ~/.zshrc'
+alias vimrc='nvim ~/.config/nvim/init.vim'
+alias bashrc='nvim ~/.bashrc'
+alias zshrc='nvim ~/.zshrc'
 nmapauto ()
 {
  sudo nmap -Pn -T4 -A -p- -sV "$1"
