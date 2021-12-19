@@ -60,3 +60,7 @@ nmapauto ()
 {
  sudo nmap -Pn -T4 -A -p- -sV "$1"
 }
+freeram ()
+{
+  sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches && sleep 2 && free -h'
+}
