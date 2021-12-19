@@ -1,10 +1,13 @@
 set nocompatible
-set termguicolors
+if (has("termguicolors"))
+   set termguicolors
+endif
 filetype off
 filetype plugin on
 filetype indent on
 set cursorline
 set visualbell
+set termencoding=utf-8
 set encoding=utf-8
 syntax on
 set number
