@@ -1,14 +1,13 @@
 set nocompatible
 set termguicolors
-filetype on
+filetype off
 filetype plugin on
 filetype indent on
 set cursorline
+set visualbell
+set encoding=utf-8
 syntax on
 set number
-set ignorecase
-set smartcase
-set hlsearch
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -41,11 +40,22 @@ set shiftwidth=4
 set tabstop=4
 set scrolloff=10
 set nowrap
-set incsearch
 set showcmd
 set showmode
-set showmatch
 set history=100
 set wildmenu
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+set t_Co=256
+nnoremap / /\v
+vnoremap / /\v
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+inoremap <F1> <ESC>:set invfullscreen<CR>a
+nnoremap <F1> :set invfullscreen<CR>
+vnoremap <F1> :set invfullscreen<CR>
+map <leader><space> :let @/=''<cr> " clear search
+set hidden
