@@ -105,4 +105,4 @@ konsave -a kde
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 conky -c ~/.conkyrc
-nvim
+nvim ~/.config/nvim/init.vim
