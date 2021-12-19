@@ -75,6 +75,8 @@ set incsearch
 set ignorecase
 set smartcase
 set showmatch
+nnoremap / /\v
+vnoremap / /\v
 set hidden
 set showtabline=2  " always show tabline
 
