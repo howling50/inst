@@ -121,7 +121,7 @@ alias listen='sudo lsof -i -P -n | grep LISTEN'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='curl ifconfig.me'
 alias delall='sudo pacman -Rs $(pacman -Qqtd)'
-alias pacign='sudo nano /etc/pacman.conf'
+alias pacign='sudo vim /etc/pacman.conf'
 finds ()
 {
   find / -iname "$1" 2>/dev/null
