@@ -1,3 +1,12 @@
+set nocompatible
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+set number
+set ignorecase
+set smartcase
+set hlsearch
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
