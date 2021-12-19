@@ -1,5 +1,5 @@
 " vim-plug
-call plug#begin('~/.config/nvim/')
+call plug#begin('~/.vim/plugged')
 
 Plug 'ap/vim-css-color'
 Plug 'itchyny/lightline.vim'
@@ -15,3 +15,7 @@ set laststatus=2
 if !has('gui_running')
   set t_Co=256
 endif
+
+" :PlugInstall
+" :PlugUpdate
+" :PlugClear
