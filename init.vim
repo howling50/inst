@@ -49,7 +49,6 @@ set history=100
 set wildmenu
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-set t_Co=256
 set hlsearch
 set incsearch
 set ignorecase
