@@ -53,7 +53,7 @@ sudo pacman -S kitty --noconfirm --needed
 sudo pacman -S gamemode --noconfirm --needed
 sudo pacman -S hardinfo --noconfirm --needed
 sudo pacman -S audacious --noconfirm --needed
-sudo pacman -S leafpad --noconfirm --needed
+sudo pacman -S mousepad --noconfirm --needed
 sudo pacman -S lutris --noconfirm --needed
 sudo pacman -S neofetch --noconfirm --needed
 sudo pacman -S net-tools --noconfirm --needed
