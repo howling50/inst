@@ -45,7 +45,7 @@ ex ()
 alias grep='grep --color'
 guiedit ()
 {
- sudo env SUDO_EDITOR="/usr/bin/leafpad" sudoedit "$1"
+ sudo env SUDO_EDITOR="/usr/bin/mousepad" sudoedit "$1"
 }
 alias pacman-update='sudo pacman-mirrors --geoip'
 alias ll='ls -l'
@@ -63,4 +63,9 @@ nmapauto ()
 freeram ()
 {
   sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches && sleep 2 && free -h'
+}
+alias neofetch='neofetch --kitty --source ~/.config/neofetch/N51R4iT.jpg'
+image ()                                                                                                                                               
+{
+  kitty icat --transfer-mode=file "$1"
 }
