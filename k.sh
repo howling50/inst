@@ -86,6 +86,9 @@ mkdir -p ~/.config/nvim/
 cp ~/Downloads/inst/init.vim ~/.config/nvim/
 cd ~/.config/neofetch
 wget https://i.imgur.com/N51R4iT.jpg
+sudo mkdir -p /root/.config/nvim/
+sudo cp ~/Downloads/inst/init.vim /root/.config/nvim/
+sudo cp ~/.config/neofetch/N51R4iT.jpg /root/.config/neofetch
 cd ~/Downloads/inst/
 wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
 sudo pacman -U ~/Downloads/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
