@@ -73,10 +73,6 @@ yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm key-mapper
 yay -S --noconfirm awesome-terminal-fonts
-yay -S --noconfirm nordic-darker-standard-buttons-theme
-yay -S --noconfirm nordic-darker-theme
-yay -S --noconfirm nordic-kde-git
-yay -S --noconfirm nordic-theme
 yay -S --noconfirm papirus-icon-theme
 yay -S --noconfirm sddm-nordic-theme-git
 yay -S --noconfirm sejda-desktop
