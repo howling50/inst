@@ -74,6 +74,7 @@ yay -S --noconfirm dxvk-bin
 yay -S --noconfirm key-mapper
 yay -S --noconfirm sejda-desktop
 yay -S --noconfirm nerd-fonts-fira-code
+yay -S --noconfirm eiskaltdcpp-qt
 yay -S --noconfirm ttf-meslo
 yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm konsave
