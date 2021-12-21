@@ -5,6 +5,9 @@
 #sudo mkswap /swapfile
 #sudo swapon /swapfile
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+curl -O https://blackarch.org/strap.sh
+chmod +x strap.sh
+sudo ./strap.sh
 sudo pacman-mirrors --geoip && sudo pacman -Syyu --noconfirm --needed
 sudo pacman -S powerline-fonts --noconfirm --needed
 sudo rm -rf /root/.zshrc
@@ -20,9 +23,6 @@ sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
 balooctl disable
 sudo rm -rf ~/./local/share/baloo
-curl -O https://blackarch.org/strap.sh
-chmod +x strap.sh
-sudo ./strap.sh
 sudo pacman -R elisa --noconfirm
 sudo pacman -R thunderbird --noconfirm
 sudo pacman -S binutils --noconfirm --needed
