@@ -72,11 +72,9 @@ yay --sudoloop --save
 yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm key-mapper
-yay -S --noconfirm awesome-terminal-fonts
 yay -S --noconfirm sejda-desktop
 yay -S --noconfirm nerd-fonts-fira-code
 yay -S --noconfirm ttf-meslo
-yay -S --noconfirm spotify
 yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm konsave
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
