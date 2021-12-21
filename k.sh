@@ -73,7 +73,6 @@ yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm key-mapper
 yay -S --noconfirm awesome-terminal-fonts
-yay -S --noconfirm papirus-icon-theme
 yay -S --noconfirm sejda-desktop
 yay -S --noconfirm nerd-fonts-fira-code
 yay -S --noconfirm ttf-meslo
