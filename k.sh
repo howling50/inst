@@ -23,6 +23,7 @@ sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
 balooctl disable
 sudo rm -rf ~/./local/share/baloo
+sudo rm -rf /usr/share/plasma/plasmoids/org.kde.plasma.clipboard
 sudo pacman -R elisa --noconfirm
 sudo pacman -R thunderbird --noconfirm
 sudo pacman -S binutils --noconfirm --needed
