@@ -91,7 +91,7 @@ sudo mkdir -p /root/.config/nvim/
 sudo cp ~/Downloads/inst/init.vim /root/.config/nvim/
 cd ~/Downloads/inst/
 wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
-sudo pacman -U ~/Downloads/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
+sudo pacman -U ~/Downloads/inst/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
 sudo ufw enable
 sudo ufw allow 80/tcp
 sudo ufw limit 1716/tcp
