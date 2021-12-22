@@ -39,7 +39,7 @@ sudo pacman -S automake --noconfirm --needed
 sudo pacman -S bison --noconfirm --needed
 sudo pacman -S fakeroot --noconfirm --needed
 sudo pacman -S bind --noconfirm --needed
-#sudo pacman -S jdk-openjdk --noconfirm --needed
+sudo pacman -S jdk-openjdk --noconfirm --needed
 sudo pacman -S wine-gecko --noconfirm --needed
 sudo pacman -S catfish --noconfirm --needed
 sudo pacman -S notepadqq --noconfirm --needed
