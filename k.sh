@@ -68,7 +68,6 @@ sudo pacman -S celluloid --noconfirm --needed
 sudo pacman -S conky --noconfirm --needed
 sudo pacman -S burpsuite --noconfirm --needed
 sudo pacman -S brave-browser --noconfirm --needed
-sudo pacman -S nmap --noconfirm --needed
 yay --sudoloop --save
 yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
