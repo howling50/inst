@@ -109,7 +109,7 @@ sudo ./install.sh
 konsave -i ~/Downloads/inst/kde.knsv
 sleep 1
 konsave -a kde
-#sudo lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark
+#lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 conky -c ~/.conkyrc
