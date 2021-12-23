@@ -70,9 +70,6 @@ sudo pacman -S conky --noconfirm --needed
 sudo pacman -S burpsuite --noconfirm --needed
 sudo pacman -S brave-browser --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
-sudo pacman -S qemu --noconfirm --needed
-sudo pacman -S virt-manager --noconfirm --needed
-sudo pacman -S qemu-arch-extra --noconfirm --needed
 yay --sudoloop --save
 yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
@@ -106,10 +103,6 @@ sudo ufw default allow outgoing 2>/dev/null
 sleep 1
 sudo systemctl enable ufw
 sudo systemctl start ufw
-sudo usermod -a -G kvm howling
-sudo usermod -a -G libvirt howling
-sudo systemctl enable libvirtd
-sudo systemctl start libvirtd
 sudo ufw enable
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd ~/Downloads/inst/
