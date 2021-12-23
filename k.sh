@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 sudo swapoff -a
-sudo fallocate -l 4G /swapfile
+sudo fallocate -l 8G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
