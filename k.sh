@@ -70,6 +70,9 @@ sudo pacman -S conky --noconfirm --needed
 sudo pacman -S burpsuite --noconfirm --needed
 sudo pacman -S brave-browser --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
+sudo pacman -S qemu --noconfirm --needed
+sudo pacman -S virt-manager --noconfirm --needed
+sudo pacman -S qemu-arch-extra --noconfirm --needed
 yay --sudoloop --save
 yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
@@ -94,13 +97,19 @@ cd ~/Downloads/inst/
 wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
 sudo pacman -U ~/Downloads/inst/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
 sudo ufw enable
-sudo ufw allow 80/tcp
-sudo ufw limit 1716/tcp
-sudo ufw allow 23232/tcp
-sudo ufw default deny incoming  
-sudo ufw default allow outgoing
+sudo ufw allow 80/tcp 2>/dev/null
+sudo ufw limit 1716/tcp 2>/dev/null
+sudo ufw allow 23232/tcp 2>/dev/null
+sudo ufw default deny incoming 2>/dev/null
+sleep 1
+sudo ufw default allow outgoing 2>/dev/null
+sleep 1
 sudo systemctl enable ufw
 sudo systemctl start ufw
+sudo usermod -a -G kvm howling
+sudo usermod -a -G libvirt howling
+sudo systemctl enable libvirtd
+sudo systemctl start libvirtd
 sudo ufw enable
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd ~/Downloads/inst/
