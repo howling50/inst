@@ -74,6 +74,7 @@ yay --sudoloop --save
 yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm key-mapper
+yay -S --noconfirm numix-circle-icon-theme-git
 yay -S --noconfirm sejda-desktop
 yay -S --noconfirm nerd-fonts-fira-code
 yay -S --noconfirm ttf-meslo
@@ -105,6 +106,8 @@ cp -r ~/Downloads/inst/files/* ~/.config/
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
+git clone https://github.com/yeyushengfan258/Win11-icon-theme
+sudo bash ~/Downloads/inst/Win11-icon-theme/install.sh
 chmod +x install.sh
 sudo ./install.sh
 konsave -i ~/Downloads/inst/kde1.knsv
