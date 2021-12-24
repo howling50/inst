@@ -109,6 +109,7 @@ shopt -s cdspell
 
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
+export VISUAL="nvim"
 
 # Alias
 alias vim='nvim'
