@@ -28,6 +28,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'itchyny/lightline.vim'
 Plug 'taohexxx/lightline-buffer'
+Plug 'farmergreg/vim-lastplace'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
