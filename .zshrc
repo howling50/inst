@@ -69,3 +69,7 @@ image ()
 {
   kitty icat --transfer-mode=file "$1"
 }
+pacdel ()                                                                                                                                               
+{
+  sudo pacman -Rcns "$1"
+}
