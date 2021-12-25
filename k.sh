@@ -8,6 +8,7 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
 sudo ./strap.sh
+sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman-mirrors --geoip && sudo pacman -Syyu --noconfirm --needed
 sudo pacman -S powerline-fonts --noconfirm --needed
 sudo rm -rf /root/.zshrc
