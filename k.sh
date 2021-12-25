@@ -121,7 +121,7 @@ chmod +x install.sh
 sudo ./install.sh
 konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
-konsave -a kde1
+konsave -a kde2
 lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 sleep 1
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
