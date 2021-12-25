@@ -93,6 +93,7 @@ sed -i 's/^image_size="auto"/image_size="none"/' ~/.config/neofetch/config.conf
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf
 sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
+sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent/' /etc/pacman.conf
 mkdir -p ~/.config/nvim/
 cp ~/Downloads/inst/init.vim ~/.config/nvim/
 wget https://i.imgur.com/N51R4iT.jpg
