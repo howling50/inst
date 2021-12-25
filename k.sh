@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-sudo swapoff -a
-sudo fallocate -l 8G /swapfile
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+#sudo swapoff -a
+#sudo fallocate -l 8G /swapfile
+#sudo chmod 600 /swapfile
+#sudo mkswap /swapfile
+#sudo swapon /swapfile
+#echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
 sudo ./strap.sh
