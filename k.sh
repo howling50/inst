@@ -95,6 +95,8 @@ sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf
 sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
 sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent/' /etc/pacman.conf
+echo vm.swappiness=10 | sudo tee -a /etc/sysctl.d/100-manjaro.conf  >/dev/null
+sudo systemctl enable fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/
 mkdir -p ~/.config/nvim/
 cp ~/Downloads/inst/init.vim ~/.config/nvim/
