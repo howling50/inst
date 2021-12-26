@@ -153,7 +153,7 @@ ex ()
 alias grep='grep --color'
 guiedit ()
 {
- sudo env SUDO_EDITOR="/usr/bin/mousepad" sudoedit "$1"
+ sudo env SUDO_EDITOR="/usr/bin/mousepad" sudoedit "$1" 2>/dev/null
 }
 alias pacman-update='sudo pacman-mirrors --geoip'
 alias ll='ls -l'
