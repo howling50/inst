@@ -122,6 +122,7 @@ cp -r ~/Downloads/inst/files/* ~/.config/
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
+git clone https://github.com/ChrisTitusTech/Top-5-Bootloader-Themes
 konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
 konsave -a kde2
