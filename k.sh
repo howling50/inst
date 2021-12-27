@@ -9,7 +9,7 @@ curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
 sudo ./strap.sh
 sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
-sudo pacman-mirrors --geoip && sudo pacman -Syyu --noconfirm --needed
+sudo pacman-mirrors --fasttrack && sudo pacman -Syyu --noconfirm --needed
 sudo pacman -S powerline-fonts --noconfirm --needed
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
