@@ -130,4 +130,6 @@ lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 sleep 2
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 cp ~/Downloads/inst/.conkyrc ~/.conkyrc
+sudo snapper -c root create-config /
+sudo chmod a+rx /.snapshots/
 conky -c ~/.conkyrc
