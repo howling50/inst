@@ -139,6 +139,7 @@ git clone https://github.com/ChrisTitusTech/Top-5-Bootloader-Themes
 sudo snapper -c root create-config /
 sudo chmod a+rx /.snapshots/
 sudo sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
+sudo sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="5"/' /etc/snapper/configs/root
 sudo sed -i 's/^TIMELINE_LIMIT_DAILY="10"/TIMELINE_LIMIT_DAILY="2"/' /etc/snapper/configs/root
 sudo sed -i 's/^TIMELINE_LIMIT_WEEKLY="0"/TIMELINE_LIMIT_WEEKLY="1"/' /etc/snapper/configs/root
 sudo sed -i 's/^TIMELINE_LIMIT_MONTHLY="10"/TIMELINE_LIMIT_MONTHLY="1"/' /etc/snapper/configs/root
