@@ -8,12 +8,13 @@
 sudo mkdir -p /etc/cron.minutely
 sudo rm -rf /etc/cron.d/0hourly
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
-#cd
-#sudo mv ~/Downloads Downloads.old
-#sudo btrfs subvol create ~/Downloads
-#sudo mv ~/Downloads.old/* ~/Downloads/
-#sudo rmdir ~/Downloads.old
-#cd ~/Downloads/inst/
+cd
+sudo mv ~/Downloads Downloads.old
+sudo btrfs subvol create ~/Downloads
+sudo mv ~/Downloads.old/* ~/Downloads/
+sudo rmdir ~/Downloads.old
+sudo chown howling:howling ~/Downloads/        
+cd ~/Downloads/inst/
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
 sudo ./strap.sh
