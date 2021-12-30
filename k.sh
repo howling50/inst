@@ -32,6 +32,7 @@ balooctl disable
 sudo rm -rf ~/./local/share/baloo
 mkdir -p ~/.config/neofetch/
 sudo mkdir -p /root/.config/neofetch/
+#-----------------------------------------------------
 sudo pacman -R elisa --noconfirm
 sudo pacman -R thunderbird --noconfirm
 sudo pacman -S binutils --noconfirm --needed
@@ -79,6 +80,7 @@ sudo pacman -S burpsuite --noconfirm --needed
 sudo pacman -S brave-browser --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
 sudo pacman -S snapper-gui --noconfirm --needed
+#-----------------------------------------------------------------
 yay --sudoloop --save
 yay -S --noconfirm stacer
 yay -S --noconfirm dxvk-bin
@@ -89,6 +91,7 @@ yay -S --noconfirm ttf-meslo
 yay -S --noconfirm protonup-qt
 yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm konsave
+#------------------------------------------------------------------
 neofetch >/dev/null
 sleep 1
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
@@ -114,6 +117,7 @@ sudo cp ~/Downloads/inst/init.vim /root/.config/nvim/
 cd ~/Downloads/inst/
 wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
 sudo pacman -U ~/Downloads/inst/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
+#---------------Firewall--------------
 sudo ufw enable
 sudo ufw allow 80/tcp 2>/dev/null
 sudo ufw limit 1716/tcp 2>/dev/null
@@ -125,13 +129,21 @@ sleep 1
 sudo systemctl enable ufw
 sudo systemctl start ufw
 sudo ufw enable
+#------------------------------------
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 git clone https://github.com/ChrisTitusTech/Top-5-Bootloader-Themes
+# --------- Snaps ------------------------
 sudo snapper -c root create-config /
 sudo chmod a+rx /.snapshots/
+sudo sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
+sudo sed -i 's/^TIMELINE_LIMIT_DAILY="10"/TIMELINE_LIMIT_DAILY="2"/' /etc/snapper/configs/root
+sudo sed -i 's/^TIMELINE_LIMIT_WEEKLY="0"/TIMELINE_LIMIT_WEEKLY="1"/' /etc/snapper/configs/root
+sudo sed -i 's/^TIMELINE_LIMIT_MONTHLY="10"/TIMELINE_LIMIT_MONTHLY="1"/' /etc/snapper/configs/root
+sudo sed -i 's/^TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/configs/root
+# ----------------------------------------------
 konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
 konsave -a kde2
