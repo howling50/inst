@@ -26,8 +26,8 @@ sudo cp ~/Downloads/inst/.zshrc /root/.zshrc
 sudo cp ~/Downloads/inst/.bashrc /root/.bashrc
 sudo rm -rf ~/.zshrc
 sudo rm -rf ~/.bashrc
-sudo cp ~/Downloads/inst/.zshrc ~/.zshrc
-sudo cp ~/Downloads/inst/.bashrc ~/.bashrc
+cp ~/Downloads/inst/.zshrc ~/.zshrc
+cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo pacman -S yay --noconfirm --needed
 sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
