@@ -5,7 +5,7 @@
 #sudo mkswap /swapfile
 #sudo swapon /swapfile
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-#sudo pacman -R timeshift-autosnap-manjaro --noconfirm
+sudo pacman -R timeshift-autosnap-manjaro --noconfirm
 sudo mkdir -p /etc/cron.minutely
 sudo rm -rf /etc/cron.d/0hourly
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
