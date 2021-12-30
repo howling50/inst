@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rkhunter –versioncheck
+rkhunter –update
+rkhunter –cronjob –report-warnings-only
+mail -s “rkhunter output” admin@yourdomain.com 
