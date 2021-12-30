@@ -137,6 +137,7 @@ sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 git clone https://github.com/ChrisTitusTech/Top-5-Bootloader-Themes
 # --------- Snaps ------------------------
 sudo snapper -c root create-config /
+sudo snapper -c boot create-config /boot
 sudo chmod a+rx /.snapshots/
 sudo sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
 sudo sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="3"/' /etc/snapper/configs/root
