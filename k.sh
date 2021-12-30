@@ -154,7 +154,7 @@ konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
 konsave -a kde2
 lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
-sleep 2
-cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
-cp ~/Downloads/inst/.conkyrc ~/.conkyrc
-conky -c ~/.conkyrc
+#sleep 2
+#cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
+#cp ~/Downloads/inst/.conkyrc ~/.conkyrc
+#conky -c ~/.conkyrc
