@@ -14,6 +14,7 @@ mv ~/Downloads Downloads.old
 sudo btrfs subvol create ~/Downloads
 sudo mv ~/Downloads.old/* ~/Downloads/
 rmdir ~/Downloads.old
+sudo chown howling:howling ~/Downloads
 cd ~/Downloads/inst/
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
