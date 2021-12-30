@@ -11,8 +11,8 @@ sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
 cd
 mv ~/Downloads Downloads.old
 sudo btrfs subvol create ~/Downloads
-mv ~/Downloads.old/* ~/Downloads/
-rmdir ~/Downloads.old      
+sudo mv ~/Downloads.old/* ~/Downloads/
+rmdir ~/Downloads.old
 cd ~/Downloads/inst/
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
