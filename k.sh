@@ -5,6 +5,12 @@
 #sudo mkswap /swapfile
 #sudo swapon /swapfile
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+cd
+mv ~/Downloads Downloads.old
+sudo btrfs subvol create ~/Downloads
+mv ~/Downloads.old/* ~/Downloads/
+rmdir ~/Downloads.old
+cd ~/Downloads/inst/
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
 sudo ./strap.sh
