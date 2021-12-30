@@ -80,6 +80,7 @@ sudo pacman -S burpsuite --noconfirm --needed
 sudo pacman -S brave-browser --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
 sudo pacman -S snapper-gui --noconfirm --needed
+sudo pacman -S snap-pac --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 yay -S --noconfirm stacer
