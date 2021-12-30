@@ -6,10 +6,10 @@
 #sudo swapon /swapfile
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 cd
-mv ~/Downloads Downloads.old
+sudo mv ~/Downloads Downloads.old
 sudo btrfs subvol create ~/Downloads
-mv ~/Downloads.old/* ~/Downloads/
-rmdir ~/Downloads.old
+sudo mv ~/Downloads.old/* ~/Downloads/
+sudo rmdir ~/Downloads.old
 cd ~/Downloads/inst/
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
@@ -129,6 +129,8 @@ cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 git clone https://github.com/ChrisTitusTech/Top-5-Bootloader-Themes
+sudo snapper -c root create-config /
+sudo chmod a+rx /.snapshots/
 konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
 konsave -a kde2
@@ -136,6 +138,4 @@ lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 sleep 2
 cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 cp ~/Downloads/inst/.conkyrc ~/.conkyrc
-sudo snapper -c root create-config /
-sudo chmod a+rx /.snapshots/
 conky -c ~/.conkyrc
