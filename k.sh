@@ -7,7 +7,7 @@
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 sudo mkdir -p /etc/cron.minutely
 sudo rm -rf /etc/cron.d/0hourly
-sudo cp ~/Download/inst/mycronjobs /etc/cron.d/
+sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
 cd
 sudo mv ~/Downloads Downloads.old
 sudo btrfs subvol create ~/Downloads
