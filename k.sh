@@ -21,6 +21,8 @@ chmod +x strap.sh
 sudo ./strap.sh
 sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman-mirrors --fasttrack && sudo pacman -Syyu --noconfirm --needed
+sudo pacman -S snapper-gui --noconfirm --needed
+sudo pacman -S snap-pac --noconfirm --needed
 sudo pacman -S powerline-fonts --noconfirm --needed
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
@@ -84,8 +86,6 @@ sudo pacman -S conky --noconfirm --needed
 sudo pacman -S burpsuite --noconfirm --needed
 sudo pacman -S brave-browser --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
-sudo pacman -S snapper-gui --noconfirm --needed
-sudo pacman -S snap-pac --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 yay -S --noconfirm stacer
