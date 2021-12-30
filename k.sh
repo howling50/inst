@@ -23,6 +23,7 @@ sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman-mirrors --fasttrack && sudo pacman -Syyu --noconfirm --needed
 sudo pacman -S snapper-gui --noconfirm --needed
 sudo pacman -S snap-pac --noconfirm --needed
+sudo pacman -S snap-sync --noconfirm --needed
 sudo pacman -S powerline-fonts --noconfirm --needed
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
