@@ -102,7 +102,15 @@ yay -S --noconfirm konsave
 neofetch >/dev/null
 sleep 1
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
+#------------------------------------------rk hunter--------------------------
 sudo bash -c 'echo -e "SCRIPTWHITELIST=/usr/bin/egrep\nSCRIPTWHITELIST=/usr/bin/fgrep\nSCRIPTWHITELIST=/usr/bin/ldd\nSCRIPTWHITELIST=/usr/bin/vendor_perl/GET" >> /etc/rkhunter.conf'
+sudo bash -c 'echo -e "ALLOWIPCPROC=/usr/bin/plasmashell\nALLOWIPCPROC=/usr/bin/kitty" >> /etc/rkhunter.conf'
+sudo sed -i 's/^#ALLOW_SSH_PROT_V1=0/ALLOW_SSH_PROT_V1=2/' /etc/rkhunter.conf
+sudo sed -i 's/^#MAIL-ON-WARNING=me@mydomain   root@mydomain/MAIL-ON-WARNING=speeder0077@gmail.com/' /etc/rkhunter.conf
+sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
+sudo sed -i 's/^#ALLOW_SSH_ROOT_USER=no/ALLOW_SSH_ROOT_USER=no/' /etc/rkhunter.conf
+sudo bash -c 'echo -e "ALLOWHIDDENFILE=/etc/.updated\nALLOWHIDDENFILE=/usr/share/man/man5/.k5identity.5.gz\nALLOWHIDDENFILE=/usr/share/man/man5/.k5login.5.gz" >> /etc/rkhunter.conf'
+#-----------------------------------------------------------------------------------
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq'
 sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
 echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null
