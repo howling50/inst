@@ -139,8 +139,8 @@ git clone https://github.com/ChrisTitusTech/Top-5-Bootloader-Themes
 # --------- Snaps ------------------------
 sudo mv /boot boot.old
 sudo btrfs subvol create /boot
-sudo mv ~/boot.old/* ~/boot/
-sudo rmdir ~/boot.old
+sudo mv /boot.old/* /boot/
+sudo rmdir /boot.old
 sudo snapper -c root create-config /
 sudo snapper -c boot create-config /boot
 sudo chmod a+rx /.snapshots/
