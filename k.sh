@@ -147,7 +147,7 @@ cp -r ~/Downloads/inst/files/* ~/.config/
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
-git clone https://github.com/ChrisTitusTech/Top-5-Bootloader-Themes
+git clone https://github.com/howling50/Top-5-Bootloader-Themes
 # --------- Snaps ------------------------
 sudo snapper -c root create-config /
 sudo sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
