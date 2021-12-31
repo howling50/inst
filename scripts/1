@@ -7,6 +7,7 @@ sudo mkdir /mnt/btrfs
 sudo mount /dev/sda2 /mnt/btrfs
 cd /mnt/btrfs
 sudo btrfs subvolume create snapshots
+sudo chmod a+rx /.snapshots/
 cd ..
 sudo umount /mnt/btrfs
 #sudo nano /etc/fstab rootuuid .snapshots    btrfs   subvol=snapshots 0 0
