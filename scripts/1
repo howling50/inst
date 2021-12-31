@@ -1,6 +1,5 @@
 #! /bin/bash
 cd
-sudo snapper -c root create-config /
 sudo btrfs subvolume delete /.snapshots
 sudo mkdir /.snapshots
 sudo mkdir /mnt/btrfs
