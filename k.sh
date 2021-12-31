@@ -167,4 +167,4 @@ lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 sudo cp ~/Downloads/inst/1.mp3 ~/1.mp3
 mpg123 ~/1.mp3 > /dev/null 2>&1
-#conky -c ~/.conkyrc
+#conky -c ~/.conkyrc &
