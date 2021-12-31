@@ -5,4 +5,5 @@ OUTPUT=`/usr/bin/rkhunter --update --cronjob --report-warnings-only --nocolors -
 if [ "$OUTPUT" != "" ]
 then
     echo -e "$OUTPUT" >> /home/howling/rkhunter_warnings.txt
+    mpg123 ~/1.mp3 > /dev/null 2>&1
 fi
