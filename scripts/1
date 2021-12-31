@@ -1,0 +1,18 @@
+#! /bin/bash
+cd
+sudo snapper -c root create-config /
+sudo btrfs subvolume delete /.snapshots
+sudo mkdir /.snapshots
+sudo mkdir /mnt/btrfs
+sudo mount /dev/sda1 /mnt/btrfs
+cd /mnt/btrfs
+sudo btrfs subvolume create snapshots
+cd ..
+sudo umount /mnt/btrfs
+#sudo nano /etc/fstab rootuuid .snapshots    btrfs   subvol=snapshots 0 0
+#sudo btrfs subvolume get-default /
+#sudo btrfs subvolume set-default 256 /
+#sudo nano /boot/grub/grub.cfg
+#removeall = rootflags=subvol=root
+#sudo snapper rollback 2
+#sudo snapper --ambit classic rollback 3
