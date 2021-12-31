@@ -15,4 +15,13 @@ sudo umount /mnt/btrfs
 #sudo nano /boot/grub/grub.cfg
 #removeall = rootflags=subvol=root
 #sudo snapper rollback 2
-#sudo snapper --ambit classic rollback 3
+#sudo snapper --ambit classic rollback 2
+
+#sudo snapper -c root create-config / 
+#snapper status 21..22
+#sudo btrfs subvolume list /
+#snapper list
+#snapper delete
+#snapper diff 71..72 /etc/zypp/zypp.conf
+#snapper create --description "Snapshot for week 2 2014"
+#sudo snapper --ambit classic rollback 2
