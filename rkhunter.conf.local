@@ -133,7 +133,7 @@
 #
 # Also see the MAIL_CMD option.
 #
-MAIL-ON-WARNING=speeder0077@gmail.com
+#MAIL-ON-WARNING=speeder@somehing.com
 
 #
 # This option specifies the mail command to use if MAIL-ON-WARNING is set.
