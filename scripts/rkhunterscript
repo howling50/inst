@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
-rkhunter –versioncheck
-rkhunter –update
-rkhunter –cronjob –report-warnings-only
-mail -s “rkhunter output” admin@yourdomain.com 
+OUTPUT=`/usr/bin/rkhunter --update --cronjob --report-warnings-only --nocolors --skip-keypress`
+
+if [ "$OUTPUT" != "" ]
+then
+    echo -e "$OUTPUT" >> /home/howling/rkhunter_warnings.txt
+fi
