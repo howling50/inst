@@ -5,7 +5,7 @@
 #sudo mkswap /swapfile
 #sudo swapon /swapfile
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-sudo pacman -R timeshift-autosnap-manjaro --noconfirm
+#sudo pacman -R timeshift-autosnap-manjaro --noconfirm
 sudo mkdir -p /etc/cron.minutely
 sudo rm -rf /etc/cron.d/0hourly
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
@@ -146,9 +146,9 @@ git clone https://github.com/yeyushengfan258/Win11OS-kde
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 git clone https://github.com/howling50/Top-5-Bootloader-Themes
 # --------- Snaps ------------------------
-sudo pacman -S snapper-gui --noconfirm --needed
-sudo pacman -S snap-pac --noconfirm --needed
-sudo pacman -S snap-sync --noconfirm --needed
+#sudo pacman -S snapper-gui --noconfirm --needed
+#sudo pacman -S snap-pac --noconfirm --needed
+#sudo pacman -S snap-sync --noconfirm --needed
 #sudo snapper -c root create-config /
 #sudo sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
 #sudo sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="0"/' /etc/snapper/configs/root
