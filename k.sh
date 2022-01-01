@@ -20,7 +20,7 @@ curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
 sudo ./strap.sh
 sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
-sudo pacman-mirrors --fasttrack && sudo pacman -Syyu --noconfirm --needed
+sudo pacman-mirrors --fasttrack 8 && sudo pacman -Syyu --noconfirm --needed
 sudo pacman -S snapper-gui --noconfirm --needed
 sudo pacman -S snap-pac --noconfirm --needed
 sudo pacman -S snap-sync --noconfirm --needed
