@@ -15,7 +15,7 @@ sudo btrfs subvolume delete /.snapshots
 sudo mkdir /.snapshots
 sudo mkdir /mnt/btrfs
 
---------------check sda----------------
+#--------------check sda----------------
 sudo mount /dev/sda1 /mnt/btrfs
 
 sudo btrfs subvolume create /mnt/btrfs/snapshots
