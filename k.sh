@@ -5,7 +5,7 @@
 #sudo mkswap /swapfile
 #sudo swapon /swapfile
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-sudo pacman -R timeshift-autosnap-manjaro --noconfirm
+#sudo pacman -R timeshift-autosnap-manjaro --noconfirm
 git clone https://github.com/howling50/Top-5-Bootloader-Themes
 sudo mkdir -p /etc/cron.minutely
 sudo rm -rf /etc/cron.d/0hourly
@@ -145,25 +145,15 @@ cp -r ~/Downloads/inst/files/* ~/.config/
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
-# --------- Snaps ------------------------
-#sudo pacman -S snapper-gui --noconfirm --needed
-#sudo pacman -S snap-pac --noconfirm --needed
-#sudo pacman -S snap-sync --noconfirm --needed
-#sudo snapper -c root create-config /
-#sudo sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
-#sudo sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="0"/' /etc/snapper/configs/root
-#sudo sed -i 's/^TIMELINE_LIMIT_DAILY="10"/TIMELINE_LIMIT_DAILY="4"/' /etc/snapper/configs/root
-#sudo sed -i 's/^TIMELINE_LIMIT_WEEKLY="0"/TIMELINE_LIMIT_WEEKLY="2"/' /etc/snapper/configs/root
-#sudo sed -i 's/^TIMELINE_LIMIT_MONTHLY="10"/TIMELINE_LIMIT_MONTHLY="1"/' /etc/snapper/configs/root
-#sudo sed -i 's/^TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/configs/root
+# --------- Snapshots ------------------------
+#chmod +x ~/Downloads/inst/scripts/1
+#sudo bash ~/Downloads/inst/scripts/1
 # ----------------------------------------------
 konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
 konsave -a kde2
 lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 #sleep 2
-chmod +x ~/Downloads/inst/scripts/1
-sudo bash ~/Downloads/inst/scripts/1
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 sudo cp ~/Downloads/inst/1.mp3 ~/1.mp3
