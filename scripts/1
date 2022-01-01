@@ -1,8 +1,4 @@
 #! /bin/bash
-sudo mv /boot /boot.old
-sudo btrfs subvol create /boot
-sudo mv /boot.old/* /boot/
-sudo rmdir /boot.old
 sudo pacman -S snapper-gui --noconfirm --needed
 sudo pacman -S snap-pac --noconfirm --needed
 sudo pacman -S snap-sync --noconfirm --needed
@@ -24,6 +20,10 @@ sudo mount /dev/sda1 /mnt/btrfs
 
 sudo btrfs subvolume create /mnt/btrfs/snapshots
 sudo chmod a+rx /.snapshots
+sudo mv /mnt/btrfs/boot /mnt/btrfs/boot.old
+sudo btrfs subvol create /mnt/btrfs/boot
+sudo mv /mnt/btrfs/boot.old/* /mnt/btrfs/boot/
+sudo rmdir /mnt/btrfs/boot.old
 sudo umount /mnt/btrfs
 sudo rmdir /mnt/btrfs
 
