@@ -16,19 +16,21 @@ mkdir /.snapshots
 mkdir /mnt/btrfs
 
 #--------------check sda----------------
-mount /dev/sda1 /mnt/btrfs -o subvolid=5
+mount /dev/sda1 /mnt/btrfs
 
 btrfs subvolume create /mnt/btrfs/snapshots
 chmod a+rx /.snapshots
-btrfs subvol create /mnt/btrfs/boot
-mv /mnt/btrfs/@/boot/* /mnt/btrfs/boot/
+mv /mnt/btrfs/@/boot /mnt/btrfs/@/boot.old
+btrfs subvol create /mnt/btrfs/@/boot
+mv /mnt/btrfs/@/boot.old/* /mnt/btrfs/@/boot/
+rmdir /mnt/btrfs/@/boot.old
 umount /mnt/btrfs
 rmdir /mnt/btrfs
 
 #replace uuid from id u get fromm /etc/fstab
 PART_UUID=$(blkid -o value -s UUID /dev/sda1)
 echo UUID="${PART_UUID}" /.snapshots    btrfs subvol=snapshots 0 0 >> /etc/fstab
-echo UUID="${PART_UUID}" /boot          btrfs   subvol=boot,defaults,noatime,autodefrag,compress=zstd 0 0 >> /etc/fstab
+
 mount -a
 btrfs subvolume get-default /
 
