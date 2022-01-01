@@ -11,7 +11,10 @@ sudo sed -i 's/^TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"/' /etc/snap
 sudo btrfs subvolume delete /.snapshots
 sudo mkdir /.snapshots
 sudo mkdir /mnt/btrfs
+
+--------------check sda----------------
 sudo mount /dev/sda2 /mnt/btrfs
+
 sudo btrfs subvolume create /mnt/btrfs/snapshots
 sudo chmod a+rx /.snapshots/
 sudo umount /mnt/btrfs
