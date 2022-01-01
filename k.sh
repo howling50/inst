@@ -162,6 +162,8 @@ sleep 1
 konsave -a kde2
 lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 #sleep 2
+chmod +x ~/Downloads/inst/scripts/1
+sudo bash ~/Downloads/inst/scripts/1
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 sudo cp ~/Downloads/inst/1.mp3 ~/1.mp3
