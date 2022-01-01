@@ -1,4 +1,8 @@
 #! /bin/bash
+sudo mv /boot /boot.old
+sudo btrfs subvol create /boot
+sudo mv /boot.old/* /boot/
+sudo rmdir /boot.old
 sudo pacman -S snapper-gui --noconfirm --needed
 sudo pacman -S snap-pac --noconfirm --needed
 sudo pacman -S snap-sync --noconfirm --needed
