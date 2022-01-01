@@ -158,7 +158,7 @@ lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 sleep 2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
-sudo cp ~/Downloads/inst/1.mp3 ~/1.mp3
+cp ~/Downloads/inst/1.mp3 ~/1.mp3
 mpg123 ~/1.mp3 > /dev/null 2>&1
 caffeine kill
 sudo pacman -R caffeine-ng --noconfirm --needed
