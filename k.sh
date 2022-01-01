@@ -13,6 +13,10 @@ sudo mkdir -p /etc/cron.minutely
 sudo rm -rf /etc/cron.d/0hourly
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
 cd
+sudo btrfs subvol create ~/.local/share/Steam
+sudo chown howling:howling ~/.local/share/Steam
+sudo btrfs subvol create ~/.wine
+sudo chown howling:howling ~/.wine
 mv ~/Downloads Downloads.old
 sudo btrfs subvol create ~/Downloads
 sudo mv ~/Downloads.old/* ~/Downloads/
