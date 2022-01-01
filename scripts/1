@@ -18,6 +18,7 @@ sudo mount /dev/sda2 /mnt/btrfs
 sudo btrfs subvolume create /mnt/btrfs/snapshots
 sudo chmod a+rx /.snapshots/
 sudo umount /mnt/btrfs
+sudo rmdir /mnt/btrfs
 
 #replace uuid from id u get fromm /etc/fstab
 sudo bash -c 'echo "UUID=cb4d77df-3e6a-4179-a881-df7c85f4b7c9 /.snapshots     btrfs   subvol=snapshots 0 0" >> /etc/fstab'
