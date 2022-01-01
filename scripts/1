@@ -50,6 +50,7 @@ sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
 #snapper list
 #snapper delete
 #snapper diff 71..72 /etc/zypp/zypp.conf
+#snapper undochange 1..2
 #snapper create --description "Snapshot for week 2 2014"
 #sudo snapper -c boot delete-config
 #sudo snapper -c boot create-config /boot  
