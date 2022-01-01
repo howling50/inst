@@ -15,10 +15,10 @@ sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
 cd
 btrfs subvol create ~/.local/share/Steam
 btrfs subvol create ~/.wine
-mv ~/Downloads ~/Downloads.old
+sudo mv ~/Downloads ~/Downloads.old
 btrfs subvol create ~/Downloads
-mv ~/Downloads.old/* ~/Downloads/
-rmdir ~/Downloads.old
+sudo mv ~/Downloads.old/* ~/Downloads/
+sudo rmdir ~/Downloads.old
 cd ~/Downloads/inst/
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
