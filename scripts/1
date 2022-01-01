@@ -20,10 +20,6 @@ mount /dev/sda1 /mnt/btrfs
 
 btrfs subvolume create /mnt/btrfs/snapshots
 chmod a+rx /.snapshots
-mv /mnt/btrfs/@/boot /mnt/btrfs/@/boot.old
-btrfs subvol create /mnt/btrfs/@/boot
-mv /mnt/btrfs/@/boot.old/* /mnt/btrfs/@/boot/
-rmdir /mnt/btrfs/@/boot.old
 umount /mnt/btrfs
 rmdir /mnt/btrfs
 
