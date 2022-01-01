@@ -38,6 +38,7 @@ btrfs subvolume get-default /
 btrfs subvolume set-default 256 /
 
 btrfs subvolume get-default /
+sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
 #sudo nano /boot/grub/grub.cfg
 #removeall = rootflags=subvol=@  
 #sudo snapper rollback 2
