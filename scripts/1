@@ -15,11 +15,17 @@ sudo mount /dev/sda2 /mnt/btrfs
 sudo btrfs subvolume create /mnt/btrfs/snapshots
 sudo chmod a+rx /.snapshots/
 sudo umount /mnt/btrfs
-#sudo bash -c 'echo "UUID=cb4d77df-3e6a-4179-a881-df7c85f4b7c9 /.snapshots     btrfs   subvol=snapshots 0 0" >> /etc/fstab'
-#sudo mount -a
-#sudo btrfs subvolume get-default /
-#sudo btrfs subvolume set-default 256 /
-#sudo btrfs subvolume get-default /
+
+#replace uuid from id u get fromm /etc/fstab
+sudo bash -c 'echo "UUID=cb4d77df-3e6a-4179-a881-df7c85f4b7c9 /.snapshots     btrfs   subvol=snapshots 0 0" >> /etc/fstab'
+
+sudo mount -a
+sudo btrfs subvolume get-default /
+
+# sudo btrfs subv list / get the id of root
+sudo btrfs subvolume set-default 256 /
+
+sudo btrfs subvolume get-default /
 #sudo nano /boot/grub/grub.cfg
 #removeall = rootflags=subvol=@  
 #sudo snapper rollback 2
@@ -32,4 +38,3 @@ sudo umount /mnt/btrfs
 #snapper delete
 #snapper diff 71..72 /etc/zypp/zypp.conf
 #snapper create --description "Snapshot for week 2 2014"
-#sudo snapper --ambit classic rollback 2
