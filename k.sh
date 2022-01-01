@@ -6,6 +6,8 @@
 #sudo swapon /swapfile
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 sudo pacman -R timeshift-autosnap-manjaro --noconfirm
+git clone https://github.com/howling50/Top-5-Bootloader-Themes
+sudo bash ~/Downloads/inst/Top-5-Bootloader-Themes/install.sh
 sudo mkdir -p /etc/cron.minutely
 sudo rm -rf /etc/cron.d/0hourly
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
@@ -144,7 +146,6 @@ cp -r ~/Downloads/inst/files/* ~/.config/
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
-git clone https://github.com/howling50/Top-5-Bootloader-Themes
 # --------- Snaps ------------------------
 #sudo pacman -S snapper-gui --noconfirm --needed
 #sudo pacman -S snap-pac --noconfirm --needed
