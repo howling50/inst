@@ -7,7 +7,9 @@
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 sudo pacman -R timeshift-autosnap-manjaro --noconfirm
 git clone https://github.com/howling50/Top-5-Bootloader-Themes
+cd ~/Downloads/inst/Top-5-Bootloader-Themes
 sudo bash ~/Downloads/inst/Top-5-Bootloader-Themes/install.sh
+cd ~/Downloads/inst
 sudo mkdir -p /etc/cron.minutely
 sudo rm -rf /etc/cron.d/0hourly
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
