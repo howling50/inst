@@ -21,9 +21,6 @@ chmod +x strap.sh
 sudo ./strap.sh
 sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman-mirrors --fasttrack 8 && sudo pacman -Syyu --noconfirm --needed
-sudo pacman -S snapper-gui --noconfirm --needed
-sudo pacman -S snap-pac --noconfirm --needed
-sudo pacman -S snap-sync --noconfirm --needed
 sudo pacman -S powerline-fonts --noconfirm --needed
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
@@ -149,6 +146,9 @@ git clone https://github.com/yeyushengfan258/Win11OS-kde
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 git clone https://github.com/howling50/Top-5-Bootloader-Themes
 # --------- Snaps ------------------------
+sudo pacman -S snapper-gui --noconfirm --needed
+sudo pacman -S snap-pac --noconfirm --needed
+sudo pacman -S snap-sync --noconfirm --needed
 #sudo snapper -c root create-config /
 #sudo sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
 #sudo sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="0"/' /etc/snapper/configs/root
