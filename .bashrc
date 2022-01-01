@@ -534,4 +534,4 @@ unset bash_prompt
 
 
 ### EOF ###
-sudo sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
+#sudo sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
