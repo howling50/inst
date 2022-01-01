@@ -19,6 +19,7 @@ sudo bash -c 'echo "UUID=cb4d77df-3e6a-4179-a881-df7c85f4b7c9 /.snapshots     bt
 sudo mount -a
 sudo btrfs subvolume get-default /
 sudo btrfs subvolume set-default 256 /
+sudo btrfs subvolume get-default /
 #sudo nano /boot/grub/grub.cfg
 #removeall = rootflags=subvol=@  
 #sudo snapper rollback 2
