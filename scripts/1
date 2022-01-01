@@ -1,42 +1,43 @@
 #! /bin/bash
-sudo pacman -S snapper-gui --noconfirm --needed
-sudo pacman -S snap-pac --noconfirm --needed
-sudo pacman -S snap-sync --noconfirm --needed
-sudo umount /.snapshots
-sudo rm -rf /.snapshots
-sudo snapper -c root create-config /
-sudo sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
-sudo sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="0"/' /etc/snapper/configs/root
-sudo sed -i 's/^TIMELINE_LIMIT_DAILY="10"/TIMELINE_LIMIT_DAILY="4"/' /etc/snapper/configs/root
-sudo sed -i 's/^TIMELINE_LIMIT_WEEKLY="0"/TIMELINE_LIMIT_WEEKLY="2"/' /etc/snapper/configs/root
-sudo sed -i 's/^TIMELINE_LIMIT_MONTHLY="10"/TIMELINE_LIMIT_MONTHLY="1"/' /etc/snapper/configs/root
-sudo sed -i 's/^TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/configs/root
-sudo btrfs subvolume delete /.snapshots
-sudo mkdir /.snapshots
-sudo mkdir /mnt/btrfs
+pacman -S snapper-gui --noconfirm --needed
+pacman -S snap-pac --noconfirm --needed
+pacman -S snap-sync --noconfirm --needed
+umount /.snapshots
+rm -rf /.snapshots
+snapper -c root create-config /
+sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
+sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="0"/' /etc/snapper/configs/root
+sed -i 's/^TIMELINE_LIMIT_DAILY="10"/TIMELINE_LIMIT_DAILY="4"/' /etc/snapper/configs/root
+sed -i 's/^TIMELINE_LIMIT_WEEKLY="0"/TIMELINE_LIMIT_WEEKLY="2"/' /etc/snapper/configs/root
+sed -i 's/^TIMELINE_LIMIT_MONTHLY="10"/TIMELINE_LIMIT_MONTHLY="1"/' /etc/snapper/configs/root
+sed -i 's/^TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/configs/root
+btrfs subvolume delete /.snapshots
+mkdir /.snapshots
+mkdir /mnt/btrfs
 
 #--------------check sda----------------
-sudo mount /dev/sda1 /mnt/btrfs
+mount /dev/sda1 /mnt/btrfs
 
-sudo btrfs subvolume create /mnt/btrfs/snapshots
-sudo chmod a+rx /.snapshots
-sudo mv /mnt/btrfs/boot /mnt/btrfs/boot.old
-sudo btrfs subvol create /mnt/btrfs/boot
-sudo mv /mnt/btrfs/boot.old/* /mnt/btrfs/boot/
-sudo rmdir /mnt/btrfs/boot.old
-sudo umount /mnt/btrfs
-sudo rmdir /mnt/btrfs
+btrfs subvolume create /mnt/btrfs/snapshots
+chmod a+rx /.snapshots
+mv /mnt/btrfs/boot /mnt/btrfs/boot.old
+btrfs subvol create /mnt/btrfs/boot
+mv /mnt/btrfs/boot.old/* /mnt/btrfs/boot/
+rmdir /mnt/btrfs/boot.old
+umount /mnt/btrfs
+rmdir /mnt/btrfs
 
 #replace uuid from id u get fromm /etc/fstab
-sudo bash -c 'echo "UUID=cb4d77df-3e6a-4179-a881-df7c85f4b7c9 /.snapshots     btrfs   subvol=snapshots 0 0" >> /etc/fstab'
+PART_UUID=$(blkid -o value -s UUID /dev/sda1)
+echo UUID="${PART_UUID}" /.snapshots    btrfs subvol=snapshots 0 0 >> /etc/fstab
 
-sudo mount -a
-sudo btrfs subvolume get-default /
+mount -a
+btrfs subvolume get-default /
 
 # sudo btrfs subv list / get the id of root
-sudo btrfs subvolume set-default 256 /
+btrfs subvolume set-default 256 /
 
-sudo btrfs subvolume get-default /
+btrfs subvolume get-default /
 #sudo nano /boot/grub/grub.cfg
 #removeall = rootflags=subvol=@  
 #sudo snapper rollback 2
