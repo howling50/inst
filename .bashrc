@@ -177,9 +177,17 @@ image ()
 {
   kitty icat --transfer-mode=file "$1"
 }
-pacdel ()                                                                                                                                               
+pacdel ()
 {
   sudo pacman -Rcns "$1"
+}
+srollback ()                                                                                                                                               
+{
+  sudo snapper rollback "$1"
+}
+srollback1 ()                                                                                                                                               
+{
+  sudo snapper --ambit classic rollback "$1"
 }
 ################################################################################
 ##  FUNCTIONS                                                                 ##
