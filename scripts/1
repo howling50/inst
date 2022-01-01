@@ -1,6 +1,6 @@
 #! /bin/bash
 sudo umount /.snapshots
-sudorm -rf /.snapshots
+sudo rm -rf /.snapshots
 sudo snapper -c root create-config /
 sudo sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
 sudo sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="0"/' /etc/snapper/configs/root
