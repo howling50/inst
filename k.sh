@@ -6,6 +6,8 @@
 #sudo swapon /swapfile
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
+sudo pacman -S caffeine-ng --noconfirm --needed
+caffeine &
 git clone https://github.com/howling50/Top-5-Bootloader-Themes
 sudo mkdir -p /etc/cron.minutely
 sudo rm -rf /etc/cron.d/0hourly
@@ -153,9 +155,11 @@ konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
 konsave -a kde2
 lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
-#sleep 2
+sleep 2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 sudo cp ~/Downloads/inst/1.mp3 ~/1.mp3
 mpg123 ~/1.mp3 > /dev/null 2>&1
+caffeine kill
+sudo pacman -R caffeine-ng --noconfirm --needed
 #conky -c ~/.conkyrc &
