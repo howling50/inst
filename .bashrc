@@ -184,11 +184,7 @@ pacdel ()
 }
 srollback ()                                                                                                                                               
 {
-  sudo snapper rollback "$1"
-}
-srollback1 ()                                                                                                                                               
-{
-  sudo snapper --ambit classic rollback "$1"
+  sudo btrfs property set -ts /.snapshots/"$1"/snapshot ro false
 }
 ################################################################################
 ##  FUNCTIONS                                                                 ##
