@@ -30,13 +30,13 @@ PART_UUID=$(blkid -o value -s UUID /dev/sda1)
 echo UUID="${PART_UUID}" /.snapshots    btrfs subvol=snapshots 0 0 >> /etc/fstab
 
 mount -a
-btrfs subvolume get-default /
+#btrfs subvolume get-default /
 
 # sudo btrfs subv list / get the id of root
-btrfs subvolume set-default 256 /
+#btrfs subvolume set-default 256 /
 
-btrfs subvolume get-default /
-sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
+#btrfs subvolume get-default /
+#sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
 #sudo nano /boot/grub/grub.cfg
 #removeall = rootflags=subvol=@  
 #sudo snapper rollback 2
