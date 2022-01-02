@@ -1,4 +1,5 @@
 #! /bin/bash
+pacman -S snapper --noconfirm --needed
 pacman -S snapper-gui --noconfirm --needed
 pacman -S snap-pac --noconfirm --needed
 pacman -S snap-sync --noconfirm --needed
