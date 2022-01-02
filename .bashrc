@@ -113,8 +113,8 @@ export VISUAL="nvim"
 
 # Alias
 alias vim='nvim'
-alias systemcheck='sudo systemctl --failed && sudo journalctl -p'
-alias torstart='sudo systemctl start tor.service'3 -xb'
+alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
+alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
