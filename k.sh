@@ -9,8 +9,8 @@
 sudo pacman -S caffeine-ng --noconfirm --needed
 caffeine &
 git clone https://github.com/howling50/Top-5-Bootloader-Themes
-#sudo mkdir -p /etc/cron.minutely
-#sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
+sudo mkdir -p /etc/cron.minutely
+sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
 btrfs subvol create ~/.local/share/Steam
 btrfs subvol create ~/.wine
 sudo mv ~/Downloads ~/Downloads.old
