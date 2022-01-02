@@ -102,7 +102,6 @@ yay -S --noconfirm konsave
 #yay -S --noconfirm remmina-plugin-teamviewer
 #yay -S --noconfirm remmina-plugin-ultravnc
 #yay -S --noconfirm remmina-plugin-rdesktop
-#yay -S --noconfirm remmina-plugin-webkit
 #yay -S --noconfirm remmina-plugin-url
 #yay -S --noconfirm remmina-plugin-open
 #yay -S --noconfirm remmina-plugin-folder
