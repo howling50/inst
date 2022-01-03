@@ -27,6 +27,7 @@ sed -i 's/^TIMELINE_LIMIT_WEEKLY="0"/TIMELINE_LIMIT_WEEKLY="1"/' /etc/snapper/co
 sed -i 's/^TIMELINE_LIMIT_MONTHLY="10"/TIMELINE_LIMIT_MONTHLY="0"/' /etc/snapper/configs/home
 sed -i 's/^TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/configs/home
 chmod a+rx /home/.snapshots
+chown howling:howling /home/.snapshots
 #--------------check sda----------------
 mount "${DISK}" /mnt/btrfs
 
