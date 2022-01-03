@@ -9,6 +9,7 @@
 sudo pacman -S caffeine-ng --noconfirm --needed
 caffeine & 2>/dev/null
 git clone https://github.com/howling50/Top-5-Bootloader-Themes
+sudo rm -rf /etc/cron.d/0hourly
 sudo mkdir -p /etc/crontab
 sudo mkdir -p /etc/cron.minutely
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
