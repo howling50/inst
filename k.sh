@@ -7,7 +7,7 @@
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
 sudo pacman -S caffeine-ng --noconfirm --needed
-caffeine &
+caffeine kill
 git clone https://github.com/howling50/Top-5-Bootloader-Themes
 sudo mkdir -p /etc/crontab
 sudo mkdir -p /etc/cron.minutely
