@@ -182,10 +182,9 @@ pacdel ()
 {
   sudo pacman -Rcns "$1"
 }
-srollback ()                                                                                                                                               
-{
-  sudo btrfs property set -ts /.snapshots/"$1"/snapshot ro false
-}
+alias slist='sudo btrfs subv list /'
+
+
 ################################################################################
 ##  FUNCTIONS                                                                 ##
 ################################################################################
