@@ -156,6 +156,7 @@ sudo ufw enable 2>/dev/null
 #------------------------------------
 cp -r ~/Downloads/inst/files/* ~/.config/
 cp ~/Downloads/inst/scripts/timer ~/
+cp ~/Downloads/inst/scripts/checkerror.sh ~/
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
