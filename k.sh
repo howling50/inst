@@ -169,5 +169,5 @@ sleep 2
 cp ~/Downloads/inst/1.mp3 ~/1.mp3
 mpg123 ~/1.mp3 > /dev/null 2>&1
 caffeine kill
-sudo pacman -R caffeine-ng --noconfirm --needed
+sudo pacman -R caffeine-ng --noconfirm
 #conky -c ~/.conkyrc &
