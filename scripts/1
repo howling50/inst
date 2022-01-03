@@ -18,7 +18,19 @@ sed -i 's/^TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/c
 btrfs subvolume delete /.snapshots
 mkdir /.snapshots
 mkdir /mnt/btrfs
-
+-----------------------------------
+umount /home/.snapshots
+rm -rf /home/.snapshots
+snapper -c home create-config /home
+sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/home
+sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="1"/' /etc/snapper/configs/home
+sed -i 's/^TIMELINE_LIMIT_DAILY="10"/TIMELINE_LIMIT_DAILY="2"/' /etc/snapper/configs/home
+sed -i 's/^TIMELINE_LIMIT_WEEKLY="0"/TIMELINE_LIMIT_WEEKLY="1"/' /etc/snapper/configs/home
+sed -i 's/^TIMELINE_LIMIT_MONTHLY="10"/TIMELINE_LIMIT_MONTHLY="0"/' /etc/snapper/configs/home
+sed -i 's/^TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/configs/home
+btrfs subvolume delete /home/.snapshots
+mkdir /home/.snapshots
+chmod a+rx /home/.snapshots
 #--------------check sda----------------
 mount "${DISK}" /mnt/btrfs
 
@@ -31,6 +43,7 @@ rmdir /mnt/btrfs
 #replace uuid from id u get fromm /etc/fstab
 PART_UUID=$(blkid -o value -s UUID "${DISK}")
 echo UUID="${PART_UUID}" /.snapshots    btrfs subvol=snapshots 0 0 >> /etc/fstab
+echo UUID="${PART_UUID}" /home/.snapshots    btrfs subvol=snapshots 0 0 >> /etc/fstab
 
 mount -a
 #btrfs subvolume get-default /
