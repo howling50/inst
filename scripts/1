@@ -5,7 +5,6 @@ read DISK
 pacman -S snapper --noconfirm --needed
 pacman -S snapper-gui --noconfirm --needed
 pacman -S snap-pac --noconfirm --needed
-pacman -S snap-sync --noconfirm --needed
 umount /.snapshots
 rm -rf /.snapshots
 snapper -c root create-config /
