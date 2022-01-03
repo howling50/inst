@@ -1,4 +1,7 @@
 #! /bin/bash
+lsblk
+echo "Please enter root location to work on: (example /dev/sda1)"
+read DISK
 pacman -S snapper --noconfirm --needed
 pacman -S snapper-gui --noconfirm --needed
 pacman -S snap-pac --noconfirm --needed
@@ -17,7 +20,7 @@ mkdir /.snapshots
 mkdir /mnt/btrfs
 
 #--------------check sda----------------
-mount /dev/sda1 /mnt/btrfs
+mount /dev/"${DISK}" /mnt/btrfs
 
 btrfs subvolume create /mnt/btrfs/snapshots
 chmod a+rx /.snapshots
@@ -26,7 +29,7 @@ umount /mnt/btrfs
 rmdir /mnt/btrfs
 
 #replace uuid from id u get fromm /etc/fstab
-PART_UUID=$(blkid -o value -s UUID /dev/sda1)
+PART_UUID=$(blkid -o value -s UUID /dev/"${DISK}")
 echo UUID="${PART_UUID}" /.snapshots    btrfs subvol=snapshots 0 0 >> /etc/fstab
 
 mount -a
