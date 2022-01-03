@@ -12,6 +12,7 @@ git clone https://github.com/howling50/Top-5-Bootloader-Themes
 sudo mkdir -p /etc/crontab
 sudo mkdir -p /etc/cron.minutely
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
+caffeine &
 btrfs subvol create ~/.local/share/Steam
 btrfs subvol create ~/.wine
 sudo mv ~/Downloads ~/Downloads.old
