@@ -1,5 +1,10 @@
 #! /bin/bash
-
-tput setaf 1; echo -----ERRORS FOR "$1" SEND TO ~/checkerror.txt----- 2>>~/checkerror.txt
-tput sgr0; sleep 2
+tput setaf 1; echo -----ERRORS FOR "$1" SEND TO ~/checkerror.txt----                     
+echo "" >>~/checkerror.txt
+echo "" >>~/checkerror.txt
+echo "" >>~/checkerror.txt
+echo "" >>~/checkerror.txt
+tput sgr0; echo   ---------ERRORS FOR "$1"------------ >>~/checkerror.txt
+echo "" >>~/checkerror.txt
+sleep 1
 bash "$1" 2>>~/checkerror.txt
