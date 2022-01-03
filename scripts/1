@@ -20,7 +20,7 @@ mkdir /.snapshots
 mkdir /mnt/btrfs
 
 #--------------check sda----------------
-mount /dev/"${DISK}" /mnt/btrfs
+mount "${DISK}" /mnt/btrfs
 
 btrfs subvolume create /mnt/btrfs/snapshots
 chmod a+rx /.snapshots
