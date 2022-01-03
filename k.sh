@@ -7,12 +7,12 @@
 #echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
 sudo pacman -S caffeine-ng --noconfirm --needed
-caffeine kill
+caffeine & 2>/dev/null
 git clone https://github.com/howling50/Top-5-Bootloader-Themes
 sudo mkdir -p /etc/crontab
 sudo mkdir -p /etc/cron.minutely
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
-caffeine &
+caffeine & 2>/dev/null
 btrfs subvol create ~/.local/share/Steam
 btrfs subvol create ~/.wine
 sudo mv ~/Downloads ~/Downloads.old
