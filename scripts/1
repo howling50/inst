@@ -29,7 +29,7 @@ umount /mnt/btrfs
 rmdir /mnt/btrfs
 
 #replace uuid from id u get fromm /etc/fstab
-PART_UUID=$(blkid -o value -s UUID /dev/"${DISK}")
+PART_UUID=$(blkid -o value -s UUID "${DISK}")
 echo UUID="${PART_UUID}" /.snapshots    btrfs subvol=snapshots 0 0 >> /etc/fstab
 
 mount -a
