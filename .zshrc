@@ -73,11 +73,4 @@ pacdel ()
 {
   sudo pacman -Rcns "$1"
 }
-srollback ()                                                                                                                                               
-{
-  sudo snapper rollback "$1"
-}
-srollback1 ()                                                                                                                                               
-{
-  sudo snapper --ambit classic rollback "$1"
-}
+alias slist='sudo btrfs subv list /'
