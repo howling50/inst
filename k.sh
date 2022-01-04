@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+##################### git clone in ~/Downloads ####################################################
 ##################### start with: bash checkerror.sh k.sh ##########################################
 SECONDS=0
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
