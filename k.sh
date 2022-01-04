@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 ##################### git clone in ~/Downloads ####################################################
-##################### start with: bash checkerror.sh k.sh ##########################################
 SECONDS=0
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
 sudo pacman -S caffeine-ng --noconfirm --needed
@@ -152,7 +151,6 @@ sudo ufw enable
 #------------------------------------
 cp -r ~/Downloads/inst/files/* ~/.config/
 cp ~/Downloads/inst/scripts/timer ~/
-cp ~/Downloads/inst/scripts/checkerror.sh ~/
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
