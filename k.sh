@@ -155,8 +155,8 @@ cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 # --------- Snapshots ------------------------
-sudo systemctl start grub-btrfs.path
-sudo systemctl enable grub-btrfs.path
+#sudo systemctl start grub-btrfs.path
+#sudo systemctl enable grub-btrfs.path
 #chmod +x ~/Downloads/inst/scripts/1
 #sudo bash ~/Downloads/inst/scripts/1
 # ----------------------------------------------
