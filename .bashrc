@@ -184,10 +184,6 @@ pacdel ()
   sudo pacman -Rcns "$1"
 }
 alias slist='sudo btrfs subv list /'
-checkerror ()
-{
- bash /home/howling/checkerror.sh "$1"
-}
 
 ################################################################################
 ##  FUNCTIONS                                                                 ##
