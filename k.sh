@@ -153,6 +153,8 @@ cp ~/Downloads/inst/scripts/timer ~/
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
+#lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
+#sleep 2
 # --------- Snapshots ------------------------
 #sudo systemctl start grub-btrfs.path
 #sudo systemctl enable grub-btrfs.path
@@ -162,8 +164,6 @@ sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
 konsave -a kde2
-lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
-sleep 2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 cp ~/Downloads/inst/1.mp3 ~/1.mp3
