@@ -151,13 +151,13 @@ sudo ufw enable
 cp -r ~/Downloads/inst/files/* ~/.config/
 cp ~/Downloads/inst/scripts/timer ~/
 cd ~/Downloads/inst/
-git clone https://github.com/yeyushengfan258/Win11OS-kde 
-sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
+#git clone https://github.com/yeyushengfan258/Win11OS-kde 
+#sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 #lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 #sleep 2
 # --------- Snapshots ------------------------
-#sudo systemctl start grub-btrfs.path
-#sudo systemctl enable grub-btrfs.path
+sudo systemctl start grub-btrfs.path
+sudo systemctl enable grub-btrfs.path
 #chmod +x ~/Downloads/inst/scripts/1
 #sudo bash ~/Downloads/inst/scripts/1
 # ----------------------------------------------
