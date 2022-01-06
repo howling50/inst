@@ -142,6 +142,7 @@ sudo ufw enable
 sudo ufw allow 1714:1764/udp
 sudo ufw allow 1714:1764/tcp
 sudo ufw allow 23232/tcp
+sudo ufw allow 23232/udp
 sudo ufw default deny incoming 
 sleep 1
 sudo ufw default allow outgoing
