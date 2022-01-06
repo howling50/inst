@@ -137,8 +137,10 @@ wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x
 sudo pacman -U ~/Downloads/inst/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
 #---------------Firewall--------------
 sudo ufw enable
-sudo ufw allow 80/tcp
-sudo ufw limit 1716/tcp
+#sudo ufw allow 80/tcp
+#sudo ufw allow 443/tcp
+sudo ufw allow 1714:1764/udp
+sudo ufw allow 1714:1764/tcp
 sudo ufw allow 23232/tcp
 sudo ufw default deny incoming 
 sleep 1
