@@ -167,10 +167,10 @@ konsave -a kde2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 cp ~/Downloads/inst/1.mp3 ~/1.mp3
-mpg123 ~/1.mp3 > /dev/null 2>&1
 caffeine kill
 sudo pacman -R caffeine-ng --noconfirm
 #conky -c ~/.conkyrc &
+mpg123 ~/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
     let "minutes=(SECONDS%3600)/60"
