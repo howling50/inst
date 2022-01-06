@@ -139,8 +139,8 @@ sudo pacman -U ~/Downloads/inst/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noc
 sudo ufw enable
 #sudo ufw allow 80/tcp
 #sudo ufw allow 443/tcp
-sudo ufw allow 1714:1764/udp
-sudo ufw allow 1714:1764/tcp
+sudo ufw allow proto tcp from 192.168.0.0/24 to any port 1714:1764
+sudo ufw allow proto udp from 192.168.0.0/24 to any port 1714:1764
 sudo ufw allow 23232/tcp
 sudo ufw allow 23232/udp
 sudo ufw default deny incoming 
