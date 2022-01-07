@@ -112,7 +112,6 @@ shopt -s histappend
 export VISUAL="nvim"
 
 # Alias
-alias vim='nvim'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
