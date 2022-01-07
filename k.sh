@@ -91,7 +91,7 @@ sudo pacman -S brave-browser --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
-yay -S --noconfirm stacer
+yay -S --noconfirm stacer-bin
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm key-mapper
 yay -S --noconfirm sejda-desktop
