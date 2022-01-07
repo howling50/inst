@@ -136,7 +136,7 @@ cd ~/Downloads/inst/
 wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
 sudo pacman -U ~/Downloads/inst/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
 #---------------Firewall--------------
-sudo ufw enable
+#sudo ufw enable
 #sudo ufw allow 80/tcp
 #sudo ufw allow 443/tcp
 sudo ufw allow proto tcp from 192.168.0.0/24 to any port 1714:1764
