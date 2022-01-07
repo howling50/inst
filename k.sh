@@ -8,6 +8,10 @@ caffeine & 2>/dev/null
 sudo mkdir -p /etc/crontab
 sudo mkdir -p /etc/cron.minutely
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
+chmod +x ~/Downloads/inst/scripts/*
+sudo cp ~/Downloads/inst/scripts/timer /usr/bin/
+sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
+sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 caffeine &
 btrfs subvol create ~/.local/share/Steam
 btrfs subvol create ~/.wine
@@ -15,6 +19,7 @@ sudo mv ~/Downloads ~/Downloads.old
 btrfs subvol create ~/Downloads
 sudo mv ~/Downloads.old/* ~/Downloads/
 sudo rmdir ~/Downloads.old
+cd
 cd ~/Downloads/inst/
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
@@ -161,7 +166,6 @@ sleep 2
 # --------- Snapshots ------------------------
 sudo systemctl enable grub-btrfs.path
 sudo systemctl start grub-btrfs.path
-#chmod +x ~/Downloads/inst/scripts/1
 #sudo bash ~/Downloads/inst/scripts/1
 # ----------------------------------------------
 konsave -i ~/Downloads/inst/kde2.knsv
