@@ -157,7 +157,6 @@ sudo systemctl start ufw
 sudo ufw enable
 #------------------------------------
 cp -r ~/Downloads/inst/files/* ~/.config/
-cp ~/Downloads/inst/scripts/timer ~/
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
