@@ -89,6 +89,7 @@ sudo pacman -S conky --noconfirm --needed
 sudo pacman -S burpsuite --noconfirm --needed
 sudo pacman -S brave-browser --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
+sudo pacman -S downgrade --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 yay -S --noconfirm stacer-bin
