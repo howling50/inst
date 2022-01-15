@@ -177,6 +177,7 @@ cp ~/Downloads/inst/1.mp3 ~/1.mp3
 caffeine kill
 sudo pacman -R caffeine-ng --noconfirm
 #conky -c ~/.conkyrc &
+sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
 mpg123 ~/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
