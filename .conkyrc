@@ -84,7 +84,7 @@ ${font :size=11}${color}CPUs ${color}${hr 2}${color}
 ${voffset -15}
 ${font Montserrat Light:size=10}${color1}CPU:${color}${font} ${alignr}${color}Intel E6850 @ 3.00GHz${color}${font}
 ${voffset -15}
-${font Montserrat Light:size=9}${color1}01 - 04:${color}${font} ${goto 100}${cpu cpu1}% ${goto 150}${cpu cpu2 }% ${goto 200}${cpu cpu3 }% ${goto 250}${cpu cpu4 }%
+${font Montserrat Light:size=9}${color1}01 - 04:${color}${font} ${goto 100}${cpu cpu1}% ${goto 150}${cpu cpu2 }%
 ${voffset -8}
 ${font Montserrat Light:size=9}${color1}CPU TEMP:${color}${font} ${font :size=10}${alignr}${hwmon 1 temp 1}°${color4}C${color}${voffset 5}
 ${font :size=11}${color}Network ${color}${hr 2}${color}
