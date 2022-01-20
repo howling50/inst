@@ -178,6 +178,9 @@ caffeine kill
 sudo pacman -R caffeine-ng --noconfirm
 #conky -c ~/.conkyrc &
 sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
+sudo chattr -R +C ~/Downloads
+sudo chattr -R +C ~/.local/share/Steam
+sudo chattr -R +C ~/.wine
 mpg123 ~/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
