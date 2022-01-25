@@ -178,6 +178,7 @@ caffeine kill
 sudo pacman -R caffeine-ng --noconfirm
 #conky -c ~/.conkyrc &
 sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
+cd
 sudo chattr -R +C ~/Downloads
 sudo chattr -R +C ~/.local/share/Steam
 sudo chattr -R +C ~/.wine
