@@ -128,6 +128,9 @@ sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/syst
 sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent/' /etc/pacman.conf
 sudo touch /etc/cron.weekly/balance
 sudo bash -c 'echo -e "#!/usr/bin/env bash\nbtrfs scrub start / >> /home/howling/scrub.txt" >> /etc/cron.weekly/balance'
+echo 'if [ -f ~/.bashrc ]; then' >> ~/.bash_profile
+echo '    source ~/.bashrc' >> ~/.bash_profile
+echo 'fi' >> ~/.bash_profile
 sudo chmod +x /etc/cron.weekly/balance
 echo vm.swappiness=10 | sudo tee -a /etc/sysctl.d/100-manjaro.conf  >/dev/null
 #sudo systemctl enable fstrim.timer
