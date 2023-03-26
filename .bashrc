@@ -111,6 +111,13 @@ shopt -s cdspell
 shopt -s histappend
 export VISUAL="nvim"
 
+# Expand the history size
+export HISTFILESIZE=3000
+export HISTSIZE=3000
+
+# Don't put duplicate lines in the history and do not add lines that start with a space
+export HISTCONTROL=erasedups:ignoredups:ignorespace
+
 # Alias
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
