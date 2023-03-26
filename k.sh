@@ -13,12 +13,14 @@ sudo cp ~/Downloads/inst/scripts/timer /usr/bin/
 sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 caffeine &
-btrfs subvol create ~/.local/share/Steam
-btrfs subvol create ~/.wine
-sudo mv ~/Downloads ~/Downloads.old
-btrfs subvol create ~/Downloads
-sudo mv ~/Downloads.old/* ~/Downloads/
-sudo rmdir ~/Downloads.old
+#-------
+#btrfs subvol create ~/.local/share/Steam
+#btrfs subvol create ~/.wine
+#sudo mv ~/Downloads ~/Downloads.old
+#btrfs subvol create ~/Downloads
+#sudo mv ~/Downloads.old/* ~/Downloads/
+#sudo rmdir ~/Downloads.old
+#--------
 cd
 cd ~/Downloads/inst/
 curl -O https://blackarch.org/strap.sh
@@ -127,7 +129,7 @@ sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
 sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent/' /etc/pacman.conf
 sudo touch /etc/cron.weekly/balance
-sudo bash -c 'echo -e "#!/usr/bin/env bash\nbtrfs scrub start / >> /home/howling/scrub.txt" >> /etc/cron.weekly/balance'
+#sudo bash -c 'echo -e "#!/usr/bin/env bash\nbtrfs scrub start / >> /home/howling/scrub.txt" >> /etc/cron.weekly/balance'
 #-----------------
 echo 'if [ -f ~/.bashrc ]; then' >> ~/.bash_profile
 echo '    source ~/.bashrc' >> ~/.bash_profile
