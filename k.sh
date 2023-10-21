@@ -78,6 +78,7 @@ sudo pacman -S audacious --noconfirm --needed
 sudo pacman -S mousepad --noconfirm --needed
 sudo pacman -S lutris --noconfirm --needed
 sudo pacman -S neofetch --noconfirm --needed
+sudo pacman -S masscan --noconfirm --needed
 sudo pacman -S net-tools --noconfirm --needed
 sudo pacman -S zip --noconfirm --needed
 sudo pacman -S unzip --noconfirm --needed
