@@ -143,13 +143,11 @@ echo vm.swappiness=10 | sudo tee -a /etc/sysctl.d/100-manjaro.conf  >/dev/null
 mkdir -p ~/.steam/root/compatibilitytools.d/
 mkdir -p ~/.config/nvim/
 cp ~/Downloads/inst/init.vim ~/.config/nvim/
-wget https://i.imgur.com/N51R4iT.jpg
+curl -O https://i.imgur.com/N51R4iT.jpg
 cp  ~/Downloads/inst/N51R4iT.jpg ~/.config/neofetch/
 sudo mkdir -p /root/.config/nvim/
 sudo cp ~/Downloads/inst/init.vim /root/.config/nvim/
 cd ~/Downloads/inst/
-wget https://mirror.pseudoform.org/community/os/x86_64/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst
-sudo pacman -U ~/Downloads/inst/grub-customizer-5.1.0-3-x86_64.pkg.tar.zst --noconfirm --needed
 #---------------Firewall--------------
 #sudo ufw enable
 #sudo ufw allow 80/tcp
