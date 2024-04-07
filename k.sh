@@ -98,7 +98,6 @@ yay --sudoloop --save
 yay -S --noconfirm stacer-bin
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm input-remapper-git
-yay -S --noconfirm sejda-desktop
 yay -S --noconfirm nerd-fonts-fira-code
 yay -S --noconfirm ttf-meslo
 yay -S --noconfirm protonup-qt
