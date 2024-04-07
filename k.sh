@@ -12,7 +12,6 @@ chmod +x ~/Downloads/inst/scripts/*
 sudo cp ~/Downloads/inst/scripts/timer /usr/bin/
 sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
-caffeine &
 #-------
 #btrfs subvol create ~/.local/share/Steam
 #btrfs subvol create ~/.wine
