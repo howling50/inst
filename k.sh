@@ -189,9 +189,7 @@ cd ..
 #sudo chattr -R +C ~/Downloads
 #sudo chattr -R +C ~/.local/share/Steam
 #sudo chattr -R +C ~/.wine
-cd ..
-cd ..
-cd ~/Downloads
+cd ~/Downloads/inst/
 mpg123 ~/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
