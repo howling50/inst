@@ -8,7 +8,7 @@ caffeine & 2>/dev/null
 sudo mkdir -p /etc/crontab
 sudo mkdir -p /etc/cron.minutely
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
-chmod +x ~/Downloads/inst/scripts/*
+mv yt-dlp_linux yt-dlp ~/Downloads/inst/scripts/*
 sudo cp ~/Downloads/inst/scripts/timer /usr/bin/
 sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
@@ -81,14 +81,18 @@ sudo pacman -S masscan --noconfirm --needed
 sudo pacman -S net-tools --noconfirm --needed
 sudo pacman -S zip --noconfirm --needed
 sudo pacman -S unzip --noconfirm --needed
+sudo pacman -S lsof --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S rkhunter --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S gparted --noconfirm --needed
+sudo pacman -S mkvtoolnix-cli mkvtoolnix-gui --noconfirm --needed
 sudo pacman -S gimp --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 sudo pacman -S conky --noconfirm --needed
-sudo pacman -S burpsuite --noconfirm --needed
+sudo pacman -S mediainfo --noconfirm --needed
+sudo pacman -S flac --noconfirm --needed
+#sudo pacman -S burpsuite --noconfirm --needed
 sudo pacman -S brave-browser --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
 sudo pacman -S downgrade --noconfirm --needed
@@ -148,6 +152,10 @@ cp  ~/Downloads/inst/N51R4iT.jpg ~/.config/neofetch/
 sudo mkdir -p /root/.config/nvim/
 sudo cp ~/Downloads/inst/init.vim /root/.config/nvim/
 cd ~/Downloads/inst/
+wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
+mv yt-dlp_linux yt-dlp
+chmod +x yt-dlp
+sudo cp ~/Downloads/inst/yt-dlp /usr/bin/
 #---------------Firewall--------------
 #sudo ufw enable
 #sudo ufw allow 80/tcp
