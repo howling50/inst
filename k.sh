@@ -93,7 +93,7 @@ sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S mkvtoolnix-cli mkvtoolnix-gui --noconfirm --needed
 sudo pacman -S gimp --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
-sudo pacman -S conky --noconfirm --needed
+#sudo pacman -S conky --noconfirm --needed
 sudo pacman -S mediainfo --noconfirm --needed
 sudo pacman -S flac --noconfirm --needed
 #sudo pacman -S burpsuite --noconfirm --needed
