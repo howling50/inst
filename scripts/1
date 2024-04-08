@@ -1,67 +1,45 @@
-#! /bin/bash
-lsblk
-echo "Please enter root location to work on: (example /dev/sda1)"
-read DISK
-pacman -S snapper --noconfirm --needed
-pacman -S snapper-gui --noconfirm --needed
-pacman -S snap-pac --noconfirm --needed
-umount /.snapshots
-rm -rf /.snapshots
-snapper -c root create-config /
-sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/root
-sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="5"/' /etc/snapper/configs/root
-sed -i 's/^TIMELINE_LIMIT_DAILY="10"/TIMELINE_LIMIT_DAILY="7"/' /etc/snapper/configs/root
-sed -i 's/^TIMELINE_LIMIT_WEEKLY="0"/TIMELINE_LIMIT_WEEKLY="1"/' /etc/snapper/configs/root
-sed -i 's/^TIMELINE_LIMIT_MONTHLY="10"/TIMELINE_LIMIT_MONTHLY="0"/' /etc/snapper/configs/root
-sed -i 's/^TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/configs/root
-btrfs subvolume delete /.snapshots
-mkdir /.snapshots
-mkdir /mnt/btrfs
-#-----------------------------------
-#snapper -c home create-config /home
-#sed -i 's/^ALLOW_USERS=""/ALLOW_USERS="howling"/' /etc/snapper/configs/home
-#sed -i 's/^TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="1"/' /etc/snapper/configs/home
-#sed -i 's/^TIMELINE_LIMIT_DAILY="10"/TIMELINE_LIMIT_DAILY="2"/' /etc/snapper/configs/home
-#sed -i 's/^TIMELINE_LIMIT_WEEKLY="0"/TIMELINE_LIMIT_WEEKLY="1"/' /etc/snapper/configs/home
-#sed -i 's/^TIMELINE_LIMIT_MONTHLY="10"/TIMELINE_LIMIT_MONTHLY="0"/' /etc/snapper/configs/home
-#sed -i 's/^TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/configs/home
-#chmod a+rx /home/.snapshots
-#chown howling:howling /home/.snapshots
-#--------------check sda----------------
-mount "${DISK}" /mnt/btrfs
+#!/bin/bash
 
-btrfs subvolume create /mnt/btrfs/snapshots
-chmod a+rx /.snapshots
-chown :howling /.snapshots
-umount /mnt/btrfs
-rmdir /mnt/btrfs
+menu() {
+    echo "Choose an option:"
+    echo "1. Convert all *.mp4 to .mkv in the folder"
+    echo "2. Combine a video.mp4 and audio.mp4 to mkv"
+    echo "3. Combine a video.mp4 and audio.mp4 and subtitle.srt to mkv"
+    echo "4. Combine all Mkv in a folder with Subtitle.st"
+    echo "5. Fix Flac"
+    echo "0. Exit"
+    read -p "Enter your choice (0-5): " choice
 
-#replace uuid from id u get fromm /etc/fstab
-PART_UUID=$(blkid -o value -s UUID "${DISK}")
-echo UUID="${PART_UUID}" /.snapshots    btrfs subvol=snapshots 0 0 >> /etc/fstab
+    case "$choice" in
+        1)
+            for f in *.mp4; do
+                mkvmerge -o "${f%.mp4}.mkv" "$f"
+            done
+            ;;
+        2)
+            mkvmerge -o 2024.1080p.WEB-DL.AAC2.0.H.264-Cy.mkv video.mp4 -a 0 -d 0 audio.mp4
+            ;;
+        3)
+            mkvmerge -o 2024.1080p.WEB-DL.AAC2.0.H.264-Cy.mkv video.mp4 -a 0 -d 0 audio.mp4 --subtitle-tracks 0 --language 0:eng subtitle.srt
+            ;;
+        4)
+            for f in *.mkv; do
+                mkvmerge -o "${f%.mkv}_with_subtitle.mkv" "$f" --language 0:eng subtitle.srt
+            done
+            ;;
+        5)
+            flac -f8 *.flac
+            flac --best --verify --force --padding=4096 *.flac
+            ;;
+        0)
+            exit 0
+            ;;
+        *)
+            echo "Invalid choice. Please try again."
+            ;;
+    esac
 
-mount -a
-#btrfs subvolume get-default /
+    menu
+}
 
-# sudo btrfs subv list / get the id of root
-#btrfs subvolume set-default 256 /
-
-#btrfs subvolume get-default /
-#sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
-#sudo nano /boot/grub/grub.cfg
-#removeall = rootflags=subvol=@  
-#sudo snapper rollback 2
-#sudo snapper --ambit classic rollback 2
-
-#sudo snapper -c root create-config / 
-#snapper status 21..22
-#sudo btrfs subvolume list /
-#snapper list
-#snapper delete
-#snapper diff 71..72 /etc/zypp/zypp.conf
-#snapper undochange 1..2
-#snapper create --description "Snapshot for week 2 2014"
-#sudo snapper -c boot delete-config
-#sudo snapper -c boot create-config /boot  
-#sudo snapper -c boot create --description "1" 
-#sudo chmod a+rx /boot/.snapshots  
+menu
