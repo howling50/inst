@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-##################### git clone in ~/Downloads ####################################################
+##################### git clone in ~/Downloads, then chmod +x k.sh and then ./k.sh ####################################################
 SECONDS=0
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
 sudo pacman -S caffeine-ng --noconfirm --needed
@@ -9,6 +9,8 @@ sudo mkdir -p /etc/crontab
 sudo mkdir -p /etc/cron.minutely
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
 mv yt-dlp_linux yt-dlp ~/Downloads/inst/scripts/*
+sudo cp ~/Downloads/inst/scripts/1 /usr/bin/
+sudo cp ~/Downloads/inst/scripts/2 /usr/bin/
 sudo cp ~/Downloads/inst/scripts/timer /usr/bin/
 sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
