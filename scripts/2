@@ -1,0 +1,72 @@
+#!/bin/bash
+
+menu() {
+    echo "Choose an option:"
+    echo "1. Check available video"
+    echo "2. Download best video"
+    echo "3. Download best audio"
+    echo "4. Decrypt audio and video"
+    echo "5. Check subtitles"
+    echo "6. Download subtitles"
+    echo "7. Music"
+    echo "8. Exit"
+    read -p "Enter your choice (1-8): " choice
+
+    case "$choice" in
+        1) check_video ;;
+        2) download_video ;;
+        3) download_audio ;;
+        4) decrypt_files ;;
+        5) check_subtitles ;;
+        6) download_subtitles ;;
+        7) music ;;
+        8) exit 0 ;;
+        *) echo "Invalid choice. Please try again." ;;
+    esac
+
+    menu
+}
+
+check_video() {
+    read -p "Enter the video URL: " url
+    yt-dlp --allow-u -F "$url"
+    echo
+    echo "Press Enter to go back to the menu..."
+    read -n 1 -s -r -p ""
+}
+
+download_video() {
+    read -p "Enter the video URL: " url
+    yt-dlp --allow-u -o v.mp4 -f bv "$url"
+}
+
+download_audio() {
+    read -p "Enter the video URL: " url
+    yt-dlp --allow-u -o a.m4a -f ba "$url"
+}
+
+decrypt_files() {
+    read -p "Enter the decryption key: " key
+    mp4decrypt --key "$key" a.m4a audio.mp4
+    mp4decrypt --key "$key" v.mp4 video.mp4
+}
+
+check_subtitles() {
+    read -p "Enter the video URL: " url
+    yt-dlp --allow-u --list-subs "$url"
+    echo
+    echo "Press Enter to go back to the menu..."
+    read -n 1 -s -r -p ""
+}
+
+download_subtitles() {
+    read -p "Enter the video URL: " url
+    yt-dlp --allow-u --write-subs --all-subs --skip-download "$url"
+}
+
+music() {
+    read -p "Enter the video URL: " url
+    yt-dlp -x --audio-format flac --audio-quality 5 "$url"
+}
+
+menu
