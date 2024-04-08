@@ -85,6 +85,7 @@ sudo pacman -S lsof --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S rkhunter --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
+sudo pacman -S ffmpeg --noconfirm --needed
 sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S mkvtoolnix-cli mkvtoolnix-gui --noconfirm --needed
 sudo pacman -S gimp --noconfirm --needed
