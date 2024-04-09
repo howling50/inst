@@ -8,7 +8,7 @@ caffeine & 2>/dev/null
 sudo mkdir -p /etc/crontab
 sudo mkdir -p /etc/cron.minutely
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
-mv yt-dlp_linux yt-dlp ~/Downloads/inst/scripts/*
+chmod +x ~/Downloads/inst/scripts/*
 sudo cp ~/Downloads/inst/scripts/1 /usr/bin/
 sudo cp ~/Downloads/inst/scripts/2 /usr/bin/
 sudo cp ~/Downloads/inst/scripts/timer /usr/bin/
