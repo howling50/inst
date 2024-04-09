@@ -77,7 +77,7 @@ if ${use_color} ; then
 
 	alias ls='ls --color=auto'
 	alias grep='grep --colour=auto'
-	alias egrep='egrep --colour=auto'
+	alias egrep='grep -E'
 	alias fgrep='fgrep --colour=auto'
 else
 	if [[ ${EUID} == 0 ]] ; then
@@ -130,7 +130,7 @@ alias listen='sudo lsof -i -P -n | grep LISTEN'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='curl ifconfig.me'
 alias delall='sudo pacman -Rs $(pacman -Qqtd)'
-alias mnt="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | egrep ^/dev/ | sort"
+alias mnt="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | grep -E ^/dev/ | sort"
 finds ()
 {
   find / -iname "$1" 2>/dev/null
