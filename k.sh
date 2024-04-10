@@ -104,9 +104,11 @@ sudo pacman -S handbrake --noconfirm --needed
 sudo pacman -S filezilla --noconfirm --needed
 sudo pacman -S aegisub --noconfirm --needed
 sudo pacman -S libreoffice-fresh --noconfirm --needed
+sudo pacman -S virtualbox --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 yay -S --noconfirm stacer-bin
+yay -S virtualbox-ext-oracle --noconfirm --needed
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm input-remapper-git
 yay -S --noconfirm nerd-fonts-fira-code
