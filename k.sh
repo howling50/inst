@@ -204,6 +204,9 @@ cd ..
 #sudo chattr -R +C ~/.local/share/Steam
 #sudo chattr -R +C ~/.wine
 cd ~/Downloads/inst/
+sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' /etc/default/grub
+sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 mpg123 ~/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
