@@ -203,7 +203,7 @@ cd ..
 #sudo chattr -R +C ~/.local/share/Steam
 #sudo chattr -R +C ~/.wine
 cd ~/Downloads/inst/
-sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' /etc/default/grub
+sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=-1/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i '/^#$/,/^### BEGIN \/etc\/grub.d\/00_header ###$/s/^#$/set superusers="mastros"\npassword_pbkdf2 mastros grub.pbkdf2.sha512.10000.E318052B92C3A1AD06F1BD48A136F72B4D3CEBCF00719C86E4B3D8A7376A1D33046031084D327A7D2164E3A86541E2DDF6CD75685AA3D009CB20947F6AA58D73.2278C0D13E4C7DB954E2D21BBFF5258AEF0C0B2695D7B299BA3D6FD81427947F29C1C84DFCCF518C8FAD83BFB50B2C6D8A5ABDC3EADD9779B31ADE6EBAE83999\n#/' /boot/grub/grub.cfg
