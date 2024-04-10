@@ -118,6 +118,7 @@ export HISTSIZE=3000
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 
 # Alias
+alias rkhunt='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
