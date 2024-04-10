@@ -25,9 +25,9 @@ sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 #--------
 cd
 cd ~/Downloads/inst/
-curl -O https://blackarch.org/strap.sh
-chmod +x strap.sh
-sudo ./strap.sh
+#curl -O https://blackarch.org/strap.sh
+#chmod +x strap.sh
+#sudo ./strap.sh
 sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman-mirrors --fasttrack 15 && sudo pacman -Syyu --noconfirm --needed
 sudo pacman -S powerline-fonts --noconfirm --needed
