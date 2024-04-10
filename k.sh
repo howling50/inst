@@ -102,9 +102,8 @@ sudo pacman -S ventoy --noconfirm --needed
 sudo pacman -S downgrade --noconfirm --needed
 sudo pacman -S handbrake --noconfirm --needed
 sudo pacman -S filezilla --noconfirm --needed
-sudo pacman -S  aegisub --noconfirm --needed
+sudo pacman -S aegisub --noconfirm --needed
 sudo pacman -S libreoffice-fresh --noconfirm --needed
-sudo pacman -S libreoffice-fresh-el --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 yay -S --noconfirm stacer-bin
