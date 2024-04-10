@@ -86,7 +86,7 @@ sudo pacman -S zip --noconfirm --needed
 sudo pacman -S unzip --noconfirm --needed
 sudo pacman -S lsof --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
-sudo pacman -S rkhunter --noconfirm --needed
+#sudo pacman -S rkhunter --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S ffmpeg --noconfirm --needed
 sudo pacman -S gparted --noconfirm --needed
@@ -100,6 +100,13 @@ sudo pacman -S flac --noconfirm --needed
 sudo pacman -S brave-browser --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
 sudo pacman -S downgrade --noconfirm --needed
+sudo pacman -S handbrake --noconfirm --needed
+sudo pacman -S filezilla --noconfirm --needed
+sudo pacman -S  clamav --noconfirm --needed
+sudo pacman -S  clamtk --noconfirm --needed
+sudo pacman -S  aegisub --noconfirm --needed
+sudo pacman -S libreoffice-fresh --noconfirm --needed
+sudo pacman -S libreoffice-fresh-el --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 yay -S --noconfirm stacer-bin
@@ -123,7 +130,7 @@ neofetch >/dev/null
 sleep 1
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 #------------------------------------------rk hunter--------------------------
-sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local 
+#sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local 
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq'
