@@ -111,6 +111,7 @@ sudo pacman -S filezilla --noconfirm --needed
 sudo pacman -S aegisub --noconfirm --needed
 sudo pacman -S virtualbox --noconfirm --needed
 sudo pacman -S qbittorrent --noconfirm --needed
+sudo pacman -S calibre --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 yay -S --noconfirm stacer-bin
