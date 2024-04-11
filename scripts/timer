@@ -2,4 +2,4 @@
 echo "Set Timer=format examples= 10h 10m 10s"
 read ALAR
 sleep ${ALAR}
-mpg123 ~/1.mp3 > /dev/null 2>&1
+mpg123 ~/.othercrap/1.mp3 > /dev/null 2>&1
