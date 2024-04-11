@@ -118,6 +118,8 @@ yay -S --noconfirm ttf-meslo
 yay -S --noconfirm protonup-qt
 yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm konsave
+wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
+sudo pacman -U autobrr*.tar.zst --noconfirm --needed
 #------------Remote -----------------------------------
 #sudo pacman -S remmina --noconfirm --needed
 #yay -S --noconfirm remmina-plugin-teamviewer
