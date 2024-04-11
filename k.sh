@@ -202,7 +202,8 @@ sleep 1
 konsave -a kde2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
-cp ~/Downloads/inst/1.mp3 ~/1.mp3
+mkdir -p ~/.othercrap
+cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
 caffeine kill
 sudo pacman -R caffeine-ng --noconfirm
 #conky -c ~/.conkyrc &
@@ -215,7 +216,7 @@ cd ~/Downloads/inst/
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=-1/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-mpg123 ~/1.mp3 > /dev/null 2>&1
+mpg123 ~/.othercrap/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
     let "minutes=(SECONDS%3600)/60"
