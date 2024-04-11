@@ -2,6 +2,11 @@
 ##################### git clone in ~/Downloads, then chmod +x k.sh and then ./k.sh ####################################################
 SECONDS=0
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
+sudo cp /etc/sudoers /etc/sudoers.tmp
+sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
+echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
+sudo cp /etc/sudoers.tmp /etc/sudoers
+sudo rm /etc/sudoers.tmp
 sudo pacman -S caffeine-ng --noconfirm --needed
 caffeine & 2>/dev/null
 #git clone https://github.com/howling50/Top-5-Bootloader-Themes
@@ -216,6 +221,7 @@ cd ~/Downloads/inst/
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=-1/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo sed -i '/^Defaults timestamp_timeout=/s/.*/# Defaults timestamp_timeout=15/' /etc/sudoers
 mpg123 ~/.othercrap/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
