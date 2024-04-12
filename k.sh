@@ -177,6 +177,7 @@ wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
 mv yt-dlp_linux yt-dlp
 chmod +x yt-dlp
 sudo cp ~/Downloads/inst/yt-dlp /usr/bin/
+wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip
 #---------------Firewall--------------
 #sudo ufw enable
 #sudo ufw allow 80/tcp
@@ -224,6 +225,7 @@ sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=-1/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i '/^Defaults timestamp_timeout=/s/.*/# Defaults timestamp_timeout=15/' /etc/sudoers
+sudo sed -i '/^#$/,/^### BEGIN \/etc\/grub.d\/00_header ###$/s/^#$/set superusers="mastros"\npassword_pbkdf2 mastros grub.pbkdf2.sha512.10000.77DA16D22A3A8D15AA247F40FA13D6248A92B70D588CFBA14D0C61B15CB7BA37D7895693F643A4C84E5F0891AFB73CD83724D5B6B636A9722B94F726D4F5AAFA.B27F2FE6F14E583AFECAD4E5775498C1144639FB415F228F877EFACF8A1A3DA2BD5781238BD47BA00C4444C51A7F9D232E96F8C0A193E6FD8B64F2BC4E857A10\n#/' /boot/grub/grub.cfg
 mpg123 ~/.othercrap/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
