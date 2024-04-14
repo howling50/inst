@@ -113,21 +113,27 @@ sudo pacman -S qbittorrent --noconfirm --needed
 sudo pacman -S putty --noconfirm --needed 
 sudo pacman -S calibre --noconfirm --needed
 sudo pacman -S virtualbox-guest-iso --noconfirm --needed
+sudo pacman -S protonup-qt --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
-yay -S --noconfirm stacer-bin
+#yay -S --noconfirm stacer-bin
 yay -S --noconfirm virtualbox-ext-oracle
 yay -S --noconfirm hardinfo2
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm input-remapper-git
-yay -S --noconfirm nerd-fonts-fira-code
 yay -S --noconfirm ttf-meslo
-yay -S --noconfirm protonup-qt
 yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm konsave
 flatpak install --noninteractive flathub com.usebottles.bottles
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
 sudo pacman -U autobrr*.tar.zst --noconfirm --needed
+mkdir -p ~/.othercrap
+wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage
+chmod +x Stacer-1.1.0-x64.AppImage
+cp Stacer-1.1.0-x64.AppImage ~/.othercrap/
+mkdir -p ~/.local/share/applications/
+echo -e "[Desktop Entry]\nName=Stacer\nExec=~/.othercrap//Stacer-1.1.0-x64.AppImage\nIcon=~/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop
+chmod +x ~/.local/share/applications/stacer.desktop
 #------------Remote -----------------------------------
 #sudo pacman -S remmina --noconfirm --needed
 #yay -S --noconfirm remmina-plugin-teamviewer
@@ -212,7 +218,6 @@ sleep 1
 konsave -a kde2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
-mkdir -p ~/.othercrap
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
 caffeine kill
 sudo pacman -R caffeine-ng --noconfirm
