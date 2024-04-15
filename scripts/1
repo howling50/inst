@@ -39,6 +39,9 @@ menu() {
             ;;
     esac
 
+    # Play the sound using mpg123
+    mpg123 ~/.othercrap/1.mp3
+
     menu
 }
 
