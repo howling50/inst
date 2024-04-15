@@ -1,5 +1,36 @@
-#! /bin/bash
-echo "Set Timer=format examples= 10h 10m 10s"
+#!/bin/bash
+
+echo "Set Timer (format examples: 10h 10m 10s):"
 read ALAR
-sleep ${ALAR}
+
+# Extract hours, minutes, and seconds from the input
+HOURS=$(echo $ALAR | awk -F'h' '{print $1}')
+MINUTES=$(echo $ALAR | awk -F'm' '{print $1}' | awk -F'h' '{print $2}')
+SECONDS=$(echo $ALAR | awk -F's' '{print $1}' | awk -F'm' '{print $2}')
+
+# Calculate total seconds
+TOTAL_SECONDS=$((HOURS*3600 + MINUTES*60 + SECONDS))
+
+echo "Timer set for ${ALAR}. Starting countdown..."
+
+# Countdown loop
+while [ $TOTAL_SECONDS -gt 0 ]; do
+    # Calculate remaining time in HH:MM:SS format
+    REMAINING_TIME=$(printf "%02d:%02d:%02d" $((TOTAL_SECONDS/3600)) $(( (TOTAL_SECONDS%3600)/60)) $((TOTAL_SECONDS%60)))
+
+    # Display countdown in the terminal
+    printf "\rTime remaining: $REMAINING_TIME"
+    
+    sleep 1
+    ((TOTAL_SECONDS--))
+done
+
+# Newline after countdown
+echo
+
+# Play the sound using mpg123
 mpg123 ~/.othercrap/1.mp3 > /dev/null 2>&1
+
+# Display final message
+echo "Time's up!"
+
