@@ -24,6 +24,9 @@ menu() {
         *) echo "Invalid choice. Please try again." ;;
     esac
 
+    # Play the sound using mpg123
+    mpg123 ~/.othercrap/1.mp3
+
     menu
 }
 
@@ -38,17 +41,20 @@ check_video() {
 download_video() {
     read -p "Enter the video URL: " url
     yt-dlp --allow-u -o v.mp4 -f bv "$url"
+    check_status "Download Video"
 }
 
 download_audio() {
     read -p "Enter the video URL: " url
     yt-dlp --allow-u -o a.m4a -f ba "$url"
+    check_status "Download Audio"
 }
 
 decrypt_files() {
     read -p "Enter the decryption key: " key
     mp4decrypt.exe --key "$key" a.m4a audio.mp4
     mp4decrypt.exe --key "$key" v.mp4 video.mp4
+    check_status "Decrypt Files"
 }
 
 check_subtitles() {
@@ -62,11 +68,21 @@ check_subtitles() {
 download_subtitles() {
     read -p "Enter the video URL: " url
     yt-dlp --allow-u --write-subs --all-subs --skip-download "$url"
+    check_status "Download Subtitles"
 }
 
 music() {
     read -p "Enter the video URL: " url
     yt-dlp -x --audio-format flac --audio-quality 5 "$url"
+    check_status "Music"
+}
+
+check_status() {
+    if [ $? -eq 0 ]; then
+        echo "$1 completed successfully."
+    else
+        echo "There was an error during $1."
+    fi
 }
 
 menu
