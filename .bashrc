@@ -162,7 +162,8 @@ guiedit ()
 {
  sudo env SUDO_EDITOR="/usr/bin/mousepad" sudoedit "$1" 2>/dev/null &
 }
-alias pacman-update='sudo pacman-mirrors --geoip'
+alias fastpacman='sudo pacman-mirrors --geoip'
+alias pamacupdate='pamac upgrade --enable-downgrade --aur --devel && kdialog --ok-label='\''OK'\'' --msgbox='\''The system has been successfully upgraded.'\' || kdialog --ok-label='\''OK'\'' --msgbox='\''An error occurred while upgrading the system.'\'
 alias ll='ls -l'
 alias la='ls -lha'
 alias rm='rm -i'
