@@ -7,8 +7,10 @@ menu() {
     echo "3. Combine a video.mp4 and audio.mp4 and subtitle.srt to mkv"
     echo "4. Combine all Mkv in a folder with Subtitle.st"
     echo "5. Fix Flac"
+    echo "6. Convert FLAC 24-bit to 16-bit FLAC"
+    echo "7. Convert FLAC to MP3 (320 kbps)"
     echo "0. Exit"
-    read -p "Enter your choice (0-5): " choice
+    read -p "Enter your choice (0-7): " choice
 
     case "$choice" in
         1)
@@ -30,6 +32,18 @@ menu() {
         5)
             flac -f8 *.flac
             flac --best --verify --force --padding=4096 *.flac
+            ;;
+        6)
+            for file in *.flac; do
+                ffmpeg -i "$file" -sample_fmt s16 -ar 44100 "${file%.flac}16.flac"
+            done
+            echo "Conversion to 16-bit FLAC completed."
+            ;;
+        7)
+            for file in *.flac; do
+                ffmpeg -i "$file" -ab 320k "${file%.flac}.mp3"
+            done
+            echo "Conversion to MP3 (320 kbps) completed."
             ;;
         0)
             exit 0
