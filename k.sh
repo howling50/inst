@@ -137,7 +137,7 @@ wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0
 chmod +x Stacer-1.1.0-x64.AppImage
 cp Stacer-1.1.0-x64.AppImage ~/.othercrap/
 mkdir -p ~/.local/share/applications/
-echo -e "[Desktop Entry]\nName=Stacer\nExec=~/.othercrap//Stacer-1.1.0-x64.AppImage\nIcon=~/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop
+echo -e "[Desktop Entry]\nName=Stacer\nExec=/home/howling50/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=/home/howling50/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop
 chmod +x ~/.local/share/applications/stacer.desktop
 #------------Remote -----------------------------------
 #sudo pacman -S remmina --noconfirm --needed
