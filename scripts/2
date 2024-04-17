@@ -52,8 +52,8 @@ download_audio() {
 
 decrypt_files() {
     read -p "Enter the decryption key: " key
-    mp4decrypt.exe --key "$key" a.m4a audio.mp4
-    mp4decrypt.exe --key "$key" v.mp4 video.mp4
+    mp4decrypt --key "$key" a.m4a audio.mp4
+    mp4decrypt --key "$key" v.mp4 video.mp4
     check_status "Decrypt Files"
 }
 
