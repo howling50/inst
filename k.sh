@@ -18,7 +18,7 @@ sudo cp ~/Downloads/inst/scripts/1 /usr/bin/
 sudo cp ~/Downloads/inst/scripts/2 /usr/bin/
 sudo cp ~/Downloads/inst/scripts/timer /usr/bin/
 sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
-sudo cp ~/Downloads/inst/scripts/mp4decrypt.exe /usr/bin/
+sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 #-------
 #btrfs subvol create ~/.local/share/Steam
