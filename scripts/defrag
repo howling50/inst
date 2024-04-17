@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Check if drives are in use
+drives_in_use=false
+
+for drive in /dev/sda1 /dev/sdb1; do
+    if mountpoint -q /media/D && lsof -t /media/D &> /dev/null; then
+        drives_in_use=true
+        break
+    fi
+    if mountpoint -q /media/E && lsof -t /media/E &> /dev/null; then
+        drives_in_use=true
+        break
+    fi
+done
+
+# Notify user if drives are in use
+if [ "$drives_in_use" = true ]; then
+    notify-send "NTFS Defragmentation" "The drives are currently in use. Defragmentation will be delayed."
+    exit 1
+fi
+
+# Check fragmentation level of NTFS drives
+defrag_needed=false
+
+for drive in /dev/sda1 /dev/sdb1; do
+    fragmentation=$(sudo ntfs-3g.info --file $drive | grep "Fragmentation" | awk '{print $NF}' | cut -d'%' -f1)
+    
+    if [ $fragmentation -gt 10 ]; then
+        defrag_needed=true
+        break
+    fi
+done
+
+# Notify user and defragment NTFS drives if needed
+if [ "$defrag_needed" = true ]; then
+    notify-send "NTFS Defragmentation" "Defragmentation will start now. Please avoid using the drives to prevent interruptions."
+    
+    for drive in /dev/sda1 /dev/sdb1; do
+        sudo ntfs-3g.defrag $drive
+    done
+    
+    notify-send "NTFS Defragmentation" "Defragmentation completed successfully."
+else
+    notify-send "NTFS Defragmentation" "No defragmentation needed."
+fi
