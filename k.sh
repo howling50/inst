@@ -127,6 +127,7 @@ yay -S --noconfirm hardinfo2
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm input-remapper-git
 yay -S --noconfirm ttf-meslo
+yay -S --noconfirm bdinfo-git
 yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm konsave
 flatpak install --noninteractive flathub com.usebottles.bottles
