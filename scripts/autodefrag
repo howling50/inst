@@ -14,15 +14,21 @@ log_message() {
 # Log start of script
 log_message "info" "Starting automatic NTFS defragmentation."
 
+# Check if script is run with sudo
+if [ "$EUID" -ne 0 ]; then
+    log_message "error" "Please run the script as root using sudo."
+    exit 1
+fi
+
 # Check if drives are in use
 drives_in_use=false
 
 for drive in /dev/sda1 /dev/sdb1; do
-    if mountpoint -q /media/D && lsof -t /media/D &> /dev/null; then
+    if mountpoint -q "/media/D" && lsof -t "/media/D" &> /dev/null; then
         drives_in_use=true
         break
     fi
-    if mountpoint -q /media/E && lsof -t /media/E &> /dev/null; then
+    if mountpoint -q "/media/E" && lsof -t "/media/E" &> /dev/null; then
         drives_in_use=true
         break
     fi
@@ -38,9 +44,9 @@ fi
 defrag_needed=false
 
 for drive in /dev/sda1 /dev/sdb1; do
-    fragmentation=$(sudo ntfs-3g.info --file $drive | grep "Fragmentation" | awk '{print $NF}' | cut -d'%' -f1)
+    fragmentation=$(ntfs-3g.info --file "$drive" | grep "Fragmentation" | awk '{print $NF}' | cut -d'%' -f1)
     
-    if [ $fragmentation -gt 10 ]; then
+    if [ "$fragmentation" -gt 10 ]; then
         defrag_needed=true
         break
     fi
@@ -54,7 +60,7 @@ if [ "$defrag_needed" = true ]; then
     log_message "info" "Starting defragmentation of NTFS drives."
 
     for drive in /dev/sda1 /dev/sdb1; do
-        if sudo ntfs-3g.defrag $drive; then
+        if ntfs-3g.defrag "$drive"; then
             log_message "info" "Defragmentation of $drive completed successfully."
         else
             log_message "error" "Error occurred during defragmentation of $drive."
