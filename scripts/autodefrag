@@ -23,15 +23,19 @@ fi
 # Check if drives are in use
 drives_in_use=false
 
-for drive in /dev/sda1 /dev/sdb1; do
-    if mountpoint -q "/media/D" && lsof -t "/media/D" &> /dev/null; then
+# Array to store mounted NTFS drives
+ntfs_drives=()
+
+# Get list of mounted NTFS drives
+mounted_drives=$(mount | grep 'type fuseblk' | awk '{print $1}')
+
+# Check if any NTFS drives are in use
+for drive in $mounted_drives; do
+    if lsof -t "$drive" &> /dev/null; then
         drives_in_use=true
         break
     fi
-    if mountpoint -q "/media/E" && lsof -t "/media/E" &> /dev/null; then
-        drives_in_use=true
-        break
-    fi
+    ntfs_drives+=("$drive")
 done
 
 # Notify user if drives are in use and log the message
@@ -43,7 +47,7 @@ fi
 # Check fragmentation level of NTFS drives
 defrag_needed=false
 
-for drive in /dev/sda1 /dev/sdb1; do
+for drive in "${ntfs_drives[@]}"; do
     fragmentation=$(ntfs-3g.info --file "$drive" | grep "Fragmentation" | awk '{print $NF}' | cut -d'%' -f1)
     
     if [ "$fragmentation" -gt 10 ]; then
@@ -59,7 +63,7 @@ log_message "info" "Fragmentation level: $fragmentation%."
 if [ "$defrag_needed" = true ]; then
     log_message "info" "Starting defragmentation of NTFS drives."
 
-    for drive in /dev/sda1 /dev/sdb1; do
+    for drive in "${ntfs_drives[@]}"; do
         if ntfs-3g.defrag "$drive"; then
             log_message "info" "Defragmentation of $drive completed successfully."
         else
