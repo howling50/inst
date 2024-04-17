@@ -6,7 +6,7 @@ if command -v pulseaudio &> /dev/null && systemctl --user is-active pulseaudio.s
     description="Swap audio channels using PulseAudio"
 
 # Check if Pipewire is installed and running
-elif command -v pipewire &> /dev/null && systemctl --user is-active pipewire-pulse.service &> /dev/null; then
+elif command -v pipewire &> /dev/null && systemctl --user is-active pipewire.service &> /dev/null; then
     config_file="$HOME/.config/pipewire/pipewire.conf"
     description="Swap audio channels using Pipewire"
 
@@ -35,7 +35,7 @@ fi
 if [[ "$config_file" == "$HOME/.config/pulse/default.pa" ]]; then
     systemctl --user restart pulseaudio.service
 elif [[ "$config_file" == "$HOME/.config/pipewire/pipewire.conf" ]]; then
-    pipewire --kill
+    systemctl --user restart pipewire-pulse.service
 fi
 
 echo "$description configuration updated and audio service restarted."
