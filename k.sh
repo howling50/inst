@@ -17,6 +17,7 @@ sudo chmod 600 /Swap/swapfile
 sudo mkswap /Swap/swapfile
 sudo swapon /Swap/swapfile
 echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo swapon -a
 #------------
 sudo pacman -S caffeine-ng --noconfirm --needed
 caffeine & 2>/dev/null
