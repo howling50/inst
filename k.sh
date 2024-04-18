@@ -119,6 +119,9 @@ sudo pacman -S discord --noconfirm --needed
 sudo pacman -S kdialog --noconfirm --needed
 sudo pacman -S shotcut --noconfirm --needed
 sudo pacman -S aria2 --noconfirm --needed
+sudo pacman -S ttf-roboto --noconfirm --needed
+sudo pacman -S bluez-utils --noconfirm --needed
+sudo pacman -S fuseiso --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 #yay -S --noconfirm stacer-bin
