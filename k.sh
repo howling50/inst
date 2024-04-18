@@ -27,6 +27,7 @@ sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
 sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 #-------
+#btrfs subvol create ~/Media
 #btrfs subvol create ~/.local/share/Steam
 #btrfs subvol create ~/.wine
 #sudo mv ~/Downloads ~/Downloads.old
@@ -147,7 +148,7 @@ wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0
 chmod +x Stacer-1.1.0-x64.AppImage
 cp Stacer-1.1.0-x64.AppImage ~/.othercrap/
 mkdir -p ~/.local/share/applications/
-echo -e "[Desktop Entry]\nName=Stacer\nExec=/home/howling50/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=/home/howling50/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop
+echo -e "[Desktop Entry]\nName=Stacer\nExec=~/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=~/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop
 chmod +x ~/.local/share/applications/stacer.desktop
 mkdir -p ~/.local/share/kservices5/ServiceMenus/
 cp ~/Downloads/inst/scripts/mediainfo.sh ~/.othercrap/
@@ -207,9 +208,6 @@ chmod +x yt-dlp
 sudo cp ~/Downloads/inst/yt-dlp /usr/bin/
 wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip
 #---------------Firewall--------------
-#sudo ufw enable
-#sudo ufw allow 80/tcp
-#sudo ufw allow 443/tcp
 sudo ufw allow proto tcp from 192.168.0.0/24 to any port 1714:1764
 sudo ufw allow proto udp from 192.168.0.0/24 to any port 1714:1764
 sudo ufw allow 23232/tcp
@@ -231,7 +229,6 @@ sleep 2
 # --------- Snapshots ------------------------
 #sudo systemctl enable grub-btrfs.path
 #sudo systemctl start grub-btrfs.path
-#sudo bash ~/Downloads/inst/scripts/1
 # ----------------------------------------------
 konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
@@ -244,6 +241,7 @@ sudo pacman -R caffeine-ng --noconfirm
 #conky -c ~/.conkyrc &
 sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
 cd ..
+#sudo chattr -R +C ~/Media
 #sudo chattr -R +C ~/Downloads
 #sudo chattr -R +C ~/.local/share/Steam
 #sudo chattr -R +C ~/.wine
