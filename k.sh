@@ -184,7 +184,8 @@ echo 'fi' | sudo tee -a /root/.bash_profile
 #-----------------
 sudo chmod +x /etc/cron.weekly/balance
 echo vm.swappiness=10 | sudo tee -a /etc/sysctl.d/100-manjaro.conf  >/dev/null
-#sudo systemctl enable fstrim.timer
+sudo systemctl enable fstrim.timer
+sudo systemctl start fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/
 mkdir -p ~/.config/nvim/
 cp ~/Downloads/inst/init.vim ~/.config/nvim/
