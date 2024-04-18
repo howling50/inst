@@ -7,6 +7,12 @@ sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
 echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
 sudo cp /etc/sudoers.tmp /etc/sudoers
 sudo rm /etc/sudoers.tmp
+sudo swapoff -a
+sudo fallocate -l 6G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 sudo pacman -S caffeine-ng --noconfirm --needed
 caffeine & 2>/dev/null
 #git clone https://github.com/howling50/Top-5-Bootloader-Themes
