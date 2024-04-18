@@ -8,7 +8,7 @@ echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
 sudo cp /etc/sudoers.tmp /etc/sudoers
 sudo rm /etc/sudoers.tmp
 #----Swap-------
-#btrfs subvol create /Swap
+#sudo btrfs subvol create /Swap
 #sudo chattr -R +C /Swap
 sudo mkdir /Swap
 sudo swapoff -a
