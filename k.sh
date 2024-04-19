@@ -96,7 +96,6 @@ sudo pacman -S pkgconf --noconfirm --needed
 sudo pacman -S kitty --noconfirm --needed
 sudo pacman -S gamemode --noconfirm --needed
 sudo pacman -S audacious --noconfirm --needed
-sudo pacman -S mousepad --noconfirm --needed
 sudo pacman -S lutris --noconfirm --needed
 sudo pacman -S neofetch --noconfirm --needed
 sudo pacman -S masscan --noconfirm --needed
