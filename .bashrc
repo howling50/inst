@@ -159,7 +159,6 @@ ex ()
   fi
 }
 alias grep='grep --color'
-
 alias fastpacman='sudo pacman-mirrors --geoip'
 alias pamacupdate='pamac upgrade --enable-downgrade --aur --devel && kdialog --ok-label='\''OK'\'' --msgbox='\''The system has been successfully upgraded.'\' || kdialog --ok-label='\''OK'\'' --msgbox='\''An error occurred while upgrading the system.'\'
 alias ll='ls -l'
