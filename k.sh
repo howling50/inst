@@ -160,13 +160,13 @@ mkdir -p ~/.local/share/kservices5/ServiceMenus/
 cp ~/Downloads/inst/scripts/mediainfo.sh ~/.othercrap/
 cp ~/Downloads/inst/scripts/mediainfo.desktop ~/.local/share/kservices5/ServiceMenus/
 #------------Remote -----------------------------------
-sudo pacman -S remmina --noconfirm --needed
-yay -S --noconfirm remmina-plugin-teamviewer
-yay -S --noconfirm remmina-plugin-ultravnc
-yay -S --noconfirm remmina-plugin-rdesktop
-yay -S --noconfirm remmina-plugin-url
-yay -S --noconfirm remmina-plugin-open
-yay -S --noconfirm remmina-plugin-folder
+#sudo pacman -S remmina --noconfirm --needed
+#yay -S --noconfirm remmina-plugin-teamviewer
+#yay -S --noconfirm remmina-plugin-ultravnc
+#yay -S --noconfirm remmina-plugin-rdesktop
+#yay -S --noconfirm remmina-plugin-url
+#yay -S --noconfirm remmina-plugin-open
+#yay -S --noconfirm remmina-plugin-folder
 #------------------------------------------------------------------
 neofetch >/dev/null
 sleep 1
