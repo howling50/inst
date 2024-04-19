@@ -104,7 +104,7 @@ sudo pacman -S zip --noconfirm --needed
 sudo pacman -S unzip --noconfirm --needed
 sudo pacman -S lsof --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
-#sudo pacman -S rkhunter --noconfirm --needed
+sudo pacman -S rkhunter --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S ffmpeg --noconfirm --needed
 sudo pacman -S gparted --noconfirm --needed
@@ -160,19 +160,19 @@ mkdir -p ~/.local/share/kservices5/ServiceMenus/
 cp ~/Downloads/inst/scripts/mediainfo.sh ~/.othercrap/
 cp ~/Downloads/inst/scripts/mediainfo.desktop ~/.local/share/kservices5/ServiceMenus/
 #------------Remote -----------------------------------
-#sudo pacman -S remmina --noconfirm --needed
-#yay -S --noconfirm remmina-plugin-teamviewer
-#yay -S --noconfirm remmina-plugin-ultravnc
-#yay -S --noconfirm remmina-plugin-rdesktop
-#yay -S --noconfirm remmina-plugin-url
-#yay -S --noconfirm remmina-plugin-open
-#yay -S --noconfirm remmina-plugin-folder
+sudo pacman -S remmina --noconfirm --needed
+yay -S --noconfirm remmina-plugin-teamviewer
+yay -S --noconfirm remmina-plugin-ultravnc
+yay -S --noconfirm remmina-plugin-rdesktop
+yay -S --noconfirm remmina-plugin-url
+yay -S --noconfirm remmina-plugin-open
+yay -S --noconfirm remmina-plugin-folder
 #------------------------------------------------------------------
 neofetch >/dev/null
 sleep 1
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 #------------------------------------------rk hunter--------------------------
-#sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local 
+sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local 
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq'
