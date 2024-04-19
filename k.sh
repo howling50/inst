@@ -233,8 +233,8 @@ sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 sleep 2
 # --------- Snapshots ------------------------
-#sudo systemctl enable grub-btrfs.path
-#sudo systemctl start grub-btrfs.path
+#sudo systemctl enable grub-btrfsd.service
+#sudo systemctl start grub-btrfsd.service
 # ----------------------------------------------
 konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
