@@ -32,6 +32,7 @@ sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
 sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 #-------
+#mkdir -p /.steam/steam/SteamApps
 #btrfs subvol create ~/Media
 #btrfs subvol create ~/.local/share/Steam
 #btrfs subvol create ~/.steam/steam/SteamApps/common/
