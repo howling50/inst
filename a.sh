@@ -142,6 +142,8 @@ sudo pacman -S bluez-utils --noconfirm --needed
 sudo pacman -S fuseiso --noconfirm --needed
 sudo pacman -S android-tools --noconfirm --needed
 sudo pacman -S flatpak --noconfirm --needed
+sudo pacman -S yakuake --noconfirm --needed
+sudo pacman -S alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 #yay -S --noconfirm stacer-bin
 yay -S --noconfirm protonup-qt
