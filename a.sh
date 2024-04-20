@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 ##################### git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
+#https://github.com/howling50/Top-5-Bootloader-Themes
 SECONDS=0
 sudo cp /etc/sudoers /etc/sudoers.tmp
 sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
