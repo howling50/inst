@@ -144,7 +144,7 @@ sudo pacman -S android-tools --noconfirm --needed
 sudo pacman -S flatpak --noconfirm --needed
 sudo pacman -S yakuake --noconfirm --needed
 sudo pacman -S kdeplasma-addons --noconfirm --needed
-sudo pacman -S alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
+sudo pacman -S oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 #yay -S --noconfirm stacer-bin
 yay -S --noconfirm protonup-qt
@@ -158,6 +158,7 @@ yay -S --noconfirm input-remapper-git
 yay -S --noconfirm ttf-meslo
 yay -S --noconfirm bdinfo-git
 yay -S --noconfirm ttf-ms-fonts
+yay -S --noconfirm konsave
 flatpak install --noninteractive flathub org.kde.peruse
 flatpak install --noninteractive flathub com.usebottles.bottles
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
@@ -238,10 +239,17 @@ sudo ufw enable
 #------------------------------------
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd ~/Downloads/inst/
+git clone https://github.com/yeyushengfan258/Win11OS-kde 
+sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
+lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
+sleep 2
 # --------- Snapshots ------------------------
 sudo systemctl enable grub-btrfsd.service
 sudo systemctl start grub-btrfsd.service
 # ----------------------------------------------
+konsave -i ~/Downloads/inst/kde2.knsv
+sleep 1
+konsave -a kde2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
