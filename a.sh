@@ -149,6 +149,7 @@ sudo pacman -S oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-
 #-----------------------------------------------------------------
 #yay -S --noconfirm stacer-bin
 yay -S --noconfirm protonup-qt
+yay -S --noconfirm protontricks
 yay -S --noconfirm brave-bin
 yay -S --noconfirm ventoy-bin
 yay -S --noconfirm downgrade
