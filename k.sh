@@ -32,10 +32,7 @@ sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
 sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 #-------
-#mkdir -p /.steam/steam/SteamApps
 #btrfs subvol create ~/Media
-#btrfs subvol create ~/.local/share/Steam
-#btrfs subvol create ~/.steam/steam/SteamApps/common/
 #btrfs subvol create ~/.wine
 #sudo mv ~/Downloads ~/Downloads.old
 #btrfs subvol create ~/Downloads
@@ -252,8 +249,6 @@ sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
 cd ..
 #sudo chattr -R +C ~/Media
 #sudo chattr -R +C ~/Downloads
-#sudo chattr -R +C ~/.local/share/Steam
-#sudo chattr -R +C ~/.steam/steam/SteamApps/common/
 #sudo chattr -R +C ~/.wine
 cd ~/Downloads/inst/
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=-1/' /etc/default/grub
