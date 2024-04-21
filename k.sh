@@ -137,6 +137,7 @@ sudo pacman -S ttf-roboto --noconfirm --needed
 sudo pacman -S bluez-utils --noconfirm --needed
 sudo pacman -S fuseiso --noconfirm --needed
 sudo pacman -S android-tools --noconfirm --needed
+sudo pacman -S protontricks --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 #yay -S --noconfirm stacer-bin
