@@ -8,9 +8,9 @@ echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
 sudo cp /etc/sudoers.tmp /etc/sudoers
 sudo rm /etc/sudoers.tmp
 #----Swap-------
-#sudo btrfs subvol create /Swap
-#sudo chattr -R +C /Swap
-sudo mkdir /Swap
+sudo btrfs subvol create /Swap
+sudo chattr -R +C /Swap
+#sudo mkdir /Swap
 sudo swapoff -a
 sudo fallocate -l 6G /Swap/swapfile
 sudo chmod 600 /Swap/swapfile
@@ -32,18 +32,20 @@ sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
 sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 #-------
-#btrfs subvol create ~/Media
-#btrfs subvol create ~/.wine
-#sudo mv ~/Downloads ~/Downloads.old
-#btrfs subvol create ~/Downloads
-#sudo mv ~/Downloads.old/* ~/Downloads/
-#sudo rmdir ~/Downloads.old
+btrfs subvol create ~/Media
+btrfs subvol create ~/.wine
+sudo mv ~/Downloads ~/Downloads.old
+btrfs subvol create ~/Downloads
+sudo mv ~/Downloads.old/* ~/Downloads/
+sudo rmdir ~/Downloads.old
 #--------
 cd
 cd ~/Downloads/inst/
+#-----
 #curl -O https://blackarch.org/strap.sh
 #chmod +x strap.sh
 #sudo ./strap.sh
+#-------
 sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman-mirrors --fasttrack 15 && sudo pacman -Syyu --noconfirm --needed
 sudo pacman -S powerline-fonts --noconfirm --needed
@@ -186,7 +188,7 @@ sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/syst
 sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent/' /etc/pacman.conf
 sudo sed -i 's/^IgnorePkg =/IgnorePkg = qbittorrent/' /etc/pamac.conf
 sudo touch /etc/cron.weekly/balance
-#sudo bash -c 'echo -e "#!/usr/bin/env bash\nbtrfs scrub start / >> /home/howling/scrub.txt" >> /etc/cron.weekly/balance'
+sudo bash -c 'echo -e "#!/usr/bin/env bash\nbtrfs scrub start / >> /home/howling/scrub.txt" >> /etc/cron.weekly/balance'
 #-----------------
 echo 'if [ -f ~/.bashrc ]; then' >> ~/.bash_profile
 echo '    source ~/.bashrc' >> ~/.bash_profile
@@ -233,8 +235,8 @@ sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 sleep 2
 # --------- Snapshots ------------------------
-#sudo systemctl enable grub-btrfsd.service
-#sudo systemctl start grub-btrfsd.service
+sudo systemctl enable grub-btrfsd.service
+sudo systemctl start grub-btrfsd.service
 # ----------------------------------------------
 konsave -i ~/Downloads/inst/kde2.knsv
 sleep 1
@@ -247,9 +249,9 @@ sudo pacman -R caffeine-ng --noconfirm
 #conky -c ~/.conkyrc &
 sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
 cd ..
-#sudo chattr -R +C ~/Media
-#sudo chattr -R +C ~/Downloads
-#sudo chattr -R +C ~/.wine
+sudo chattr -R +C ~/Media
+sudo chattr -R +C ~/Downloads
+sudo chattr -R +C ~/.wine
 cd ~/Downloads/inst/
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=-1/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
