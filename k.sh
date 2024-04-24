@@ -47,7 +47,7 @@ cd ~/Downloads/inst/
 #sudo ./strap.sh
 #-------
 sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
-sudo pacman-mirrors --fasttrack 15 && sudo pacman -Syyu --noconfirm --needed
+sudo pacman-mirrors --fasttrack 15 && sudo pacman -Syu --noconfirm --needed
 sudo pacman -S powerline-fonts --noconfirm --needed
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
