@@ -59,9 +59,6 @@ git clone https://github.com/yeyushengfan258/Win11OS-kde
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 # --------- Snapshots ------------------------
-sudo systemctl enable grub-btrfsd.service
-sudo systemctl start grub-btrfsd.service
-# ----------------------------------------------
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
 sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine
 cd ~/Downloads/inst/
