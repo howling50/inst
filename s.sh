@@ -16,9 +16,7 @@ sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups
 #-----------------------------------------------------
 sudo zypper remove -y kwalletmanager kmail
 sudo zypper install -y -n ffmpeg-7
-sudo zypper install -y -n neofetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen
-sudo zypper install -y -n wine-gecko catfish notepadqq wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar protontricks
-sudo zypper install -y -n mkvtoolnix-tools mkvtoolnix-gui gparted gimp celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty calibre kdialog shotcut aria2 google-roboto-fonts fuseiso android-tools yakuake osc
+sudo zypper install -y -n neofetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish notepadqq wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar protontricks mkvtoolnix-tools mkvtoolnix-gui gparted gimp celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty calibre kdialog shotcut aria2 google-roboto-fonts fuseiso android-tools yakuake osc
 #-----------------------------------------------------------------
 #brave-bin,ventoy-bin virtualbox-ext-oracle hardinfo2 dxvk-bin input-remapper-git ttf-meslo bdinfo-git ttf-ms-fonts konsave
 sudo flatpak install --noninteractive flathub org.kde.peruse && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2
