@@ -235,6 +235,9 @@ sleep 1
 sudo systemctl enable ufw
 sudo systemctl start ufw
 sudo ufw enable
+# --------- Snapshots ------------------------
+sudo systemctl enable grub-btrfsd.service
+sudo systemctl start grub-btrfsd.service
 #------------------------------------
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd ~/Downloads/inst/
