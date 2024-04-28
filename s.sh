@@ -8,7 +8,7 @@ sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && 
 #------------
 sudo mkdir -p /etc/cron.minutely && sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/ && chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/1 /usr/bin/ && sudo cp ~/Downloads/inst/scripts/2 /usr/bin/ && sudo cp ~/Downloads/inst/scripts/timer /usr/bin/ && sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/ && sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/bin/ && sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 #-------
-sudo btrfs subvol create ~/Media && sudo chown $(whoami):$(whoami) ~/Media && sudo chmod 755 ~/Media && sudo btrfs subvol create ~/.wine && sudo chown $(whoami):$(whoami) ~/.wine && sudo chmod 755 ~/.wine
+sudo btrfs subvol create ~/Media && sudo chown $(whoami):$(whoami) ~/Media && sudo chmod 755 ~/Media && sudo btrfs subvol create ~/.wine && sudo chown $(whoami):$(whoami) ~/.wine && sudo chmod 755 ~/.wine && sudo btrfs subvol create ~/.config/qBittorrent && sudo chown $(whoami):$(whoami) ~/.config/qBittorrent && sudo chmod 755 ~/.config/qBittorrent
 #--------
 sudo zypper install -y -n powerline-fonts
 sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc &&sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
