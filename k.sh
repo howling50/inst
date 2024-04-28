@@ -38,6 +38,11 @@ btrfs subvol create ~/.config/qBittorrent
 sudo chattr -R +C ~/Media
 sudo chattr -R +C ~/.wine
 sudo chattr -R +C ~/.config/qBittorrent
+sudo mv ~/Downloads ~/Downloads.old
+btrfs subvol create ~/Downloads
+sudo mv ~/Downloads.old/* ~/Downloads/
+sudo rmdir ~/Downloads.old
+sudo chattr -R +C ~/Downloads
 #--------
 cd
 cd ~/Downloads/inst/
