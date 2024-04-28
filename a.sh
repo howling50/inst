@@ -40,12 +40,14 @@ sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
 sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 #-------
+btrfs subvol create ~/.config/qBittorrent
 btrfs subvol create ~/Media
 btrfs subvol create ~/.wine
 sudo mv ~/Downloads ~/Downloads.old
 btrfs subvol create ~/Downloads
 sudo mv ~/Downloads.old/* ~/Downloads/
 sudo rmdir ~/Downloads.old
+sudo chattr -R +C ~/.config/qBittorrent
 #--------
 cd
 cd ~/Downloads/inst/
