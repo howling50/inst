@@ -120,7 +120,6 @@ sudo pacman -S celluloid --noconfirm --needed
 sudo pacman -S mediainfo --noconfirm --needed
 sudo pacman -S flac --noconfirm --needed
 #sudo pacman -S burpsuite --noconfirm --needed
-sudo pacman -S brave-browser --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
 sudo pacman -S downgrade --noconfirm --needed
 sudo pacman -S handbrake --noconfirm --needed
@@ -152,6 +151,7 @@ yay -S --noconfirm bdinfo-git
 yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm konsave
 flatpak install --noninteractive flathub com.usebottles.bottles
+flatpak install --noninteractive flathub com.brave.Browser
 flatpak install --noninteractive flathub com.github.tchx84.Flatseal
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
 sudo pacman -U autobrr*.tar.zst --noconfirm --needed
