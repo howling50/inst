@@ -16,7 +16,7 @@ sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups
 #-----------------------------------------------------
 sudo zypper remove -y kwalletmanager kmail
 sudo zypper install -y -n ffmpeg-7
-sudo zypper install -y -n neofetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish notepadqq wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar protontricks mkvtoolnix-tools mkvtoolnix-gui gparted gimp celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty calibre kdialog shotcut aria2 google-roboto-fonts fuseiso android-tools yakuake osc
+sudo zypper install -y -n feh tldr neofetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish notepadqq wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar protontricks mkvtoolnix-tools mkvtoolnix-gui gparted gimp celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty calibre kdialog shotcut aria2 google-roboto-fonts fuseiso android-tools yakuake osc
 #-----------------------------------------------------------------
 #ventoy-bin virtualbox-ext-oracle hardinfo2 dxvk-bin input-remapper-git ttf-meslo bdinfo-git ttf-ms-fonts konsave
 sudo flatpak install --noninteractive flathub org.kde.peruse && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal && sudo flatpak install --noninteractive flathub com.brave.Browser 
@@ -56,7 +56,10 @@ cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
-# --------- Snapshots ------------------------
+# ---------------------------------
+convert ~/Downloads/inst/script/monkey.jpg monkey.png
+mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
+qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'string:var allDesktops = desktops();print (allDesktops);for (i=0;i<allDesktops.length;i++) {d = allDesktops[i];d.wallpaperPlugin = "org.kde.image";d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");d.writeConfig("Image", "file://'$HOME'/.othercrap/monkey.png");}'
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
 sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine
 cd ~/Downloads/inst/
