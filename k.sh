@@ -133,7 +133,6 @@ sudo pacman -S calibre --noconfirm --needed
 sudo pacman -S virtualbox-guest-iso --noconfirm --needed
 sudo pacman -S protonup-qt --noconfirm --needed
 sudo pacman -S peruse --noconfirm --needed
-sudo pacman -S discord --noconfirm --needed
 sudo pacman -S kdialog --noconfirm --needed
 sudo pacman -S shotcut --noconfirm --needed
 sudo pacman -S aria2 --noconfirm --needed
