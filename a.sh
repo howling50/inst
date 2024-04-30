@@ -149,7 +149,6 @@ sudo pacman -S tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fon
 #yay -S --noconfirm stacer-bin
 yay -S --noconfirm protonup-qt
 yay -S --noconfirm protontricks
-yay -S --noconfirm brave-bin
 yay -S --noconfirm ventoy-bin
 yay -S --noconfirm downgrade
 yay -S --noconfirm virtualbox-ext-oracle
@@ -162,6 +161,8 @@ yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm konsave
 flatpak install --noninteractive flathub org.kde.peruse
 flatpak install --noninteractive flathub com.usebottles.bottles
+flatpak install --noninteractive flathub com.brave.Browser
+flatpak install --noninteractive flathub com.github.tchx84.Flatseal
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
 sudo pacman -U autobrr*.tar.zst --noconfirm --needed
 mkdir -p ~/.othercrap
@@ -254,6 +255,9 @@ konsave -a kde2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
+convert ~/Downloads/inst/script/monkey.jpg monkey.png
+mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
+qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'string:var allDesktops = desktops();print (allDesktops);for (i=0;i<allDesktops.length;i++) {d = allDesktops[i];d.wallpaperPlugin = "org.kde.image";d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");d.writeConfig("Image", "file://'$HOME'/.othercrap/monkey.png");}'
 #conky -c ~/.conkyrc &
 sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
 cd ..
