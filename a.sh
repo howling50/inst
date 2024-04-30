@@ -7,6 +7,7 @@ sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
 echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
 sudo cp /etc/sudoers.tmp /etc/sudoers
 sudo rm /etc/sudoers.tmp
+sudo pacman -S cronie --noconfirm --needed
 systemctl enable --now cronie.service
 sudo pacman -S neofetch --noconfirm --needed
 sudo pacman -S firefox --noconfirm --needed
@@ -89,6 +90,7 @@ sudo pacman -S flex --noconfirm --needed
 sudo pacman -S gcc --noconfirm --needed
 sudo pacman -S patch --noconfirm --needed
 sudo pacman -S automake --noconfirm --needed
+sudo pacman -S btrfs-progs --noconfirm --needed
 sudo pacman -S bison --noconfirm --needed
 sudo pacman -S fakeroot --noconfirm --needed
 sudo pacman -S bind --noconfirm --needed
