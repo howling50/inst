@@ -7,6 +7,7 @@ sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
 echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
 sudo cp /etc/sudoers.tmp /etc/sudoers
 sudo rm /etc/sudoers.tmp
+systemctl enable --now cronie.service
 sudo pacman -S neofetch --noconfirm --needed
 sudo pacman -S firefox --noconfirm --needed
 sudo pacman -S timeshift --noconfirm --needed
@@ -17,6 +18,7 @@ makepkg --noconfirm -si
 cd ~/Downloads/inst
 yay --sudoloop --save
 yay -S --noconfirm timeshift-autosnap
+sudo pacman -S virtualbox-guest-iso --noconfirm --needed
 #----Swap-------
 #sudo mkdir /Swap
 sudo btrfs subvol create /Swap
