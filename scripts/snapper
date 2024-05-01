@@ -10,8 +10,6 @@ read -p "Please enter root location to work on (example /dev/sda1): " DISK
 sudo pacman -S snapper --noconfirm --needed
 yay -S btrfs-assistant --noconfirm --needed
 sudo pacman -S grub-btrfs --noconfirm --needed
-yay -S snapper-tools --noconfirm --needed  #snapper-tools-git
-yay -S snapper-support --noconfirm --needed
 sudo pacman -S snap-pac --noconfirm --needed
 
 # Remove existing .snapshots directories
