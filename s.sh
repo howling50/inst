@@ -52,12 +52,13 @@ chmod +x yt-dlp
 sudo cp ~/Downloads/inst/yt-dlp /usr/bin/
 wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip
 cp -r ~/Downloads/inst/files/* ~/.config/
+cd
 cd ~/Downloads/inst/
 git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 # ---------------------------------
-convert ~/Downloads/inst/script/monkey.jpg monkey.png
+convert ~/Downloads/inst/script/monkey.jpg ~/Downloads/inst/script/monkey.png
 mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
 qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'string:var allDesktops = desktops();print (allDesktops);for (i=0;i<allDesktops.length;i++) {d = allDesktops[i];d.wallpaperPlugin = "org.kde.image";d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");d.writeConfig("Image", "file://'$HOME'/.othercrap/monkey.png");}'
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
