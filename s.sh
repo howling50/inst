@@ -33,6 +33,7 @@ sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf' && echo 'export VISUAL="nvim"' | sudo tee -a /root/.profile  >/dev/null && echo 'export VISUAL="nvim"' | tee -a ~/.profile  >/dev/null
 sed -i 's/^image_size="auto"/image_size="none"/' ~/.config/neofetch/config.conf
+sed -i 's/image_backend="ascii"/image_backend="kitty"/' ~/.config/neofetch/config.conf
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo zypper addlock qbittorrent
 sudo touch /etc/cron.weekly/balance
