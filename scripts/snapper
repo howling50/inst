@@ -54,7 +54,8 @@ sudo rmdir /mnt/btrfs
 # Add entry to /etc/fstab
 #replace uuid from id u get fromm /etc/fstab
 PART_UUID=$(sudo blkid -o value -s UUID "${DISK}")
-echo UUID="${PART_UUID}" /.snapshots    btrfs subvol=snapshots 0 0 >> /etc/fstab
+echo UUID="${PART_UUID}" /.snapshots    btrfs rw,defaults,subvol=snapshots 0 0 >> /etc/fstab
+echo UUID="${PART_UUID}" /home/.snapshots    btrfs rw,defaults,subvol=snapshots 0 0 >> /etc/fstab
 
 # Mount all filesystems from /etc/fstab
 sudo mount -a
