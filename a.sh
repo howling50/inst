@@ -136,7 +136,6 @@ sudo pacman -S virtualbox --noconfirm --needed
 sudo pacman -S qbittorrent --noconfirm --needed
 sudo pacman -S putty --noconfirm --needed 
 sudo pacman -S calibre --noconfirm --needed
-sudo pacman -S virtualbox-guest-iso --noconfirm --needed
 sudo pacman -S discord --noconfirm --needed
 sudo pacman -S kdialog --noconfirm --needed
 sudo pacman -S shotcut --noconfirm --needed
