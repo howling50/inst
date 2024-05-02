@@ -2,9 +2,6 @@
 ##################### git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
 #https://github.com/howling50/Top-5-Bootloader-Themes
 SECONDS=0
-#sudo pacman -S reflector rsync curl
-#sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-#sudo reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 sudo cp /etc/sudoers /etc/sudoers.tmp
 sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
 echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
@@ -14,14 +11,14 @@ sudo pacman -S cronie --noconfirm --needed
 sudo systemctl enable --now cronie.service
 sudo pacman -S neofetch --noconfirm --needed
 sudo pacman -S firefox --noconfirm --needed
-sudo pacman -S timeshift --noconfirm --needed
+#sudo pacman -S timeshift --noconfirm --needed
 sudo pacman -S --needed base-devel git --noconfirm --needed
 git clone https://aur.archlinux.org/yay.git
 cd ~/Downloads/inst/yay
 makepkg --noconfirm -si
 cd ~/Downloads/inst
 yay --sudoloop --save
-yay -S --noconfirm timeshift-autosnap
+#yay -S --noconfirm timeshift-autosnap
 sudo pacman -S virtualbox-guest-iso --noconfirm --needed
 #----Swap-------
 #sudo mkdir /Swap
