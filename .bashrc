@@ -120,7 +120,6 @@ export HISTCONTROL=erasedups:ignoredups:ignorespace
 # Alias
 alias rkhunt='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
 alias listbash='echo "slist, pacdel \$1, image \$1, freeram, nmapauto \$1, pamacupdate, fastpacman, ex \$1, finds \$1, mnt, delall, myip, speedtest, grubup, listen, systemcheck, rkhunt"'
-alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
