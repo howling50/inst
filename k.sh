@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 ##################### git clone in ~/Downloads, then chmod +x k.sh and then ./k.sh ####################################################
 SECONDS=0
+#sudo pacman -R timeshift --noconfirm
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
+#yay -S quickemu
+#yay -S quickgui
 sudo cp /etc/sudoers /etc/sudoers.tmp
 sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
 echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
