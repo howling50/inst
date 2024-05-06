@@ -147,7 +147,7 @@ sudo pacman -S feh --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 #yay -S --noconfirm stacer-bin
-yay -S --noconfirm virtualbox-ext-oracle
+#yay -S --noconfirm virtualbox-ext-oracle
 yay -S --noconfirm hardinfo2
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm input-remapper-git
