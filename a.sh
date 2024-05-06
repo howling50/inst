@@ -45,6 +45,7 @@ sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
 sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/bin/
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
 #-------
+sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media && sudo chattr -R +C /Media
 btrfs subvol create ~/.config/qBittorrent
 btrfs subvol create ~/Media
 btrfs subvol create ~/.wine
