@@ -40,7 +40,7 @@ sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo
 btrfs subvol create ~/Media
 btrfs subvol create ~/.wine
 btrfs subvol create ~/.config/qBittorrent
-Sudo chattr -R +C ~/Media
+sudo chattr -R +C ~/Media
 sudo chattr -R +C ~/.wine
 sudo chattr -R +C ~/.config/qBittorrent
 sudo mv ~/Downloads ~/Downloads.old
