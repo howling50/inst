@@ -5,7 +5,7 @@ SECONDS=0
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
 #yay -S quickemu
 #yay -S quickgui-bin
-#yay -S pyakm
+#git clone https://github.com/yeyushengfan258/Win11OS-kde
 sudo cp /etc/sudoers /etc/sudoers.tmp
 sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
 echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
@@ -242,7 +242,6 @@ sudo ufw enable
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd
 cd ~/Downloads/inst/
-git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 sleep 2
