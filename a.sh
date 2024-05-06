@@ -4,6 +4,8 @@
 SECONDS=0
 #yay -S quickemu
 #yay -S quickgui-bin
+sudo pacman -S linux-headers
+#sudo pacman -S nvidia nvidia-utils nvidia-settings
 sudo cp /etc/sudoers /etc/sudoers.tmp
 sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
 echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
