@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 ##################### git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
 #https://github.com/howling50/Top-5-Bootloader-Themes
+#git clone https://github.com/yeyushengfan258/Win11OS-kde 
 SECONDS=0
 sudo zypper update
 #----Swap-------
@@ -55,7 +56,6 @@ wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd
 cd ~/Downloads/inst/
-git clone https://github.com/yeyushengfan258/Win11OS-kde 
 sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 # ---------------------------------
