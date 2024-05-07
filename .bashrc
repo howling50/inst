@@ -120,7 +120,7 @@ export HISTCONTROL=erasedups:ignoredups:ignorespace
 # Alias
 alias rkhunt='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
 alias kernelupdate='sudo mkinitcpio -P && grub-mkconfig -o /boot/grub/grub.cfg'
-alias listbash='echo "slist, pacdel \$1, image \$1, freeram, nmapauto \$1, pamacupdate, fastpacman, ex \$1, finds \$1, mnt, delall, myip, speedtest, listen, systemcheck, rkhunt, kernelupdate"'
+alias listbash='echo "slist, pacdel \$1, image \$1, plist \$1, freeram, nmapauto \$1, pamacupdate, fastpacman, ex \$1, finds \$1, mnt, delall, myip, speedtest, listen, systemcheck, rkhunt, kernelupdate"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
@@ -133,6 +133,10 @@ alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/m
 alias myip='curl ifconfig.me'
 alias delall='sudo pacman -Rs $(pacman -Qqtd)'
 alias mnt="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | grep -E ^/dev/ | sort"
+plist ()
+{
+ps aux | grep "$1"
+}
 finds ()
 {
   find / -iname "$1" 2>/dev/null
