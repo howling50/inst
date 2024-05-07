@@ -3,6 +3,7 @@
 SECONDS=0
 #sudo pacman -R timeshift --noconfirm
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
+#curl -L https://nixos.org/nix/install | sh
 #yay -S quickemu
 #yay -S quickgui-bin
 #git clone https://github.com/yeyushengfan258/Win11OS-kde
@@ -270,6 +271,16 @@ sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/'
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i '/^Defaults timestamp_timeout=/s/.*/# Defaults timestamp_timeout=15/' /etc/sudoers
 mpg123 ~/.othercrap/1.mp3 > /dev/null 2>&1
+#List Installed packages nix-env -q
+#Install Packages nix-env -iA nixpkgs.packagename
+#Erase Packages nix-env -e packagename
+#Update All Packages nix-env -u
+#Update Specific Packages nix-env -u packagename
+#Hold Specific Package nix-env --set-flag keep true packagename
+#List Backups (Generations) nix-env --list-generations
+#Rollback to Last Backup nix-env --rollback
+#Rollback to Specific Generation nix-env --switch-generation #
+#Search  nix-env -qa [package name]
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
     let "minutes=(SECONDS%3600)/60"
