@@ -1,0 +1,20 @@
+install = echo "deb http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list; wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg
+Install Nala on any Debian Sid or Ubuntu 22+ with: sudo apt update && sudo apt install nala
+Install on Debian Stable or Ubuntu 21 and below:  sudo apt update && sudo apt install nala-legacy
+mirror update: sudo nala fetch
+add to .bashrc: 
+apt() { 
+  command nala "$@"
+}
+sudo() {
+  if [ "$1" = "apt" ]; then
+    shift
+    command sudo nala "$@"
+  else
+    command sudo "$@"
+  fi
+}
+---other debian----
+sudo nano /etc/apt/sources.list
+keep only main and replace bookworm with sid   then sudo apt update the sudo apt upgrade
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
