@@ -23,7 +23,6 @@ makepkg --noconfirm -si
 cd ~/Downloads/inst
 yay --sudoloop --save
 #yay -S --noconfirm timeshift-autosnap
-sudo pacman -S virtualbox-guest-iso --noconfirm --needed
 #----Swap-------
 #sudo mkdir /Swap
 sudo btrfs subvol create /Swap
@@ -171,7 +170,6 @@ flatpak install --noninteractive flathub org.kde.peruse
 flatpak install --noninteractive flathub com.usebottles.bottles
 flatpak install --noninteractive flathub com.brave.Browser
 flatpak install --noninteractive flathub com.github.tchx84.Flatseal
-flatpak install --noninteractive flathub com.discordapp.Discord
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
 sudo pacman -U autobrr*.tar.zst --noconfirm --needed
 mkdir -p ~/.othercrap
