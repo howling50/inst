@@ -13,11 +13,11 @@ sudo btrfs subvol create ~/Media && sudo chown $(whoami):$(whoami) ~/Media && su
 #--------
 sudo zypper install -y -n powerline-fonts
 sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc &&sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
-sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path && mkdir -p ~/.config/neofetch/ && sudo mkdir -p /root/.config/neofetch/
+sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #-----------------------------------------------------
 sudo zypper remove -y kwalletmanager kmail
 sudo zypper install -y -n ffmpeg-7
-sudo zypper install -y -n dxvk hardinfo opi mpg123 ImageMagick python312-pytest-tldr feh neofetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish notepadqq wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar protontricks mkvtoolnix-tools mkvtoolnix-gui gparted gimp celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty calibre kdialog shotcut aria2 google-roboto-fonts fuseiso android-tools yakuake
+sudo zypper install -y -n dxvk hardinfo opi mpg123 ImageMagick python312-pytest-tldr feh fastfetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish notepadqq wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar protontricks mkvtoolnix-tools mkvtoolnix-gui gparted gimp celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty calibre kdialog shotcut aria2 google-roboto-fonts fuseiso android-tools yakuake
 #-----------------------------------------------------------------
 #ventoy-bin virtualbox-ext-oracle input-remapper-git ttf-meslo bdinfo-git ttf-ms-fonts konsave
 sudo flatpak install --noninteractive flathub org.kde.peruse && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal && sudo flatpak install --noninteractive flathub com.brave.Browser && sudo flatpak install --noninteractive flathub com.discordapp.Discord
@@ -26,15 +26,11 @@ mkdir -p ~/.othercrap
 wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=~/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=~/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop
 chmod +x ~/.local/share/applications/stacer.desktop && mkdir -p ~/.local/share/kservices5/ServiceMenus/ && cp ~/Downloads/inst/scripts/mediainfo.sh ~/.othercrap/ && cp ~/Downloads/inst/scripts/mediainfo.desktop ~/.local/share/kservices5/ServiceMenus/
 #------------------------------------------------------------------
-neofetch >/dev/null
-sleep 2
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 #------------------------------------------rk hunter--------------------------
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf' && echo 'export VISUAL="nvim"' | sudo tee -a /root/.profile  >/dev/null && echo 'export VISUAL="nvim"' | tee -a ~/.profile  >/dev/null
-sed -i 's/^image_size="auto"/image_size="none"/' ~/.config/neofetch/config.conf
-sed -i 's/image_backend="ascii"/image_backend="kitty"/' ~/.config/neofetch/config.conf
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo zypper addlock qbittorrent
 sudo touch /etc/cron.weekly/balance
@@ -44,7 +40,7 @@ sudo chmod +x /etc/cron.weekly/balance
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/ && mkdir -p ~/.config/nvim/ && cp ~/Downloads/inst/init.vim ~/.config/nvim/
 curl -O https://i.imgur.com/N51R4iT.jpg
-cp  ~/Downloads/inst/N51R4iT.jpg ~/.config/neofetch/
+cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 sudo mkdir -p /root/.config/nvim/
 sudo cp ~/Downloads/inst/init.vim /root/.config/nvim/
 cd ~/Downloads/inst/
