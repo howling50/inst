@@ -109,6 +109,7 @@ sudo pacman -S gamemode --noconfirm --needed
 sudo pacman -S audacious --noconfirm --needed
 sudo pacman -S lutris --noconfirm --needed
 sudo pacman -S neofetch --noconfirm --needed
+sudo pacman -S fastfetch --noconfirm --needed
 sudo pacman -S masscan --noconfirm --needed
 sudo pacman -S net-tools --noconfirm --needed
 sudo pacman -S zip --noconfirm --needed
@@ -217,7 +218,7 @@ mkdir -p ~/.steam/root/compatibilitytools.d/
 mkdir -p ~/.config/nvim/
 cp ~/Downloads/inst/init.vim ~/.config/nvim/
 curl -O https://i.imgur.com/N51R4iT.jpg
-cp  ~/Downloads/inst/N51R4iT.jpg ~/.config/neofetch/
+cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 sudo mkdir -p /root/.config/nvim/
 sudo cp ~/Downloads/inst/init.vim /root/.config/nvim/
 cd ~/Downloads/inst/
