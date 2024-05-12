@@ -13,7 +13,7 @@ sudo cp /etc/sudoers.tmp /etc/sudoers
 sudo rm -rf /etc/sudoers.tmp
 sudo pacman -S cronie --noconfirm --needed
 sudo systemctl enable --now cronie.service
-sudo pacman -S neofetch --noconfirm --needed
+sudo pacman -S fastfetch --noconfirm --needed
 sudo pacman -S firefox --noconfirm --needed
 #sudo pacman -S timeshift --noconfirm --needed
 sudo pacman -S --needed base-devel git --noconfirm --needed
@@ -78,8 +78,6 @@ sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
 balooctl disable
 sudo rm -rf ~/./local/share/baloo
-mkdir -p ~/.config/neofetch/
-sudo mkdir -p /root/.config/neofetch/
 #-----------------------------------------------------
 sudo pacman -Rns kwalletmanager
 sudo pacman -R elisa --noconfirm
@@ -191,8 +189,6 @@ cp ~/Downloads/inst/scripts/mediainfo.desktop ~/.local/share/kservices5/ServiceM
 #yay -S --noconfirm remmina-plugin-open
 #yay -S --noconfirm remmina-plugin-folder
 #------------------------------------------------------------------
-neofetch >/dev/null
-sleep 1
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 #------------------------------------------rk hunter--------------------------
 sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local 
@@ -202,8 +198,6 @@ sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq'
 sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
 echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null
 echo 'export VISUAL="nvim"' | tee -a ~/.bash_profile  >/dev/null
-sed -i 's/^image_size="auto"/image_size="none"/' ~/.config/neofetch/config.conf
-sed -i 's/image_backend="ascii"/image_backend="kitty"/' ~/.config/neofetch/config.conf
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf
 sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
@@ -225,7 +219,7 @@ mkdir -p ~/.steam/root/compatibilitytools.d/
 mkdir -p ~/.config/nvim/
 cp ~/Downloads/inst/init.vim ~/.config/nvim/
 curl -O https://i.imgur.com/N51R4iT.jpg
-cp  ~/Downloads/inst/N51R4iT.jpg ~/.config/neofetch/
+cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 sudo mkdir -p /root/.config/nvim/
 sudo cp ~/Downloads/inst/init.vim /root/.config/nvim/
 cd ~/Downloads/inst/
