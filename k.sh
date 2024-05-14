@@ -137,7 +137,6 @@ sudo pacman -S qbittorrent --noconfirm --needed
 sudo pacman -S putty --noconfirm --needed 
 sudo pacman -S calibre --noconfirm --needed
 sudo pacman -S protonup-qt --noconfirm --needed
-sudo pacman -S peruse --noconfirm --needed
 sudo pacman -S kdialog --noconfirm --needed
 sudo pacman -S shotcut --noconfirm --needed
 sudo pacman -S aria2 --noconfirm --needed
@@ -161,6 +160,7 @@ yay -S --noconfirm konsave
 flatpak install --noninteractive flathub com.usebottles.bottles
 flatpak install --noninteractive flathub com.brave.Browser
 flatpak install --noninteractive flathub com.github.tchx84.Flatseal
+flatpak install --noninteractive flathub org.kde.peruse
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
 sudo pacman -U autobrr*.tar.zst --noconfirm --needed
 mkdir -p ~/.othercrap
