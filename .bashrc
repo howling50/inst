@@ -120,7 +120,7 @@ export HISTCONTROL=erasedups:ignoredups:ignorespace
 # Alias
 alias rkhunt='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
 alias punlock='sudo chmod +rw /var/lib/pacman/db.lck && sudo rm /var/lib/pacman/db.lck'
-alias kernelupdate='sudo mkinitcpio -P && grub-mkconfig -o /boot/grub/grub.cfg'
+alias kernelupdate='sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias listbash='echo "slist, pacdel \$1, image \$1, plist \$1, freeram, nmapauto \$1, fastpacman, ex \$1, finds \$1, mnt, delall, myip, speedtest, listen, systemcheck, rkhunt, kernelupdate, punlock"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
