@@ -4,6 +4,7 @@
 SECONDS=0
 #yay -S quickemu
 #yay -S quickgui-bin
+#sudo reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -S linux-headers --noconfirm --needed
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
 sudo cp /etc/sudoers /etc/sudoers.tmp
@@ -148,7 +149,7 @@ sudo pacman -S android-tools --noconfirm --needed
 sudo pacman -S flatpak --noconfirm --needed
 sudo pacman -S yakuake --noconfirm --needed
 sudo pacman -S kdeplasma-addons --noconfirm --needed
-sudo pacman -S memtest86+ memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
+sudo pacman -S memtest86+ reflector memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 #yay -S --noconfirm stacer-bin
 yay -S --noconfirm protonup-qt
