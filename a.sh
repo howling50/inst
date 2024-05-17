@@ -165,7 +165,7 @@ yay -S --noconfirm input-remapper-git
 yay -S --noconfirm ttf-meslo
 yay -S --noconfirm bdinfo-git
 yay -S --noconfirm ttf-ms-fonts
-yay -S --noconfirm konsave
+#yay -S --noconfirm konsave
 flatpak install --noninteractive flathub org.kde.peruse
 flatpak install --noninteractive flathub com.usebottles.bottles
 flatpak install --noninteractive flathub com.brave.Browser
@@ -254,9 +254,9 @@ sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 sleep 2
 # ----------------------------------------------
-konsave -i ~/Downloads/inst/kde2.knsv
-sleep 1
-konsave -a kde2
+#konsave -i ~/Downloads/inst/kde2.knsv
+#sleep 1
+#konsave -a kde2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
