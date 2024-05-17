@@ -8,13 +8,26 @@ fi
 if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
+alias rkhunt='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
+alias punlock='sudo chmod +rw /var/lib/pacman/db.lck && sudo rm /var/lib/pacman/db.lck'
+alias kernelupdate='sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias listbash='echo "slist, pacdel \$1, image \$1, plist \$1, freeram, nmapauto \$1, fastpacman, ex \$1, finds \$1, mnt, delall, myip, speedtest, listen, systemcheck, rkhunt, kernelupdate, punlock"'
+alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+alias np='nano -w PKGBUILD'
+alias more='less'
 alias listen='sudo lsof -i -P -n | grep LISTEN'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='curl ifconfig.me'
 alias delall='sudo pacman -Rs $(pacman -Qqtd)'
-alias pacign='sudo nvim /etc/pacman.conf'
+alias mnt="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | grep -E ^/dev/ | sort"
+plist ()
+{
+ps aux | grep "$1"
+}
 finds ()
 {
   find / -iname "$1" 2>/dev/null
@@ -42,17 +55,13 @@ ex ()
   fi
 }
 alias grep='grep --color'
-guiedit ()
-{
- sudo env SUDO_EDITOR="/usr/bin/mousepad" sudoedit "$1" 2>/dev/null &
-}
-alias pacman-update='sudo pacman-mirrors --geoip'
+alias fastpacman='sudo pacman-mirrors --geoip'
 alias ll='ls -l'
 alias la='ls -lha'
-alias rm='rm -i'
+alias rm='rm -I --preserve-root'
 alias cp='cp -i'
 alias mv='mv -i'
-alias vimrc='nvim ~/.config/nvim/init.vim'
+alias vimrc='nvim ~/.config/nvim/init.vim '
 alias bashrc='nvim ~/.bashrc'
 alias zshrc='nvim ~/.zshrc'
 nmapauto ()
@@ -63,7 +72,8 @@ freeram ()
 {
   sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches && sleep 2 && free -h'
 }
-alias neofetch='neofetch --kitty --source ~/.config/neofetch/N51R4iT.jpg'
+alias neofetch='fastfetch --logo ~/.othercrap/N51R4iT.jpg'
+alias fastfetch='fastfetch --logo ~/.othercrap/N51R4iT.jpg'
 image ()                                                                                                                                               
 {
   kitty icat --transfer-mode=file "$1"
