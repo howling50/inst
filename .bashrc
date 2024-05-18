@@ -97,6 +97,8 @@ shopt -s cdspell
 
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
+PROMPT_COMMAND='history -a'
+
 export EDITOR=nvim
 export VISUAL=nvim
 
