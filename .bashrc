@@ -279,7 +279,7 @@ distro ()
 # Show the current version of the operating system
 ver() {
 	local dtype
-	dtype=$(distribution)
+	dtype=$(distro)
 
 	case $dtype in
 		"redhat")
