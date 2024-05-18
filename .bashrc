@@ -1,37 +1,26 @@
 #
 # ~/.bashrc
 #
+iatest=$(expr index "$-" i)
 
 [[ $- != *i* ]] && return
 
-colors() {
-	local fgc bgc vals seq0
-
-	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
-	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
-
-	# foreground colors
-	for fgc in {30..37}; do
-		# background colors
-		for bgc in {40..47}; do
-			fgc=${fgc#37} # white
-			bgc=${bgc#40} # black
-
-			vals="${fgc:+$fgc;}${bgc}"
-			vals=${vals%%;}
-
-			seq0="${vals:+\e[${vals}m}"
-			printf "  %-9s" "${seq0:-(default)}"
-			printf " ${seq0}TEXT\e[m"
-			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-		done
-		echo; echo
-	done
-}
-
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+###################################################
+if [ -f /usr/bin/fastfetch ]; then
+	fastfetch --logo ~/.othercrap/N51R4iT.jpg
+fi
+# Enable bash programmable completion features in interactive shells
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+	. /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+fi
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+# Disable the bell
+if [[ $iatest -gt 0 ]]; then bind "set bell-style visible"; fi
 
 # Change the window title of X terminals
 case ${TERM} in
@@ -75,7 +64,7 @@ if ${use_color} ; then
 		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 	fi
 
-	alias ls='ls --color=auto'
+	alias ls='ls -aFh --color=always'
 	alias grep='grep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
 else
@@ -108,16 +97,25 @@ shopt -s cdspell
 
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
-export VISUAL="nvim"
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Expand the history size
-export HISTFILESIZE=3000
+export HISTFILESIZE=10000
 export HISTSIZE=3000
 
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 
+# Allow ctrl-S for history navigation (with ctrl-R)
+[[ $- == *i* ]] && stty -ixon
+
 # Alias
+alias mkdir='mkdir -p'
+alias cd..='cd ..'
+alias bd='cd "$OLDPWD"'
+alias cls='clear'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias rkhunt='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
 alias punlock='sudo chmod +rw /var/lib/pacman/db.lck && sudo rm /var/lib/pacman/db.lck'
 alias kernelupdate='sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg'
@@ -129,51 +127,47 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more='less'
+alias cat='bat'
 alias listen='sudo lsof -i -P -n | grep LISTEN'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='curl ifconfig.me'
 alias delall='sudo pacman -Rs $(pacman -Qqtd)'
 alias mnt="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | grep -E ^/dev/ | sort"
-plist ()
-{
-ps aux | grep "$1"
-}
 finds ()
 {
   find / -iname "$1" 2>/dev/null
 }
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.tar.xz)    tar xJf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
+extract() {
+	for archive in "$@"; do
+		if [ -f "$archive" ]; then
+			case $archive in
+			*.tar.bz2) tar xvjf $archive ;;
+			*.tar.gz) tar xvzf $archive ;;
+			*.bz2) bunzip2 $archive ;;
+			*.rar) rar x $archive ;;
+			*.gz) gunzip $archive ;;
+			*.tar) tar xvf $archive ;;
+			*.tbz2) tar xvjf $archive ;;
+			*.tgz) tar xvzf $archive ;;
+			*.zip) unzip $archive ;;
+			*.Z) uncompress $archive ;;
+			*.7z) 7z x $archive ;;
+			*) echo "don't know how to extract '$archive'..." ;;
+			esac
+		else
+			echo "'$archive' is not a valid file!"
+		fi
+	done
 }
 alias grep='grep --color'
 alias fastpacman='sudo pacman-mirrors --geoip'
-alias ll='ls -l'
-alias la='ls -lha'
 alias rm='rm -I --preserve-root'
 alias cp='cp -i'
 alias mv='mv -i'
 alias vimrc='nvim ~/.config/nvim/init.vim '
 alias bashrc='nvim ~/.bashrc'
 alias zshrc='nvim ~/.zshrc'
+alias vim='nvim'
 nmapauto ()
 {
  sudo nmap -Pn -T4 -A -p- -sV "$1"
@@ -193,50 +187,137 @@ pacdel ()
   sudo pacman -Rcns "$1"
 }
 alias slist='sudo btrfs subv list /'
+alias h="history | grep "
 
+# Search running processes
+alias plist="ps aux | grep "
+alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
+
+# Count all files (recursively) in the current folder
+alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
+
+# Searches for text in all files in the current folder
+ftext() {
+	# -i case-insensitive
+	# -I ignore binary files
+	# -H causes filename to be printed
+	# -r recursive search
+	# -n causes line number to be printed
+	# optional: -F treat search term as a literal, not a regular expression
+	# optional: -l only print filenames and not the matching lines ex. grep -irl "$1" *
+	grep -iIHrn --color=always "$1" . | less -r
+}
+# Copy file with a progress bar
+cpp() {
+	set -e
+	strace -q -ewrite cp -- "${1}" "${2}" 2>&1 |
+		awk '{
+	count += $NF
+	if (count % 10 == 0) {
+		percent = count / total_size * 100
+		printf "%3d%% [", percent
+		for (i=0;i<=percent;i++)
+			printf "="
+			printf ">"
+			for (i=percent;i<100;i++)
+				printf " "
+				printf "]\r"
+			}
+		}
+	END { print "" }' total_size="$(stat -c '%s' "${1}")" count=0
+}
+# Alias's for multiple directory listing commands
+alias la='ls -Alh'                # show hidden files
+alias lx='ls -lXBh'               # sort by extension
+alias lk='ls -lSrh'               # sort by size
+alias lc='ls -lcrh'               # sort by change time
+alias lu='ls -lurh'               # sort by access time
+alias lr='ls -lRh'                # recursive ls
+alias lt='ls -ltrh'               # sort by date
+alias lm='ls -alh |more'          # pipe through 'more'
+alias lw='ls -xAh'                # wide listing format
+alias ll='ls -Fls'                # long listing format
+alias labc='ls -lap'              #alphabetical sort
+alias lf="ls -l | egrep -v '^d'"  # files only
+alias ldir="ls -l | egrep '^d'"   # directories only
+
+# Show the current distribution
+distribution ()
+{
+	local dtype="unknown"  # Default to unknown
+
+	# Use /etc/os-release for modern distro identification
+	if [ -r /etc/os-release ]; then
+		source /etc/os-release
+		case $ID in
+			fedora|rhel|centos)
+				dtype="redhat"
+				;;
+			sles|opensuse*)
+				dtype="suse"
+				;;
+			ubuntu|debian)
+				dtype="debian"
+				;;
+			gentoo)
+				dtype="gentoo"
+				;;
+			arch)
+				dtype="arch"
+				;;
+			slackware)
+				dtype="slackware"
+				;;
+			*)
+				# If ID is not recognized, keep dtype as unknown
+				;;
+		esac
+	fi
+
+	echo $dtype
+}
+# Show the current version of the operating system
+ver() {
+	local dtype
+	dtype=$(distribution)
+
+	case $dtype in
+		"redhat")
+			if [ -s /etc/redhat-release ]; then
+				cat /etc/redhat-release
+			else
+				cat /etc/issue
+			fi
+			uname -a
+			;;
+		"suse")
+			cat /etc/SuSE-release
+			;;
+		"debian")
+			lsb_release -a
+			;;
+		"gentoo")
+			cat /etc/gentoo-release
+			;;
+		"arch")
+			cat /etc/os-release
+			;;
+		"slackware")
+			cat /etc/slackware-version
+			;;
+		*)
+			if [ -s /etc/issue ]; then
+				cat /etc/issue
+			else
+				echo "Error: Unknown distribution"
+				exit 1
+			fi
+			;;
+	esac
+}
 ################################################################################
 ##  FUNCTIONS                                                                 ##
 ################################################################################
-
-##
-##	ARRANGE $PWD AND STORE IT IN $NEW_PWD
-##	* The home directory (HOME) is replaced with a ~
-##	* The last pwdmaxlen characters of the PWD are displayed
-##	* Leading partial directory names are striped off
-##		/home/me/stuff -> ~/stuff (if USER=me)
-##		/usr/share/big_dir_name -> ../share/big_dir_name (if pwdmaxlen=20)
-##
-##	Original source: WOLFMAN'S color bash promt
-##	https://wiki.chakralinux.org/index.php?title=Color_Bash_Prompt#Wolfman.27s
-##
-bash_prompt_command() {
-	# How many characters of the $PWD should be kept
-	local pwdmaxlen=25
-
-	# Indicate that there has been dir truncation
-	local trunc_symbol=".."
-
-	# Store local dir
-	local dir=${PWD##*/}
-
-	# Which length to use
-	pwdmaxlen=$(( ( pwdmaxlen < ${#dir} ) ? ${#dir} : pwdmaxlen ))
-
-	NEW_PWD=${PWD/#$HOME/\~}
-	
-	local pwdoffset=$(( ${#NEW_PWD} - pwdmaxlen ))
-
-	# Generate name
-	if [ ${pwdoffset} -gt "0" ]
-	then
-		NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
-		NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
-	fi
-}
-
-
-
-
 ##
 ##	GENERATE A FORMAT SEQUENCE
 ##
