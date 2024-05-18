@@ -16,7 +16,7 @@ sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc &&su
 sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #-----------------------------------------------------
 sudo zypper remove -y kwalletmanager kmail
-sudo zypper install -y -n ffmpeg-7 bat
+sudo zypper install -y -n ffmpeg-7 bat trash-cli
 sudo zypper install -y -n less dxvk hardinfo opi mpg123 ImageMagick python312-pytest-tldr feh fastfetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish notepadqq wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar protontricks mkvtoolnix-tools mkvtoolnix-gui gparted gimp celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty calibre kdialog shotcut aria2 google-roboto-fonts fuseiso android-tools yakuake
 #-----------------------------------------------------------------
 #ventoy-bin virtualbox-ext-oracle input-remapper-git ttf-meslo bdinfo-git ttf-ms-fonts konsave
