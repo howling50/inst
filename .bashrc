@@ -163,7 +163,7 @@ extract() {
 }
 alias grep='grep --color'
 alias fastpacman='sudo pacman-mirrors --geoip'
-alias rm='trash -v'
+alias rm='rm -I --preserve-root'
 alias cp='cp -i'
 alias mv='mv -i'
 alias vimrc='nvim ~/.config/nvim/init.vim '
