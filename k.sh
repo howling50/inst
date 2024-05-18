@@ -73,11 +73,10 @@ sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
 balooctl disable
 sudo rm -rf ~/./local/share/baloo
-mkdir -p ~/.config/neofetch/
-sudo mkdir -p /root/.config/neofetch/
 #-----------------------------------------------------
 sudo pacman -Rns kwalletmanager --noconfirm
 sudo pacman -R elisa --noconfirm
+sudo pacman -R neofetch --noconfirm
 sudo pacman -R thunderbird --noconfirm
 sudo pacman -S binutils --noconfirm --needed
 sudo pacman -S hiredis --noconfirm --needed
@@ -108,7 +107,6 @@ sudo pacman -S kitty --noconfirm --needed
 sudo pacman -S gamemode --noconfirm --needed
 sudo pacman -S audacious --noconfirm --needed
 sudo pacman -S lutris --noconfirm --needed
-sudo pacman -S neofetch --noconfirm --needed
 sudo pacman -S fastfetch --noconfirm --needed
 sudo pacman -S masscan --noconfirm --needed
 sudo pacman -S net-tools --noconfirm --needed
@@ -182,8 +180,6 @@ cp ~/Downloads/inst/scripts/mediainfo.desktop ~/.local/share/kservices5/ServiceM
 #yay -S --noconfirm remmina-plugin-open
 #yay -S --noconfirm remmina-plugin-folder
 #------------------------------------------------------------------
-neofetch >/dev/null
-sleep 1
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 #------------------------------------------rk hunter--------------------------
 sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local 
@@ -193,8 +189,6 @@ sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq'
 sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
 echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null
 echo 'export VISUAL="nvim"' | tee -a ~/.bash_profile  >/dev/null
-sed -i 's/^image_size="auto"/image_size="none"/' ~/.config/neofetch/config.conf
-sed -i 's/image_backend="ascii"/image_backend="kitty"/' ~/.config/neofetch/config.conf
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf
 sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
