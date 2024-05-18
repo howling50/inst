@@ -242,7 +242,7 @@ alias lf="ls -l | egrep -v '^d'"  # files only
 alias ldir="ls -l | egrep '^d'"   # directories only
 
 # Show the current distribution
-distribution ()
+distro ()
 {
 	local dtype="unknown"  # Default to unknown
 
