@@ -91,6 +91,7 @@ sudo pacman -S nmap --noconfirm --needed
 sudo pacman -S make --noconfirm --needed
 sudo pacman -S autoconf --noconfirm --needed
 sudo pacman -S flex --noconfirm --needed
+sudo pacman -S bat --noconfirm --needed
 sudo pacman -S gcc --noconfirm --needed
 sudo pacman -S patch --noconfirm --needed
 sudo pacman -S automake --noconfirm --needed
