@@ -117,6 +117,7 @@ sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S rkhunter --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S ffmpeg --noconfirm --needed
+sudo pacman -S bat --noconfirm --needed
 sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S mkvtoolnix-cli mkvtoolnix-gui --noconfirm --needed
 sudo pacman -S gimp --noconfirm --needed
@@ -187,8 +188,6 @@ sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq'
 sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
-echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null
-echo 'export VISUAL="nvim"' | tee -a ~/.bash_profile  >/dev/null
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf
 sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
