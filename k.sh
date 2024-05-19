@@ -4,8 +4,6 @@ SECONDS=0
 #sudo pacman -R timeshift --noconfirm
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm
 #curl -L https://nixos.org/nix/install | sh
-#yay -S quickemu
-#yay -S quickgui-bin
 #git clone https://github.com/yeyushengfan258/Win11OS-kde
 sudo cp /etc/sudoers /etc/sudoers.tmp
 sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
@@ -149,7 +147,6 @@ sudo pacman -S feh --noconfirm --needed
 sudo pacman -S zoxide fzf --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
-#yay -S --noconfirm stacer-bin
 #yay -S --noconfirm virtualbox-ext-oracle
 yay -S --noconfirm hardinfo2
 yay -S --noconfirm dxvk-bin
@@ -157,6 +154,8 @@ yay -S --noconfirm input-remapper-git
 yay -S --noconfirm ttf-meslo
 yay -S --noconfirm bdinfo-git
 yay -S --noconfirm ttf-ms-fonts
+yay -S --noconfirm quickemu
+yay -S --noconfirm quickgui-bin
 yay -S --noconfirm konsave
 flatpak install --noninteractive flathub com.usebottles.bottles
 flatpak install --noninteractive flathub com.brave.Browser
