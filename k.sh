@@ -251,6 +251,13 @@ konsave -a kde2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop
 #cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
+mkdir -p ~/.othercrap/dedrm
+unzip ~/Downloads/inst/DeDRM_tools_10.0.3.zip -d ~/.othercrap/dedrm
+mkdir -p ~/.othercrap/eac3to
+unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to
+mv ~/Downloads/inst/script/tampermonkey-* ~/.othercrap/
+mv ~/Downloads/inst/script/*.exe ~/.othercrap/
+mv ~/Downloads/inst/script/'XMouseButtonControl 2.20.5 Portable.zip' ~/.othercrap/
 caffeine kill
 sudo pacman -R caffeine-ng --noconfirm
 convert ~/Downloads/inst/script/monkey.jpg ~/Downloads/inst/script/monkey.png
