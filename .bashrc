@@ -113,6 +113,8 @@ export HISTCONTROL=erasedups:ignoredups:ignorespace
 [[ $- == *i* ]] && stty -ixon
 
 # Alias
+alias cd='z'
+alias cdi='zi'
 alias mkdir='mkdir -p'
 alias cd..='cd ..'
 alias bd='cd "$OLDPWD"'
@@ -661,3 +663,4 @@ unset bash_prompt
 
 ### EOF ###
 #sudo sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
+eval "$(zoxide init bash)"
