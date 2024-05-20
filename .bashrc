@@ -95,6 +95,7 @@ export HISTCONTROL=erasedups:ignoredups:ignorespace
 [[ $- == *i* ]] && stty -ixon
 
 # Alias
+alias diskspace="du -hS | sort -n -r |more"
 alias mkdir='mkdir -p'
 alias cd..='cd ..'
 alias bd='cd "$OLDPWD"'
