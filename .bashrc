@@ -93,6 +93,15 @@ export HISTSIZE=3000
 export HISTCONTROL=erasedups:ignoredups:ignorespace
 # Allow ctrl-S for history navigation (with ctrl-R)
 [[ $- == *i* ]] && stty -ixon
+LS_COLORS='no=00:fi=00:di=00;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:*.xml=00;31:'
+# Color for manpages in less makes manpages a little easier to read
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
 alias freshclam='sudo freshclam'
@@ -424,75 +433,18 @@ bash_prompt() {
 	## Choose your color combination here                                     ##
 	############################################################################
 	local FONT_COLOR_1=$WHITE
-	local BACKGROUND_1=$BLUE
+	local BACKGROUND_1=$BLACK
 	local TEXTEFFECT_1=$BOLD
 	
 	local FONT_COLOR_2=$WHITE
-	local BACKGROUND_2=$L_BLUE
+	local BACKGROUND_2=$D_GRAY
 	local TEXTEFFECT_2=$BOLD
 	
 	local FONT_COLOR_3=$D_GRAY
-	local BACKGROUND_3=$WHITE
+	local BACKGROUND_3=$RED
 	local TEXTEFFECT_3=$BOLD
 	
 	local PROMT_FORMAT=$BLUE_BOLD
-	
-	############################################################################
-	## EXAMPLE CONFIGURATIONS                                                 ##
-	## I use them for different hosts. Test them out ;)                       ##
-	############################################################################
-	
-	## CONFIGURATION: BLUE-WHITE
-	if [ "$HOSTNAME" = dell ]; then
-		FONT_COLOR_1=$WHITE; BACKGROUND_1=$BLUE; TEXTEFFECT_1=$BOLD
-		FONT_COLOR_2=$WHITE; BACKGROUND_2=$L_BLUE; TEXTEFFECT_2=$BOLD	
-		FONT_COLOR_3=$D_GRAY; BACKGROUND_3=$WHITE; TEXTEFFECT_3=$BOLD	
-		PROMT_FORMAT=$CYAN_BOLD
-	fi
-	
-	## CONFIGURATION: BLACK-RED
-	if [ "$HOSTNAME" = giraff6 ]; then
-		FONT_COLOR_1=$WHITE; BACKGROUND_1=$BLACK; TEXTEFFECT_1=$BOLD
-		FONT_COLOR_2=$WHITE; BACKGROUND_2=$D_GRAY; TEXTEFFECT_2=$BOLD
-		FONT_COLOR_3=$WHITE; BACKGROUND_3=$RED; TEXTEFFECT_3=$BOLD
-		PROMT_FORMAT=$RED_BOLD
-	fi
-	
-	## CONFIGURATION: RED-BLACK
-	#FONT_COLOR_1=$WHITE; BACKGROUND_1=$RED; TEXTEFFECT_1=$BOLD
-	#FONT_COLOR_2=$WHITE; BACKGROUND_2=$D_GRAY; TEXTEFFECT_2=$BOLD
-	#FONT_COLOR_3=$WHITE; BACKGROUND_3=$BLACK; TEXTEFFECT_3=$BOLD
-	#PROMT_FORMAT=$RED_BOLD
-	## CONFIGURATION: CYAN-BLUE
-	if [ "$HOSTNAME" = sharkoon ]; then
-		FONT_COLOR_1=$BLACK; BACKGROUND_1=$L_CYAN; TEXTEFFECT_1=$BOLD
-		FONT_COLOR_2=$WHITE; BACKGROUND_2=$L_BLUE; TEXTEFFECT_2=$BOLD
-		FONT_COLOR_3=$WHITE; BACKGROUND_3=$BLUE; TEXTEFFECT_3=$BOLD
-		PROMT_FORMAT=$CYAN_BOLD
-	fi
-	
-	## CONFIGURATION: GRAY-SCALE
-	if [ "$HOSTNAME" = giraff ]; then
-		FONT_COLOR_1=$WHITE; BACKGROUND_1=$BLACK; TEXTEFFECT_1=$BOLD
-		FONT_COLOR_2=$WHITE; BACKGROUND_2=$D_GRAY; TEXTEFFECT_2=$BOLD
-		FONT_COLOR_3=$WHITE; BACKGROUND_3=$L_GRAY; TEXTEFFECT_3=$BOLD
-		PROMT_FORMAT=$BLACK_BOLD
-	fi
-	
-	## CONFIGURATION: GRAY-CYAN
-	if [ "$HOSTNAME" = light ]; then
-		FONT_COLOR_1=$WHITE; BACKGROUND_1=$BLACK; TEXTEFFECT_1=$BOLD
-		FONT_COLOR_2=$WHITE; BACKGROUND_2=$D_GRAY; TEXTEFFECT_2=$BOLD
-		FONT_COLOR_3=$BLACK; BACKGROUND_3=$L_CYAN; TEXTEFFECT_3=$BOLD
-		PROMT_FORMAT=$CYAN_BOLD
-	fi
-	
-	
-	##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  
-	  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##
-	##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ##  ## 	
-	
-	
 	
 	############################################################################
 	## TEXT FORMATING                                                         ##
