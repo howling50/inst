@@ -4,8 +4,6 @@
 #git clone https://github.com/yeyushengfan258/Win11OS-kde 
 SECONDS=0
 sudo zypper update
-sudo zypper install -y -n starship
-cp ~/Downloads/inst/starship.toml ~/.config/
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 8G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
 #------------
