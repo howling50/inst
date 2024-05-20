@@ -115,7 +115,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias rkhunt='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
 alias punlock='sudo chmod +rw /var/lib/pacman/db.lck && sudo rm /var/lib/pacman/db.lck'
 alias kernelupdate='sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo"'
+alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo, ncdu, fzf, ftext, cpp, ver, distro"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
