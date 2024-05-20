@@ -5,8 +5,6 @@ SECONDS=0
 #yay -S quickemu
 #yay -S quickgui-bin
 sudo pacman -S reflector --noconfirm --needed
-sudo pacman -S starship --noconfirm --needed
-cp ~/Downloads/inst/starship.toml ~/.config/
 sudo reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -S linux-headers --noconfirm --needed
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
