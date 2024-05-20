@@ -107,6 +107,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 alias freshclam='sudo freshclam'
 alias diskspace="du -hS | sort -n -r |more"
 alias mkdir='mkdir -p'
+alias ..='cd ..'
 alias cd..='cd ..'
 alias bd='cd "$OLDPWD"'
 alias cls='clear'
