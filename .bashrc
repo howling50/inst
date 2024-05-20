@@ -105,7 +105,6 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
 alias freshclam='sudo freshclam'
-alias diskspace="du -hS | sort -n -r |more"
 alias mkdir='mkdir -p'
 alias ..='cd ..'
 alias cd..='cd ..'
@@ -306,6 +305,11 @@ ver() {
 			;;
 	esac
 }
+# Alias's to show disk space and space used in a folder
+alias diskspace="du -hS | sort -n -r |more"
+alias folders='du -h --max-depth=1'
+alias tree='tree -CAhF --dirsfirst'
+alias treed='tree -CAFd'
 ################################################################################
 ##  FUNCTIONS                                                                 ##
 ################################################################################
