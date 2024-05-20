@@ -95,6 +95,7 @@ export HISTCONTROL=erasedups:ignoredups:ignorespace
 [[ $- == *i* ]] && stty -ixon
 
 # Alias
+alias freshclam='sudo freshclam'
 alias diskspace="du -hS | sort -n -r |more"
 alias mkdir='mkdir -p'
 alias cd..='cd ..'
