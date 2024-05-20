@@ -5,7 +5,7 @@ iatest=$(expr index "$-" i)
 [[ $- != *i* ]] && return
 ###################################################
 if [ -f /usr/bin/fastfetch ]; then
-	fastfetch --logo ~/.othercrap/N51R4iT.jpg
+	fastfetch --logo /home/howling/.othercrap/N51R4iT.jpg
 fi
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
