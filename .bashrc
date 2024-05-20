@@ -441,8 +441,8 @@ bash_prompt() {
 	local BACKGROUND_2=$D_GRAY
 	local TEXTEFFECT_2=$BOLD
 	
-	local FONT_COLOR_3=$D_GRAY
-	local BACKGROUND_3=$RED
+	local FONT_COLOR_3=$WHITE
+	local BACKGROUND_3=$CYAN
 	local TEXTEFFECT_3=$BOLD
 	
 	local PROMT_FORMAT=$BLUE_BOLD
