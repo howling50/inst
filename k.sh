@@ -23,6 +23,8 @@ echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 sudo swapon -a
 #------------
 sudo pacman -S caffeine-ng --noconfirm --needed
+sudo pacman -S starship --noconfirm --needed
+cp ~/Downloads/inst/starship.toml ~/.config/
 caffeine & 2>/dev/null
 sudo mkdir -p /etc/crontab
 sudo mkdir -p /etc/cron.minutely
