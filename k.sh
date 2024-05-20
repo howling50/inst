@@ -144,7 +144,7 @@ sudo pacman -S fuseiso --noconfirm --needed
 sudo pacman -S android-tools --noconfirm --needed
 sudo pacman -S tldr --noconfirm --needed
 sudo pacman -S feh --noconfirm --needed
-sudo pacman -S zoxide fzf --noconfirm --needed
+sudo pacman -S zoxide fzf ncdu --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 #yay -S --noconfirm virtualbox-ext-oracle
