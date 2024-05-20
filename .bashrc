@@ -552,4 +552,6 @@ unset bash_prompt
 
 ### EOF ###
 #sudo sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
 eval "$(zoxide init --cmd cd bash)"
