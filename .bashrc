@@ -56,7 +56,7 @@ if ${use_color} ; then
 	else
 		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 	fi
-	alias ls='ls -aFh --color=always'
+	#alias ls='ls -aFh --color=always'
 	alias grep='grep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
 else
@@ -221,19 +221,27 @@ cpp() {
 # Show all logs in /var/log
 alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 # Alias's for multiple directory listing commands
-alias la='ls -Alh'                # show hidden files
-alias lx='ls -lXBh'               # sort by extension
-alias lk='ls -lSrh'               # sort by size
-alias lc='ls -lcrh'               # sort by change time
-alias lu='ls -lurh'               # sort by access time
-alias lr='ls -lRh'                # recursive ls
-alias lt='ls -ltrh'               # sort by date
-alias lm='ls -alh |more'          # pipe through 'more'
-alias lw='ls -xAh'                # wide listing format
-alias ll='ls -Fls'                # long listing format
-alias labc='ls -lap'              #alphabetical sort
-alias lf="ls -l | egrep -v '^d'"  # files only
-alias ldir="ls -l | egrep '^d'"   # directories only
+#alias la='ls -Alh'                # show hidden files
+#alias lx='ls -lXBh'               # sort by extension
+#alias lk='ls -lSrh'               # sort by size
+#alias lc='ls -lcrh'               # sort by change time
+#alias lu='ls -lurh'               # sort by access time
+#alias lr='ls -lRh'                # recursive ls
+#alias lt='ls -ltrh'               # sort by date
+#alias lm='ls -alh |more'          # pipe through 'more'
+#alias lw='ls -xAh'                # wide listing format
+#alias ll='ls -Fls'                # long listing format
+#alias labc='ls -lap'              #alphabetical sort
+#alias lf="ls -l | egrep -v '^d'"  # files only
+#alias ldir="ls -l | egrep '^d'"   # directories only
+alias ls="eza --color=always  --icons=always --no-time --all"
+alias ll="eza --color=always --long  --icons=always --no-time --all"
+alias lk="eza --color=always --long  --icons=always --no-time --all --reverse --sort=size"
+alias lx="eza --color=always --long  --icons=always --no-time --all --sort=extension"
+alias lt="eza --color=always --long  --icons=always --all --reverse --sort=modified"
+alias lf="eza --color=always --long  --icons=always --no-time -f"
+alias ldir="eza --color=always --long  --icons=always --no-time -D"
+
 # Show the current distribution
 distro ()
 {
@@ -555,7 +563,38 @@ bash_prompt
 unset bash_prompt
 
 ### EOF ###
-#sudo sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
-source /usr/share/fzf/key-bindings.bash
-source /usr/share/fzf/completion.bash
+# --- setup fzf theme ---
+fg="#CBE0F0"
+bg="#011628"
+bg_highlight="#143652"
+purple="#B388FF"
+blue="#06BCE4"
+cyan="#2CF9ED"
+
+export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo ${}'"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
+}
+
+eval "$(fzf --bash)"
 eval "$(zoxide init --cmd cd bash)"
+eval $(thefuck --alias fuck)
+eval $(thefuck --alias)
+
