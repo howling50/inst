@@ -592,9 +592,15 @@ _fzf_comprun() {
     *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
   esac
 }
-
 eval "$(fzf --bash)"
 eval "$(zoxide init --cmd cd bash)"
 eval $(thefuck --alias fuck)
 eval $(thefuck --alias)
+
+# Check if aarchup is installed and run it if it is
+if command -v aarchup &> /dev/null
+then
+    aarchup
+fi
+
 
