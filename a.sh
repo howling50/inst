@@ -220,11 +220,11 @@ sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/
 mkdir -p ~/.config/nvim/
-cp ~/Downloads/inst/init.vim ~/.config/nvim/
+cp ~/Downloads/inst/init.lua ~/.config/nvim/
 curl -O https://i.imgur.com/N51R4iT.jpg
 cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 sudo mkdir -p /root/.config/nvim/
-sudo cp ~/Downloads/inst/init.vim /root/.config/nvim/
+sudo cp ~/Downloads/inst/init.lua /root/.config/nvim/
 cd ~/Downloads/inst/
 wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
 mv yt-dlp_linux yt-dlp
