@@ -151,7 +151,7 @@ sudo pacman -S android-tools --noconfirm --needed
 sudo pacman -S flatpak --noconfirm --needed
 sudo pacman -S yakuake --noconfirm --needed
 sudo pacman -S kdeplasma-addons --noconfirm --needed
-sudo pacman -S trash-cli ripgrep eza thefuck memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
+sudo pacman -S ripgrep eza thefuck memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm reflector-simple
 yay -S --noconfirm aarchup
