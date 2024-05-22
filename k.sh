@@ -194,8 +194,9 @@ sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
 sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent/' /etc/pacman.conf
 sudo sed -i 's/^IgnorePkg =/IgnorePkg = qbittorrent/' /etc/pamac.conf
-sudo touch /etc/cron.weekly/balance
-sudo bash -c 'echo -e "#!/usr/bin/env bash\nbtrfs scrub start / >> /home/howling/scrub.txt" >> /etc/cron.weekly/balance'
+#sudo touch /etc/cron.weekly/balance
+#sudo bash -c 'echo -e "#!/usr/bin/env bash\nbtrfs scrub start / >> /home/howling/scrub.txt" >> /etc/cron.weekly/balance'
+#sudo chmod +x /etc/cron.weekly/balance
 #-----------------
 echo 'if [ -f ~/.bashrc ]; then' >> ~/.bash_profile
 echo '    source ~/.bashrc' >> ~/.bash_profile
@@ -204,7 +205,6 @@ echo 'if [ -f /root/.bashrc ]; then' | sudo tee -a /root/.bash_profile
 echo '    source /root/.bashrc' | sudo tee -a /root/.bash_profile
 echo 'fi' | sudo tee -a /root/.bash_profile
 #-----------------
-sudo chmod +x /etc/cron.weekly/balance
 echo vm.swappiness=10 | sudo tee -a /etc/sysctl.d/100-manjaro.conf  >/dev/null
 sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
