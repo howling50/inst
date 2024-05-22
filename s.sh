@@ -4,6 +4,7 @@
 #git clone https://github.com/yeyushengfan258/Win11OS-kde 
 SECONDS=0
 sudo zypper update
+sudo zypper install -y -n powerline-fonts trash-cli
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 8G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
 #------------
@@ -11,7 +12,6 @@ sudo mkdir -p /etc/cron.minutely && sudo cp ~/Downloads/inst/mycronjobs /etc/cro
 #-------
 sudo btrfs subvol create ~/Media && sudo chown $(whoami):$(whoami) ~/Media && sudo chmod 755 ~/Media && sudo btrfs subvol create ~/.wine && sudo chown $(whoami):$(whoami) ~/.wine && sudo chmod 755 ~/.wine && sudo btrfs subvol create ~/.config/qBittorrent && sudo chown $(whoami):$(whoami) ~/.config/qBittorrent && sudo chmod 755 ~/.config/qBittorrent
 #--------
-sudo zypper install -y -n powerline-fonts
 sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc &&sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #-----------------------------------------------------
