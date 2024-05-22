@@ -7,10 +7,11 @@ lsblk
 read -p "Please enter root location to work on (example /dev/sda1): " DISK
 
 # Install necessary packages with error handling
-sudo pacman -S snapper --noconfirm --needed
-yay -S btrfs-assistant --noconfirm --needed
-sudo pacman -S grub-btrfs --noconfirm --needed
-#sudo pacman -S snap-pac --noconfirm --needed
+sudo pacman -S snapper --noconfirm
+yay -S btrfs-assistant --noconfirm
+yay -S btrfsmaintenance --noconfirm
+sudo pacman -S grub-btrfs --noconfirm
+#sudo pacman -S snap-pac --noconfirm
 
 # Remove existing .snapshots directories
 sudo umount /.snapshots
