@@ -36,7 +36,7 @@ sudo mount "${DISK}" /mnt/btrfs || exit 1
 sudo btrfs subvolume delete /mnt/btrfs/@.snapshots
 sudo btrfs subvolume create /mnt/btrfs/snapshots
 sudo chmod a+rx /.snapshots
-sudo chown howling:howling /.snapshots
+sudo chown :howling /.snapshots
 sudo umount /mnt/btrfs
 sudo rmdir /mnt/btrfs
 
