@@ -2,6 +2,7 @@ format = """
 [](#3B4252)\
 $python\
 $username\
+$container\
 [](bg:#434C5E fg:#3B4252)\
 $directory\
 [](fg:#434C5E bg:#4C566A)\
@@ -34,6 +35,10 @@ show_always = true
 style_user = "bg:#3B4252"
 style_root = "bg:#3B4252"
 format = '[$user ]($style)'
+
+[container]
+style = "bg:#3B4252"
+format = '[$symbol \[$name\]]($style)'
 
 [directory]
 style = "bg:#434C5E"
