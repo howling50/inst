@@ -114,7 +114,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias rkhunt='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
 alias punlock='sudo chmod +rw /var/lib/pacman/db.lck && sudo rm /var/lib/pacman/db.lck'
 alias kernelupdate='sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo, ncdu, fzf, ftext, cpp, ver, distro, thefuck"'
+alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo, ncdu, fzf, ftext, cpp, ver, distro, thefuck, distrobox"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
@@ -159,7 +159,8 @@ alias fastpacman='sudo pacman-mirrors --geoip'
 alias rm='rm -I --preserve-root'
 alias cp='cp -i'
 alias mv='mv -i'
-alias vimrc='nvim ~/.config/nvim/init.vim '
+alias vim='nvim'
+alias vimrc='nvim ~/.config/nvim/init.lua'
 alias bashrc='nvim ~/.bashrc'
 alias zshrc='nvim ~/.zshrc'
 alias vim='nvim'
@@ -241,7 +242,26 @@ alias lx="eza --color=always --long  --icons=always --no-time --all --sort=exten
 alias lt="eza --color=always --long  --icons=always --all --reverse --sort=modified"
 alias lf="eza --color=always --long  --icons=always --no-time -f"
 alias ldir="eza --color=always --long  --icons=always --no-time -D"
-
+sudo() {
+  if [ "$1" = "rm" ]; then
+    shift
+    command sudo rm -I --preserve-root "$@"
+  elif [ "$1" = "ls" ]; then
+    shift
+    command sudo eza --color=always --icons=always --no-time --all "$@"
+  elif [ "$1" = "ll" ]; then
+    shift
+    command sudo eza --color=always --long  --icons=always --no-time --all "$@"
+  elif [ "$1" = "vim" ]; then
+    shift
+    command sudo nvim "$@"
+ elif [ "$1" = "cat" ]; then
+    shift
+    command sudo bat  "$@"
+  else
+    command sudo "$@"
+  fi
+}
 # Show the current distribution
 distro ()
 {
