@@ -67,7 +67,9 @@ cd ~/Downloads/inst/
 #---
 sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman -Syyu --noconfirm --needed
-sudo pacman -S powerline-fonts --noconfirm --needed
+sudo pacman -S powerline-fonts starship --noconfirm --needed
+cp ~/Downloads/inst/starship.toml ~/.config/
+sudo cp ~/Downloads/inst/starship.toml /root/.config/
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
 sudo cp ~/Downloads/inst/.zshrc /root/.zshrc
@@ -152,7 +154,7 @@ sudo pacman -S flatpak --noconfirm --needed
 sudo pacman -S yakuake --noconfirm --needed
 sudo pacman -S kdeplasma-addons --noconfirm --needed
 sudo pacman -S apparmor --noconfirm --needed
-sudo pacman -S e2fsprogs ripgrep eza thefuck memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
+sudo pacman -S podman distrobox e2fsprogs ripgrep eza thefuck memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm reflector-simple
 yay -S --noconfirm aarchup
