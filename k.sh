@@ -159,6 +159,7 @@ yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm quickemu
 yay -S --noconfirm quickgui-bin
 yay -S --noconfirm konsave
+flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs
 flatpak install --noninteractive flathub com.usebottles.bottles
 flatpak install --noninteractive flathub com.brave.Browser
 flatpak install --noninteractive flathub com.github.tchx84.Flatseal
