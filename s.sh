@@ -2,6 +2,7 @@
 ##################### git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
 #https://github.com/howling50/Top-5-Bootloader-Themes
 #git clone https://github.com/yeyushengfan258/Win11OS-kde 
+#distrobox create -n aur --image archlinux --additional-packages "fzf eza starship zoxide thefuck"
 SECONDS=0
 sudo zypper update
 sudo zypper install -y -n powerline-fonts starship
@@ -59,9 +60,9 @@ sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 convert ~/Downloads/inst/script/monkey.jpg ~/Downloads/inst/script/monkey.png
 mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
 mkdir -p ~/.othercrap/dedrm
-unzip ~/Downloads/inst/DeDRM_tools_10.0.3.zip -d ~/.othercrap/dedrm
+unzip ~/Downloads/inst/DeDRM_tools_10.0.3.zip -d ~/.othercrap/dedrm > /dev/null
 mkdir -p ~/.othercrap/eac3to
-unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to
+unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null
 mv ~/Downloads/inst/script/tampermonkey-* ~/.othercrap/
 mv ~/Downloads/inst/script/*.exe ~/.othercrap/
 mv ~/Downloads/inst/script/'XMouseButtonControl 2.20.5 Portable.zip' ~/.othercrap/
