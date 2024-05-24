@@ -59,7 +59,6 @@ sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman-mirrors --fasttrack 15 && sudo pacman -Syu --noconfirm --needed
 sudo pacman -S powerline-fonts starship --noconfirm --needed
 cp ~/Downloads/inst/starship.toml ~/.config/
-sudo mkdir /root/.config
 sudo cp ~/Downloads/inst/starship.toml /root/.config/
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
