@@ -2,7 +2,7 @@
 ##################### git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
 #https://github.com/howling50/Top-5-Bootloader-Themes
 #git clone https://github.com/yeyushengfan258/Win11OS-kde 
-#distrobox create -n aur --image archlinux --additional-packages "fzf eza starship zoxide thefuck"
+#distrobox create -n arch -i quay.io/toolbx-images/archlinux-toolbox:latest --init --additional-packages "systemd git fzf eza starship zoxide thefuck"
 SECONDS=0
 sudo zypper update
 sudo zypper install -y -n powerline-fonts starship
@@ -22,7 +22,7 @@ sudo zypper install -y -n ffmpeg-7 bat zoxide fzf gdu tree eza thefuck ripgrep e
 sudo zypper install -y -n less dxvk hardinfo opi mpg123 ImageMagick python312-pytest-tldr feh fastfetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish notepadqq wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar protontricks mkvtoolnix-tools mkvtoolnix-gui gparted gimp celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty calibre kdialog shotcut aria2 google-roboto-fonts fuseiso android-tools yakuake
 #-----------------------------------------------------------------
 #ventoy-bin virtualbox-ext-oracle input-remapper-git ttf-meslo bdinfo-git ttf-ms-fonts konsave
-sudo flatpak install --noninteractive flathub org.kde.peruse && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal && sudo flatpak install --noninteractive flathub com.brave.Browser && sudo flatpak install --noninteractive flathub com.discordapp.Discord
+sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub org.kde.peruse && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal && sudo flatpak install --noninteractive flathub com.brave.Browser && sudo flatpak install --noninteractive flathub com.discordapp.Discord
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep linux_amd64.rpm | cut -d\" -f4) && sudo zypper --no-gpg-checks install -y -n ~/Downloads/inst/autobrr*.rpm
 mkdir -p ~/.othercrap
 wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=~/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=~/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop
