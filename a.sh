@@ -172,6 +172,7 @@ yay -S --noconfirm ttf-meslo
 yay -S --noconfirm bdinfo-git
 yay -S --noconfirm ttf-ms-fonts
 #yay -S --noconfirm konsave
+flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs
 flatpak install --noninteractive flathub org.kde.peruse
 flatpak install --noninteractive flathub com.usebottles.bottles
 flatpak install --noninteractive flathub com.brave.Browser
