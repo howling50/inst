@@ -45,8 +45,6 @@ truncation_symbol = "…/"
 # similar to mapped_locations in Oh My Posh:
 [directory.substitutions]
 "Documents" = " "
-"Downloads" = " "
-"Music" = " "
 "Pictures" = " "
 # Keep in mind that the order matters. For example:
 # "Important Documents" = "  "
