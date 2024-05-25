@@ -208,6 +208,7 @@ echo 'if [ -f /root/.bashrc ]; then' | sudo tee -a /root/.bash_profile
 echo '    source /root/.bashrc' | sudo tee -a /root/.bash_profile
 echo 'fi' | sudo tee -a /root/.bash_profile
 #-----------------
+sudo sed -i '$ a unqualified-search-registries=["registry.access.redhat.com", "registry.fedoraproject.org", "docker.io"]' /etc/containers/registries.conf
 echo vm.swappiness=10 | sudo tee -a /etc/sysctl.d/100-manjaro.conf  >/dev/null
 sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
