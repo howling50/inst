@@ -154,7 +154,7 @@ sudo pacman -S flatpak --noconfirm --needed
 sudo pacman -S yakuake --noconfirm --needed
 sudo pacman -S kdeplasma-addons --noconfirm --needed
 sudo pacman -S apparmor --noconfirm --needed
-sudo pacman -S podman distrobox e2fsprogs ripgrep eza thefuck memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
+sudo pacman -S ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza thefuck memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm reflector-simple
 yay -S --noconfirm aarchup
@@ -168,7 +168,6 @@ yay -S --noconfirm downgrade
 yay -S --noconfirm hardinfo2
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm input-remapper-git
-yay -S --noconfirm ttf-meslo
 yay -S --noconfirm bdinfo-git
 yay -S --noconfirm ttf-ms-fonts
 #yay -S --noconfirm konsave
