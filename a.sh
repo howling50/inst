@@ -226,6 +226,7 @@ echo 'if [ -f /root/.bashrc ]; then' | sudo tee -a /root/.bash_profile
 echo '    source /root/.bashrc' | sudo tee -a /root/.bash_profile
 echo 'fi' | sudo tee -a /root/.bash_profile
 #-----------------
+sudo sed -i '$ a unqualified-search-registries=["registry.access.redhat.com", "registry.fedoraproject.org", "docker.io"]' /etc/containers/registries.conf
 sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/
