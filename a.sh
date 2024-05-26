@@ -160,10 +160,8 @@ yay -S --noconfirm reflector-simple
 yay -S --noconfirm aarchup
 yay -S --noconfirm sublime-text-4
 yay -S --noconfirm protonup-qt
-yay -S --noconfirm protontricks
 yay -S --noconfirm ventoy-bin
 yay -S --noconfirm pyakm
-yay -S --noconfirm downgrade
 #yay -S --noconfirm virtualbox-ext-oracle
 yay -S --noconfirm hardinfo2
 yay -S --noconfirm dxvk-bin
