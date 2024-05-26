@@ -109,7 +109,6 @@ sudo pacman -S gamemode --noconfirm --needed
 sudo pacman -S audacious --noconfirm --needed
 sudo pacman -S lutris --noconfirm --needed
 sudo pacman -S fastfetch --noconfirm --needed
-sudo pacman -S masscan --noconfirm --needed
 sudo pacman -S net-tools --noconfirm --needed
 sudo pacman -S zip --noconfirm --needed
 sudo pacman -S unzip --noconfirm --needed
@@ -121,7 +120,6 @@ sudo pacman -S ffmpeg --noconfirm --needed
 sudo pacman -S bat --noconfirm --needed
 sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S mkvtoolnix-cli mkvtoolnix-gui --noconfirm --needed
-sudo pacman -S gimp --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 #sudo pacman -S conky --noconfirm --needed
 sudo pacman -S mediainfo --noconfirm --needed
@@ -129,16 +127,12 @@ sudo pacman -S flac --noconfirm --needed
 #sudo pacman -S burpsuite --noconfirm --needed
 sudo pacman -S ventoy --noconfirm --needed
 sudo pacman -S downgrade --noconfirm --needed
-sudo pacman -S handbrake --noconfirm --needed
 sudo pacman -S filezilla --noconfirm --needed
 sudo pacman -S aegisub --noconfirm --needed
 sudo pacman -S virtualbox --noconfirm --needed
 sudo pacman -S qbittorrent --noconfirm --needed
 sudo pacman -S putty --noconfirm --needed 
-sudo pacman -S calibre --noconfirm --needed
-sudo pacman -S protonup-qt --noconfirm --needed
 sudo pacman -S kdialog --noconfirm --needed
-sudo pacman -S shotcut --noconfirm --needed
 sudo pacman -S aria2 --noconfirm --needed
 sudo pacman -S ttf-roboto --noconfirm --needed
 sudo pacman -S bluez bluez-utils --noconfirm --needed
@@ -159,11 +153,8 @@ yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm quickemu
 yay -S --noconfirm quickgui-bin
 yay -S --noconfirm konsave
-flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs
-flatpak install --noninteractive flathub com.usebottles.bottles
-flatpak install --noninteractive flathub com.brave.Browser
-flatpak install --noninteractive flathub com.github.tchx84.Flatseal
-flatpak install --noninteractive flathub org.kde.peruse
+flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub org.gimp.GIMP && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub com.sublimetext.three && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub net.pcsx2.PCSX2 && flatpak install --noninteractive flathub org.shotcut.Shotcut && flatpak install --noninteractive flathub io.github.Hexchat
+flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub fr.handbrake.ghb && flatpak install --noninteractive flathub net.davidotek.pupgui2 && flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub com.brave.Browser
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
 sudo pacman -U autobrr*.tar.zst --noconfirm --needed
 mkdir -p ~/.othercrap
