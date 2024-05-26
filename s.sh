@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ##################### git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
 #https://github.com/howling50/Top-5-Bootloader-Themes
-#git clone https://github.com/yeyushengfan258/Win11OS-kde 
+#git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 #curl -L https://nixos.org/nix/install | sh
 #distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --additional-packages "systemd git fzf eza starship zoxide thefuck nvim" --home ~/Media/container/arch
 SECONDS=0
@@ -54,8 +54,6 @@ wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd
 cd ~/Downloads/inst/
-sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
-sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 # ---------------------------------
 convert ~/Downloads/inst/script/monkey.jpg ~/Downloads/inst/script/monkey.png
 mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
