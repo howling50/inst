@@ -4,7 +4,7 @@
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #curl -L https://nixos.org/nix/install | sh
-#distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --additional-packages "systemd git fzf eza starship zoxide thefuck nvim" --home ~/Media/container/arch
+#distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --additional-packages "systemd git fzf eza starship zoxide thefuck neovim" --home ~/Media/container/arch
 SECONDS=0
 sudo zypper update
 sudo zypper install -y -n powerline-fonts starship
@@ -20,11 +20,12 @@ sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups
 #-----------------------------------------------------
 sudo zypper remove -y kwalletmanager kmail
 sudo zypper install -y -n ffmpeg-7 bat zoxide fzf gdu tree eza thefuck ripgrep e2fsprogs podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts oxygen6-cursors
-sudo zypper install -y -n less dxvk hardinfo opi mpg123 ImageMagick python312-pytest-tldr feh fastfetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar protontricks mkvtoolnix-tools mkvtoolnix-gui gparted gimp celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty calibre kdialog shotcut aria2 google-roboto-fonts fuseiso android-tools yakuake
+sudo zypper install -y -n less dxvk hardinfo opi mpg123 ImageMagick python312-pytest-tldr feh fastfetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty kdialog aria2 google-roboto-fonts fuseiso android-tools yakuake
 sudo opi -n codecs
 #-----------------------------------------------------------------
-#ventoy-bin bdinfo-git quickgui-bin input-remapper-git quickemu sublime-text-4
-sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub org.kde.peruse && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal && sudo flatpak install --noninteractive flathub com.brave.Browser && sudo flatpak install --noninteractive flathub com.discordapp.Discord
+#ventoy-bin bdinfo-git quickgui-bin input-remapper-git quickemu
+sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal && sudo flatpak install --noninteractive flathub com.brave.Browser
+sudo flatpak install --noninteractive flathub com.calibre_ebook.calibre && sudo flatpak install --noninteractive flathub org.gimp.GIMP && sudo flatpak install --noninteractive flathub com.github.Matoking.protontricks && sudo flatpak install --noninteractive flathub com.sublimetext.three && sudo flatpak install --noninteractive flathub io.gitlab.librewolf-community && sudo flatpak install --noninteractive flathub net.pcsx2.PCSX2 && sudo flatpak install --noninteractive flathub org.shotcut.Shotcut && sudo flatpak install --noninteractive flathub io.github.Hexchat
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep linux_amd64.rpm | cut -d\" -f4) && sudo zypper --no-gpg-checks install -y -n ~/Downloads/inst/autobrr*.rpm
 mkdir -p ~/.othercrap
 wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=~/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=~/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop
