@@ -118,7 +118,6 @@ sudo pacman -S kitty --noconfirm --needed
 sudo pacman -S gamemode --noconfirm --needed
 sudo pacman -S audacious --noconfirm --needed
 sudo pacman -S lutris --noconfirm --needed
-sudo pacman -S masscan --noconfirm --needed
 sudo pacman -S net-tools --noconfirm --needed
 sudo pacman -S zip --noconfirm --needed
 sudo pacman -S unzip --noconfirm --needed
@@ -142,7 +141,7 @@ sudo pacman -S aegisub --noconfirm --needed
 sudo pacman -S virtualbox --noconfirm --needed
 sudo pacman -S qbittorrent --noconfirm --needed
 sudo pacman -S putty --noconfirm --needed 
-sudo pacman -S calibre --noconfirm --needed
+#sudo pacman -S calibre --noconfirm --needed
 sudo pacman -S kdialog --noconfirm --needed
 sudo pacman -S shotcut --noconfirm --needed
 sudo pacman -S aria2 --noconfirm --needed
