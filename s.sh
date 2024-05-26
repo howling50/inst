@@ -2,6 +2,7 @@
 ##################### git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
 #https://github.com/howling50/Top-5-Bootloader-Themes
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
+#sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #curl -L https://nixos.org/nix/install | sh
 #distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --additional-packages "systemd git fzf eza starship zoxide thefuck nvim" --home ~/Media/container/arch
 SECONDS=0
@@ -18,8 +19,9 @@ cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && 
 sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #-----------------------------------------------------
 sudo zypper remove -y kwalletmanager kmail
-sudo zypper install -y -n ffmpeg-7 bat zoxide fzf gdu tree eza thefuck ripgrep e2fsprogs podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts
+sudo zypper install -y -n ffmpeg-7 bat zoxide fzf gdu tree eza thefuck ripgrep e2fsprogs podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts oxygen6-cursors
 sudo zypper install -y -n less dxvk hardinfo opi mpg123 ImageMagick python312-pytest-tldr feh fastfetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar protontricks mkvtoolnix-tools mkvtoolnix-gui gparted gimp celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty calibre kdialog shotcut aria2 google-roboto-fonts fuseiso android-tools yakuake
+sudo opi -n codecs
 #-----------------------------------------------------------------
 #ventoy-bin bdinfo-git quickgui-bin input-remapper-git quickemu sublime-text-4
 sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub org.kde.peruse && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal && sudo flatpak install --noninteractive flathub com.brave.Browser && sudo flatpak install --noninteractive flathub com.discordapp.Discord
