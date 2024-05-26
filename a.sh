@@ -146,7 +146,7 @@ sudo pacman -S kdialog --noconfirm --needed
 sudo pacman -S shotcut --noconfirm --needed
 sudo pacman -S aria2 --noconfirm --needed
 sudo pacman -S ttf-roboto --noconfirm --needed
-sudo pacman -S bluez-utils --noconfirm --needed
+sudo pacman -S bluez bluez-utils blueman --noconfirm --needed
 sudo pacman -S fuseiso --noconfirm --needed
 sudo pacman -S android-tools --noconfirm --needed
 sudo pacman -S flatpak --noconfirm --needed
