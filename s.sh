@@ -61,6 +61,7 @@ cp -r ~/Downloads/inst/files/* ~/.config/
 cd
 cd ~/Downloads/inst/
 # ---------------------------------
+sudo snapper -c home create-config /home
 convert ~/Downloads/inst/script/monkey.jpg ~/Downloads/inst/script/monkey.png
 mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
 mkdir -p ~/.othercrap/dedrm
