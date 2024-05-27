@@ -112,8 +112,17 @@ alias bd='cd "$OLDPWD"'
 alias cls='clear'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias rkhunt='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
-alias punlock='sudo chmod +rw /var/lib/pacman/db.lck && sudo rm /var/lib/pacman/db.lck'
-alias kernelupdate='sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg'
+kernelupdate () {
+    if command -v pacman &> /dev/null; then
+        echo "Updating GRUB for Arch Linux..."
+        sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg
+    elif command -v zypper &> /dev/null; then
+        echo "Updating GRUB for openSUSE..."
+        sudo mkinitcpio -P && sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+    else
+        echo "Neither Arch Linux nor openSUSE found. GRUB update aborted."
+    fi
+}
 alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo, ncdu, fzf, ftext, cpp, ver, distro, thefuck, distrobox"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
@@ -126,11 +135,32 @@ alias cat='bat'
 alias listen='sudo lsof -i -P -n | grep LISTEN'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='curl ifconfig.me'
-alias delall='sudo pacman -Rs $(pacman -Qqtd)'
+delall () {
+    if command -v pacman &> /dev/null; then
+        echo "Running cleanup for pacman..."
+        sudo pacman -Rs $(pacman -Qqtd)
+    elif command -v zypper &> /dev/null; then
+        echo "Running cleanup for zypper..."
+        sudo zypper cc -a
+    else
+        echo "Neither pacman nor zypper found. Cleanup aborted."
+    fi
+}
 alias mnt="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | grep -E ^/dev/ | sort"
 finds ()
 {
   find / -iname "$1" 2>/dev/null
+}
+punlock() {
+    if command -v pacman &> /dev/null; then
+        echo "Unlocking pacman..."
+        sudo chmod +rw /var/lib/pacman/db.lck && sudo rm /var/lib/pacman/db.lck
+    elif command -v zypper &> /dev/null; then
+        echo "Unlocking zypper..."
+        sudo chmod +rw /var/run/zypp.pid && sudo rm /var/run/zypp.pid
+    else
+        echo "Neither pacman nor zypper found. Nothing to unlock."
+    fi
 }
 extract() {
 	for archive in "$@"; do
@@ -155,7 +185,6 @@ extract() {
 	done
 }
 alias grep='grep --color'
-alias fastpacman='sudo pacman-mirrors --geoip'
 alias rm='rm -I --preserve-root'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -163,7 +192,6 @@ alias vim='nvim'
 alias vimrc='nvim ~/.config/nvim/init.lua'
 alias bashrc='nvim ~/.bashrc'
 alias zshrc='nvim ~/.zshrc'
-alias vim='nvim'
 nmapauto ()
 {
  sudo nmap -Pn -T4 -A -p- -sV "$1"
@@ -178,11 +206,22 @@ image ()
 {
   kitty icat --transfer-mode=file "$1"
 }
-pacdel ()
-{
-  sudo pacman -Rcns "$1"
+depdel () {
+if [ -z "$1" ]; then
+        echo "Please provide a package name."
+        return 1
+    fi
+
+    if command -v pacman &> /dev/null; then
+        echo "Removing package with pacman..."
+        sudo pacman -Rcns "$1"
+    elif command -v zypper &> /dev/null; then
+        echo "Removing package with zypper..."
+        sudo zypper rm -u "$1"
+    else
+        echo "Neither pacman nor zypper found. Cannot remove package."
+    fi
 }
-alias slist='sudo btrfs subv list /'
 alias h="history | grep "
 # Search running processes
 alias plist="ps aux | grep "
@@ -309,7 +348,7 @@ ver() {
 			uname -a
 			;;
 		"suse")
-			cat /etc/SuSE-release
+			cat /usr/lib/os-release
 			;;
 		"debian")
 			lsb_release -a
