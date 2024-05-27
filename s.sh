@@ -3,7 +3,7 @@
 #https://github.com/howling50/Top-5-Bootloader-Themes
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
-curl -L https://nixos.org/nix/install | sh
+#curl -L https://nixos.org/nix/install | sh
 #distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --additional-packages "systemd git fzf eza starship zoxide thefuck neovim" --home ~/Media/container/arch
 #https://www.opensuse-community.org/
 SECONDS=0
