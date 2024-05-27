@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 ##################### git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
 #https://github.com/howling50/Top-5-Bootloader-Themes
+#git clone https://github.com/yeyushengfan258/Win11OS-kde 
 SECONDS=0
 #yay -S quickemu
 #yay -S quickgui-bin
@@ -249,9 +250,7 @@ sudo systemctl start grub-btrfsd.service
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd
 cd ~/Downloads/inst/
-#git clone https://github.com/yeyushengfan258/Win11OS-kde 
-#sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
-#lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
+sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 sleep 2
 # ----------------------------------------------
 #konsave -i ~/Downloads/inst/kde2.knsv
