@@ -176,6 +176,7 @@ chmod +x ~/.local/share/applications/stacer.desktop
 mkdir -p ~/.local/share/kservices5/ServiceMenus/
 cp ~/Downloads/inst/scripts/mediainfo.sh ~/.othercrap/
 cp ~/Downloads/inst/scripts/mediainfo.desktop ~/.local/share/kservices5/ServiceMenus/
+sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #------------Remote -----------------------------------
 #sudo pacman -S remmina --noconfirm --needed
 #yay -S --noconfirm remmina-plugin-teamviewer
