@@ -157,7 +157,6 @@ flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak in
 wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && sudo mv ani-cli /usr/local/bin
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
 sudo pacman -U autobrr*.tar.zst --noconfirm --needed
-wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && sudo mv ani-cli /usr/local/bin
 mkdir -p ~/.othercrap
 wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage
 chmod +x Stacer-1.1.0-x64.AppImage
