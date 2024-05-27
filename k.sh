@@ -28,12 +28,12 @@ sudo mkdir -p /etc/crontab
 sudo mkdir -p /etc/cron.minutely
 sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/
 chmod +x ~/Downloads/inst/scripts/*
-sudo cp ~/Downloads/inst/scripts/1 /usr/bin/
-sudo cp ~/Downloads/inst/scripts/2 /usr/bin/
-sudo cp ~/Downloads/inst/scripts/timer /usr/bin/
-sudo cp ~/Downloads/inst/scripts/saferm /usr/bin/
-sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/bin/
-sudo cp ~/Downloads/inst/scripts/checkerror /usr/bin/
+sudo cp ~/Downloads/inst/scripts/1 /usr/local/bin
+sudo cp ~/Downloads/inst/scripts/2 /usr/local/bin
+sudo cp ~/Downloads/inst/scripts/timer /usr/local/bin
+sudo cp ~/Downloads/inst/scripts/saferm /usr/local/bin
+sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/local/bin
+sudo cp ~/Downloads/inst/scripts/checkerror /usr/local/bin
 #-------
 sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media && sudo chattr -R +C /Media
 btrfs subvol create ~/Media
@@ -216,7 +216,7 @@ sudo pacman -U ~/Downloads/inst/grub-customizer-5.2.4-1-x86_64.pkg.tar.zst --noc
 wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
 mv yt-dlp_linux yt-dlp
 chmod +x yt-dlp
-sudo cp ~/Downloads/inst/yt-dlp /usr/bin/
+sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
 wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip
 #---------------Firewall--------------
 sudo ufw allow proto tcp from 192.168.0.0/24 to any port 1714:1764
