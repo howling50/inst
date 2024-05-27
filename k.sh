@@ -31,7 +31,6 @@ chmod +x ~/Downloads/inst/scripts/*
 sudo cp ~/Downloads/inst/scripts/1 /usr/local/bin
 sudo cp ~/Downloads/inst/scripts/2 /usr/local/bin
 sudo cp ~/Downloads/inst/scripts/timer /usr/local/bin
-sudo cp ~/Downloads/inst/scripts/saferm /usr/local/bin
 sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/local/bin
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/local/bin
 #-------
@@ -155,8 +154,10 @@ yay -S --noconfirm quickgui-bin
 yay -S --noconfirm konsave
 flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub org.gimp.GIMP && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub com.sublimetext.three && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub net.pcsx2.PCSX2 && flatpak install --noninteractive flathub org.shotcut.Shotcut && flatpak install --noninteractive flathub io.github.Hexchat
 flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub fr.handbrake.ghb && flatpak install --noninteractive flathub net.davidotek.pupgui2 && flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub com.brave.Browser
+wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && sudo mv ani-cli /usr/local/bin
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
 sudo pacman -U autobrr*.tar.zst --noconfirm --needed
+wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && sudo mv ani-cli /usr/local/bin
 mkdir -p ~/.othercrap
 wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage
 chmod +x Stacer-1.1.0-x64.AppImage
