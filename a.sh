@@ -249,9 +249,9 @@ sudo systemctl start grub-btrfsd.service
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd
 cd ~/Downloads/inst/
-git clone https://github.com/yeyushengfan258/Win11OS-kde 
-sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
-lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
+#git clone https://github.com/yeyushengfan258/Win11OS-kde 
+#sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
+#lookandfeeltool -a com.github.yeyushengfan258.Win11OS-dark 2>/dev/null
 sleep 2
 # ----------------------------------------------
 #konsave -i ~/Downloads/inst/kde2.knsv
