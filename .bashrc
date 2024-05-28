@@ -5,7 +5,7 @@ iatest=$(expr index "$-" i)
 [[ $- != *i* ]] && return
 ###################################################
 #if [ -f /usr/bin/fastfetch ]; then
-#	fastfetch --logo ~/.othercrap/N51R4iT.jpg
+#	fastfetch
 #fi
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -200,8 +200,7 @@ freeram ()
 {
   sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches && sleep 2 && free -h'
 }
-alias neofetch='fastfetch --logo ~/.othercrap/N51R4iT.jpg'
-#alias fastfetch='fastfetch --logo ~/.othercrap/N51R4iT.jpg'
+alias neofetch='fastfetch'
 image ()                                                                                                                                               
 {
   kitty icat --transfer-mode=file "$1"
