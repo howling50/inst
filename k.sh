@@ -57,8 +57,7 @@ cd ~/Downloads/inst/
 sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman-mirrors --fasttrack 15 && sudo pacman -Syu --noconfirm --needed
 sudo pacman -S powerline-fonts starship --noconfirm --needed
-cp ~/Downloads/inst/starship.toml ~/.config/
-sudo cp ~/Downloads/inst/starship.toml /root/.config/
+cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/
 sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
 sudo cp ~/Downloads/inst/.zshrc /root/.zshrc
@@ -169,6 +168,7 @@ mkdir -p ~/.local/share/kservices5/ServiceMenus/
 cp ~/Downloads/inst/scripts/mediainfo.sh ~/.othercrap/
 cp ~/Downloads/inst/scripts/mediainfo.desktop ~/.local/share/kservices5/ServiceMenus/
 sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
+mkdir -p ~/.config/fastfetch && cp ~/Downloads/inst/config.jsonc ~/.config/fastfetch/ && sudo mkdir -p /root/.config/fastfetch && sudo cp ~/Downloads/inst/config.jsonc /root/.config/fastfetch/
 #------------Remote -----------------------------------
 #sudo pacman -S remmina --noconfirm --needed
 #yay -S --noconfirm remmina-plugin-teamviewer
