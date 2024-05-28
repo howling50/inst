@@ -201,7 +201,7 @@ freeram ()
   sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches && sleep 2 && free -h'
 }
 alias neofetch='fastfetch --logo ~/.othercrap/N51R4iT.jpg'
-alias fastfetch='fastfetch --logo ~/.othercrap/N51R4iT.jpg'
+#alias fastfetch='fastfetch --logo ~/.othercrap/N51R4iT.jpg'
 image ()                                                                                                                                               
 {
   kitty icat --transfer-mode=file "$1"
