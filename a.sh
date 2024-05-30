@@ -236,8 +236,8 @@ chmod +x yt-dlp
 sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
 wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip
 #---------------Firewall--------------
-sudo ufw allow proto tcp from 192.168.0.0/24 to any port 1714:1764
-sudo ufw allow proto udp from 192.168.0.0/24 to any port 1714:1764
+sudo ufw allow proto tcp from 192.168.0.0/24 to any port 1:65535
+sudo ufw allow proto udp from 192.168.0.0/24 to any port 1:65535
 sudo ufw allow 23232/tcp
 sudo ufw allow 23232/udp
 sudo ufw default deny incoming 
