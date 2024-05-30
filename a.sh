@@ -148,7 +148,7 @@ sudo pacman -S flatpak --noconfirm --needed
 sudo pacman -S yakuake --noconfirm --needed
 #sudo pacman -S kdeplasma-addons --noconfirm --needed
 sudo pacman -S apparmor --noconfirm --needed
-sudo pacman -S ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza thefuck memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
+sudo pacman -S flatpak-kcm ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza thefuck memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm reflector-simple
 yay -S --noconfirm aarchup
@@ -161,8 +161,9 @@ yay -S --noconfirm bdinfo-git
 yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm sublime-text-4 
 #yay -S --noconfirm konsave
+#flatpak install --noninteractive flathub com.github.tchx84.Flatseal
 flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub org.gimp.GIMP && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub net.pcsx2.PCSX2 && flatpak install --noninteractive flathub org.shotcut.Shotcut && flatpak install --noninteractive flathub io.github.Hexchat
-flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub fr.handbrake.ghb && flatpak install --noninteractive flathub net.davidotek.pupgui2 && flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub com.brave.Browser
+flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub fr.handbrake.ghb && flatpak install --noninteractive flathub net.davidotek.pupgui2 && flatpak install --noninteractive flathub com.brave.Browser
 wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && sudo mv ani-cli /usr/local/bin
 wget $(curl -s https://api.github.com/repos/ventoy/Ventoy/releases/latest | grep download | grep linux.tar.gz | cut -d\" -f4) > /dev/null 2>&1
 tar -xzf ~/Downloads/inst/ventoy*.tar.gz -C ~/.othercrap/
