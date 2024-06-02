@@ -134,7 +134,6 @@ sudo pacman -S flac --noconfirm --needed
 sudo pacman -S grub-btrfs --noconfirm --needed
 sudo pacman -S grub-customizer --noconfirm --needed
 sudo pacman -S filezilla --noconfirm --needed
-sudo pacman -S aegisub --noconfirm --needed
 sudo pacman -S virtualbox --noconfirm --needed
 sudo pacman -S qbittorrent --noconfirm --needed
 sudo pacman -S putty --noconfirm --needed 
@@ -235,6 +234,8 @@ mv yt-dlp_linux yt-dlp
 chmod +x yt-dlp
 sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
 wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip
+wget https://github.com/sc0ty/subsync/releases/download/0.17/subsync-0.17.0-portable-amd64.exe
+mv ~/Downloads/inst/subsync-0.17.0-portable-amd64.exe ~/.othercrap/
 #---------------Firewall--------------
 sudo ufw allow proto tcp from 192.168.0.0/24 to any port 1:65535
 sudo ufw allow proto udp from 192.168.0.0/24 to any port 1:65535
