@@ -22,8 +22,8 @@ cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && 
 sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #-----------------------------------------------------
 sudo zypper remove -y kwalletmanager kmail
-sudo zypper install -y -n xkill firewall-config tealdeer patterns-devel-base-devel_basis bat zoxide fzf gdu tree eza thefuck ripgrep e2fsprogs podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts oxygen6-cursors mpv
-sudo zypper install -y -n less dxvk hardinfo opi mpg123 ImageMagick feh fastfetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty kdialog aria2 fuseiso android-tools yakuake
+sudo zypper install -y -n xkill firewall-config tealdeer patterns-devel-base-devel_basis bat zoxide fzf gdu eza thefuck ripgrep podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts oxygen6-cursors mpv
+sudo zypper install -y -n dxvk hardinfo opi mpg123 feh fastfetch hiredis ccache nmap fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty aria2 fuseiso android-tools yakuake
 sudo opi -n codecs
 sudo opi -n input-remapper
 sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
