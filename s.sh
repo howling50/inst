@@ -71,6 +71,8 @@ wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd
 cd ~/Downloads/inst/
+wget https://github.com/sc0ty/subsync/releases/download/0.17/subsync-0.17.0-portable-amd64.exe
+mv ~/Downloads/inst/subsync-0.17.0-portable-amd64.exe ~/.othercrap/
 # ---------------------------------
 convert ~/Downloads/inst/script/monkey.jpg ~/Downloads/inst/script/monkey.png
 mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
