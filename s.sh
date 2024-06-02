@@ -7,6 +7,7 @@
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #curl -L https://nixos.org/nix/install | sh
 #distrobox create -n arch -i quay.io/toolbx/arch-toolbox --init --additional-packages "systemd git fzf eza starship zoxide thefuck neovim" --home ~/Media/container/arch
+#mkdir -p /home/howling/Media/container/arch/.config/nvim && cp /home/howling/.bash* /home/howling/Media/container/arch/ && cp /home/howling/.config/starship.toml /home/howling/Media/container/arch/.config/ && cp /home/howling/.config/nvim/* /home/howling/Media/container/arch/.config/nvim/
 #https://www.opensuse-community.org/
 SECONDS=0
 sudo zypper ref && sudo zypper up
