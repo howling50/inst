@@ -54,7 +54,7 @@ sudo zypper addlock qbittorrent
 sudo touch /etc/cron.weekly/balance
 sudo bash -c 'echo -e "#!/usr/bin/env bash\nbtrfs scrub start / >> /home/howling/scrub.txt" >> /etc/cron.weekly/balance'
 #-----------------
-sudo firewall-cmd --permanent --new-zone=howling && sudo firewall-cmd --permanent --zone=howling --add-source=192.168.0.0/24 && sudo firewall-cmd --permanent --zone=howling --add-rich-rule='rule family="ipv4" port port="1-65535" protocol="tcp" accept' && sudo firewall-cmd --permanent --zone=howling --add-rich-rule='rule family="ipv4" port port="1-65535" protocol="udp" accept' && sudo firewall-cmd --permanent --zone=howling --add-port=23232/tcp && sudo firewall-cmd --permanent --zone=howling --add-port=23232/udp && sudo firewall-cmd --permanent --zone=howling --set-target=DROP && sudo firewall-cmd --set-default-zone=howling && sudo firewall-cmd --reload
+sudo firewall-cmd --permanent --new-zone=howling && sudo firewall-cmd --permanent --zone=howling --add-source=192.168.0.0/24 && sudo firewall-cmd --permanent --zone=howling --add-rich-rule='rule family="ipv4" port port="1-65535" protocol="tcp" accept' && sudo firewall-cmd --permanent --zone=howling --add-rich-rule='rule family="ipv4" port port="1-65535" protocol="udp" accept' && sudo firewall-cmd --permanent --zone=howling --add-port=23232/tcp && sudo firewall-cmd --permanent --zone=howling --add-port=23232/udp && sudo firewall-cmd --permanent --zone=howling --set-target=DROP && sudo firewall-cmd --reload && sudo firewall-cmd --set-default-zone=howling
 sudo chmod +x /etc/cron.weekly/balance
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/ && mkdir -p ~/.config/nvim/ && cp ~/Downloads/inst/init.lua ~/.config/nvim/
