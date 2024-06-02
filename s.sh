@@ -9,8 +9,6 @@
 #https://www.opensuse-community.org/
 SECONDS=0
 sudo zypper ref && sudo zypper up
-sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman
-sudo zypper dup --from packman --allow-vendor-change
 sudo zypper install -y -n powerline-fonts starship
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 8G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
@@ -24,7 +22,7 @@ sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups
 #-----------------------------------------------------
 sudo zypper remove -y kwalletmanager kmail
 sudo zypper install -y -n xkill firewall-config tealdeer patterns-devel-base-devel_basis bat zoxide fzf gdu tree eza thefuck ripgrep e2fsprogs podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts oxygen6-cursors mpv
-sudo zypper install -y -n less dxvk hardinfo opi mpg123 ImageMagick feh fastfetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty kdialog aria2 google-roboto-fonts fuseiso android-tools yakuake
+sudo zypper install -y -n less dxvk hardinfo opi mpg123 ImageMagick feh fastfetch binutils hiredis ccache nmap make autoconf flex gcc patch automake bison fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid mediainfo flac filezilla aegisub virtualbox qbittorrent putty kdialog aria2 fuseiso android-tools yakuake
 sudo opi -n codecs
 sudo opi -n input-remapper
 sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
