@@ -123,7 +123,7 @@ kernelupdate () {
         echo "Neither Arch Linux nor openSUSE found. GRUB update aborted."
     fi
 }
-alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo, ncdu, fzf, ftext, cpp, ver, distro, thefuck, distrobox, ani-cli, cmus"'
+alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo, ncdu, fzf, ftext, cpp, ver, distro, thefuck, distrobox, ani-cli, cmus, vis"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
