@@ -138,11 +138,11 @@ sudo pacman -S fuseiso --noconfirm --needed
 sudo pacman -S android-tools --noconfirm --needed
 sudo pacman -S tldr --noconfirm --needed
 sudo pacman -S feh --noconfirm --needed
-sudo pacman -S flatpak-kcm blueman podman distrobox e2fsprogs ripgrep zoxide fzf gdu tree eza thefuck --noconfirm --needed
+sudo pacman -S w3m ddgr ttf-firacode-nerd cmus flatpak-kcm blueman podman distrobox e2fsprogs ripgrep zoxide fzf gdu tree eza thefuck --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 #yay -S --noconfirm virtualbox-ext-oracle
-yay -S --noconfirm hardinfo2
+yay -S --noconfirm hardinfo2 cli-visualizer
 yay -S --noconfirm dxvk-bin
 yay -S --noconfirm input-remapper-git
 yay -S --noconfirm ttf-meslo
