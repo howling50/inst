@@ -104,7 +104,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
-alias freshclam='sudo freshclam'
+alias ddgr="BROWSER=w3m ddgr "
 alias mkdir='mkdir -p'
 alias ..='cd ..'
 alias cd..='cd ..'
@@ -123,7 +123,7 @@ kernelupdate () {
         echo "Neither Arch Linux nor openSUSE found. GRUB update aborted."
     fi
 }
-alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo, ncdu, fzf, ftext, cpp, ver, distro, thefuck, distrobox, ani-cli, cmus, vis"'
+alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo, ncdu, fzf, ftext, cpp, ver, distro, thefuck, distrobox, ani-cli, cmus, vis, ddgr, w3m"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
