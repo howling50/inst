@@ -105,6 +105,14 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
 alias cd="z"
+alias cdi="zi"
+rgvim() {
+    local choice
+    choice=$(rg -il "$1" | fzf --exit-0 --select-1 --ansi --preview "cat {} | rg --context 3 \"$1\"")
+    if [ -n "$choice" ]; then
+        nvim "+/$(echo "$1" | tr '[:upper:]' '[:lower:]')" "$choice"
+    fi
+}
 alias ddgr="BROWSER=w3m ddgr "
 alias mkdir='mkdir -p'
 alias ..='cd ..'
