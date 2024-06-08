@@ -104,6 +104,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+alias cd="z"
 alias ddgr="BROWSER=w3m ddgr "
 alias mkdir='mkdir -p'
 alias ..='cd ..'
@@ -408,7 +409,7 @@ _fzf_comprun() {
   esac
 }
 eval "$(fzf --bash)"
-eval "$(zoxide init --cmd cd bash)"
+eval "$(zoxide init bash)"
 eval $(thefuck --alias fuck)
 eval $(thefuck --alias)
 eval "$(starship init bash)"
