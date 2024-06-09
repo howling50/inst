@@ -3,8 +3,6 @@
 #https://github.com/howling50/Top-5-Bootloader-Themes
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 SECONDS=0
-#yay -S quickemu
-#yay -S quickgui-bin
 sudo pacman -S reflector --noconfirm --needed
 sudo reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -S linux-headers --noconfirm --needed
@@ -81,6 +79,13 @@ sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
 balooctl disable
 sudo rm -rf ~/./local/share/baloo
+#-------------qemu---------------------------------
+sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm
+sudo systemctl enable --now libvirtd
+sudo usermod -a -G libvirt $(whoami)
+sudo systemctl restart libvirtd
+sudo virsh net-define /etc/libvirt/qemu/networks/default.xml
+sudo virsh net-autostart default
 #-----------------------------------------------------
 sudo pacman -Rns kwalletmanager
 sudo pacman -R elisa --noconfirm
@@ -149,6 +154,8 @@ sudo pacman -S apparmor --noconfirm --needed
 sudo pacman -S w3m ddgr ttf-firacode-nerd cmus xorg-xkill flatpak-kcm ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza thefuck memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm reflector-simple
+yay -S --noconfirm quickemu
+yay -S --noconfirm quickgui-bin
 yay -S --noconfirm cli-visualizer
 yay -S --noconfirm aarchup
 yay -S --noconfirm pyakm
