@@ -154,8 +154,8 @@ sudo pacman -S apparmor --noconfirm --needed
 sudo pacman -S w3m ddgr ttf-firacode-nerd cmus xorg-xkill flatpak-kcm ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza thefuck memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gst-libav gst-plugins-good gst-plugins-ugly gwenview kvantum-qt5 libdvdcss ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm reflector-simple
-yay -S --noconfirm quickemu
-yay -S --noconfirm quickgui-bin
+#yay -S --noconfirm quickemu
+#yay -S --noconfirm quickgui-bin
 yay -S --noconfirm cli-visualizer
 yay -S --noconfirm aarchup
 yay -S --noconfirm pyakm
