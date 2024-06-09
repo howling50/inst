@@ -104,6 +104,8 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+alias weather="curl wttr.in"
+alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
 pacinfo() {
   if command -v pacman &> /dev/null; then
     pacman -Q | fzf --preview='pacman -Qi {1}' --preview-window=up
