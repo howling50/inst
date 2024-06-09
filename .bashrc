@@ -104,6 +104,15 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+pacinfo() {
+  if command -v pacman &> /dev/null; then
+    pacman -Q | fzf --preview='pacman -Qi {1}' --preview-window=up
+  elif command -v zypper &> /dev/null; then
+    rpm -qa | fzf --preview='rpm -qi {1}' --preview-window=up
+  else
+    echo "No supported package manager found (pacman or zypper)."
+  fi
+}
 alias cd="z"
 alias cdi="zi"
 rgvim() {
@@ -132,7 +141,7 @@ kernelupdate () {
         echo "Neither Arch Linux nor openSUSE found. GRUB update aborted."
     fi
 }
-alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo, ncdu, fzf, ftext, cpp, ver, distro, thefuck, distrobox, ani-cli, cmus, vis, ddgr, w3m"'
+alias listapp='echo "yt-dlp, autobrr, nmap, checkupdates, proxychains, 1, 2, aria2c, fuseiso, bdinfo, gdu, fzf, ftext, cpp, ver, distro, thefuck, distrobox, ani-cli, cmus, vis, ddgr, w3m, rgvim, kernelupdate, delall, depdel, extract, punlock, pacinfo"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
