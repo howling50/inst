@@ -58,13 +58,9 @@ sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman-mirrors --fasttrack 15 && sudo pacman -Syu --noconfirm --needed
 sudo pacman -S powerline-fonts starship --noconfirm --needed
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/
-sudo rm -rf /root/.zshrc
 sudo rm -rf /root/.bashrc
-sudo cp ~/Downloads/inst/.zshrc /root/.zshrc
 sudo cp ~/Downloads/inst/.bashrc /root/.bashrc
-sudo rm -rf ~/.zshrc
 sudo rm -rf ~/.bashrc
-cp ~/Downloads/inst/.zshrc ~/.zshrc
 cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo pacman -S yay --noconfirm --needed
 sudo systemctl stop cups
