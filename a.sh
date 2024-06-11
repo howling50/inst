@@ -153,7 +153,6 @@ yay -S --noconfirm reflector-simple
 #yay -S --noconfirm quickemu
 #yay -S --noconfirm quickgui-bin
 yay -S --noconfirm cli-visualizer
-yay -S --noconfirm pyakm
 #yay -S --noconfirm virtualbox-ext-oracle
 yay -S --noconfirm hardinfo2
 yay -S --noconfirm dxvk-bin
