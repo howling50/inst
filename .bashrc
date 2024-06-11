@@ -149,7 +149,6 @@ alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
 alias more='less'
 alias cat='bat'
 alias listen='sudo lsof -i -P -n | grep LISTEN'
