@@ -10,8 +10,9 @@ menu() {
     echo "6. Convert FLAC 24-bit to 16-bit FLAC"
     echo "7. Convert FLAC to MP3 (320 kbps)"
     echo "8. Convert all Opus to 16-bit FLAC"
+    echo "9. Convert all *.webm to .mkv in the folder"
     echo "0. Exit"
-    read -p "Enter your choice (0-8): " choice
+    read -p "Enter your choice (0-9): " choice
 
     case "$choice" in
         1)
@@ -51,6 +52,12 @@ menu() {
                 ffmpeg -i "$file" -f flac -sample_fmt s16 -ar 44100 "${file%.opus}.flac"
             done
             echo "Conversion of Opus to 16-bit FLAC completed."
+            ;;
+        9)
+            for f in *.webm; do
+                mkvmerge -o "${f%.webm}.mkv" "$f"
+            done
+            echo "Conversion of WEBM to MKV completed."
             ;;
         0)
             exit 0
