@@ -138,7 +138,7 @@ kernelupdate () {
         sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg
     elif command -v zypper &> /dev/null; then
         echo "Updating GRUB for openSUSE..."
-        sudo mkinitcpio -P && sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+        sudo dracut --force --regenerate-all && sudo grub2-mkconfig -o /boot/grub2/grub.cfg
     else
         echo "Neither Arch Linux nor openSUSE found. GRUB update aborted."
     fi
