@@ -9,7 +9,7 @@ menu() {
     echo "5. Fix Flac"
     echo "6. Convert FLAC 24-bit to 16-bit FLAC"
     echo "7. Convert FLAC to MP3 (320 kbps)"
-    echo "8. Convert all WebM to 16-bit FLAC"
+    echo "8. Convert all Opus to 16-bit FLAC"
     echo "0. Exit"
     read -p "Enter your choice (0-8): " choice
 
@@ -47,10 +47,10 @@ menu() {
             echo "Conversion to MP3 (320 kbps) completed."
             ;;
         8)
-            for file in *.webm; do
-                ffmpeg -i "$file" -f flac -sample_fmt s16 -ar 44100 "${file%.webm}.flac"
+            for file in *.opus; do
+                ffmpeg -i "$file" -f flac -sample_fmt s16 -ar 44100 "${file%.opus}.flac"
             done
-            echo "Conversion of WebM to 16-bit FLAC completed."
+            echo "Conversion of Opus to 16-bit FLAC completed."
             ;;
         0)
             exit 0
