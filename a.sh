@@ -132,7 +132,6 @@ sudo pacman -S celluloid --noconfirm --needed
 sudo pacman -S mediainfo --noconfirm --needed
 sudo pacman -S flac gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S grub-btrfs --noconfirm --needed
-sudo pacman -S grub-customizer --noconfirm --needed
 sudo pacman -S filezilla --noconfirm --needed
 sudo pacman -S virtualbox --noconfirm --needed
 sudo pacman -S qbittorrent --noconfirm --needed
