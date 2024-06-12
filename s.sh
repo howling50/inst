@@ -29,8 +29,7 @@ sudo zypper install -y -n w3m ddgr cmus cmus-plugins-all xkill firewall-config t
 sudo zypper install -y -n dxvk hardinfo opi mpg123 feh fastfetch hiredis ccache nmap fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim
 sudo zypper install -y -n kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid mediainfo flac filezilla virtualbox qbittorrent putty aria2 fuseiso android-tools yakuake
 sudo opi -n codecs
-sudo opi -n input-remapper
-sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
+#sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #-----------------------------------------------------------------
 #bdinfo-git quickemu quickgui-bin aegisub cli-visualizer ytfzf
 sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.brave.Browser
