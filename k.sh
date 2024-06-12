@@ -67,6 +67,13 @@ sudo systemctl stop cups
 sudo systemctl disable cups.service cups.socket cups.path
 balooctl disable
 sudo rm -rf ~/./local/share/baloo
+#-------------qemu---------------------------------
+sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm
+sudo systemctl enable --now libvirtd
+sudo usermod -a -G libvirt $(whoami)
+sudo systemctl restart libvirtd
+sudo virsh net-define /etc/libvirt/qemu/networks/default.xml
+sudo virsh net-autostart default
 #-----------------------------------------------------
 sudo pacman -Rns kwalletmanager --noconfirm
 sudo pacman -R elisa --noconfirm
@@ -134,7 +141,7 @@ sudo pacman -S fuseiso --noconfirm --needed
 sudo pacman -S android-tools --noconfirm --needed
 sudo pacman -S tldr --noconfirm --needed
 sudo pacman -S feh --noconfirm --needed
-sudo pacman -S w3m ddgr ttf-firacode-nerd cmus flatpak-kcm blueman podman distrobox e2fsprogs ripgrep zoxide fzf gdu tree eza thefuck --noconfirm --needed
+sudo pacman -S ytfzf w3m ddgr ttf-firacode-nerd cmus flatpak-kcm blueman podman distrobox e2fsprogs ripgrep zoxide fzf gdu tree eza thefuck --noconfirm --needed
 #-----------------------------------------------------------------
 yay --sudoloop --save
 #yay -S --noconfirm virtualbox-ext-oracle
