@@ -132,18 +132,18 @@ alias bd='cd "$OLDPWD"'
 alias cls='clear'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias rkhunt='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
-kernelupdate () {
+makegrub () {
     if command -v pacman &> /dev/null; then
         echo "Updating GRUB for Arch Linux..."
-        sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg
+        sudo grub-mkconfig -o /boot/grub/grub.cfg
     elif command -v zypper &> /dev/null; then
         echo "Updating GRUB for openSUSE..."
-        sudo dracut --force --regenerate-all && sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+        sudo grub2-mkconfig -o /boot/grub2/grub.cfg
     else
         echo "Neither Arch Linux nor openSUSE found. GRUB update aborted."
     fi
 }
-alias listapp='echo "yt-dlp, autobrr, nmap, proxychains, 1, 2, aria2c, fuseiso, bdinfo, gdu, fzf, ftext, cpp, ver, distro, thefuck, distrobox, ani-cli, cmus, vis, ddgr, w3m, rgvim, kernelupdate, delall, depdel, extract, punlock, pacinfo"'
+alias listapp='echo "yt-dlp, autobrr, nmap, proxychains, 1, 2, aria2c, fuseiso, bdinfo, gdu, fzf, ftext, cpp, ver, distro, thefuck, distrobox, ani-cli, cmus, vis, ddgr, w3m, rgvim, makegrub, delall, depdel, extract, punlock, pacinfo"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
