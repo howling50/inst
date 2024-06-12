@@ -217,7 +217,6 @@ cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 sudo mkdir -p /root/.config/nvim/
 sudo cp ~/Downloads/inst/init.lua /root/.config/nvim/
 cd ~/Downloads/inst/
-sudo pacman -U ~/Downloads/inst/grub-customizer-5.2.4-1-x86_64.pkg.tar.zst --noconfirm --needed
 wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
 mv yt-dlp_linux yt-dlp
 chmod +x yt-dlp
