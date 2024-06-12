@@ -183,6 +183,7 @@ mkdir -p ~/.config/fastfetch && cp ~/Downloads/inst/config.jsonc ~/.config/fastf
 #yay -S --noconfirm remmina-plugin-folder
 #------------------------------------------------------------------
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
+mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
 #------------------------------------------rk hunter--------------------------
 sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local 
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
