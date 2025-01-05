@@ -279,7 +279,7 @@ cd ..
 sudo chattr -R +C ~/Media
 sudo chattr -R +C ~/Downloads
 sudo chattr -R +C ~/.wine
-convert ~/Downloads/inst/script/monkey.jpg monkey.png
+magick ~/Downloads/inst/script/monkey.jpg monkey.png
 mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
 qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'string:var allDesktops = desktops();print (allDesktops);for (i=0;i<allDesktops.length;i++) {d = allDesktops[i];d.wallpaperPlugin = "org.kde.image";d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");d.writeConfig("Image", "file://'$HOME'/.othercrap/monkey.png");}'
 cd ~/Downloads/inst/
