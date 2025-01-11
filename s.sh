@@ -15,8 +15,9 @@ sudo zypper ref && sudo zypper up
 sudo zypper install -y -n powerline-fonts starship
 #----Swap-------
 sudo btrfs subvol create /Swap
-sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144
-sudo chattr -C /Swap/swapfile
+sudo chattr -R +C /Swap
+sudo swapoff -a
+sudo fallocate -l 6G /Swap/swapfile
 sudo chmod 600 /Swap/swapfile
 sudo mkswap /Swap/swapfile
 sudo swapon /Swap/swapfile
@@ -26,20 +27,8 @@ sudo swapon -a
 sudo mkdir -p /etc/cron.minutely && sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/ && chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/1 /usr/local/bin && sudo cp ~/Downloads/inst/scripts/2 /usr/local/bin && sudo cp ~/Downloads/inst/scripts/timer /usr/local/bin && sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/local/bin && sudo cp ~/Downloads/inst/scripts/checkerror /usr/local/bin
 #-------
 sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media
-mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine
-sudo chattr -R +C ~/.config/qBittorrent
-sudo chattr -R +C ~/Media
-sudo chattr -R +C ~/.wine
-sudo btrfs subvol create /root/flatpak_local
-sudo btrfs subvol create /home/$(whoami)/flatpak_system
-sudo chattr -C /root/flatpak_local
-sudo chattr -C /home/$(whoami)/flatpak_system
-sudo mv ~/.local/share/flatpak/* /root/flatpak_local/
-sudo mv /var/lib/flatpak/* /home/$(whoami)/flatpak_system/
-sudo mount -o subvol=flatpak_local /root/flatpak_local ~/.local/share/flatpak
-sudo mount -o subvol=flatpak_system /home/$(whoami)/flatpak_system /var/lib/flatpak
-echo "/root/flatpak_local  /home/$(whoami)/.local/share/flatpak  btrfs  subvol=flatpak_local  0  0" | sudo tee -a /etc/fstab
-echo "/home/$(whoami)/flatpak_system /var/lib/flatpak  btrfs  subvol=flatpak_system  0  0" | sudo tee -a /etc/fstab#--------
+mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine && sudo mkdir -p /var/lib/flatpak && mkdir -p ~/.local/share/flatpak
+sudo chattr -R +C ~/.config/qBittorrent && sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine && sudo chattr -R +C /var/lib/flatpak && sudo chattr -R +C ~/.local/share/flatpak
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #-----------------------------------------------------
@@ -64,7 +53,7 @@ chmod +x ~/.local/share/applications/stacer.desktop && mkdir -p ~/.local/share/k
 mkdir -p ~/.config/fastfetch && cp ~/Downloads/inst/config.jsonc ~/.config/fastfetch/ && sudo mkdir -p /root/.config/fastfetch && sudo cp ~/Downloads/inst/config.jsonc /root/.config/fastfetch/
 #------------------------------------------------------------------
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
-#mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
+mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
 #------------------------------------------rk hunter--------------------------
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
