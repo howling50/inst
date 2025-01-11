@@ -45,6 +45,7 @@ sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/local/bin
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/local/bin
 #-------
 sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media
+mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine
 sudo chattr -R +C ~/.config/qBittorrent
 sudo chattr -R +C ~/Media
 sudo chattr -R +C ~/Downloads
