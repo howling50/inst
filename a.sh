@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-##################### git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
+##################### sudo chattr -R +C ~/Downloads then git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
 #https://github.com/howling50/Top-5-Bootloader-Themes
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 SECONDS=0
@@ -48,7 +48,6 @@ sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo
 mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine
 sudo chattr -R +C ~/.config/qBittorrent
 sudo chattr -R +C ~/Media
-sudo chattr -R +C ~/Downloads
 sudo chattr -R +C ~/.wine
 sudo btrfs subvol create /root/flatpak_local
 sudo btrfs subvol create /home/$(whoami)/flatpak_system
