@@ -26,8 +26,8 @@ yay --sudoloop --save
 #yay -S --noconfirm timeshift-autosnap
 #----Swap-------
 sudo btrfs subvol create /Swap
-sudo chattr -C /Swap/swapfile
 sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144
+sudo chattr -C /Swap/swapfile
 sudo chmod 600 /Swap/swapfile
 sudo mkswap /Swap/swapfile
 sudo swapon /Swap/swapfile
