@@ -50,16 +50,6 @@ mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine
 sudo chattr -R +C ~/.config/qBittorrent
 sudo chattr -R +C ~/Media
 sudo chattr -R +C ~/.wine
-sudo btrfs subvol create /root/flatpak_local
-sudo btrfs subvol create /home/$(whoami)/flatpak_system
-sudo chattr -C /root/flatpak_local
-sudo chattr -C /home/$(whoami)/flatpak_system
-sudo mv ~/.local/share/flatpak/* /root/flatpak_local/
-sudo mv /var/lib/flatpak/* /home/$(whoami)/flatpak_system/
-sudo mount -o subvol=flatpak_local /root/flatpak_local ~/.local/share/flatpak
-sudo mount -o subvol=flatpak_system /home/$(whoami)/flatpak_system /var/lib/flatpak
-echo "/root/flatpak_local  /home/$(whoami)/.local/share/flatpak  btrfs  subvol=flatpak_local  0  0" | sudo tee -a /etc/fstab
-echo "/home/$(whoami)/flatpak_system /var/lib/flatpak  btrfs  subvol=flatpak_system  0  0" | sudo tee -a /etc/fstab
 #--------
 cd
 cd ~/Downloads/inst/
