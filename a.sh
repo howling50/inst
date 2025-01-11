@@ -25,11 +25,9 @@ cd ~/Downloads/inst
 yay --sudoloop --save
 #yay -S --noconfirm timeshift-autosnap
 #----Swap-------
-#sudo mkdir /Swap
 sudo btrfs subvol create /Swap
-sudo chattr -R +C /Swap
-sudo swapoff -a
-sudo fallocate -l 6G /Swap/swapfile
+sudo chattr -C /Swap/swapfile
+sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144
 sudo chmod 600 /Swap/swapfile
 sudo mkswap /Swap/swapfile
 sudo swapon /Swap/swapfile
@@ -46,15 +44,21 @@ sudo cp ~/Downloads/inst/scripts/timer /usr/local/bin
 sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/local/bin
 sudo cp ~/Downloads/inst/scripts/checkerror /usr/local/bin
 #-------
-sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media && sudo chattr -R +C /Media
-btrfs subvol create ~/.config/qBittorrent
-btrfs subvol create ~/Media
-btrfs subvol create ~/.wine
-sudo mv ~/Downloads ~/Downloads.old
-btrfs subvol create ~/Downloads
-sudo mv ~/Downloads.old/* ~/Downloads/
-sudo rmdir ~/Downloads.old
+sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media
 sudo chattr -R +C ~/.config/qBittorrent
+sudo chattr -R +C ~/Media
+sudo chattr -R +C ~/Downloads
+sudo chattr -R +C ~/.wine
+sudo btrfs subvol create /root/flatpak_local
+sudo btrfs subvol create /home/$(whoami)/flatpak_system
+sudo chattr -C /root/flatpak_local
+sudo chattr -C /home/$(whoami)/flatpak_system
+sudo mv ~/.local/share/flatpak/* /root/flatpak_local/
+sudo mv /var/lib/flatpak/* /home/$(whoami)/flatpak_system/
+sudo mount -o subvol=flatpak_local /root/flatpak_local ~/.local/share/flatpak
+sudo mount -o subvol=flatpak_system /home/$(whoami)/flatpak_system /var/lib/flatpak
+echo "/root/flatpak_local  /home/$(whoami)/.local/share/flatpak  btrfs  subvol=flatpak_local  0  0" | sudo tee -a /etc/fstab
+echo "/home/$(whoami)/flatpak_system /var/lib/flatpak  btrfs  subvol=flatpak_system  0  0" | sudo tee -a /etc/fstab
 #--------
 cd
 cd ~/Downloads/inst/
@@ -275,9 +279,6 @@ mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
 #conky -c ~/.conkyrc &
 sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
 cd ..
-sudo chattr -R +C ~/Media
-sudo chattr -R +C ~/Downloads
-sudo chattr -R +C ~/.wine
 magick ~/Downloads/inst/script/monkey.jpg monkey.png
 mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
 cd ~/Downloads/inst/
