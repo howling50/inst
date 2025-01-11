@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-##################### git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
+##################### sudo chattr -R +C ~/Downloads and git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
 #sudo snapper -c home create-config /home
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 #sudo visudo (Defaults timestamp_timeout=60)
@@ -14,12 +14,32 @@ sudo zypper ref && sudo zypper up
 #sudo zypper dup --from packman --allow-vendor-change
 sudo zypper install -y -n powerline-fonts starship
 #----Swap-------
-sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 8G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
+sudo btrfs subvol create /Swap
+sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144
+sudo chattr -C /Swap/swapfile
+sudo chmod 600 /Swap/swapfile
+sudo mkswap /Swap/swapfile
+sudo swapon /Swap/swapfile
+echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo swapon -a
 #------------
 sudo mkdir -p /etc/cron.minutely && sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/ && chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/1 /usr/local/bin && sudo cp ~/Downloads/inst/scripts/2 /usr/local/bin && sudo cp ~/Downloads/inst/scripts/timer /usr/local/bin && sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/local/bin && sudo cp ~/Downloads/inst/scripts/checkerror /usr/local/bin
 #-------
-sudo btrfs subvol create ~/Media && sudo chown $(whoami):$(whoami) ~/Media && sudo chmod 755 ~/Media && sudo btrfs subvol create ~/.wine && sudo chown $(whoami):$(whoami) ~/.wine && sudo chmod 755 ~/.wine && sudo btrfs subvol create ~/.config/qBittorrent && sudo chown $(whoami):$(whoami) ~/.config/qBittorrent && sudo chmod 755 ~/.config/qBittorrent
-#--------
+sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media
+mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine
+sudo chattr -R +C ~/.config/qBittorrent
+sudo chattr -R +C ~/Media
+sudo chattr -R +C ~/.wine
+sudo btrfs subvol create /root/flatpak_local
+sudo btrfs subvol create /home/$(whoami)/flatpak_system
+sudo chattr -C /root/flatpak_local
+sudo chattr -C /home/$(whoami)/flatpak_system
+sudo mv ~/.local/share/flatpak/* /root/flatpak_local/
+sudo mv /var/lib/flatpak/* /home/$(whoami)/flatpak_system/
+sudo mount -o subvol=flatpak_local /root/flatpak_local ~/.local/share/flatpak
+sudo mount -o subvol=flatpak_system /home/$(whoami)/flatpak_system /var/lib/flatpak
+echo "/root/flatpak_local  /home/$(whoami)/.local/share/flatpak  btrfs  subvol=flatpak_local  0  0" | sudo tee -a /etc/fstab
+echo "/home/$(whoami)/flatpak_system /var/lib/flatpak  btrfs  subvol=flatpak_system  0  0" | sudo tee -a /etc/fstab#--------
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #-----------------------------------------------------
@@ -84,7 +104,6 @@ mv ~/Downloads/inst/script/tampermonkey-* ~/.othercrap/
 mv ~/Downloads/inst/script/*.exe ~/.othercrap/
 mv ~/Downloads/inst/script/'XMouseButtonControl 2.20.5 Portable.zip' ~/.othercrap/
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
-sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine
 cd ~/Downloads/inst/
 sudo sed -i '$ a\set superusers="mastros"\npassword_pbkdf2 mastros grub.pbkdf2.sha512.10000.77DA16D22A3A8D15AA247F40FA13D6248A92B70D588CFBA14D0C61B15CB7BA37D7895693F643A4C84E5F0891AFB73CD83724D5B6B636A9722B94F726D4F5AAFA.B27F2FE6F14E583AFECAD4E5775498C1144639FB415F228F877EFACF8A1A3DA2BD5781238BD47BA00C4444C51A7F9D232E96F8C0A193E6FD8B64F2BC4E857A10' /etc/grub.d/40_custom
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=-1/' /etc/default/grub
