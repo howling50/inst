@@ -272,7 +272,6 @@ mv ~/Downloads/inst/script/'XMouseButtonControl 2.20.5 Portable.zip' ~/.othercra
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
 magick ~/Downloads/inst/script/monkey.jpg ~/Downloads/inst/script/monkey.png
 mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
-qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'string:var allDesktops = desktops();print (allDesktops);for (i=0;i<allDesktops.length;i++) {d = allDesktops[i];d.wallpaperPlugin = "org.kde.image";d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");d.writeConfig("Image", "file://'$HOME'/.othercrap/monkey.png");}'
 #conky -c ~/.conkyrc &
 sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
 cd ..
@@ -281,7 +280,6 @@ sudo chattr -R +C ~/Downloads
 sudo chattr -R +C ~/.wine
 magick ~/Downloads/inst/script/monkey.jpg monkey.png
 mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
-qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'string:var allDesktops = desktops();print (allDesktops);for (i=0;i<allDesktops.length;i++) {d = allDesktops[i];d.wallpaperPlugin = "org.kde.image";d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");d.writeConfig("Image", "file://'$HOME'/.othercrap/monkey.png");}'
 cd ~/Downloads/inst/
 sudo sed -i '$ a\set superusers="mastros"\npassword_pbkdf2 mastros grub.pbkdf2.sha512.10000.77DA16D22A3A8D15AA247F40FA13D6248A92B70D588CFBA14D0C61B15CB7BA37D7895693F643A4C84E5F0891AFB73CD83724D5B6B636A9722B94F726D4F5AAFA.B27F2FE6F14E583AFECAD4E5775498C1144639FB415F228F877EFACF8A1A3DA2BD5781238BD47BA00C4444C51A7F9D232E96F8C0A193E6FD8B64F2BC4E857A10' /etc/grub.d/40_custom
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=-1/' /etc/default/grub
