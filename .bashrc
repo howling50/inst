@@ -104,6 +104,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+alias ytfzf='invidious_instance="https://vid.puffyan.us" ytfzf'
 alias weather="curl wttr.in"
 alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
 pacinfo() {
