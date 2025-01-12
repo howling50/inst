@@ -218,6 +218,7 @@ sudo systemctl start fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/
 mkdir -p ~/.config/nvim/
 cp ~/Downloads/inst/init.lua ~/.config/nvim/
+ytfzf --ytdl-path=yt-dlp
 curl -O https://i.imgur.com/N51R4iT.jpg
 cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 sudo mkdir -p /root/.config/nvim/
