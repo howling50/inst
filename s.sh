@@ -14,15 +14,7 @@ sudo zypper ref && sudo zypper up
 #sudo zypper dup --from packman --allow-vendor-change
 sudo zypper install -y -n powerline-fonts starship
 #----Swap-------
-sudo btrfs subvol create /Swap
-sudo chattr -R +C /Swap
-sudo swapoff -a
-sudo fallocate -l 6G /Swap/swapfile
-sudo chmod 600 /Swap/swapfile
-sudo mkswap /Swap/swapfile
-sudo swapon /Swap/swapfile
-echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-sudo swapon -a
+sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
 #------------
 sudo mkdir -p /etc/cron.minutely && sudo cp ~/Downloads/inst/mycronjobs /etc/cron.d/ && chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/1 /usr/local/bin && sudo cp ~/Downloads/inst/scripts/2 /usr/local/bin && sudo cp ~/Downloads/inst/scripts/timer /usr/local/bin && sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/local/bin && sudo cp ~/Downloads/inst/scripts/checkerror /usr/local/bin
 #-------
@@ -60,9 +52,9 @@ sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo zypper addlock qbittorrent
 sudo systemctl start cron
-#sudo touch /etc/cron.weekly/balance
+#sudo touch /etc/cron.monthly/balance
 #sudo touch /etc/cron.monthly/btrfs_balance
-#sudo bash -c 'echo -e "#!/usr/bin/env bash\n\n# Scrub root filesystem\nbtrfs scrub start / >> /home/howling/scrub.txt 2>&1\n\n# Scrub secondary drives\nbtrfs scrub start /home/howling/Media/D >> /home/howling/scrub.txt 2>&1\nbtrfs scrub start /home/howling/Media/E >> /home/howling/scrub.txt 2>&1" > /etc/cron.weekly/balance'
+#sudo bash -c 'echo -e "#!/usr/bin/env bash\n\n# Scrub root filesystem\nbtrfs scrub start / >> /home/howling/scrub.txt 2>&1\n\n# Scrub secondary drives\nbtrfs scrub start /home/howling/Media/D >> /home/howling/scrub.txt 2>&1\nbtrfs scrub start /home/howling/Media/E >> /home/howling/scrub.txt 2>&1" > /etc/cron.monthly/balance'
 #sudo bash -c 'echo -e "#!/usr/bin/env bash\n\n# Balance secondary drives\n\ndate >> /home/howling/balance.txt\nbtrfs balance start /home/howling/Media/D >> /home/howling/balance.txt 2>&1\nbtrfs balance start /home/howling/Media/E >> /home/howling/balance.txt 2>&1" > /etc/cron.monthly/btrfs_balance'
 #sudo chmod +x /etc/cron.weekly/balance
 #sudo chmod +x /etc/cron.monthly/btrfs_balance
