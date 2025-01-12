@@ -60,14 +60,14 @@ sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo zypper addlock qbittorrent
 sudo systemctl start cron
-sudo touch /etc/cron.weekly/balance
-sudo touch /etc/cron.monthly/btrfs_balance
-sudo bash -c 'echo -e "#!/usr/bin/env bash\n\n# Scrub root filesystem\nbtrfs scrub start / >> /home/howling/scrub.txt 2>&1\n\n# Scrub secondary drives\nbtrfs scrub start /home/howling/Media/D >> /home/howling/scrub.txt 2>&1\nbtrfs scrub start /home/howling/Media/E >> /home/howling/scrub.txt 2>&1" > /etc/cron.weekly/balance'
-sudo bash -c 'echo -e "#!/usr/bin/env bash\n\n# Balance secondary drives\n\ndate >> /home/howling/balance.txt\nbtrfs balance start /home/howling/Media/D >> /home/howling/balance.txt 2>&1\nbtrfs balance start /home/howling/Media/E >> /home/howling/balance.txt 2>&1" > /etc/cron.monthly/btrfs_balance'
+#sudo touch /etc/cron.weekly/balance
+#sudo touch /etc/cron.monthly/btrfs_balance
+#sudo bash -c 'echo -e "#!/usr/bin/env bash\n\n# Scrub root filesystem\nbtrfs scrub start / >> /home/howling/scrub.txt 2>&1\n\n# Scrub secondary drives\nbtrfs scrub start /home/howling/Media/D >> /home/howling/scrub.txt 2>&1\nbtrfs scrub start /home/howling/Media/E >> /home/howling/scrub.txt 2>&1" > /etc/cron.weekly/balance'
+#sudo bash -c 'echo -e "#!/usr/bin/env bash\n\n# Balance secondary drives\n\ndate >> /home/howling/balance.txt\nbtrfs balance start /home/howling/Media/D >> /home/howling/balance.txt 2>&1\nbtrfs balance start /home/howling/Media/E >> /home/howling/balance.txt 2>&1" > /etc/cron.monthly/btrfs_balance'
+#sudo chmod +x /etc/cron.weekly/balance
+#sudo chmod +x /etc/cron.monthly/btrfs_balance
 #-----------------
 sudo firewall-cmd --permanent --new-zone=howling && sudo firewall-cmd --permanent --zone=howling --add-source=192.168.0.0/24 && sudo firewall-cmd --permanent --zone=howling --add-rich-rule='rule family="ipv4" port port="1-65535" protocol="tcp" accept' && sudo firewall-cmd --permanent --zone=howling --add-rich-rule='rule family="ipv4" port port="1-65535" protocol="udp" accept' && sudo firewall-cmd --permanent --zone=howling --add-port=23232/tcp && sudo firewall-cmd --permanent --zone=howling --add-port=23232/udp && sudo firewall-cmd --permanent --zone=howling --set-target=DROP && sudo firewall-cmd --reload && sudo firewall-cmd --set-default-zone=howling
-sudo chmod +x /etc/cron.weekly/balance
-sudo chmod +x /etc/cron.monthly/btrfs_balance
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/ && mkdir -p ~/.config/nvim/ && cp ~/Downloads/inst/init.lua ~/.config/nvim/
 curl -O https://i.imgur.com/N51R4iT.jpg
