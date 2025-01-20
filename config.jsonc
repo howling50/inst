@@ -3,10 +3,10 @@
     "logo": {
         "source": "/home/howling/.othercrap/N51R4iT.jpg",
         "type": "kitty",
-        "height": 24,
-        "width": 35,
+        "height": 15,
+        "width": 30,
         "padding": {
-            "top": 1,
+            "top": 5,
             "left": 1
         }
     },
