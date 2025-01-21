@@ -2,16 +2,18 @@
 ##################### sudo chattr -R +C ~/Downloads then git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
 #https://github.com/howling50/Top-5-Bootloader-Themes
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
+#sudo visudo (Defaults timestamp_timeout=60)
 SECONDS=0
+sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done'
 sudo pacman -S reflector --noconfirm --needed
 sudo reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -S linux-headers --noconfirm --needed
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
-sudo cp /etc/sudoers /etc/sudoers.tmp
-sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
-echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
-sudo cp /etc/sudoers.tmp /etc/sudoers
-sudo rm -rf /etc/sudoers.tmp
+#sudo cp /etc/sudoers /etc/sudoers.tmp
+#sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp
+#echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null
+#sudo cp /etc/sudoers.tmp /etc/sudoers
+#sudo rm -rf /etc/sudoers.tmp
 sudo pacman -S cronie man-db --noconfirm --needed
 sudo systemctl enable --now cronie.service
 sudo pacman -S fastfetch --noconfirm --needed
@@ -218,7 +220,6 @@ sudo systemctl start fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/
 mkdir -p ~/.config/nvim/
 cp ~/Downloads/inst/init.lua ~/.config/nvim/
-ytfzf --ytdl-path=yt-dlp
 curl -O https://i.imgur.com/N51R4iT.jpg
 cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 sudo mkdir -p /root/.config/nvim/
@@ -276,7 +277,7 @@ sudo sed -i '$ a\set superusers="mastros"\npassword_pbkdf2 mastros grub.pbkdf2.s
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=-1/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo sed -i '/^Defaults timestamp_timeout=/s/.*/# Defaults timestamp_timeout=15/' /etc/sudoers
+#sudo sed -i '/^Defaults timestamp_timeout=/s/.*/# Defaults timestamp_timeout=15/' /etc/sudoers
 mpg123 ~/.othercrap/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
