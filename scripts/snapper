@@ -51,6 +51,8 @@ sudo mount -a
 # snap
 echo "first manual snapshot"
 sudo snapper -c root create --description "initial snapshot"
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
 #btrfs subvolume get-default /
 # sudo btrfs subv list / get the id of root
 #btrfs subvolume set-default 256 /
