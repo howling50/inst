@@ -431,15 +431,6 @@ eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 
-# Check for updates in openSUSE
-if command -v zypper &> /dev/null; then
-    updates=$(zypper lu)
-    if [[ -n "$updates" ]]; then
-        echo "==== openSUSE Updates (zypper) ===="
-        echo "$updates"
-    fi
-fi
-
 # Check for updates in Arch official repositories
 if command -v checkupdates &> /dev/null; then
     updates=$(checkupdates)
