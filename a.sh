@@ -4,6 +4,7 @@
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 #sudo visudo (Defaults timestamp_timeout=60)
 SECONDS=0
+sudo chattr +C /home
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done'
 sudo pacman -S reflector --noconfirm --needed
 sudo reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
@@ -291,3 +292,5 @@ elif (( $SECONDS > 60 )) ; then
 else
     echo "Completed in $SECONDS seconds"
 fi
+#defaults,nodatacow,noatime,autodefrag,compress=zstd,space_cache=v2,nofail 0 0
+#defaults,ssd,discard,noatime,compress=zstd,space_cache=v2 0 1
