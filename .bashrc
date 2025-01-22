@@ -431,8 +431,38 @@ eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 
-# Check if checkupdates is installed and run it if it is
-if command -v checkupdates &> /dev/null
-then
-    checkupdates
+# Check for updates in openSUSE
+if command -v zypper &> /dev/null; then
+    updates=$(zypper lu)
+    if [[ -n "$updates" ]]; then
+        echo "==== openSUSE Updates (zypper) ===="
+        echo "$updates"
+    fi
+fi
+
+# Check for updates in Arch official repositories
+if command -v checkupdates &> /dev/null; then
+    updates=$(checkupdates)
+    if [[ -n "$updates" ]]; then
+        echo -e "\n==== Official Repository Updates (Arch) ===="
+        echo "$updates"
+    fi
+fi
+
+# Check for updates in AUR
+if command -v yay &> /dev/null; then
+    updates=$(yay -Qua)
+    if [[ -n "$updates" ]]; then
+        echo -e "\n==== AUR Updates ===="
+        echo "$updates"
+    fi
+fi
+
+# Check for updates in Flatpak
+if command -v flatpak &> /dev/null; then
+    updates=$(flatpak remote-ls --updates)
+    if [[ -n "$updates" ]]; then
+        echo -e "\n==== Flatpak Updates ===="
+        echo "$updates"
+    fi
 fi
