@@ -79,7 +79,7 @@ sudo systemctl restart libvirtd
 sudo virsh net-define /etc/libvirt/qemu/networks/default.xml
 sudo virsh net-autostart default
 #-----------------------------------------------------
-#sudo pacman -Rns kwalletmanager
+sudo pacman -Rns kwalletmanager --noconfirm
 sudo pacman -R elisa --noconfirm
 sudo pacman -R thunderbird --noconfirm
 sudo pacman -S binutils --noconfirm --needed
