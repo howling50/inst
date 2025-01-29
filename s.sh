@@ -30,11 +30,12 @@ sudo zypper remove -y kwalletmanager
 #sudo zypper remove -y xscreensaver
 sudo zypper install -y -n gsmartcontrol w3m ddgr cmus cmus-plugins-all xkill firewall-config tealdeer patterns-devel-base-devel_basis bat zoxide fzf gdu eza ripgrep podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts oxygen6-cursors mpv
 sudo zypper install -y -n dxvk hardinfo opi mpg123 feh fastfetch hiredis ccache nmap fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim
-sudo zypper install -y -n kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid mediainfo flac filezilla virtualbox qbittorrent putty aria2 fuseiso android-tools yakuake
+sudo zypper install -y -n kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid flac filezilla virtualbox qbittorrent putty aria2 fuseiso android-tools yakuake
 sudo opi -n codecs
 #sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #-----------------------------------------------------------------
 #bdinfo-git quickemu quickgui-bin aegisub ytfzf cmatrix mpv (ytfzf --ytdl-path=yt-dlp)
+sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo
 sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.brave.Browser
 sudo flatpak install --noninteractive flathub com.calibre_ebook.calibre && sudo flatpak install --noninteractive flathub org.gimp.GIMP && sudo flatpak install --noninteractive flathub com.github.Matoking.protontricks && sudo flatpak install --noninteractive flathub io.gitlab.librewolf-community && sudo flatpak install --noninteractive flathub net.pcsx2.PCSX2 && sudo flatpak install --noninteractive flathub org.shotcut.Shotcut && sudo flatpak install --noninteractive flathub io.github.Hexchat
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep linux_amd64.rpm | cut -d\" -f4) && sudo zypper --no-gpg-checks install -y -n ~/Downloads/inst/autobrr*.rpm
@@ -44,7 +45,7 @@ wget $(curl -s https://api.github.com/repos/ventoy/Ventoy/releases/latest | grep
 tar -xzf ~/Downloads/inst/ventoy*.tar.gz -C ~/.othercrap/
 ventoy_folder=$(find ~/.othercrap -maxdepth 1 -type d -name "ventoy-*"); mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Ventoy\nExec=$ventoy_folder/VentoyGUI.x86_64\nIcon=$ventoy_folder/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/Ventoy.desktop
 wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=~/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=~/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop
-chmod +x ~/.local/share/applications/stacer.desktop && mkdir -p ~/.local/share/kservices5/ServiceMenus/ && cp ~/Downloads/inst/scripts/mediainfo.sh ~/.othercrap/ && cp ~/Downloads/inst/scripts/mediainfo.desktop ~/.local/share/kservices5/ServiceMenus/
+chmod +x ~/.local/share/applications/stacer.desktop
 mkdir -p ~/.config/fastfetch && cp ~/Downloads/inst/config.jsonc ~/.config/fastfetch/ && sudo mkdir -p /root/.config/fastfetch && sudo cp ~/Downloads/inst/config.jsonc /root/.config/fastfetch/
 #------------------------------------------------------------------
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
