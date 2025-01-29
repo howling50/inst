@@ -470,3 +470,9 @@ if command -v flatpak &> /dev/null; then
         echo "$updates"
     fi
 fi
+if command -v proxychains &>/dev/null; then
+    alias proxychains="proxychains"
+elif command -v proxychains4 &>/dev/null; then
+    alias proxychains="proxychains4"
+fi
+
