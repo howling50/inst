@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ##################### sudo chattr -R +C ~/Downloads and git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
-#sudo zypper in systemd-zram-service &&  systemctl enable —now zramswap.service
+#sudo zypper in systemd-zram-service &&  sudo systemctl enable --now zramswap.service
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 #sudo visudo (Defaults timestamp_timeout=60)
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
