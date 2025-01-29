@@ -124,7 +124,6 @@ sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S mkvtoolnix-cli mkvtoolnix-gui --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 #sudo pacman -S conky --noconfirm --needed
-sudo pacman -S mediainfo --noconfirm --needed
 sudo pacman -S flac --noconfirm --needed
 sudo pacman -S grub-btrfs --noconfirm --needed
 sudo pacman -S filezilla --noconfirm --needed
@@ -157,6 +156,7 @@ yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm sublime-text-4 
 #yay -S --noconfirm konsave
 #flatpak install --noninteractive flathub com.github.tchx84.Flatseal
+sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo
 flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub org.gimp.GIMP && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub net.pcsx2.PCSX2 && flatpak install --noninteractive flathub org.shotcut.Shotcut && flatpak install --noninteractive flathub io.github.Hexchat
 flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub fr.handbrake.ghb && flatpak install --noninteractive flathub net.davidotek.pupgui2 && flatpak install --noninteractive flathub com.brave.Browser
 wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && sudo mv ani-cli /usr/local/bin
@@ -172,9 +172,6 @@ cp Stacer-1.1.0-x64.AppImage ~/.othercrap/
 mkdir -p ~/.local/share/applications/
 echo -e "[Desktop Entry]\nName=Stacer\nExec=~/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=~/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop
 chmod +x ~/.local/share/applications/stacer.desktop
-mkdir -p ~/.local/share/kservices5/ServiceMenus/
-cp ~/Downloads/inst/scripts/mediainfo.sh ~/.othercrap/
-cp ~/Downloads/inst/scripts/mediainfo.desktop ~/.local/share/kservices5/ServiceMenus/
 sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 mkdir -p ~/.config/fastfetch && cp ~/Downloads/inst/config.jsonc ~/.config/fastfetch/ && sudo mkdir -p /root/.config/fastfetch && sudo cp ~/Downloads/inst/config.jsonc /root/.config/fastfetch/
 #------------Remote -----------------------------------
