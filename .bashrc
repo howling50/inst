@@ -107,6 +107,19 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 alias ytfzf='invidious_instance="https://vid.puffyan.us" ytfzf --rii --ytdl-path=yt-dlp'
 alias weather="curl wttr.in"
 alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
+refmirrors() {
+  if command -v reflector &> /dev/null; then
+    echo "Detected Arch Linux (or derivative). Updating mirrors using reflector..."
+    sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+    echo "Mirror list updated successfully."
+  elif command -v zypper &> /dev/null; then
+    echo "Detected openSUSE. Refreshing repositories using zypper..."
+    sudo zypper refresh
+    echo "Repositories refreshed successfully."
+  else
+    echo "No supported package manager or tool found (reflector or zypper)."
+  fi
+}
 pacinfo() {
   if command -v pacman &> /dev/null; then
     pacman -Q | fzf --preview='pacman -Qi {1}' --preview-window=up
@@ -144,7 +157,7 @@ makegrub () {
         echo "Neither Arch Linux nor openSUSE found. GRUB update aborted."
     fi
 }
-alias listapp='echo "yt-dlp, autobrr, nmap, proxychains, 1, 2, aria2c, fuseiso, bdinfo, gdu, fzf, ftext, cpp, ver, distro, distrobox, ani-cli, cmus, vis, ddgr, w3m, rgvim, makegrub, delall, depdel, extract, punlock, pacinfo, ytfzf"'
+alias listapp='echo "yt-dlp, autobrr, nmap, proxychains, 1, 2, aria2c, fuseiso, bdinfo, gdu, fzf, ftext, cpp, ver, distro, distrobox, ani-cli, cmus, vis, ddgr, w3m, rgvim, makegrub, delall, depdel, extract, punlock, pacinfo, ytfzf, refmirrors"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
