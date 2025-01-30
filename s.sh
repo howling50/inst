@@ -25,7 +25,7 @@ cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && 
 sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #-----------------------------------------------------
 sudo zypper remove -y kwalletmanager && sudo zypper addlock kwalletmanager
-akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clean-deps -y akonadi && sudo zypper addlock akonadi
+akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clean-deps -y akonadi && sudo zypper addlock akonadi patterns-kde-kde_pim
 #sudo zypper remove -y xscreensaver
 #sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors guake
 sudo zypper install -y -n yakuake oxygen6-cursors
