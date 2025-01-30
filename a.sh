@@ -130,17 +130,16 @@ sudo pacman -S filezilla --noconfirm --needed
 #sudo pacman -S virtualbox --noconfirm --needed
 sudo pacman -S qbittorrent --noconfirm --needed
 sudo pacman -S putty --noconfirm --needed 
-sudo pacman -S kdialog --noconfirm --needed
+sudo pacman -S kdialog yakuake --noconfirm --needed
 sudo pacman -S aria2 --noconfirm --needed
 sudo pacman -S ttf-roboto --noconfirm --needed
 sudo pacman -S bluez bluez-utils blueman --noconfirm --needed
 sudo pacman -S fuseiso --noconfirm --needed
 sudo pacman -S android-tools --noconfirm --needed
 sudo pacman -S flatpak --noconfirm --needed
-sudo pacman -S yakuake --noconfirm --needed
 #sudo pacman -S kdeplasma-addons --noconfirm --needed
 sudo pacman -S apparmor --noconfirm --needed
-sudo pacman -S gsmartcontrol cmatrix ytfzf w3m ddgr ttf-firacode-nerd cmus xorg-xkill flatpak-kcm ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gwenview kvantum-qt5 ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
+sudo pacman -S gsmartcontrol cmatrix ytfzf w3m ddgr ttf-firacode-nerd cmus xorg-xkill ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh oxygen-icons alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gwenview kvantum-qt5 ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm ffmpeg-full
 yay -S --noconfirm reflector-simple
@@ -155,7 +154,7 @@ yay -S --noconfirm bdinfo-git
 yay -S --noconfirm ttf-ms-fonts
 yay -S --noconfirm sublime-text-4 
 #yay -S --noconfirm konsave
-#flatpak install --noninteractive flathub com.github.tchx84.Flatseal
+sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal
 sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo
 flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub org.gimp.GIMP && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub net.pcsx2.PCSX2 && flatpak install --noninteractive flathub org.shotcut.Shotcut && flatpak install --noninteractive flathub io.github.Hexchat
 flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub fr.handbrake.ghb && flatpak install --noninteractive flathub net.davidotek.pupgui2 && flatpak install --noninteractive flathub com.brave.Browser
