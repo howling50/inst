@@ -110,7 +110,6 @@ sudo pacman -S tor --noconfirm --needed
 sudo pacman -S neovim --noconfirm --needed
 sudo pacman -S pkgconf --noconfirm --needed
 sudo pacman -S kitty --noconfirm --needed
-sudo pacman -S gamemode --noconfirm --needed
 sudo pacman -S audacious --noconfirm --needed
 sudo pacman -S lutris --noconfirm --needed
 sudo pacman -S net-tools --noconfirm --needed
