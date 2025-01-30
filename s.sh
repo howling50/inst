@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 ##################### sudo chattr -R +C ~/Downloads and git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
-#sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 #sudo visudo (Defaults timestamp_timeout=60)
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
@@ -8,8 +7,8 @@
 #/etc/sysconfig/btrfsmaintenance
 #mkdir -p ~/Media/container/arch && distrobox-create -n arch -i quay.io/toolbx/arch-toolbox --init --additional-packages "systemd git fzf eza starship zoxide thefuck neovim" --home ~/Media/container/arch
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/ && wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux && mv yt-dlp_linux yt-dlp && chmod +x yt-dlp && sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin/
-#https://www.opensuse-community.org/
 SECONDS=0
+sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
 sudo zypper ref && sudo zypper up
 #sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman
 #sudo zypper dup --from packman --allow-vendor-change
