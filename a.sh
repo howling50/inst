@@ -138,7 +138,7 @@ sudo pacman -S android-tools --noconfirm --needed
 sudo pacman -S flatpak --noconfirm --needed
 #sudo pacman -S xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme --noconfirm --needed
 sudo pacman -S apparmor --noconfirm --needed
-sudo pacman -S gsmartcontrol cmatrix ytfzf w3m ddgr ttf-firacode-nerd cmus xorg-xkill ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gwenview kvantum-qt5 ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
+sudo pacman -S gamemode gsmartcontrol cmatrix ytfzf w3m ddgr ttf-firacode-nerd cmus xorg-xkill ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gwenview kvantum-qt5 ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm ffmpeg-full
 yay -S --noconfirm reflector-simple
