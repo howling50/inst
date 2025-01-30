@@ -8,10 +8,9 @@
 #mkdir -p ~/Media/container/arch && distrobox-create -n arch -i quay.io/toolbx/arch-toolbox --init --additional-packages "systemd git fzf eza starship zoxide thefuck neovim" --home ~/Media/container/arch
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/ && wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux && mv yt-dlp_linux yt-dlp && chmod +x yt-dlp && sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin/
 SECONDS=0
-sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
 sudo zypper ref && sudo zypper up
-#sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman
-#sudo zypper dup --from packman --allow-vendor-change
+sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
+#sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman && sudo zypper dup --from packman --allow-vendor-change
 sudo zypper install -y -n powerline-fonts starship memtest86+
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
@@ -32,12 +31,12 @@ akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clea
 sudo zypper install -y -n yakuake oxygen6-cursors
 sudo zypper install -y -n gsmartcontrol w3m ddgr cmus cmus-plugins-all xkill firewall-config tealdeer bat zoxide fzf gdu eza ripgrep podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts mpv
 sudo zypper install -y -n dxvk hardinfo opi mpg123 feh fastfetch hiredis ccache nmap fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim
-sudo zypper install -y -n kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid flac filezilla virtualbox qbittorrent putty aria2 fuseiso android-tools
+sudo zypper install -y -n kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid flac filezilla qbittorrent putty aria2 fuseiso android-tools
 sudo opi -n codecs
 #sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #-----------------------------------------------------------------
 #bdinfo-git quickemu quickgui-bin aegisub ytfzf cmatrix mpv (ytfzf --ytdl-path=yt-dlp) patterns-devel-base-devel_basis
-sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal
+sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal && sudo flatpak install --noninteractive flathub org.remmina.Remmina
 sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.brave.Browser
 sudo flatpak install --noninteractive flathub com.calibre_ebook.calibre && sudo flatpak install --noninteractive flathub org.gimp.GIMP && sudo flatpak install --noninteractive flathub com.github.Matoking.protontricks && sudo flatpak install --noninteractive flathub io.gitlab.librewolf-community && sudo flatpak install --noninteractive flathub net.pcsx2.PCSX2 && sudo flatpak install --noninteractive flathub org.shotcut.Shotcut && sudo flatpak install --noninteractive flathub io.github.Hexchat
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep linux_amd64.rpm | cut -d\" -f4) && sudo zypper --no-gpg-checks install -y -n ~/Downloads/inst/autobrr*.rpm
