@@ -6,7 +6,7 @@
 #curl -L https://nixos.org/nix/install | sh
 #/etc/sysconfig/btrfsmaintenance
 #mkdir -p ~/Media/container/arch && distrobox-create -n arch -i quay.io/toolbx/arch-toolbox --init --additional-packages "systemd git fzf eza starship zoxide thefuck neovim" --home ~/Media/container/arch
-#mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/ && wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux && mv yt-dlp_linux yt-dlp && chmod +x yt-dlp && sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin/
+#mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 SECONDS=0
 sudo zypper ref && sudo zypper up
 sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
@@ -30,6 +30,7 @@ akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clea
 #sudo zypper remove -y xscreensaver
 #sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors guake
 sudo zypper install -y -n yakuake oxygen6-cursors
+sudo zypper install -y -n yt-dlp
 sudo zypper install -y -n gsmartcontrol w3m ddgr cmus cmus-plugins-all xkill firewall-config tealdeer bat zoxide fzf gdu eza ripgrep podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts mpv
 sudo zypper install -y -n dxvk hardinfo opi mpg123 feh fastfetch hiredis ccache nmap fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim
 sudo zypper install -y -n kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid flac filezilla qbittorrent putty aria2 fuseiso android-tools
@@ -73,10 +74,7 @@ cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 sudo mkdir -p /root/.config/nvim/
 sudo cp ~/Downloads/inst/init.lua /root/.config/nvim/
 cd ~/Downloads/inst/
-wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
-mv yt-dlp_linux yt-dlp
-chmod +x yt-dlp
-sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
+#wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux && mv yt-dlp_linux yt-dlp && chmod +x yt-dlp && sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
 wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip
 cp -r ~/Downloads/inst/files/* ~/.config/
 cd
