@@ -123,7 +123,7 @@ sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S mkvtoolnix-cli mkvtoolnix-gui --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 #sudo pacman -S conky --noconfirm --needed
-sudo pacman -S flac --noconfirm --needed
+sudo pacman -S flac yt-dlp --noconfirm --needed
 sudo pacman -S grub-btrfs --noconfirm --needed
 sudo pacman -S filezilla --noconfirm --needed
 #sudo pacman -S virtualbox --noconfirm --needed
@@ -221,10 +221,7 @@ cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 sudo mkdir -p /root/.config/nvim/
 sudo cp ~/Downloads/inst/init.lua /root/.config/nvim/
 cd ~/Downloads/inst/
-wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
-mv yt-dlp_linux yt-dlp
-chmod +x yt-dlp
-sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
+#wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux && mv yt-dlp_linux yt-dlp && chmod +x yt-dlp && sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
 wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip
 wget https://github.com/sc0ty/subsync/releases/download/0.17/subsync-0.17.0-portable-amd64.exe
 mv ~/Downloads/inst/subsync-0.17.0-portable-amd64.exe ~/.othercrap/
