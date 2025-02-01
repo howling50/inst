@@ -171,7 +171,12 @@ alias myip='curl ifconfig.me'
 delall () {
     if command -v pacman &> /dev/null; then
         echo "Running cleanup for pacman..."
-        sudo pacman -Rs $(pacman -Qqtd)
+        orphaned_packages=$(pacman -Qqtd)
+        if [ -n "$orphaned_packages" ]; then
+            sudo pacman -Rs $orphaned_packages
+        else
+            echo "No orphaned packages found."
+        fi
     elif command -v zypper &> /dev/null; then
         echo "Running cleanup for zypper..."
         sudo zypper cc -a
