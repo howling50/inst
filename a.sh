@@ -141,6 +141,8 @@ sudo pacman -S apparmor --noconfirm --needed
 sudo pacman -S gamemode gsmartcontrol cmatrix ytfzf w3m ddgr ttf-firacode-nerd cmus xorg-xkill ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gwenview kvantum-qt5 ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm ffmpeg-full
+yay -S --noconfirm autobrr-bin
+yay -S --noconfirm ventoy-bin
 yay -S --noconfirm reflector-simple
 yay -S --noconfirm quickemu
 yay -S --noconfirm quickgui-bin
@@ -158,11 +160,6 @@ sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo
 flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub org.gimp.GIMP && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub net.pcsx2.PCSX2 && flatpak install --noninteractive flathub org.shotcut.Shotcut && flatpak install --noninteractive flathub io.github.Hexchat
 flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub fr.handbrake.ghb && flatpak install --noninteractive flathub net.davidotek.pupgui2 && flatpak install --noninteractive flathub com.brave.Browser
 wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && sudo mv ani-cli /usr/local/bin
-wget $(curl -s https://api.github.com/repos/ventoy/Ventoy/releases/latest | grep download | grep linux.tar.gz | cut -d\" -f4) > /dev/null 2>&1
-tar -xzf ~/Downloads/inst/ventoy*.tar.gz -C ~/.othercrap/
-ventoy_folder=$(find ~/.othercrap -maxdepth 1 -type d -name "ventoy-*"); mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Ventoy\nExec=$ventoy_folder/VentoyGUI.x86_64\nIcon=$ventoy_folder/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/Ventoy.desktop
-wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4)
-sudo pacman -U autobrr*.tar.zst --noconfirm --needed
 mkdir -p ~/.othercrap
 wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage
 chmod +x Stacer-1.1.0-x64.AppImage
