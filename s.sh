@@ -32,10 +32,10 @@ sudo zypper remove -y kwalletmanager && sudo zypper addlock kwalletmanager
 akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clean-deps -y akonadi && sudo zypper addlock akonadi patterns-kde-kde_pim
 #sudo zypper remove -y xscreensaver
 #sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors guake
-sudo zypper install -y -n yakuake oxygen6-cursors
+sudo zypper install -y -n yakuake oxygen6-cursors yast2-theme-oxygen
 sudo zypper install -y -n yt-dlp
 sudo zypper install -y -n gsmartcontrol w3m ddgr cmus cmus-plugins-all xkill firewall-config tealdeer bat zoxide fzf gdu eza ripgrep podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts mpv
-sudo zypper install -y -n dxvk hardinfo opi mpg123 feh fastfetch hiredis ccache nmap fakeroot bind yast2-theme-oxygen wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim
+sudo zypper install -y -n dxvk hardinfo opi mpg123 feh fastfetch hiredis ccache nmap fakeroot bind wine-gecko catfish wine-mono winetricks steam proxychains-ng tor neovim
 sudo zypper install -y -n kitty gamemode audacious lutris zip unrar mkvtoolnix-tools mkvtoolnix-gui gparted celluloid flac filezilla qbittorrent putty aria2 fuseiso android-tools
 sudo opi -n codecs
 #sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
