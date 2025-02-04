@@ -13,6 +13,7 @@ sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now z
 #sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && sudo zypper addlock PackageKit
 sudo zypper remove -y discover6 && sudo zypper addlock discover6
 #sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman && sudo zypper dup --from packman --allow-vendor-change
+#sudo zypper ar -f https://download.nvidia.com/opensuse/tumbleweed/ nvidia
 sudo zypper install -y -n powerline-fonts starship memtest86+
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
