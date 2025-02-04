@@ -6,7 +6,7 @@
 #zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer
 #/etc/sysconfig/btrfsmaintenance
 #mkdir -p ~/Media/container/arch && distrobox-create -n arch -i quay.io/toolbx/arch-toolbox --init --additional-packages "systemd git fzf eza starship zoxide neovim ytfzf cmatrix mpv yt-dlp" --home ~/Media/container/arch
-#mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
+#mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/ && [ -f ~/.bash_profile ] || echo -e "if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi" > ~/.bash_profile
 SECONDS=0
 sudo zypper ref && sudo zypper up
 sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
