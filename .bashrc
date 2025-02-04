@@ -110,7 +110,7 @@ alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
 refmirrors() {
   if command -v reflector &> /dev/null; then
     echo "Detected Arch Linux (or derivative). Updating mirrors using reflector..."
-    sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+    sudo reflector --latest 5 --sort rate --download-timeout 10 --save /etc/pacman.d/mirrorlist
     echo "Mirror list updated successfully."
   elif command -v zypper &> /dev/null; then
     echo "Detected openSUSE. Refreshing repositories using zypper..."
