@@ -97,10 +97,8 @@ sudo pacman -S bison --noconfirm --needed
 sudo pacman -S fakeroot --noconfirm --needed
 sudo pacman -S bind --noconfirm --needed
 sudo pacman -S jdk-openjdk --noconfirm --needed
-sudo pacman -S wine-gecko --noconfirm --needed
+sudo pacman -S wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
 sudo pacman -S catfish --noconfirm --needed
-sudo pacman -S wine-mono wine-nine --noconfirm --needed
-sudo pacman -S winetricks --noconfirm --needed
 sudo pacman -S pacman-contrib --noconfirm --needed
 sudo pacman -S steam --noconfirm --needed
 sudo pacman -S gufw --noconfirm --needed
