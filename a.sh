@@ -123,6 +123,7 @@ sudo pacman -S mkvtoolnix-cli mkvtoolnix-gui --noconfirm --needed
 sudo pacman -S celluloid --noconfirm --needed
 #sudo pacman -S conky --noconfirm --needed
 sudo pacman -S flac yt-dlp --noconfirm --needed
+sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S grub-btrfs --noconfirm --needed
 sudo pacman -S filezilla --noconfirm --needed
 #sudo pacman -S virtualbox --noconfirm --needed
@@ -139,7 +140,7 @@ sudo pacman -S flatpak --noconfirm --needed
 sudo pacman -S apparmor --noconfirm --needed
 sudo pacman -S gamemode gsmartcontrol cmatrix ytfzf w3m ddgr ttf-firacode-nerd cmus xorg-xkill ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh alsa-utils audiocd-kio awesome-terminal-fonts exfat-utils filelight gptfdisk gwenview kvantum-qt5 ntfs-3g ntp okular os-prober python-pyqt5 python-pip spectacle terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
-yay -S --noconfirm ffmpeg-full
+#yay -S --noconfirm ffmpeg-full
 yay -S --noconfirm autobrr-bin
 yay -S --noconfirm ventoy-bin
 yay -S --noconfirm reflector-simple
