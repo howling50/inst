@@ -153,7 +153,7 @@ yay -S --noconfirm dxvk-bin
 yay -S --noconfirm input-remapper-git
 yay -S --noconfirm bdinfo-git
 yay -S --noconfirm ttf-ms-fonts
-yay -S --noconfirm sublime-text-4 
+#yay -S --noconfirm sublime-text-4 
 #yay -S --noconfirm konsave
 sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal
 sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo
