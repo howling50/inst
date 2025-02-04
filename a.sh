@@ -127,7 +127,7 @@ sudo pacman -S filezilla --noconfirm --needed
 #sudo pacman -S virtualbox --noconfirm --needed
 sudo pacman -S qbittorrent --noconfirm --needed
 sudo pacman -S putty --noconfirm --needed 
-sudo pacman -S kdialog yakuake oxygen-icons --noconfirm --needed
+sudo pacman -S yakuake oxygen-icons --noconfirm --needed
 sudo pacman -S aria2 --noconfirm --needed
 sudo pacman -S ttf-roboto --noconfirm --needed
 sudo pacman -S bluez bluez-utils blueman --noconfirm --needed
