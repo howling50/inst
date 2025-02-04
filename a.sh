@@ -99,7 +99,7 @@ sudo pacman -S bind --noconfirm --needed
 sudo pacman -S jdk-openjdk --noconfirm --needed
 sudo pacman -S wine-gecko --noconfirm --needed
 sudo pacman -S catfish --noconfirm --needed
-sudo pacman -S wine-mono --noconfirm --needed
+sudo pacman -S wine-mono wine-nine --noconfirm --needed
 sudo pacman -S winetricks --noconfirm --needed
 sudo pacman -S pacman-contrib --noconfirm --needed
 sudo pacman -S steam --noconfirm --needed
@@ -144,8 +144,8 @@ sudo pacman -S gamemode gsmartcontrol cmatrix ytfzf w3m ddgr ttf-firacode-nerd c
 yay -S --noconfirm autobrr-bin
 yay -S --noconfirm ventoy-bin
 yay -S --noconfirm reflector-simple
-yay -S --noconfirm quickemu
-yay -S --noconfirm quickgui-bin
+yay -S --noconfirm quickemu quickgui-bin
+yay -S --noconfirm winegui
 yay -S --noconfirm cli-visualizer
 #yay -S --noconfirm virtualbox-ext-oracle
 yay -S --noconfirm hardinfo2
