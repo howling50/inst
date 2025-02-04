@@ -30,7 +30,7 @@ sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups
 sudo zypper remove -y kwalletmanager && sudo zypper addlock kwalletmanager
 akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clean-deps -y akonadi && sudo zypper addlock akonadi patterns-kde-kde_pim
 #sudo zypper remove -y xscreensaver
-#sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors guake
+#sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors && sudo flatpak install --noninteractive flathub org.kde.yakuake
 sudo zypper install -y -n yakuake oxygen6-cursors
 sudo zypper install -y -n yt-dlp
 sudo zypper install -y -n gsmartcontrol w3m ddgr cmus cmus-plugins-all xkill firewall-config tealdeer bat zoxide fzf gdu eza ripgrep podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts mpv
