@@ -118,7 +118,6 @@ sudo pacman -S rkhunter --noconfirm --needed
 sudo pacman -S unrar --noconfirm --needed
 sudo pacman -S gparted --noconfirm --needed
 sudo pacman -S mkvtoolnix-cli mkvtoolnix-gui --noconfirm --needed
-sudo pacman -S celluloid --noconfirm --needed
 #sudo pacman -S conky --noconfirm --needed
 sudo pacman -S flac yt-dlp --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
