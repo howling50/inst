@@ -39,7 +39,7 @@ sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo s
 sudo pacman -Rns kwalletmanager --noconfirm
 sudo pacman -R elisa thunderbird vim --noconfirm
 sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 filelight audiocd-kio --noconfirm --needed
-sudo pacman -S binutils hiredis ccache nmap make autoconf flex bat gcc patch automake bison fakeroot bind --noconfirm --needed
+sudo pacman -S binutils nmap autoconf bat gcc patch fakeroot bind --noconfirm --needed
 sudo pacman -S qbittorrent putty aria2 ttf-roboto bluez bluez-utils blueman fuseiso android-tools apparmor --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
