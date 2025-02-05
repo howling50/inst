@@ -130,6 +130,21 @@ pacinfo() {
   fi
 }
 alias cd="z"
+autobrr-update() {
+    if command -v pacman &> /dev/null; then
+        # Arch Linux
+        rm autobrr_* && 
+        wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst | cut -d\" -f4) && 
+        sudo pacman -U autobrr*.tar.zst --noconfirm --needed;
+    elif command -v zypper &> /dev/null; then
+        # openSUSE
+        rm autobrr_* && 
+        wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep linux_amd64.rpm | cut -d\" -f4) && 
+        sudo zypper --no-gpg-checks install -y -n ~/Downloads/inst/autobrr*.rpm;
+    else
+        echo "Unsupported OS";
+    fi
+}
 alias cdi="zi"
 rgvim() {
     local choice
@@ -157,7 +172,7 @@ makegrub () {
         echo "Neither Arch Linux nor openSUSE found. GRUB update aborted."
     fi
 }
-alias listapp='echo "yt-dlp, autobrr, nmap, proxychains, 1, 2, aria2c, fuseiso, bdinfo, gdu, fzf, ftext, cpp, ver, distro, distrobox, ani-cli, cmus, vis, ddgr, w3m, rgvim, makegrub, delall, depdel, extract, punlock, pacinfo, ytfzf, refmirrors"'
+alias listapp='echo "yt-dlp, autobrr, nmap, proxychains, 1, 2, aria2c, fuseiso, bdinfo, gdu, fzf, ftext, cpp, ver, distro, distrobox, ani-cli, cmus, vis, ddgr, w3m, rgvim, makegrub, delall, depdel, extract, punlock, pacinfo, ytfzf, refmirrors, autobrr-update"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
