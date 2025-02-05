@@ -15,7 +15,7 @@ sudo zypper remove -y discover6 && sudo zypper addlock discover6
 #sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman && sudo zypper dup --from packman --allow-vendor-change
 #sudo zypper ar -f https://download.nvidia.com/opensuse/tumbleweed/ nvidia
 sudo zypper install flatpak && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-sudo zypper install -y -n powerline-fonts starship memtest86+
+sudo zypper install -y -n powerline-fonts starship memtest86+ kitty
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
 #------------
@@ -36,7 +36,7 @@ sudo zypper install -y -n yakuake oxygen6-cursors yast2-theme-oxygen
 sudo zypper install -y -n yt-dlp cmus cmus-plugins-all mpv mpg123 audacious mkvtoolnix-tools mkvtoolnix-gui steam lutris flac
 sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config tealdeer bat zoxide fzf gdu eza ripgrep podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch hiredis ccache nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim
-sudo zypper install -y -n kitty gamemode zip unrar gparted filezilla qbittorrent putty aria2 fuseiso android-tools q4wine
+sudo zypper install -y -n flameshot gamemode zip unrar gparted filezilla qbittorrent putty aria2 fuseiso android-tools q4wine
 sudo opi -n codecs
 #sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #-----------------------------------------------------------------
