@@ -41,7 +41,7 @@ sudo pacman -Rns kwalletmanager --noconfirm
 sudo pacman -R elisa thunderbird vim --noconfirm
 sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 filelight audiocd-kio --noconfirm --needed
 sudo pacman -S binutils nmap autoconf bat gcc patch fakeroot bind --noconfirm --needed
-sudo pacman -S qbittorrent putty aria2 ttf-roboto bluez bluez-utils blueman fuseiso android-tools apparmor --noconfirm --needed
+sudo pacman -S qbittorrent putty aria2 ttf-roboto bluez bluez-utils blueman fuseiso android-tools apparmor mpv vlc --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
 sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audacious lutris net-tools zip unzip lsof unrar rkhunter gparted filezilla --noconfirm --needed
