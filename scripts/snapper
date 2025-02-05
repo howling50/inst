@@ -7,6 +7,7 @@ lsblk
 read -p "Please enter root location to work on (example /dev/sda1): " DISK
 
 # Install necessary packages with error handling
+sudo pacman -S btrfs-progs --noconfirm
 sudo pacman -S snapper --noconfirm
 yay -S btrfs-assistant --noconfirm
 yay -S btrfsmaintenance --noconfirm
