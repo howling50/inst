@@ -14,6 +14,9 @@ yay -S btrfsmaintenance --noconfirm
 sudo pacman -S grub-btrfs --noconfirm
 #sudo pacman -S snap-pac --noconfirm
 
+# Grub Snapshots
+sudo systemctl enable grub-btrfsd.service && sudo systemctl start grub-btrfsd.service
+
 # Remove existing .snapshots directories
 sudo umount /.snapshots
 sudo rm -rf /.snapshots
