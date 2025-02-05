@@ -36,7 +36,7 @@ sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo s
 #-----------------------------------------------------
 #sudo pacman -S conky --noconfirm --needed
 #sudo pacman -S virtualbox jdk-openjdk --noconfirm --needed && yay -S --noconfirm virtualbox-ext-oracle
-#sudo pacman -S xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme baobab file-roller guake --noconfirm --needed && sudo pacman -R parole vim --noconfirm
+#sudo pacman -S xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme baobab file-roller guake xfce4-whiskermenu-plugin --noconfirm --needed && sudo pacman -R parole vim --noconfirm
 sudo pacman -Rns kwalletmanager --noconfirm
 sudo pacman -R elisa thunderbird vim --noconfirm
 sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 filelight audiocd-kio --noconfirm --needed
