@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ##################### sudo chattr -R +C ~/Downloads and git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
-#sudo visudo (Defaults timestamp_timeout=60)  patterns-games-games patterns-kde-kde_pim xfce4-terminal --drop-down
+#sudo visudo (Defaults timestamp_timeout=60)  patterns-games-games patterns-kde-kde_pim xfce4-terminal --drop-down kernel-longterm
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer
 #/etc/sysconfig/btrfsmaintenance
@@ -31,7 +31,7 @@ sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups
 sudo zypper remove -y kwalletmanager && sudo zypper addlock kwalletmanager
 akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clean-deps -y akonadi && sudo zypper addlock akonadi patterns-kde-kde_pim
 #sudo zypper remove -y xscreensaver
-#sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors guake
+#sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors
 sudo zypper install -y -n yakuake oxygen6-cursors yast2-theme-oxygen
 sudo zypper install -y -n audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvtoolnix-tools mkvtoolnix-gui steam lutris flac vlc
 sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config tealdeer bat zoxide fzf gdu eza ripgrep podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts
