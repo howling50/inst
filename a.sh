@@ -2,7 +2,7 @@
 ##################### sudo chattr -R +C ~/Downloads then git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
 #https://github.com/howling50/Top-5-Bootloader-Themes
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
-#sudo visudo (Defaults timestamp_timeout=60)
+#xfce4-terminal --drop-down
 SECONDS=0
 sudo chattr +C /home
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
@@ -36,7 +36,7 @@ sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo s
 #-----------------------------------------------------
 #sudo pacman -S conky --noconfirm --needed
 #sudo pacman -S virtualbox jdk-openjdk --noconfirm --needed && yay -S --noconfirm virtualbox-ext-oracle
-#sudo pacman -S xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme baobab file-roller guake xfce4-whiskermenu-plugin --noconfirm --needed && sudo pacman -R parole vim --noconfirm
+#sudo pacman -S xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme baobab file-roller xfce4-whiskermenu-plugin --noconfirm --needed && sudo pacman -R parole vim --noconfirm
 sudo pacman -Rns kwalletmanager --noconfirm
 sudo pacman -R elisa thunderbird vim --noconfirm
 sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 filelight audiocd-kio --noconfirm --needed
