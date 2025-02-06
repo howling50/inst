@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ##################### sudo chattr -R +C ~/Downloads and git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
-#sudo visudo (Defaults timestamp_timeout=60)  patterns-games-games patterns-kde-kde_pim xfce4-terminal --drop-down kernel-longterm
+#sudo visudo (Defaults timestamp_timeout=60)  patterns-games-games patterns-kde-kde_pim xfce4-terminal --drop-down 
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer
 #/etc/sysconfig/btrfsmaintenance
@@ -15,7 +15,7 @@ sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && su
 sudo zypper remove -y discover6 && sudo zypper addlock discover6
 #sudo zypper ar -f https://download.nvidia.com/opensuse/tumbleweed/ nvidia
 sudo zypper install flatpak && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-sudo zypper install -y -n powerline-fonts starship memtest86+ kitty
+sudo zypper install -y -n kernel-longterm powerline-fonts starship memtest86+ kitty
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
 #------------
@@ -30,6 +30,7 @@ sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups
 #-----------------------------------------------------
 sudo zypper remove -y kwalletmanager && sudo zypper addlock kwalletmanager && akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clean-deps -y akonadi && sudo zypper addlock akonadi patterns-kde-kde_pim && sudo zypper install -y -n yakuake oxygen6-cursors yast2-theme-oxygen
 #sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors
+sudo zypper install -y -n libreoffice-writer libreoffice-draw libreoffice-l10n-el libreoffice-writer-extensions
 sudo zypper install -y -n audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvtoolnix-tools mkvtoolnix-gui steam lutris flac
 sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config tealdeer bat zoxide fzf gdu eza ripgrep podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim
