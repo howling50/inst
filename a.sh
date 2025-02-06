@@ -10,7 +10,6 @@ sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$
 sudo pacman -Syyu --noconfirm --needed
 sudo pacman -S reflector --noconfirm --needed
 sudo reflector --latest 5 --sort rate --download-timeout 10 --save /etc/pacman.d/mirrorlist
-sudo pacman -S linux-headers --noconfirm --needed
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
 sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
 sudo pacman -S fastfetch firefox kitty powerline-fonts starship flatpak --noconfirm --needed
