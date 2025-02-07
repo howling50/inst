@@ -5,7 +5,7 @@
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer
 #/etc/sysconfig/btrfsmaintenance
-#mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/ && [ -f ~/.bash_profile ] || echo -e "if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi" > ~/.bash_profile
+#mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 SECONDS=0
 sudo chattr +C /home
 sudo zypper ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper ref && sudo zypper in -y -n --allow-vendor-change vlc vlc-codecs && sudo zypper dup --from vlc --allow-vendor-change -y
@@ -39,7 +39,7 @@ sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty
 #sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #-----------------------------------------------------------------
 #yay -S --noconfirm quickemu quickgui-bin
-#cd ~/Downloads/inst && git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && sudo pacman -S git fzf eza starship zoxide neovim ytfzf cmatrix mpv yt-dlp --noconfirm --needed && yay -S --noconfirm cli-visualizer
+#cd ~/Downloads/inst && git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && sudo pacman -S git fzf eza starship zoxide neovim ytfzf cmatrix mpv yt-dlp --noconfirm --needed && yay -S --noconfirm cli-visualizer && [ -f ~/.bash_profile ] || echo -e "if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi" > ~/.bash_profile
 #------------------------------------------------------------------
 sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal
 sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.brave.Browser
