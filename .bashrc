@@ -183,7 +183,7 @@ alias cat='bat'
 alias listen='sudo lsof -i -P -n | grep LISTEN'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='curl ifconfig.me'
-delall () {
+delall() {
     if command -v pacman &> /dev/null; then
         echo "Running cleanup for pacman..."
         orphaned_packages=$(pacman -Qqtd)
@@ -195,6 +195,15 @@ delall () {
     elif command -v zypper &> /dev/null; then
         echo "Running cleanup for zypper..."
         sudo zypper cc -a
+        
+        # Ask if Podman should be cleaned
+        read -p "Do you want to clean up Podman resources? (y/n): " podman_choice
+        if [[ "$podman_choice" == "y" || "$podman_choice" == "Y" ]]; then
+            echo "Cleaning up Podman resources..."
+            podman system prune -a --volumes -f
+        else
+            echo "Skipping Podman cleanup."
+        fi
     else
         echo "Neither pacman nor zypper found. Cleanup aborted."
     fi
