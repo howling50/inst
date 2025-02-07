@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 ##################### sudo chattr -R +C ~/Downloads and git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
-#sudo visudo (Defaults timestamp_timeout=60)  patterns-games-games patterns-kde-kde_pim xfce4-terminal --drop-down 
+#sudo visudo (Defaults timestamp_timeout=60)  patterns-games-games patterns-kde-kde_pim xfce4-terminal --drop-down   sudo zypper dup --from vlc --allow-vendor-change -y
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer
 #/etc/sysconfig/btrfsmaintenance
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 SECONDS=0
 sudo chattr +C /home
-sudo zypper ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper ref && sudo zypper in -y -n --allow-vendor-change vlc vlc-codecs && sudo zypper dup --from vlc --allow-vendor-change -y
+sudo zypper ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper ref && sudo zypper in -y -n --allow-vendor-change vlc vlc-codecs
 sudo zypper ref && sudo zypper up
 sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
 sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && sudo zypper addlock PackageKit
@@ -38,8 +38,8 @@ sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty
 #sudo opi -n codecs
 #sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #-----------------------------------------------------------------
-#yay -S --noconfirm quickemu quickgui-bin
-#cd ~/Downloads/inst && git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && sudo pacman -S git fzf eza bat starship zoxide neovim ytfzf cmatrix mpv yt-dlp --noconfirm --needed && yay -S --noconfirm cli-visualizer && [ -f ~/.bash_profile ] || echo -e "if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi" > ~/.bash_profile
+#cd ~/Downloads/inst && git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && sudo pacman -S git fzf eza bat starship zoxide neovim ytfzf cmatrix mpv yt-dlp --noconfirm --needed && [ -f ~/.bash_profile ] || echo -e "if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi" > ~/.bash_profile
+#yay -S --noconfirm cli-visualize quickemu quickgui-bin && distrobox-export -b /usr/bin/vis && distrobox-export -b /usr/bin/cmatrix && distrobox-export -a quickgui && distrobox-export -b /usr/bin/ytfzf
 #------------------------------------------------------------------
 sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal
 sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.brave.Browser
