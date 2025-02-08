@@ -9,7 +9,7 @@
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 SECONDS=0
 sudo chattr +C /home
-sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper ref && sudo zypper in -y -n --allow-vendor-change vlc vlc-codecs
+sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc vlc-codecs
 sudo zypper ref && sudo zypper up
 sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
 sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && sudo zypper addlock PackageKit
