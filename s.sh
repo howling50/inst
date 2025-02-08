@@ -4,7 +4,7 @@
 #sudo visudo (Defaults timestamp_timeout=60)  patterns-games-games patterns-kde-kde_pim (xfce4-terminal --drop-down xfce4-taskmanager kitty distrobox-enter -n arch)  sudo zypper dup --from vlc --allow-vendor-change -y
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer 
-#/etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root
+#/etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root   (about:support, open profile folder,Clear start up cache" )
 #mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --home ~/Media/container/arch && distrobox enter arch
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 SECONDS=0
