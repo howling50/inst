@@ -188,13 +188,13 @@ delall() {
         echo "Running cleanup for pacman..."
         orphaned_packages=$(pacman -Qqtd)
         if [ -n "$orphaned_packages" ]; then
-            sudo pacman -Rs $orphaned_packages
+            sudo pacman -Rs $orphaned_packages && sudo flatpak uninstall --unused
         else
             echo "No orphaned packages found."
         fi
     elif command -v zypper &> /dev/null; then
         echo "Running cleanup for zypper..."
-        sudo zypper cc -a
+        sudo zypper cc -a && sudo flatpak uninstall --unused
         
         # Ask if Podman should be cleaned
         read -p "Do you want to clean up Podman resources? (y/n): " podman_choice
