@@ -3,9 +3,9 @@
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 #sudo visudo (Defaults timestamp_timeout=60)  patterns-games-games patterns-kde-kde_pim (xfce4-terminal --drop-down xfce4-taskmanager kitty distrobox-enter -n arch)  sudo zypper dup --from vlc --allow-vendor-change -y
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
-#zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer
+#zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer    (yt-x -e  
 #/etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root
-#mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --nvidia --init --additional-packages "systemd" --home ~/Media/container/arch && distrobox enter arch
+#mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --home ~/Media/container/arch && distrobox enter arch
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 SECONDS=0
 sudo chattr +C /home
@@ -37,21 +37,21 @@ sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty
 #sudo opi -n codecs
 #sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #-----------------------------------------------------------------
-#git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd && rm -rf yay && sudo pacman -S git fzf eza bat starship zoxide neovim ytfzf cmatrix mpv yt-dlp --noconfirm --needed && [ -f ~/.bash_profile ] || echo -e "if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi" > ~/.bash_profile && mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
-#yay -S --noconfirm quickemu quickgui-bin && distrobox-export -b /usr/bin/cmatrix && distrobox-export -a quickgui && distrobox-export -b /usr/bin/ytfzf
+#git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd && rm -rf yay && sudo pacman -S git fzf eza bat starship zoxide neovim cmatrix --noconfirm --needed && [ -f ~/.bash_profile ] || echo -e "if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi" > ~/.bash_profile && mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/ && source ~/.bashrc
 #yay -S --noconfirm cli-visualizer-git  && mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
+#distrobox-export -b /usr/bin/cmatrix
 #------------------------------------------------------------------
 sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal
 sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.brave.Browser
 sudo flatpak install --noninteractive flathub com.calibre_ebook.calibre && sudo flatpak install --noninteractive flathub org.gimp.GIMP && sudo flatpak install --noninteractive flathub com.github.Matoking.protontricks && sudo flatpak install --noninteractive flathub io.gitlab.librewolf-community && sudo flatpak install --noninteractive flathub org.shotcut.Shotcut && sudo flatpak install --noninteractive flathub io.github.Hexchat
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep linux_amd64.rpm | cut -d\" -f4) && sudo zypper --no-gpg-checks install -y -n ~/Downloads/inst/autobrr*.rpm
-mkdir -p ~/.othercrap
-wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && sudo mv ani-cli /usr/local/bin
+mkdir -p ~/.othercrap && wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && sudo mv ani-cli /usr/local/bin
+curl -sL "https://raw.githubusercontent.com/Benexl/yt-x/refs/heads/master/yt-x" -o ~/.local/bin/yt-x && chmod +x ~/.local/bin/yt-x
 #---kde---
 wget $(curl -s https://api.github.com/repos/ventoy/Ventoy/releases/latest | grep download | grep linux.tar.gz | cut -d\" -f4) > /dev/null 2>&1 && tar -xzf ~/Downloads/inst/ventoy*.tar.gz -C ~/.othercrap/ && ventoy_folder=$(find ~/.othercrap -maxdepth 1 -type d -name "ventoy-*"); mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Ventoy\nExec=$ventoy_folder/VentoyGUI.x86_64\nIcon=$ventoy_folder/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/Ventoy.desktop
 wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=~/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=~/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/stacer.desktop && chmod +x ~/.local/share/applications/stacer.desktop
 #---xfce--
-#wget $(curl -s https://api.github.com/repos/ventoy/Ventoy/releases/latest | grep download | grep linux.tar.gz | cut -d\" -f4) -O ~/Downloads/ventoy.tar.gz && mkdir -p ~/.othercrap && tar -xzf ~/Downloads/ventoy.tar.gz -C ~/.othercrap/ && ventoy_folder=$(find ~/.othercrap -maxdepth 1 -type d -name "ventoy-*") && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Ventoy\nExec=$ventoy_folder/VentoyGUI.x86_64\nIcon=$ventoy_folder/icon.png\nType=Application\nCategories=Utility;\nStartupNotify=true\nTerminal=false" > ~/.local/share/applications/Ventoy.desktop && chmod +x ~/.local/share/applications/Ventoy.desktop
+#wget $(curl -s https://api.github.com/repos/ventoy/Ventoy/releases/latest | jq -r '.assets[] | select(.name | test("linux.tar.gz")) | .browser_download_url') -O ~/Downloads/ventoy.tar.gz && mkdir -p ~/.othercrap && tar -xzf ~/Downloads/ventoy.tar.gz -C ~/.othercrap/ && ventoy_folder=$(find ~/.othercrap -maxdepth 1 -type d -name "ventoy-*") && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Ventoy\nExec=$ventoy_folder/VentoyGUI.x86_64\nIcon=$ventoy_folder/icon.png\nType=Application\nCategories=Utility;\nStartupNotify=true\nTerminal=false" > ~/.local/share/applications/Ventoy.desktop && chmod +x ~/.local/share/applications/Ventoy.desktop
 #wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=$HOME/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=$HOME/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;\nStartupNotify=true\nTerminal=false" > ~/.local/share/applications/stacer.desktop && chmod +x ~/.local/share/applications/stacer.desktop
 #-----
 mkdir -p ~/.config/fastfetch && cp ~/Downloads/inst/config.jsonc ~/.config/fastfetch/ && sudo mkdir -p /root/.config/fastfetch && sudo cp ~/Downloads/inst/config.jsonc /root/.config/fastfetch/
@@ -79,8 +79,7 @@ cd ~/Downloads/inst/
 wget https://github.com/sc0ty/subsync/releases/download/0.17/subsync-0.17.0-portable-amd64.exe
 mv ~/Downloads/inst/subsync-0.17.0-portable-amd64.exe ~/.othercrap/
 # ---------------------------------
-magick ~/Downloads/inst/script/monkey.jpg ~/Downloads/inst/script/monkey.png
-mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
+magick ~/Downloads/inst/script/monkey.jpg ~/Downloads/inst/script/monkey.png && mv ~/Downloads/inst/script/monkey.png ~/.othercrap/monkey.png
 mkdir -p ~/.othercrap/dedrm
 unzip ~/Downloads/inst/DeDRM_tools_10.0.3.zip -d ~/.othercrap/dedrm > /dev/null
 mkdir -p ~/.othercrap/eac3to
