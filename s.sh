@@ -108,4 +108,4 @@ else
     echo "Completed in $SECONDS seconds"
 fi
 #defaults,nodatacow,noatime,autodefrag,compress=zstd,space_cache=v2,nofail 0 0
-#defaults,ssd,discard=async,noatime,compress=zstd,space_cache=v2 0 1
+#defaults,ssd,discard=async,noatime,compress=zstd,space_cache=v2 0 0
