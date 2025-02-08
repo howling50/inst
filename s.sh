@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ##################### sudo chattr -R +C ~/Downloads and git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh ####################################################
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
-#sudo visudo (Defaults timestamp_timeout=60)  patterns-games-games patterns-kde-kde_pim xfce4-terminal --drop-down   sudo zypper dup --from vlc --allow-vendor-change -y
+#sudo visudo (Defaults timestamp_timeout=60)  patterns-games-games patterns-kde-kde_pim (xfce4-terminal --drop-down xfce4-taskmanager )  sudo zypper dup --from vlc --allow-vendor-change -y
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer
 #/etc/sysconfig/btrfsmaintenance
