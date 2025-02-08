@@ -13,7 +13,6 @@ sudo zypper ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumblewe
 sudo zypper ref && sudo zypper up
 sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
 sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && sudo zypper addlock PackageKit
-sudo zypper remove -y discover6 && sudo zypper addlock discover6
 #sudo zypper ar -f https://download.nvidia.com/opensuse/tumbleweed/ nvidia
 sudo zypper install flatpak && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo zypper install -y -n kernel-longterm powerline-fonts starship memtest86+ kitty
@@ -28,7 +27,7 @@ sudo chattr -R +C ~/.config/qBittorrent && sudo chattr -R +C ~/Media && sudo cha
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #-----------------------------------------------------
-sudo zypper remove -y kwalletmanager && sudo zypper addlock kwalletmanager && akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clean-deps -y akonadi && sudo zypper addlock akonadi patterns-kde-kde_pim && sudo zypper install -y -n yakuake oxygen6-cursors yast2-theme-oxygen
+sudo zypper remove -y discover6 && sudo zypper addlock discover6 && sudo zypper remove -y kwalletmanager && sudo zypper addlock kwalletmanager && akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clean-deps -y akonadi && sudo zypper addlock akonadi patterns-kde-kde_pim && sudo zypper install -y -n yakuake oxygen6-cursors yast2-theme-oxygen
 #sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors
 sudo zypper install -y -n libreoffice-writer libreoffice-draw libreoffice-writer-extensions
 sudo zypper install -y -n audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvtoolnix-tools mkvtoolnix-gui steam lutris flac
