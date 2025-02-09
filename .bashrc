@@ -106,6 +106,33 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # Alias
 alias weather="curl wttr.in"
 alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
+rsyncauto() {
+    # List mounted block devices in clean format
+    echo "Mounted block devices:"
+    mount | awk -F' ' '$1 ~ /^\/dev\// { printf "%-20s %s\n", $1, $3 }' | sort
+
+    # Prompt for paths
+    read -p "Enter source mount location: No / at the end " source_dir
+    read -p "Enter destination mount location: No / at the end " dest_dir
+
+    # Normalize paths
+    source_dir="${source_dir%/}/"
+    dest_dir="${dest_dir%/}"
+
+    # Validate paths
+    if ! mountpoint -q "$source_dir" || ! mountpoint -q "$dest_dir" ; then
+        echo "Error: Source or destination is not a mounted filesystem!"
+        return 2
+    fi
+
+    # Confirmation
+    read -p "Sync FROM $source_dir TO $dest_dir? (y/n): " confirm
+    [[ "$confirm" =~ ^[Yy]$ ]] || { echo "Cancelled"; return 1; }
+
+    # Execute rsync
+    echo "Starting sync..."
+    sudo rsync -aAXvh --progress --stats "$source_dir" "$dest_dir"
+}
 refmirrors() {
   if command -v reflector &> /dev/null; then
     echo "Detected Arch Linux (or derivative). Updating mirrors using reflector..."
