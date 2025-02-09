@@ -40,7 +40,7 @@ sudo pacman -S binutils nmap autoconf bat gcc patch fakeroot bind --noconfirm --
 sudo pacman -S qbittorrent putty aria2 ttf-roboto bluez bluez-utils blueman fuseiso android-tools apparmor mpv vlc libreoffice-fresh --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
-sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audacious lutris net-tools zip unzip lsof unrar rkhunter gparted filezilla --noconfirm --needed
+sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audacious lutris net-tools zip unzip lsof unrar gparted filezilla --noconfirm --needed
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr ttf-firacode-nerd cmus xorg-xkill ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less memtest86+-efi mpg123 imagemagick tldr feh alsa-utils awesome-terminal-fonts exfat-utils gptfdisk ntfs-3g ntp os-prober python-pyqt5 python-pip terminus-font ttf-droid --noconfirm --needed
 #-----------------------------------------------------------------
@@ -68,7 +68,8 @@ mkdir -p ~/.config/fastfetch && cp ~/Downloads/inst/config.jsonc ~/.config/fastf
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
 #------------------------------------------rk hunter--------------------------
-sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local && sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
+#sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local
+sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
 sudo systemctl start apparmor && sudo systemctl enable apparmor && sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 quiet apparmor=1 security=apparmor"/' /etc/default/grub
 #-----------------------
