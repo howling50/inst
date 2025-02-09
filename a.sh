@@ -12,7 +12,7 @@ sudo pacman -S reflector --noconfirm --needed
 sudo reflector --verbose -c EE -c FR -c DE -c GR -c LU -c NL -c RO -c SK -c CH -c GB --protocol https --sort rate --latest 10 --download-timeout 20 --save /etc/pacman.d/mirrorlist
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
 sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
-sudo pacman -S fastfetch firefox kitty powerline-fonts starship flatpak --noconfirm --needed
+sudo pacman -S fastfetch firefox kitty powerline-fonts starship flatpak rsync --noconfirm --needed
 sudo pacman -S --needed base-devel git --noconfirm --needed
 git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save
 #----Swap-------
