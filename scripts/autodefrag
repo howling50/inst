@@ -1,77 +1,95 @@
 #!/bin/bash
+set -euo pipefail
 
-# Define log file
-LOG_FILE="/home/howling/autodefrag.log"
+# ---------------------------
+# Configuration & Variables
+# ---------------------------
+LOG_DIR="/home/howling"
+LOG_FILE="$LOG_DIR/autodefrag.log"
+FRAG_THRESHOLD=${1:-10}  # Configurable via command line
+LOCK_FILE="/tmp/autodefrag.lock"
 
-# Function to log messages
+# ---------------------------
+# Logging Function
+# ---------------------------
 log_message() {
     local log_level="$1"
     local message="$2"
-    logger -t "auto_defrag_ntfs" -p "user.$log_level" "$message"
+    logger -t "auto_defrag_ntfs" -p "user.${log_level}" "$message"
     echo "$(date +"%Y-%m-%d %H:%M:%S") [$log_level] $message" >> "$LOG_FILE"
 }
 
-# Log start of script
+# Ensure log directory and file exist
+mkdir -p "$LOG_DIR" || { echo "Error: Cannot create log directory $LOG_DIR"; exit 1; }
+touch "$LOG_FILE" || { echo "Error: Cannot write to log file $LOG_FILE"; exit 1; }
+
+# Lock file to prevent concurrent runs
+if [ -e "$LOCK_FILE" ]; then
+    log_message "error" "Another instance is already running. Exiting."
+    exit 1
+fi
+trap 'rm -f "$LOCK_FILE"; exit' EXIT INT TERM
+touch "$LOCK_FILE"
+
+# ---------------------------
+# Pre-flight Checks
+# ---------------------------
 log_message "info" "Starting automatic NTFS defragmentation."
 
-# Check if script is run with sudo
 if [ "$EUID" -ne 0 ]; then
     log_message "error" "Please run the script as root using sudo."
     exit 1
 fi
 
-# Check if drives are in use
-drives_in_use=false
-
-# Array to store mounted NTFS drives
-ntfs_drives=()
-
-# Get list of mounted NTFS drives
-mounted_drives=$(mount | grep 'type fuseblk' | awk '{print $1}')
-
-# Check if any NTFS drives are in use
-for drive in $mounted_drives; do
-    if lsof -t "$drive" &> /dev/null; then
-        drives_in_use=true
-        break
+for cmd in ntfsdefrag fuser; do
+    if ! command -v "$cmd" &> /dev/null; then
+        log_message "error" "$cmd not found. Please install the required package."
+        exit 1
     fi
-    ntfs_drives+=("$drive")
 done
 
-# Notify user if drives are in use and log the message
-if [ "$drives_in_use" = true ]; then
-    log_message "warning" "Drives are currently in use. Defragmentation will be delayed."
-    exit 1
+# ---------------------------
+# Find Mounted NTFS Drives
+# ---------------------------
+mapfile -t ntfs_mounts < <(findmnt -nt fuseblk,ntfs -o TARGET --raw 2>/dev/null)
+
+if [ "${#ntfs_mounts[@]}" -eq 0 ]; then
+    log_message "info" "No NTFS drives found. Exiting."
+    exit 0
 fi
 
-# Check fragmentation level of NTFS drives
-defrag_needed=false
+# ---------------------------
+# Process Each NTFS Drive
+# ---------------------------
+for mount_point in "${ntfs_mounts[@]}"; do
+    log_message "info" "---------------------------------------------"
+    log_message "info" "Processing drive mounted at: ${mount_point}"
 
-for drive in "${ntfs_drives[@]}"; do
-    fragmentation=$(ntfs-3g.info --file "$drive" | grep "Fragmentation" | awk '{print $NF}' | cut -d'%' -f1)
-    
-    if [ "$fragmentation" -gt 10 ]; then
-        defrag_needed=true
-        break
+    if fuser -m "$mount_point" > /dev/null 2>&1; then
+        log_message "warning" "Drive at ${mount_point} is in use. Skipping."
+        continue
     fi
-done
 
-# Log fragmentation level and defragmentation status
-log_message "info" "Fragmentation level: $fragmentation%."
+    frag_output=$(LANG=C ntfsdefrag -n "$mount_point" 2>&1 || true)
+    frag_percentage=$(echo "$frag_output" | grep -i -E "Fragmentation:" | sed -E 's/.*Fragmentation:[[:space:]]*([0-9]+)%.*/\1/')
 
-# Defragment NTFS drives if needed
-if [ "$defrag_needed" = true ]; then
-    log_message "info" "Starting defragmentation of NTFS drives."
+    if [ -z "$frag_percentage" ]; then
+        log_message "error" "Could not determine fragmentation for ${mount_point}. Output: $frag_output"
+        continue
+    fi
 
-    for drive in "${ntfs_drives[@]}"; do
-        if ntfs-3g.defrag "$drive"; then
-            log_message "info" "Defragmentation of $drive completed successfully."
+    log_message "info" "Fragmentation level: ${frag_percentage}%."
+
+    if [ "$frag_percentage" -gt "$FRAG_THRESHOLD" ]; then
+        log_message "info" "Exceeds threshold (${FRAG_THRESHOLD}%). Defragmenting..."
+        if defrag_output=$(ntfsdefrag "$mount_point" 2>&1); then
+            log_message "info" "Defragmentation succeeded."
         else
-            log_message "error" "Error occurred during defragmentation of $drive."
+            log_message "error" "Defragmentation failed: $defrag_output"
         fi
-    done
+    else
+        log_message "info" "Below threshold. Skipping."
+    fi
+done
 
-    log_message "info" "Defragmentation completed."
-else
-    log_message "info" "No defragmentation needed."
-fi
+log_message "info" "Automatic NTFS defragmentation completed."
