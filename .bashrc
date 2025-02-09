@@ -353,7 +353,10 @@ sudo() {
     command sudo eza --color=always --long  --icons=always --no-time --all "$@"
   elif [ "$1" = "vim" ]; then
     shift
-    command sudo nvim "$@"
+    command sudoedit "$@"
+  elif [ "$1" = "nvim" ]; then
+    shift
+    command sudoedit "$@"
  elif [ "$1" = "cat" ]; then
     shift
     command sudo bat  "$@"
