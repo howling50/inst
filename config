@@ -1,0 +1,83 @@
+# i3 config file (v4)
+
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+#font pango:DejaVu Sans Mono 8
+
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym Control+Mod1+t exec i3-sensible-terminal
+
+# kill window
+bindsym Control+Mod1+x exec xkill
+
+# start program launcher
+bindsym Mod1+F1 exec xfce4-popup-applicationsmenu
+bindsym Mod1+F2 exec xfce4-appfinder --collapsed
+bindsym Mod1+F3 exec xfce4-appfinder
+
+# change focus
+bindsym $mod+Left move left
+bindsym $mod+Down move down
+bindsym $mod+Up move up
+bindsym $mod+Right move right
+
+# move focused window
+bindsym $mod+Shift+Left focus left
+bindsym $mod+Shift+Down focus down
+bindsym $mod+Shift+Up focus up
+bindsym $mod+Shift+Right focus right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# switch to workspace
+bindsym Control+1 workspace 1
+bindsym Control+2 workspace 2
+bindsym Control+3 workspace 3
+bindsym Control+4 workspace 4
+bindsym Control+5 workspace 5
+bindsym Control+6 workspace 6
+bindsym Control+7 workspace 7
+bindsym Control+8 workspace 8
+bindsym Control+9 workspace 9
+bindsym Control+0 workspace 10
+bindsym Control+Mod1+Left workspace prev
+bindsym Control+Mod1+Right workspace next
+bindsym Control+Mod1+Shift+Left move workspace prev
+bindsym Control+Mod1+Shift+Right move workspace next
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# other
+bindsym F12 exec xfce4-terminal --drop-down
+bindsym Control+Mod1+Esc exec xfce4-taskmanager
+bindsym Control+Mod1+A exec kitty distrobox-enter -n arch
+bindsym $mod+e exec thunar
+bindsym $mod+l exec xfce4-popup-whiskermenu
+bindsym Print exec xfce4-screenshooter
+bindsym Mod1+Tab focus next
+bindsym Mod1+F4 kill
