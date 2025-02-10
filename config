@@ -38,6 +38,12 @@ bindsym $mod+h split h
 # split in vertical orientation
 bindsym $mod+v split v
 
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
 # switch to workspace
 bindsym Control+1 workspace 1
 bindsym Control+2 workspace 2
