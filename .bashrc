@@ -106,7 +106,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # Alias
 alias weather="curl wttr.in"
 alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
-rsyncauto() {
+rsyncmnt() {
     # List mounted block devices in clean format
     echo "Mounted block devices:"
     mount | awk -F' ' '$1 ~ /^\/dev\// { printf "%-20s %s\n", $1, $3 }' | sort
@@ -128,6 +128,34 @@ rsyncauto() {
     # Confirmation
     read -p "Sync FROM $source_dir TO $dest_dir? (y/n): " confirm
     [[ "$confirm" =~ ^[Yy]$ ]] || { echo "Cancelled"; return 1; }
+
+    # Execute rsync
+    echo "Starting sync..."
+    sudo rsync -aAXvh --progress --stats "$source_dir" "$dest_dir"
+}
+rsyncauto() {
+    # Prompt for paths
+    read -p "Enter source dir or file: " source_dir
+    read -p "Enter destination directory: " dest_dir
+
+    # Validate that the source exists (file or directory)
+    if [ ! -e "$source_dir" ]; then
+        echo "Error: Source '$source_dir' does not exist!"
+        return 1
+    fi
+
+    # Validate that the destination exists and is a directory
+    if [ ! -d "$dest_dir" ]; then
+        echo "Error: Destination directory '$dest_dir' does not exist!"
+        return 1
+    fi
+
+    # Confirmation prompt
+    read -p "Sync FROM '$source_dir' TO '$dest_dir'? (y/n): " confirm
+    if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+        echo "Cancelled."
+        return 1
+    fi
 
     # Execute rsync
     echo "Starting sync..."
