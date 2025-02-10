@@ -226,7 +226,7 @@ makegrub () {
         echo "Neither Arch Linux nor openSUSE found. GRUB update aborted."
     fi
 }
-alias listapp='echo "yt-dlp, autobrr, nmap, proxychains, 1, 2, aria2c, fuseiso, bdinfo, gdu, fzf, ftext, cpp, ver, distro, distrobox, ani-cli, cmus, vis, ddgr, w3m, rgvim, makegrub, delall, depdel, extract, punlock, pacinfo, yt-x, refmirrors, autobrr-update"'
+alias listapp='echo "yt-dlp, autobrr, nmap, proxychains, 1, 2, aria2c, fuseiso, gdu, fzf, ftext, cpp, ver, distro, distrobox, ani-cli, cmus, ddgr, w3m, rgvim, makegrub, delall, depdel, extract, punlock, pacinfo, yt-x, refmirrors, autobrr-update, rsyncmnt, rsyncauto"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
