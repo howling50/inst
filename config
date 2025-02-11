@@ -41,6 +41,9 @@ bindsym $mod+v split v
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+1 layout stacking
 bindsym $mod+2 layout tabbed
@@ -87,4 +90,7 @@ bindsym Print exec xfce4-screenshooter
 bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindsym Mod1+F4 kill
 exec --no-startup-id xfdesktop
+for_window [class=".*"] floating enable
+bindsym $mod+minus move scratchpad
+bindsym $mod+equal scratchpad show
 
