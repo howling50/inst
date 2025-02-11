@@ -41,6 +41,11 @@ bindsym $mod+v split v
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+1 layout stacking
+bindsym $mod+2 layout tabbed
+bindsym $mod+3 layout toggle split
+
 # switch to workspace
 bindsym Control+1 workspace 1
 bindsym Control+2 workspace 2
@@ -81,3 +86,5 @@ bindsym $mod+l exec xfce4-popup-whiskermenu
 bindsym Print exec xfce4-screenshooter
 bindsym Mod1+Tab focus next
 bindsym Mod1+F4 kill
+exec --no-startup-id xfdesktop
+
