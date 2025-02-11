@@ -79,7 +79,7 @@ bindsym $mod+r mode "resize"
 
 # other
 bindsym F12 exec xfce4-terminal --drop-down
-bindsym Control+Mod1+Esc exec xfce4-taskmanager
+bindsym Control+Mod1+Escape exec --no-startup-id xfce4-taskmanager
 bindsym Control+Mod1+A exec kitty distrobox-enter -n arch
 bindsym $mod+e exec thunar
 bindsym $mod+l exec xfce4-popup-whiskermenu
