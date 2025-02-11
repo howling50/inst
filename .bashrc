@@ -104,6 +104,53 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+aria2cauto() {
+    # Ensure a URL is provided
+    if [ -z "$1" ]; then
+        echo "Usage: aria2cauto [URL]"
+        return 1
+    fi
+
+    # Extract the output file name from the URL
+    OUTPUT_FILE=$(basename "$1")
+
+    # Check if the file exists
+    if [ -f "$OUTPUT_FILE" ]; then
+        echo "File '$OUTPUT_FILE' already exists."
+        read -p "Do you want to (R)esume or (O)verwrite? [R/O]: " choice
+
+        case "$choice" in
+            [Rr]*)
+                # Resume the download
+                aria2c -x16 -s16 -c --retry-wait=5 --max-tries=5 "$1"
+                ;;
+            [Oo]*)
+                # Overwrite the file
+                rm "$OUTPUT_FILE"
+                aria2c -x16 -s16 --retry-wait=5 --max-tries=5 "$1"
+                ;;
+            *)
+                echo "Invalid option. Exiting."
+                return 1
+                ;;
+        esac
+    else
+        # File does not exist, download normally
+        aria2c -x16 -s16 -c --retry-wait=5 --max-tries=5 "$1"
+    fi
+}
+listbash() {
+    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mnt, ftex, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image
+\e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m
+\e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors
+\e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto
+\e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror
+\e[1;33mOther:\e[0m
+\e[1;36mWindow Shortcuts:\e[0m alt+f10=fullscreen, alt+f7=move, alt+f8=resize, alt+f9=minimize, ctrl+alt+d=minimize all
+\e[1;36mfuseiso:\e[0m fuseiso example.iso /mnt , fusermount -u /mnt
+\e[1;36mfzf:\e[0m ctrl+t , alt+c , ctrl+r
+"
+}
 alias weather="curl wttr.in"
 alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
 rsyncmnt() {
@@ -226,7 +273,6 @@ makegrub () {
         echo "Neither Arch Linux nor openSUSE found. GRUB update aborted."
     fi
 }
-alias listapp='echo "yt-dlp, autobrr, nmap, proxychains, 1, 2, aria2c, fuseiso, gdu, fzf, ftext, cpp, ver, distro, distrobox, ani-cli, cmus, ddgr, w3m, rgvim, makegrub, delall, depdel, extract, punlock, pacinfo, yt-x, refmirrors, autobrr-update, rsyncmnt, rsyncauto"'
 alias systemcheck='sudo systemctl --failed && sudo journalctl -p 3 -xb'
 alias torstart='sudo systemctl start tor.service'
 alias torstop='sudo systemctl stop tor.service'
