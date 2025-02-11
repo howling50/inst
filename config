@@ -84,7 +84,7 @@ bindsym Control+Mod1+A exec kitty distrobox-enter -n arch
 bindsym $mod+e exec thunar
 bindsym $mod+l exec xfce4-popup-whiskermenu
 bindsym Print exec xfce4-screenshooter
-bindsym Mod1+Tab focus next
+bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindsym Mod1+F4 kill
 exec --no-startup-id xfdesktop
 
