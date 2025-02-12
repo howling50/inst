@@ -52,10 +52,6 @@ bindsym Control+F1 workspace 1
 bindsym Control+F2 workspace 2
 bindsym Control+F3 workspace 3
 bindsym Control+F4 workspace 4
-bindsym Control+F5 workspace 5
-bindsym Control+F6 workspace 6
-bindsym Control+F7 workspace 7
-bindsym Control+F8 workspace 8
 bindsym Control+Mod1+Left workspace prev
 bindsym Control+Mod1+Right workspace next
 bindsym Control+Mod1+Shift+Left move workspace prev
@@ -64,10 +60,6 @@ bindsym Control+Mod1+KP_1 move container to workspace number 1
 bindsym Control+Mod1+KP_2 move container to workspace number 2
 bindsym Control+Mod1+KP_3 move container to workspace number 3
 bindsym Control+Mod1+KP_4 move container to workspace number 4
-bindsym Control+Mod1+KP_5 move container to workspace number 5
-bindsym Control+Mod1+KP_6 move container to workspace number 6
-bindsym Control+Mod1+KP_7 move container to workspace number 7
-bindsym Control+Mod1+KP_8 move container to workspace number 8
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
