@@ -2,10 +2,6 @@
 ##################### git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh (also dont forget to change fstab)####################################################
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 #sudo visudo (Defaults timestamp_timeout=60)  (xfce4-terminal --drop-down xfce4-taskmanager kitty distrobox-enter -n arch /etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root) 
-#sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
-#zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer(patterns-games-games patterns-kde-kde_pim sudo zypper dup --from vlc --allow-vendor-change -y) (about:profiles, open root profile folder,Clear start up cache" )
-#mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --home ~/Media/container/arch && distrobox enter arch
-#mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 SECONDS=0
 sudo sed -i 's/^[[:space:]]*#\?[[:space:]]*solver\.onlyRequires[[:space:]]*=[[:space:]]*false/solver.onlyRequires = true/' /etc/zypp/zypp.conf
 unzip ~/Downloads/inst/script/FiraMono.zip -d ~/Downloads/inst/script/ > /dev/null && sudo mkdir -p /usr/share/fonts/opentype && sudo mv ~/Downloads/inst/script/*.otf /usr/share/fonts/opentype && sudo fc-cache -f -v
@@ -105,3 +101,7 @@ else
 fi
 #defaults,nodatacow,noatime,autodefrag,compress=zstd,space_cache=v2,nofail 0 0
 #defaults,ssd,discard=async,noatime,compress=zstd,space_cache=v2 0 0
+#sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
+#zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer(patterns-games-games patterns-kde-kde_pim sudo zypper dup --from vlc --allow-vendor-change -y) (about:profiles, open root profile folder,Clear start up cache" )
+#mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --home ~/Media/container/arch && distrobox enter arch
+#mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
