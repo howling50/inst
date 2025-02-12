@@ -24,12 +24,6 @@ bindsym $mod+Down move down
 bindsym $mod+Up move up
 bindsym $mod+Right move right
 
-# change focus
-bindsym $mod+Shift+Left focus left
-bindsym $mod+Shift+Down focus down
-bindsym $mod+Shift+Up focus up
-bindsym $mod+Shift+Right focus right
-
 # split in horizontal orientation
 bindsym $mod+h split h
 
@@ -38,6 +32,9 @@ bindsym $mod+v split v
 
 # change focus between tiling / floating windows
 bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
 
 # enter fullscreen mode for the focused container
 bindsym Mod1+F10 fullscreen
@@ -52,14 +49,10 @@ bindsym Control+F1 workspace 1
 bindsym Control+F2 workspace 2
 bindsym Control+F3 workspace 3
 bindsym Control+F4 workspace 4
-bindsym Control+Mod1+Left workspace prev
-bindsym Control+Mod1+Right workspace next
-bindsym Control+Mod1+Shift+Left move workspace prev
-bindsym Control+Mod1+Shift+Right move workspace next
-bindsym Control+Mod1+KP_1 move container to workspace number 1
-bindsym Control+Mod1+KP_2 move container to workspace number 2
-bindsym Control+Mod1+KP_3 move container to workspace number 3
-bindsym Control+Mod1+KP_4 move container to workspace number 4
+bindsym Control+Mod1+1 move container to workspace 1
+bindsym Control+Mod1+2 move container to workspace 2
+bindsym Control+Mod1+3 move container to workspace 3
+bindsym Control+Mod1+4 move container to workspace 4
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
