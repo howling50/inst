@@ -16,10 +16,7 @@ bindsym Control+Mod1+t exec --no-startup-id sh -c 'command -v kitty &>/dev/null 
 bindsym Control+Mod1+x exec xkill
 
 # start program launcher
-#bindsym Mod1+F3 exec rofi
-bindsym Mod1+F1 exec xfce4-popup-applicationsmenu
-bindsym Mod1+F2 exec xfce4-appfinder --collapsed
-bindsym Mod1+F3 exec xfce4-appfinder
+bindsym $mod+Return exec rofi -show drun -theme material.rasi
 
 # move focus window
 bindsym $mod+Left move left
@@ -46,8 +43,9 @@ bindsym $mod+Shift+space floating toggle
 bindsym Mod1+F10 fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym Mod1+F11 layout tabbed
-bindsym Mod1+F12 layout toggle split
+bindsym Mod1+F1 layout stacking
+bindsym Mod1+F2 layout tabbed
+bindsym Mod1+F3 layout toggle split
 
 # switch to workspace
 bindsym Control+F1 workspace 1
