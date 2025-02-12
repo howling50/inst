@@ -10,7 +10,7 @@ set $mod Mod4
 floating_modifier $mod
 
 # start a terminal
-bindsym Control+Mod1+t exec i3-sensible-terminal
+bindsym Control+Mod1+t exec --no-startup-id sh -c 'command -v kitty &>/dev/null && kitty || i3-sensible-terminal'
 
 # kill window
 bindsym Control+Mod1+x exec xkill
