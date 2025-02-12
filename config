@@ -58,6 +58,10 @@ bindsym Control+F5 workspace 5
 bindsym Control+F6 workspace 6
 bindsym Control+F7 workspace 7
 bindsym Control+F8 workspace 8
+bindsym Control+Mod1+Left workspace prev
+bindsym Control+Mod1+Right workspace next
+bindsym Control+Mod1+Shift+Left move workspace prev
+bindsym Control+Mod1+Shift+Right move workspace next
 bindsym Control+Mod1+KP_1 move container to workspace number 1
 bindsym Control+Mod1+KP_2 move container to workspace number 2
 bindsym Control+Mod1+KP_3 move container to workspace number 3
