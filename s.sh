@@ -9,6 +9,7 @@
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 SECONDS=0
 sudo sed -i 's/^[[:space:]]*#\?[[:space:]]*solver\.onlyRequires[[:space:]]*=[[:space:]]*false/solver.onlyRequires = true/' /etc/zypp/zypp.conf
+unzip ~/Downloads/inst/script/FiraMono.zip -d ~/Downloads/inst/script/ > /dev/null && sudo mkdir -p /usr/share/fonts/opentype && sudo mv ~/Downloads/inst/script/*.otf /usr/share/fonts/opentype && sudo fc-cache -f -v
 #sudo zypper install -y -n i3 rofi && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config
 sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc vlc-codecs
 sudo zypper ref && sudo zypper up
