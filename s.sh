@@ -99,6 +99,7 @@ else
 fi
 #defaults,nodatacow,noatime,autodefrag,compress=zstd,space_cache=v2,nofail 0 0
 #defaults,ssd,discard=async,noatime,compress=zstd,space_cache=v2 0 0
+#sudo zypper install -y -n xhost && xhost +local:
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer(patterns-games-games patterns-kde-kde_pim sudo zypper dup --from vlc --allow-vendor-change -y) (about:profiles, open root profile folder,Clear start up cache" )
 #mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --home ~/Media/container/arch && distrobox enter arch
