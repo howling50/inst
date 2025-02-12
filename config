@@ -40,7 +40,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
 
 # enter fullscreen mode for the focused container
 bindsym Mod1+F10 fullscreen
