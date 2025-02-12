@@ -16,7 +16,7 @@ bindsym Control+Mod1+t exec --no-startup-id sh -c 'command -v kitty &>/dev/null 
 bindsym Control+Mod1+x exec xkill
 
 # start program launcher
-#bindsym Mod1+F3 exec dmenu_run
+#bindsym Mod1+F3 exec rofi
 bindsym Mod1+F1 exec xfce4-popup-applicationsmenu
 bindsym Mod1+F2 exec xfce4-appfinder --collapsed
 bindsym Mod1+F3 exec xfce4-appfinder
@@ -58,10 +58,14 @@ bindsym Control+F5 workspace 5
 bindsym Control+F6 workspace 6
 bindsym Control+F7 workspace 7
 bindsym Control+F8 workspace 8
-bindsym Control+Mod1+Left workspace prev
-bindsym Control+Mod1+Right workspace next
-bindsym Control+Mod1+Shift+Left move workspace prev
-bindsym Control+Mod1+Shift+Right move workspace next
+bindsym Control+Mod1+KP_1 move container to workspace number 1
+bindsym Control+Mod1+KP_2 move container to workspace number 2
+bindsym Control+Mod1+KP_3 move container to workspace number 3
+bindsym Control+Mod1+KP_4 move container to workspace number 4
+bindsym Control+Mod1+KP_5 move container to workspace number 5
+bindsym Control+Mod1+KP_6 move container to workspace number 6
+bindsym Control+Mod1+KP_7 move container to workspace number 7
+bindsym Control+Mod1+KP_8 move container to workspace number 8
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
