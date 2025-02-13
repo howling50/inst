@@ -8,13 +8,13 @@ sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_ti
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman -Syyu --noconfirm --needed
 sudo pacman -S reflector galculator --noconfirm --needed
+#sudo pacman -S i3-wm rofi --noconfirm --needed && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config
 sudo reflector --verbose -c EE -c FR -c DE -c GR -c LU -c NL -c RO -c SK -c CH -c GB --protocol https --sort rate --latest 10 --download-timeout 20 --save /etc/pacman.d/mirrorlist
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
 sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
 sudo pacman -S fastfetch firefox kitty powerline-fonts starship flatpak rsync --noconfirm --needed
 sudo pacman -S --needed base-devel git --noconfirm --needed
 git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save
-#sudo pacman -S i3-wm rofi --noconfirm --needed && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config && yay -S --noconfirm  xfce4-i3-workspaces-plugin-git 
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
 #------------
