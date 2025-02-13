@@ -85,6 +85,7 @@ bindsym Print exec xfce4-screenshooter
 bindsym Mod1+Tab exec --no-startup-id rofi -show window -theme material.rasi
 bindsym Mod1+F4 kill
 exec --no-startup-id xfdesktop
+#exec --no-startup-id nitrogen --restore
 #for_window [class=".*"] floating enable
 bindsym Mod1+F9 move scratchpad
 bindsym Mod1+F7 scratchpad show
