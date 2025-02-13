@@ -6,7 +6,7 @@ SECONDS=0
 #sudo sed -i 's/^[[:space:]]*#\?[[:space:]]*solver\.onlyRequires[[:space:]]*=[[:space:]]*false/solver.onlyRequires = true/' /etc/zypp/zypp.conf
 unzip ~/Downloads/inst/script/FiraMono.zip -d ~/Downloads/inst/script/ > /dev/null && rm ~/Downloads/inst/script/README.md && rm ~/Downloads/inst/script/LICENSE && sudo mkdir -p /usr/share/fonts/opentype && sudo mv ~/Downloads/inst/script/*.otf /usr/share/fonts/opentype
 unzip ~/Downloads/inst/script/NerdFontsSymbolsOnly.zip -d ~/Downloads/inst/script/ > /dev/null && sudo mkdir -p /usr/share/fonts/truetype/custom && sudo mv ~/Downloads/inst/script/*.ttf /usr/share/fonts/truetype/custom/ && sudo fc-cache -f -v 
-#sudo zypper install -y -n i3 rofi && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config
+#sudo zypper install -y -n i3 rofi nitrogen polybar && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config && mkdir -p ~/.config/polybar && cp ~/Downloads/inst/config.ini ~/.config/polybar/config.ini && cp ~/Downloads/inst/launch.sh ~/.config/polybar/launch.sh && chmod +x ~/.config/polybar/launch.sh
 sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc vlc-codecs
 sudo zypper ref && sudo zypper up
 sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
