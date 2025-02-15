@@ -4,8 +4,6 @@
 #sudo visudo (Defaults timestamp_timeout=60)  (xfce4-terminal --drop-down xfce4-taskmanager kitty distrobox-enter -n arch /etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root) 
 SECONDS=0
 sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc-codecs vlc
-unzip ~/Downloads/inst/script/FiraMono.zip -d ~/Downloads/inst/script/ > /dev/null && rm ~/Downloads/inst/script/README.md && rm ~/Downloads/inst/script/LICENSE && sudo mkdir -p /usr/share/fonts/opentype && sudo mv ~/Downloads/inst/script/*.otf /usr/share/fonts/opentype
-unzip ~/Downloads/inst/script/NerdFontsSymbolsOnly.zip -d ~/Downloads/inst/script/ > /dev/null && sudo mkdir -p /usr/share/fonts/truetype/custom && sudo mv ~/Downloads/inst/script/*.ttf /usr/share/fonts/truetype/custom/ && sudo fc-cache -f -v 
 #sudo zypper install -y -n i3 rofi nitrogen polybar && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config && mkdir -p ~/.config/polybar && cp ~/Downloads/inst/config.ini ~/.config/polybar/config.ini && cp ~/Downloads/inst/launch.sh ~/.config/polybar/launch.sh && chmod +x ~/.config/polybar/launch.sh
 sudo zypper ref && sudo zypper up
 sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
@@ -25,7 +23,7 @@ sudo zypper remove -y discover6 && sudo zypper addlock discover6 && sudo zypper 
 #sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors && sudo zypper remove -y pragha parole && sudo zypper addlock parole pragha
 sudo zypper install -y -n libreoffice-writer libreoffice-writer-extensions cmatrix
 sudo zypper install -y -n audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvtoolnix-tools mkvtoolnix-gui steam lutris flac
-sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts
+sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman distrobox symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts fontawesome-fonts fontawesome-fonts
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim
 sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty aria2 fuseiso android-tools q4wine flameshot
 #sudo opi -n codecs
@@ -38,6 +36,7 @@ sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty
 sudo flatpak install --noninteractive flathub net.mediaarea.MediaInfo && sudo flatpak install --noninteractive flathub com.github.tchx84.Flatseal && sudo flatpak install --noninteractive flathub org.torproject.torbrowser-launcher
 sudo flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && sudo flatpak install --noninteractive flathub com.usebottles.bottles && sudo flatpak install --noninteractive flathub fr.handbrake.ghb && sudo flatpak install --noninteractive flathub net.davidotek.pupgui2 && sudo flatpak install --noninteractive flathub com.brave.Browser
 sudo flatpak install --noninteractive flathub com.calibre_ebook.calibre && sudo flatpak install --noninteractive flathub org.gimp.GIMP && sudo flatpak install --noninteractive flathub com.github.Matoking.protontricks && sudo flatpak install --noninteractive flathub app.zen_browser.zen && sudo flatpak install --noninteractive flathub org.shotcut.Shotcut && sudo flatpak install --noninteractive flathub io.github.Hexchat
+unzip ~/Downloads/inst/script/FiraMono.zip -d ~/Downloads/inst/script/ > /dev/null 2>&1 && rm -f ~/Downloads/inst/script/README.md ~/Downloads/inst/script/LICENSE 2> /dev/null && sudo mkdir -p /usr/share/fonts/opentype && sudo mv ~/Downloads/inst/script/*.otf /usr/share/fonts/opentype/ && sudo fc-cache -f -v
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep linux_amd64.rpm | cut -d\" -f4) && sudo zypper --no-gpg-checks install -y -n ~/Downloads/inst/autobrr*.rpm
 mkdir -p ~/.othercrap && wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && sudo mv ani-cli /usr/local/bin
 sudo curl -sL "https://raw.githubusercontent.com/Benexl/yt-x/refs/heads/master/yt-x" -o /usr/local/bin/yt-x && sudo chmod +x /usr/local/bin/yt-x
