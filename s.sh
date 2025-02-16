@@ -4,7 +4,7 @@
 #sudo visudo (Defaults timestamp_timeout=60)  (xfce4-terminal --drop-down xfce4-taskmanager kitty distrobox-enter -n arch /etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root) 
 SECONDS=0
 sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc-codecs vlc
-#sudo zypper install -y -n i3 rofi nitrogen polybar && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config && mkdir -p ~/.config/polybar && cp ~/Downloads/inst/config.ini ~/.config/polybar/config.ini && cp ~/Downloads/inst/launch.sh ~/.config/polybar/launch.sh && chmod +x ~/.config/polybar/launch.sh
+#sudo zypper install -y -n i3 rofi nitrogen polybar python-i3ipc && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config && mkdir -p ~/.config/polybar && cp ~/Downloads/inst/config.ini ~/.config/polybar/config.ini && cp ~/Downloads/inst/launch.sh ~/.config/polybar/launch.sh && chmod +x ~/.config/polybar/launch.sh
 sudo zypper ref && sudo zypper up
 sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
 sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && sudo zypper addlock PackageKit
