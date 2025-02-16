@@ -87,7 +87,7 @@ exec --no-startup-id xfdesktop
 bindsym Mod1+F9 move scratchpad
 bindsym Mod1+F7 scratchpad show
 bindsym Control+Mod1+d exec --no-startup-id bash -c 'i3-msg -t get_tree | jq -r '\''.. | objects | select(.window != null) | .id'\'' | xargs -I{} i3-msg "[con_id={}] move scratchpad"'
-bindsym Control+Mod1+Delete exec xfce4-session-logout
+bindsym Control+Mod1+Delete exec --no-startup-id /usr/local/bin/power-menu.sh
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
