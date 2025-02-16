@@ -74,7 +74,7 @@ bindsym F12 exec xfce4-terminal --drop-down
 bindsym Control+Mod1+Escape exec --no-startup-id xfce4-taskmanager
 bindsym Control+Mod1+a exec kitty distrobox-enter -n arch
 bindsym $mod+e exec thunar
-bindsym Print exec xfce4-screenshooter
+bindsym Print exec --no-startup-id sh -c 'command -v xfce4-screenshooter &>/dev/null && xfce4-screenshooter || flameshot gui'
 bindsym Shift+Print exec xfce4-screenshooter -r
 bindsym Mod1+Print exec xfce4-screenshooter -w
 bindsym Mod1+Tab exec --no-startup-id rofi -show window -theme material.rasi
