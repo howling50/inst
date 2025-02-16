@@ -74,7 +74,6 @@ bindsym F12 exec xfce4-terminal --drop-down
 bindsym Control+Mod1+Escape exec --no-startup-id xfce4-taskmanager
 bindsym Control+Mod1+a exec kitty distrobox-enter -n arch
 bindsym $mod+e exec thunar
-bindsym $mod+l exec xfce4-popup-whiskermenu
 bindsym Print exec xfce4-screenshooter
 bindsym Shift+Print exec xfce4-screenshooter -r
 bindsym Mod1+Print exec xfce4-screenshooter -w
