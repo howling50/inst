@@ -16,7 +16,7 @@ bindsym Control+Mod1+t exec --no-startup-id sh -c 'command -v kitty &>/dev/null 
 bindsym Control+Mod1+x exec xkill
 
 # start program launcher
-bindsym $mod+Return exec rofi -show drun -theme material.rasi
+bindsym $mod+Return exec rofi -show drun -theme material.rasi -run-command '{terminal} -e "sudo {cmd}"'
 
 # move focus window
 bindsym $mod+Left move left
