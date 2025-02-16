@@ -572,9 +572,6 @@ _fzf_comprun() {
     *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
   esac
 }
-eval "$(fzf --bash)"
-eval "$(zoxide init bash)"
-eval "$(starship init bash)"
 
 # Check for updates in Arch official repositories
 if command -v checkupdates &> /dev/null; then
@@ -608,3 +605,6 @@ elif command -v proxychains4 &>/dev/null; then
     alias proxychains="proxychains4"
 fi
 
+eval "$(fzf --bash)"
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"
