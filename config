@@ -98,3 +98,5 @@ gaps inner 4
 gaps outer 2
 smart_gaps on
 smart_borders on
+hide_edge_borders both
+for_window [class=".*"] border pixel 2
