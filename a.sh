@@ -39,7 +39,7 @@ sudo pacman -Rns kwalletmanager --noconfirm && sudo pacman -R elisa thunderbird 
 sudo pacman -S binutils nmap autoconf bat gcc patch fakeroot bind --noconfirm --needed
 sudo pacman -S qbittorrent putty aria2 ttf-roboto bluez bluez-utils blueman fuseiso android-tools apparmor mpv vlc libreoffice-fresh --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
-sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
+sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks flameshot --noconfirm --needed
 sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audacious lutris net-tools zip unzip lsof unrar gparted filezilla --noconfirm --needed
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr ttf-firacode-nerd cmus xorg-xkill ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less mpg123 imagemagick tldr feh alsa-utils awesome-terminal-fonts exfat-utils gptfdisk ntfs-3g ntp os-prober python-pyqt5 python-pip terminus-font ttf-droid --noconfirm --needed
