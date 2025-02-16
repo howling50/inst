@@ -14,7 +14,7 @@ cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && 
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
 #------------
-chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/1 /usr/local/bin && sudo cp ~/Downloads/inst/scripts/2 /usr/local/bin && sudo cp ~/Downloads/inst/scripts/timer /usr/local/bin && sudo cp ~/Downloads/inst/scripts/mp4decrypt /usr/local/bin && sudo cp ~/Downloads/inst/scripts/checkerror /usr/local/bin
+chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/* /usr/local/bin
 #-------
 sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media && mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine && sudo mkdir -p /var/lib/flatpak && mkdir -p ~/.local/share/flatpak && sudo chattr -R +C ~/.config/qBittorrent && sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine && sudo chattr -R +C /var/lib/flatpak && sudo chattr -R +C ~/.local/share/flatpak
 #sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
