@@ -105,4 +105,4 @@ fi
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 #curl -s https://raw.githubusercontent.com/pavinjosdev/zypperoni/main/zypperoni | sudo tee /usr/bin/zypperoni > /dev/null && sudo chmod 755 /usr/bin/zypperoni
 #sudo sed -i 's/^[[:space:]]*#\?[[:space:]]*solver\.onlyRequires[[:space:]]*=[[:space:]]*false/solver.onlyRequires = true/' /etc/zypp/zypp.conf
-#sudo zypper -y -n xfce4-terminal xfce4-taskmanager imagemagick thunar thunar-volman gvfs lxappearance && mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/MB-Blueberry-Suru-GLOW_1.9.3.zip -d ~/.icons > /dev/null
+#sudo zypper -y -n jq xfce4-terminal xfce4-taskmanager imagemagick thunar thunar-volman gvfs lxappearance && mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/MB-Blueberry-Suru-GLOW_1.9.3.zip -d ~/.icons > /dev/null
