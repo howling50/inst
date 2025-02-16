@@ -80,6 +80,7 @@ bindsym Mod1+Print exec xfce4-screenshooter -w
 bindsym Mod1+Tab exec --no-startup-id rofi -show window -theme material.rasi
 bindsym Mod1+F4 kill
 exec --no-startup-id xfdesktop
+#exec --no-startup-id nm-applet
 #exec --no-startup-id ~/.config/polybar/launch.sh
 #exec --no-startup-id nitrogen --restore
 #for_window [class=".*"] floating enable
