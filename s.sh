@@ -3,13 +3,13 @@
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 #sudo visudo (Defaults timestamp_timeout=60)  (xfce4-terminal --drop-down xfce4-taskmanager kitty distrobox-enter -n arch /etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root) 
 SECONDS=0
-sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc-codecs vlc
+sudo zypper install -y -n vlc kernel-longterm powerline-fonts starship memtest86+ kitty flatpak tealdeer bat zoxide fzf gdu eza ripgrep && sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && cp -r ~/Downloads/inst/files/* ~/.config/
+sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc-codecs
 #sudo zypper install -y -n i3 rofi nitrogen polybar python313-i3ipc && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config && mkdir -p ~/.config/polybar && cp ~/Downloads/inst/config.ini ~/.config/polybar/config.ini && cp ~/Downloads/inst/launch.sh ~/.config/polybar/launch.sh && chmod +x ~/.config/polybar/launch.sh
 sudo zypper ref && sudo zypper up
 sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
 sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && sudo zypper addlock PackageKit
 #sudo zypper ar -f https://download.nvidia.com/opensuse/tumbleweed/ nvidia
-sudo zypper install -y -n kernel-longterm powerline-fonts starship memtest86+ kitty flatpak tealdeer bat zoxide fzf gdu eza ripgrep && sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && cp -r ~/Downloads/inst/files/* ~/.config/
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
