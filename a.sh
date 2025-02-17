@@ -2,7 +2,6 @@
 ##################### sudo chattr -R +C ~/Downloads then git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
 #git clone https://github.com/howling50/Top-5-Bootloader-Themes 
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
-#xfce4-terminal --drop-down /etc/lightdm/lightdm.conf  
 SECONDS=0
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
@@ -145,3 +144,4 @@ fi
 #GRUB_DISABLE_SUBMENU=y
 #sudo grub-mkconfig -o /boot/grub/grub.cfg
 #sudo pacman -S polkit-gnome htop jq xfce4-terminal xfce4-taskmanager imagemagick thunar thunar-volman gvfs lxappearance && mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/MB-Blueberry-Suru-GLOW_1.9.3.zip -d ~/.icons > /dev/null
+#xfce4-terminal --drop-down /etc/lightdm/lightdm.conf or /etc/sddm.conf [Autologin] User=howling Session=i3
