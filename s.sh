@@ -7,7 +7,7 @@ sudo zypper install -y -n vlc kernel-longterm powerline-fonts starship memtest86
 sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc-codecs
 #sudo zypper install -y -n i3 rofi nitrogen polybar python313-i3ipc && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config && mkdir -p ~/.config/polybar && cp ~/Downloads/inst/config.ini ~/.config/polybar/config.ini && cp ~/Downloads/inst/launch.sh ~/.config/polybar/launch.sh && chmod +x ~/.config/polybar/launch.sh
 sudo zypper ref && sudo zypper up
-sudo zypper install -y -n systemd-zram-service &&  sudo systemctl enable --now zramswap.service
+sudo zypper install -y -n systemd-zram-service && sudo systemctl enable --now zramswap.service
 sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && sudo zypper addlock PackageKit
 #sudo zypper ar -f https://download.nvidia.com/opensuse/tumbleweed/ nvidia
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
