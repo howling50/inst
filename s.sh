@@ -100,9 +100,11 @@ fi
 #defaults,ssd,discard=async,noatime,compress=zstd,space_cache=v2 0 0
 #sudo zypper install -y -n xhost && xhost +local:
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
-#zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer  xfce4-i3-workspaces-plugin  (patterns-games-games patterns-kde-kde_pim sudo zypper dup --from vlc --allow-vendor-change -y) (about:profiles, open root profile folder,Clear start up cache" )
+#zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer  xfce4-i3-workspaces-plugin  (patterns-games-games patterns-kde-kde_pim sudo zypper dup --from vlc --allow-vendor-change -y) (about:profiles, open root profile folder,Clear start up cache" ) sestatus  and /etc/selinux/config
 #mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --home ~/Media/container/arch && distrobox enter arch
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 #curl -s https://raw.githubusercontent.com/pavinjosdev/zypperoni/main/zypperoni | sudo tee /usr/bin/zypperoni > /dev/null && sudo chmod 755 /usr/bin/zypperoni
 #sudo sed -i 's/^[[:space:]]*#\?[[:space:]]*solver\.onlyRequires[[:space:]]*=[[:space:]]*false/solver.onlyRequires = true/' /etc/zypp/zypp.conf
-#sudo zypper in --no-recommends catfish jq xfce4-terminal xfce4-taskmanager ImageMagick thunar thunar-volman gvfs lxappearance 
+#sudo zypper in --no-recommends NetworkManager-applet catfish jq xfce4-terminal xfce4-taskmanager ImageMagick thunar thunar-volman gvfs lxappearance 
+#sudo setsebool -P selinuxuser_execmod 1 && sudo setsebool -P selinuxuser_execheap 1 && sudo setsebool -P selinuxuser_execstack 1 
+#browser: sudo semanage fcontext -a -t user_home_dir_t "/home/howling/Downloads(/.*)?" && sudo restorecon -Rv /home/howling/Downloads
