@@ -48,7 +48,7 @@ sudo chattr +C /.snapshots
 # Add entry to /etc/fstab
 #replace uuid from id u get fromm /etc/fstab
 PART_UUID=$(sudo blkid -o value -s UUID "${DISK}")
-echo "UUID=${PART_UUID} /.snapshots    btrfs defaults,nodatacow,subvol=snapshots 0 0" | sudo tee -a /etc/fstab > /dev/null || exit 1
+echo "UUID=${PART_UUID} /.snapshots    btrfs defaults,ssd,discard,noatime,compress=zstd,space_cache=v2,subvol=snapshots 0 0" | sudo tee -a /etc/fstab > /dev/null || exit 1
 
 # Mount all filesystems from /etc/fstab
 sudo mount -a
