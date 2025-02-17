@@ -78,11 +78,15 @@ bindsym Print exec flameshot gui
 bindsym Mod1+Print exec xfce4-screenshooter
 bindsym Mod1+Tab exec --no-startup-id rofi -show window -theme material.rasi
 bindsym Mod1+F4 kill
+
 exec --no-startup-id xfdesktop
+#exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 #exec --no-startup-id nm-applet
 #exec --no-startup-id ~/.config/polybar/launch.sh
 #exec --no-startup-id nitrogen --restore
 #for_window [class=".*"] floating enable
+
+
 bindsym Mod1+F9 move scratchpad
 bindsym Mod1+F7 scratchpad show
 bindsym Control+Mod1+d exec --no-startup-id bash -c 'i3-msg -t get_tree | jq -r '\''.. | objects | select(.window != null) | .id'\'' | xargs -I{} i3-msg "[con_id={}] move scratchpad"'
