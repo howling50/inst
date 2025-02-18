@@ -5,7 +5,7 @@
 SECONDS=0
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
-sudo pacman -Syyu --noconfirm --needed
+sudo pacman -Syyu --noconfirm --needed && chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/* /usr/local/bin
 sudo pacman -S reflector galculator eza zoxide fzf bat --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
 #sudo pacman -S i3-wm rofi nitrogen polybar python-i3ipc --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
 sudo reflector --verbose -c EE -c FR -c DE -c GR -c LU -c NL -c RO -c SK -c CH -c GB --protocol https --sort rate --latest 10 --download-timeout 20 --save /etc/pacman.d/mirrorlist
@@ -13,12 +13,9 @@ sudo reflector --verbose -c EE -c FR -c DE -c GR -c LU -c NL -c RO -c SK -c CH -
 sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
 sudo pacman -S fastfetch firefox kitty powerline-fonts starship flatpak rsync ttf-firacode-nerd ttf-meslo-nerd ttf-roboto awesome-terminal-fonts terminus-font ttf-droid ttf-nerd-fonts-symbols --noconfirm --needed
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
-sudo pacman -S --needed base-devel git --noconfirm --needed
-git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save
+sudo pacman -S --needed base-devel git --noconfirm --needed && git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
-#------------
-chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/* /usr/local/bin
 #-------
 sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media
 mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine && sudo mkdir -p /var/lib/flatpak && mkdir -p ~/.local/share/flatpak
