@@ -11,7 +11,7 @@ sudo pacman -S reflector galculator --noconfirm --needed && cp -r ~/Downloads/in
 sudo reflector --verbose -c EE -c FR -c DE -c GR -c LU -c NL -c RO -c SK -c CH -c GB --protocol https --sort rate --latest 10 --download-timeout 20 --save /etc/pacman.d/mirrorlist
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
 sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
-sudo pacman -S fastfetch firefox kitty powerline-fonts starship flatpak rsync --noconfirm --needed
+sudo pacman -S fastfetch firefox kitty powerline-fonts starship flatpak rsync ttf-firacode-nerd ttf-meslo-nerd ttf-roboto awesome-terminal-fonts terminus-font ttf-droid --noconfirm --needed
 sudo pacman -S --needed base-devel git --noconfirm --needed
 git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save
 #----Swap-------
@@ -36,12 +36,12 @@ sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo s
 #sudo pacman -S xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager baobab file-roller --noconfirm --needed && sudo pacman -R parole vim --noconfirm && sudo getent group autologin > /dev/null || sudo groupadd autologin && sudo usermod -aG autologin $USER
 sudo pacman -Rns kwalletmanager --noconfirm && sudo pacman -R elisa thunderbird vim --noconfirm && sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 audiocd-kio --noconfirm --needed
 sudo pacman -S binutils nmap autoconf bat gcc patch fakeroot bind --noconfirm --needed
-sudo pacman -S qbittorrent putty aria2 ttf-roboto bluez bluez-utils blueman fuseiso android-tools apparmor mpv vlc libreoffice-fresh --noconfirm --needed
+sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android-tools apparmor mpv vlc libreoffice-fresh --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks flameshot --noconfirm --needed
 sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audacious lutris net-tools zip unzip lsof unrar gparted filezilla --noconfirm --needed
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
-sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr ttf-firacode-nerd cmus xorg-xkill ttf-meslo-nerd podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less mpg123 imagemagick tldr feh alsa-utils awesome-terminal-fonts exfat-utils gptfdisk ntfs-3g ntp os-prober python-pyqt5 python-pip terminus-font ttf-droid --noconfirm --needed
+sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less mpg123 imagemagick tldr feh alsa-utils exfat-utils gptfdisk ntfs-3g ntp os-prober python-pyqt5 python-pip --noconfirm --needed
 #-----------------------------------------------------------------
 #yay -S --noconfirm ffmpeg-full
 yay -S --noconfirm ventoy-bin reflector-simple quickemu quickgui-bin winegui cli-visualizer dxvk-bin input-remapper-git ttf-ms-fonts
