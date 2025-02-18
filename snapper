@@ -7,11 +7,7 @@ lsblk
 read -p "Please enter root location to work on (example /dev/sda1): " DISK
 
 # Install necessary packages with error handling
-sudo pacman -S btrfs-progs --noconfirm --needed
-sudo pacman -S snapper --noconfirm --needed
-yay -S btrfs-assistant --noconfirm --needed
-yay -S btrfsmaintenance --noconfirm --needed
-sudo pacman -S grub-btrfs --noconfirm --needed
+sudo pacman -S btrfs-progs snapper grub-btrfs --noconfirm --needed && yay -S btrfs-assistant btrfsmaintenance --noconfirm --needed
 #sudo pacman -S snap-pac --noconfirm
 
 # Grub Snapshots
