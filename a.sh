@@ -6,12 +6,13 @@ SECONDS=0
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman -Syyu --noconfirm --needed
-sudo pacman -S reflector galculator --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
+sudo pacman -S reflector galculator eza zoxide fzf bat --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
 #sudo pacman -S i3-wm rofi nitrogen polybar python-i3ipc --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
 sudo reflector --verbose -c EE -c FR -c DE -c GR -c LU -c NL -c RO -c SK -c CH -c GB --protocol https --sort rate --latest 10 --download-timeout 20 --save /etc/pacman.d/mirrorlist
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
 sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
 sudo pacman -S fastfetch firefox kitty powerline-fonts starship flatpak rsync ttf-firacode-nerd ttf-meslo-nerd ttf-roboto awesome-terminal-fonts terminus-font ttf-droid ttf-nerd-fonts-symbols --noconfirm --needed
+cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo pacman -S --needed base-devel git --noconfirm --needed
 git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save
 #----Swap-------
@@ -25,8 +26,6 @@ sudo chattr -R +C ~/.config/qBittorrent && sudo chattr -R +C ~/Media && sudo cha
 #---
 #curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo ./strap.sh
 #---
-cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/
-sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path && balooctl disable && sudo rm -rf ~/./local/share/baloo
 #-------------qemu---------------------------------
 sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo systemctl enable --now libvirtd && sudo usermod -a -G libvirt $(whoami) && sudo systemctl restart libvirtd && sudo virsh net-define /etc/libvirt/qemu/networks/default.xml && sudo virsh net-autostart default
@@ -35,13 +34,13 @@ sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo s
 #sudo pacman -S virtualbox jdk-openjdk --noconfirm --needed && yay -S --noconfirm virtualbox-ext-oracle
 #sudo pacman -S xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager baobab file-roller --noconfirm --needed && sudo pacman -R parole vim --noconfirm && sudo getent group autologin > /dev/null || sudo groupadd autologin && sudo usermod -aG autologin $USER
 sudo pacman -Rns kwalletmanager --noconfirm && sudo pacman -R elisa thunderbird vim --noconfirm && sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 audiocd-kio --noconfirm --needed
-sudo pacman -S binutils nmap autoconf bat gcc patch fakeroot bind --noconfirm --needed
+sudo pacman -S binutils nmap autoconf gcc patch fakeroot bind --noconfirm --needed
 sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android-tools apparmor mpv vlc libreoffice-fresh --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks flameshot --noconfirm --needed
 sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audacious lutris net-tools zip unzip lsof unrar gparted filezilla --noconfirm --needed
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
-sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep eza memtest86+ tree gdu zoxide fzf less mpg123 imagemagick tldr feh alsa-utils exfat-utils gptfdisk ntfs-3g ntp os-prober python-pyqt5 python-pip --noconfirm --needed
+sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep memtest86+ tree gdu less mpg123 imagemagick tldr feh alsa-utils exfat-utils gptfdisk ntfs-3g ntp os-prober python-pyqt5 python-pip --noconfirm --needed
 #-----------------------------------------------------------------
 #yay -S --noconfirm ffmpeg-full
 yay -S --noconfirm ventoy-bin reflector-simple quickemu quickgui-bin winegui cli-visualizer dxvk-bin input-remapper-git ttf-ms-fonts
