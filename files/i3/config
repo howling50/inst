@@ -2,9 +2,10 @@
 
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-#font pango:DejaVu Sans Mono 8
-
+#opensuse
+#exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
+#Arch
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -80,7 +81,6 @@ bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindsym Mod1+F4 kill
 
 exec --no-startup-id xfdesktop
-#exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 #exec --no-startup-id nm-applet
 #exec --no-startup-id ~/.config/polybar/launch.sh
 #exec --no-startup-id nitrogen --restore
