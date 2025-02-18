@@ -79,6 +79,7 @@ bindsym Print exec flameshot gui
 bindsym Mod1+Print exec xfce4-screenshooter
 bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindsym Mod1+F4 kill
+bindsym $mod+Shift+w exec --no-startup-id /usr/local/bin/rofi-wifi-menu
 
 exec --no-startup-id xfdesktop
 #exec --no-startup-id nm-applet
