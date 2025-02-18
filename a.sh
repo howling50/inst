@@ -6,8 +6,8 @@ SECONDS=0
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman -Syyu --noconfirm --needed
-sudo pacman -S reflector galculator --noconfirm --needed
-#sudo pacman -S i3-wm rofi nitrogen polybar python-i3ipc --noconfirm --needed && mkdir -p ~/.config/i3/ && cp ~/Downloads/inst/config  ~/.config/i3/config && mkdir -p ~/.config/polybar && cp ~/Downloads/inst/config.ini ~/.config/polybar/config.ini && cp ~/Downloads/inst/launch.sh ~/.config/polybar/launch.sh && chmod +x ~/.config/polybar/launch.sh
+sudo pacman -S reflector galculator --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo cp -r ~/Downloads/inst/files/* /root/.config/
+#sudo pacman -S i3-wm rofi nitrogen polybar python-i3ipc --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
 sudo reflector --verbose -c EE -c FR -c DE -c GR -c LU -c NL -c RO -c SK -c CH -c GB --protocol https --sort rate --latest 10 --download-timeout 20 --save /etc/pacman.d/mirrorlist
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
 sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
@@ -60,7 +60,6 @@ mkdir -p ~/.othercrap && wget https://github.com/oguzhaninan/Stacer/releases/dow
 #mkdir -p ~/.othercrap && wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=$HOME/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=$HOME/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;\nStartupNotify=true\nTerminal=false" > ~/.local/share/applications/stacer.desktop && chmod +x ~/.local/share/applications/stacer.desktop
 #-----
 sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
-mkdir -p ~/.config/fastfetch && cp ~/Downloads/inst/config.jsonc ~/.config/fastfetch/ && sudo mkdir -p /root/.config/fastfetch && sudo cp ~/Downloads/inst/config.jsonc /root/.config/fastfetch/
 #------------Remote -----------------------------------
 #sudo pacman -S remmina --noconfirm --needed && yay -S --noconfirm remmina-plugin-teamviewer remmina-plugin-ultravnc remmina-plugin-rdesktop remmina-plugin-url remmina-plugin-open remmina-plugin-folder
 #------------------------------------------------------------------
@@ -93,7 +92,7 @@ echo 'fi' | sudo tee -a /root/.bash_profile
 #-----------------
 sudo sed -i '$ a unqualified-search-registries=["registry.access.redhat.com", "registry.fedoraproject.org", "docker.io"]' /etc/containers/registries.conf
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
-mkdir -p ~/.steam/root/compatibilitytools.d/ && mkdir -p ~/.config/nvim/ && cp ~/Downloads/inst/init.lua ~/.config/nvim/ && curl -O https://i.imgur.com/N51R4iT.jpg && cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/ && sudo mkdir -p /root/.config/nvim/ && sudo cp ~/Downloads/inst/init.lua /root/.config/nvim/
+mkdir -p ~/.steam/root/compatibilitytools.d/ && curl -O https://i.imgur.com/N51R4iT.jpg && cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 cd ~/Downloads/inst/
 #wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux && mv yt-dlp_linux yt-dlp && chmod +x yt-dlp && sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
 wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip && wget https://github.com/sc0ty/subsync/releases/download/0.17/subsync-0.17.0-portable-amd64.exe && mv ~/Downloads/inst/subsync-0.17.0-portable-amd64.exe ~/.othercrap/
@@ -104,7 +103,6 @@ sleep 1
 sudo ufw default allow outgoing
 sleep 1
 sudo systemctl enable ufw && sudo systemctl start ufw && sudo ufw enable
-cp -r ~/Downloads/inst/files/* ~/.config/ && cd && cd ~/Downloads/inst/
 # ----------------------------------------------
 #konsave -i ~/Downloads/inst/kde2.knsv
 #sleep 1
