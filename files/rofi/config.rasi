@@ -1,0 +1,5 @@
+configuration {
+  modi: "window,drun";
+  font: "FiraCode Nerd Font Mono Bold 10";
+}
+@theme "material.rasi"
