@@ -5,7 +5,7 @@ set $mod Mod4
 #opensuse
 #exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 #Arch
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
