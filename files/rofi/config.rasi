@@ -1,5 +1,5 @@
 configuration {
-  modi: "window,drun,calc";
+  modi: "window,drun,run,calc";
   font: "FiraCode Nerd Font Mono Bold 10";
 }
 @theme "material.rasi"
