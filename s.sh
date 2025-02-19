@@ -25,7 +25,7 @@ sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo
 #sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors && sudo zypper remove -y pragha parole && sudo zypper addlock parole pragha
 sudo zypper install -y -n libreoffice-writer libreoffice-writer-extensions cmatrix qalculate rofi-calc lsof
 sudo zypper install -y -n rofi audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvtoolnix-tools mkvtoolnix-gui steam lutris flac
-sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman distrobox
+sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman distrobox bluez blueman 
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim
 sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty aria2 fuseiso android-tools q4wine flameshot
 #sudo opi -n codecs
