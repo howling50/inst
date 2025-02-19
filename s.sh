@@ -5,7 +5,7 @@
 SECONDS=0
 unzip ~/Downloads/inst/script/FiraMono.zip -d ~/Downloads/inst/script/ > /dev/null 2>&1 && rm -f ~/Downloads/inst/script/README.md ~/Downloads/inst/script/LICENSE 2> /dev/null && sudo mkdir -p /usr/share/fonts/opentype && sudo mv ~/Downloads/inst/script/*.otf /usr/share/fonts/opentype/ && sudo fc-cache -f -v
 #mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/MB-Blueberry-Suru-GLOW_1.9.3.zip -d ~/.icons > /dev/null
-sudo zypper install -y -n jetbrains-mono-fonts symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts fontawesome-fonts fontawesome-fonts vlc kernel-longterm powerline-fonts starship memtest86+ kitty flatpak tealdeer bat zoxide fzf gdu eza ripgrep && sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
+sudo zypper install -y -n ImageMagick jetbrains-mono-fonts symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts fontawesome-fonts fontawesome-fonts vlc kernel-longterm powerline-fonts starship memtest86+ kitty flatpak tealdeer bat zoxide fzf gdu eza ripgrep && sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
 sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc-codecs
 #sudo zypper install -y -n i3 nitrogen polybar python313-i3ipc && chmod +x ~/.config/polybar/launch.sh
 sudo zypper ref && sudo zypper up
@@ -25,7 +25,7 @@ sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo
 #sudo zypper install -y -n xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager adwaita-icon-theme dmz-icon-theme-cursors && sudo zypper remove -y pragha parole && sudo zypper addlock parole pragha
 sudo zypper install -y -n libreoffice-writer libreoffice-writer-extensions cmatrix qalculate rofi-calc lsof
 sudo zypper install -y -n rofi audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvtoolnix-tools mkvtoolnix-gui steam lutris flac
-sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman distrobox bluez blueman 
+sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman distrobox bluez blueman rsync 
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim
 sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty aria2 fuseiso android-tools q4wine flameshot
 #sudo opi -n codecs
@@ -101,6 +101,6 @@ fi
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 #curl -s https://raw.githubusercontent.com/pavinjosdev/zypperoni/main/zypperoni | sudo tee /usr/bin/zypperoni > /dev/null && sudo chmod 755 /usr/bin/zypperoni
 #sudo sed -i 's/^[[:space:]]*#\?[[:space:]]*solver\.onlyRequires[[:space:]]*=[[:space:]]*false/solver.onlyRequires = true/' /etc/zypp/zypp.conf
-#sudo zypper in --no-recommends thunar-archive-plugin polkit-gnome htop NetworkManager-applet catfish jq xfce4-terminal xfce4-taskmanager ImageMagick thunar thunar-volman gvfs lxappearance 
+#sudo zypper in --no-recommends thunar-archive-plugin polkit-gnome htop NetworkManager-applet catfish jq xfce4-terminal xfce4-taskmanager thunar thunar-volman gvfs lxappearance 
 #sudo setsebool -P selinuxuser_execmod 1 && sudo setsebool -P selinuxuser_execheap 1 && sudo setsebool -P selinuxuser_execstack 1 
 #browser: sudo semanage fcontext -a -t user_home_dir_t "/home/howling/Downloads(/.*)?" && sudo restorecon -Rv /home/howling/Downloads
