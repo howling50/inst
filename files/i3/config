@@ -82,6 +82,8 @@ bindsym Mod1+F4 kill
 bindsym $mod+Shift+w exec --no-startup-id /usr/local/bin/rofi-wifi-menu
 
 exec --no-startup-id xfdesktop
+exec --no-startup-id setxkbmap -option ''
+exec --no-startup-id setxkbmap -layout us,gr -option grp:alt_caps_toggle
 #exec --no-startup-id nm-applet
 #exec --no-startup-id ~/.config/polybar/launch.sh
 #exec --no-startup-id nitrogen --restore
