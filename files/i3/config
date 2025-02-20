@@ -6,6 +6,15 @@ set $mod Mod4
 #exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 #Arch
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#otherexec
+#exec --no-startup-id xfdesktop
+exec --no-startup-id setxkbmap -option ''
+exec --no-startup-id setxkbmap -layout us,gr -option grp:alt_caps_toggle
+exec --no-startup-id numlockx on
+#exec --no-startup-id nm-applet
+#exec --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id nitrogen --restore
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -80,20 +89,11 @@ bindsym Mod1+Print exec xfce4-screenshooter
 bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindsym Mod1+F4 kill
 bindsym $mod+Shift+w exec --no-startup-id /usr/local/bin/rofi-wifi-menu
-
-exec --no-startup-id xfdesktop
-exec --no-startup-id setxkbmap -option ''
-exec --no-startup-id setxkbmap -layout us,gr -option grp:alt_caps_toggle
-#exec --no-startup-id nm-applet
-#exec --no-startup-id ~/.config/polybar/launch.sh
-#exec --no-startup-id nitrogen --restore
-#for_window [class=".*"] floating enable
-
-
 bindsym Mod1+F9 move scratchpad
 bindsym Mod1+F7 scratchpad show
 bindsym Control+Mod1+d exec --no-startup-id bash -c 'i3-msg -t get_tree | jq -r '\''.. | objects | select(.window != null) | .id'\'' | xargs -I{} i3-msg "[con_id={}] move scratchpad"'
 bindsym Control+Mod1+Delete exec --no-startup-id /usr/local/bin/power-menu.sh
+#for_window [class=".*"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
