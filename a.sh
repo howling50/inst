@@ -29,7 +29,7 @@ sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo s
 #sudo pacman -S xfce4-panel-profiles xfce4-whiskermenu-plugin xfce4-screenshooter xfce4-taskmanager baobab file-roller --noconfirm --needed && sudo pacman -R parole vim --noconfirm && sudo getent group autologin > /dev/null || sudo groupadd autologin && sudo usermod -aG autologin $USER
 #sudo pacman -Rns kwalletmanager --noconfirm && sudo pacman -R elisa thunderbird vim --noconfirm && sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 audiocd-kio --noconfirm --needed
 sudo pacman -S binutils nmap gcc patch fakeroot bind rofi rofi-calc --noconfirm --needed
-sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android-tools apparmor mpv vlc libreoffice-fresh --noconfirm --needed
+sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android-tools mpv vlc libreoffice-fresh --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks flameshot --noconfirm --needed
 sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audacious lutris net-tools zip unzip lsof unrar gparted filezilla --noconfirm --needed
@@ -62,7 +62,7 @@ mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolor
 #sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
-sudo systemctl start apparmor && sudo systemctl enable apparmor && sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 quiet apparmor=1 security=apparmor"/' /etc/default/grub
+sudo pacman -S apparmor --noconfirm --needed && sudo systemctl start apparmor && sudo systemctl enable apparmor && sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 quiet apparmor=1 security=apparmor"/' /etc/default/grub
 #-----------------------
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq'
 sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
