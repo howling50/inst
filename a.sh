@@ -134,5 +134,5 @@ fi
 #GRUB_SAVEDEFAULT=true
 #GRUB_DISABLE_SUBMENU=y
 #sudo grub-mkconfig -o /boot/grub/grub.cfg
-#sudo pacman -S numlockx polkit-gnome unzip htop jq guake xfce4-taskmanager imagemagick thunar thunar-volman thunar-archive-plugin gvfs lxappearance --needed && mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/MB-Blueberry-Suru-GLOW_1.9.3.zip -d ~/.icons > /dev/null
+#sudo pacman -S numlockx polkit-gnome unzip htop jq xfce4-terminal xfce4-taskmanager imagemagick thunar thunar-volman thunar-archive-plugin gvfs lxappearance --needed && mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/MB-Blueberry-Suru-GLOW_1.9.3.zip -d ~/.icons > /dev/null
 #xfce4-terminal --drop-down /etc/lightdm/lightdm.conf or /etc/sddm.conf [Autologin] User=howling Session=i3
