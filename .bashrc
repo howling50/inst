@@ -284,29 +284,88 @@ alias listen='sudo lsof -i -P -n | grep LISTEN'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias myip='curl ifconfig.me'
 delall() {
+    # Common cleanup functions
+    clean_flatpak() {
+        if command -v flatpak &> /dev/null; then
+            echo "Cleaning Flatpak unused packages..."
+            sudo flatpak uninstall --unused -y
+        fi
+    }
+
+    clean_journal() {
+        echo "Cleaning journal logs..."
+        sudo journalctl --vacuum-time=14d
+    }
+
+    # Package manager specific cleanups
     if command -v pacman &> /dev/null; then
-        echo "Running cleanup for pacman..."
+        echo "Running Arch-based system cleanup..."
+
+        # Remove orphans
         orphaned_packages=$(pacman -Qqtd)
         if [ -n "$orphaned_packages" ]; then
-            sudo pacman -Rs $orphaned_packages && sudo flatpak uninstall --unused
+            echo "Removing orphaned packages:"
+            echo "$orphaned_packages"
+            sudo pacman -Rs --noconfirm -- $orphaned_packages
         else
             echo "No orphaned packages found."
         fi
-    elif command -v zypper &> /dev/null; then
-        echo "Running cleanup for zypper..."
-        sudo zypper cc -a && sudo flatpak uninstall --unused
-        
-        # Ask if Podman should be cleaned
-        read -p "Do you want to clean up Podman resources? (y/n): " podman_choice
-        if [[ "$podman_choice" == "y" || "$podman_choice" == "Y" ]]; then
-            echo "Cleaning up Podman resources..."
-            podman system prune -a --volumes -f
-        else
-            echo "Skipping Podman cleanup."
+
+        # Cache cleanup
+        echo "Cleaning package cache..."
+        sudo paccache -rk2
+
+        # YAY cleanup if available
+        if command -v yay &> /dev/null; then
+            echo "Running yay cleanup..."
+            yay -Sc --noconfirm
         fi
+
+        clean_flatpak
+        clean_journal
+
+    elif command -v zypper &> /dev/null; then
+        echo "Running openSUSE system cleanup..."
+
+        # Clean cache
+        echo "Cleaning zypper cache..."
+        sudo zypper cc -a
+
+        # Remove orphans
+        if command -v rpmorphan &> /dev/null; then
+            echo "Checking for orphaned packages..."
+            orphaned_packages=$(rpmorphan)
+            if [ -n "$orphaned_packages" ]; then
+                echo "Removing orphans:"
+                echo "$orphaned_packages"
+                sudo zypper remove --clean-deps -y $orphaned_packages
+            else
+                echo "No orphaned packages found."
+            fi
+        else
+            echo "rpmorphan not installed. Install with: sudo zypper install rpmorphan"
+        fi
+
+        clean_flatpak
+        clean_journal
+
+        # Podman cleanup
+        if command -v podman &> /dev/null; then
+            read -p "Do you want to clean up Podman resources? (y/n): " podman_choice
+            if [[ "$podman_choice" =~ [yY] ]]; then
+                echo "Cleaning Podman resources..."
+                podman system prune -a --volumes -f
+            else
+                echo "Skipping Podman cleanup."
+            fi
+        fi
+
     else
-        echo "Neither pacman nor zypper found. Cleanup aborted."
+        echo "Unsupported package manager. Cleanup aborted."
+        return 1
     fi
+
+    echo "System cleanup completed!"
 }
 alias mnt="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | grep -E ^/dev/ | sort"
 finds ()
