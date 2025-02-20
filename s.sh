@@ -65,8 +65,7 @@ wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_
 wget https://github.com/sc0ty/subsync/releases/download/0.17/subsync-0.17.0-portable-amd64.exe
 mv ~/Downloads/inst/subsync-0.17.0-portable-amd64.exe ~/.othercrap/
 # ---------------------------------
-mv ~/Downloads/inst/script/*.jpg ~/.othercrap/
-mkdir -p ~/.othercrap/dedrm
+mkdir -p ~/.othercrap/dedrm && mv ~/Downloads/inst/script/*.jpg ~/.othercrap/
 unzip ~/Downloads/inst/DeDRM_tools_10.0.3.zip -d ~/.othercrap/dedrm > /dev/null
 mkdir -p ~/.othercrap/eac3to
 unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null
