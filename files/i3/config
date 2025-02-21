@@ -8,6 +8,7 @@ set $mod Mod4
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #otherexec
 #exec --no-startup-id xfdesktop
+exec --no-startup-id autotiling
 exec --no-startup-id setxkbmap -option ''
 exec --no-startup-id setxkbmap -layout us,gr -option grp:alt_caps_toggle
 exec --no-startup-id numlockx off
@@ -106,3 +107,11 @@ smart_gaps on
 smart_borders on
 hide_edge_borders both
 for_window [class=".*"] border pixel 2
+
+client.focused          #d65d0e #d65d0e #1a1826 #d65d0e   #d65d0e
+client.focused_inactive #ebdbb2 #5f676a #ffffff #ebdbb2   #ebdbb2
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #cc241d #900000 #ffffff #cc241d   #cc241d
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
