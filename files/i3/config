@@ -8,7 +8,7 @@ set $mod Mod4
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #otherexec
 #exec --no-startup-id xfdesktop
-exec --no-startup-id autotiling
+#exec --no-startup-id autotiling
 exec --no-startup-id setxkbmap -option ''
 exec --no-startup-id setxkbmap -layout us,gr -option grp:alt_caps_toggle
 exec --no-startup-id numlockx off
