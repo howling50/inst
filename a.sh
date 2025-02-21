@@ -21,6 +21,7 @@ sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo
 #---
 #curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo ./strap.sh
 #---
+#sudo pacman -S system-config-printer cups --noconfirm --needed && sudo systemctl enable --now cups.service cups.socket cups.path
 #sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #balooctl disable && sudo rm -rf ~/./local/share/baloo
 #-------------qemu---------------------------------
@@ -109,8 +110,7 @@ cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
 cp ~/Downloads/inst/script/*.jpg ~/.othercrap/
 #conky -c ~/.conkyrc &
 sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
-sudo sed -i '$ a\set superusers="mastros"\npassword_pbkdf2 mastros grub.pbkdf2.sha512.10000.77DA16D22A3A8D15AA247F40FA13D6248A92B70D588CFBA14D0C61B15CB7BA37D7895693F643A4C84E5F0891AFB73CD83724D5B6B636A9722B94F726D4F5AAFA.B27F2FE6F14E583AFECAD4E5775498C1144639FB415F228F877EFACF8A1A3DA2BD5781238BD47BA00C4444C51A7F9D232E96F8C0A193E6FD8B64F2BC4E857A10' /etc/grub.d/40_custom
-sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=-1/' /etc/default/grub
+sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=15/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 #sudo sed -i '/^Defaults timestamp_timeout=/s/.*/# Defaults timestamp_timeout=15/' /etc/sudoers
