@@ -40,6 +40,7 @@ bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
+bindsym $mod+KP_End autotiling
 
 # change focus between tiling / floating windows
 bindsym $mod+Shift+space floating toggle
