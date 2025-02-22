@@ -6,15 +6,17 @@ set $mod Mod4
 #exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
 #Arch
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id sh -c 'command -v /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 >/dev/null 2>&1 && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 || /usr/libexec/polkit-gnome-authentication-agent-1'
 #otherexec
 #exec --no-startup-id xfdesktop
-exec_always --no-startup-id autotiling
+exec --no-startup-id autotiling
 exec --no-startup-id dunst
+exec --no-startup-id log_notifications.sh ~/.othercrap/notification.log
 exec --no-startup-id setxkbmap -option ''
 exec --no-startup-id setxkbmap -layout us,gr -option grp:alt_caps_toggle
 exec --no-startup-id numlockx off
-#exec --no-startup-id nm-applet
-#exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id nm-applet
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id nitrogen --restore
 
 
