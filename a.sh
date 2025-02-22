@@ -7,7 +7,7 @@ sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_ti
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman -Syyu --noconfirm --needed && chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/* /usr/local/bin
 sudo pacman -S reflector eza zoxide fzf bat --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
-#sudo pacman -S i3-wm nitrogen polybar python-i3ipc autotiling --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
+#sudo pacman -S i3-wm nitrogen polybar python-i3ipc autotiling rofi rofi-calc --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
 sudo reflector --verbose -c EE -c FR -c DE -c GR -c LU -c NL -c RO -c SK -c CH -c GB --protocol https --sort rate --latest 10 --download-timeout 20 --save /etc/pacman.d/mirrorlist
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
 sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
