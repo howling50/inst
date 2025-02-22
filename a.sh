@@ -5,15 +5,15 @@
 SECONDS=0
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
-sudo pacman -Syyu --noconfirm --needed && chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/* /usr/local/bin
+sudo pacman -Syyu --noconfirm --needed && chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/* /usr/local/bin && mkdir ~/.othercrap && cp ~/Downloads/inst/script/*.jpg ~/.othercrap/ && magick ~/.othercrap/reaper1.jpg ~/.othercrap/reaper1.png && rm ~/.othercrap/reaper1.jpg
 sudo pacman -S reflector eza zoxide fzf bat --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
-#sudo pacman -S i3-wm nitrogen polybar python-i3ipc autotiling rofi rofi-calc --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
+#sudo pacman -S i3-wm nitrogen polybar python-i3ipc autotiling rofi rofi-calc i3lock--noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
 sudo reflector --verbose -c EE -c FR -c DE -c GR -c LU -c NL -c RO -c SK -c CH -c GB --protocol https --sort rate --latest 10 --download-timeout 20 --save /etc/pacman.d/mirrorlist
 #sudo pacman -S nvidia nvidia-utils nvidia-settings
-sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
 sudo pacman -S fastfetch firefox kitty powerline-fonts starship flatpak rsync ttf-firacode-nerd ttf-meslo-nerd ttf-roboto terminus-font noto-fonts-emoji ttf-nerd-fonts-symbols --noconfirm --needed
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo pacman -S --needed base-devel git --noconfirm --needed && git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save
+sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
 #----Swap-------
 sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
 #-------
@@ -107,7 +107,6 @@ mkdir -p ~/.othercrap/dedrm && unzip ~/Downloads/inst/DeDRM_tools_10.0.3.zip -d 
 mkdir -p ~/.othercrap/eac3to && unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null
 mv ~/Downloads/inst/script/tampermonkey-* ~/.othercrap/ && mv ~/Downloads/inst/script/*.exe ~/.othercrap/ && mv ~/Downloads/inst/script/'XMouseButtonControl 2.20.5 Portable.zip' ~/.othercrap/
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
-cp ~/Downloads/inst/script/*.jpg ~/.othercrap/
 #conky -c ~/.conkyrc &
 sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=15/' /etc/default/grub
