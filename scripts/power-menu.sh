@@ -11,7 +11,7 @@ else
   fi
 
   # Show menu and handle selection
-  chosen=$(printf "Shutdown\nReboot\nLogout\nCancel" | rofi -dmenu -p "Power Menu")
+  chosen=$(printf "Shutdown\nReboot\nLogout\nLock\nCancel" | rofi -dmenu -p "Power Menu")
 
   case "$chosen" in
     Shutdown)
@@ -32,6 +32,10 @@ else
         # Generic logout (works for most Wayland/X11 environments)
         loginctl terminate-user "$USER" || i3-msg exit
       fi
+      ;;
+    Lock)
+      # Lock the screen using i3lock
+      i3lock -i ~/.othercrap/reaper1.png
       ;;
     *)
       # Handle Cancel/unknown input
