@@ -92,6 +92,8 @@ bindsym Mod1+Print exec xfce4-screenshooter
 bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindsym Mod1+F4 kill
 bindsym $mod+Shift+w exec --no-startup-id /usr/local/bin/rofi-wifi-menu
+bindsym $mod+Shift+m exec --no-startup-id mousepad
+bindsym $mod+Shift+f exec --no-startup-id firefox
 bindsym Mod1+F9 move scratchpad
 bindsym Mod1+F7 scratchpad show
 bindsym Control+Mod1+d exec --no-startup-id bash -c 'i3-msg -t get_tree | jq -r '\''.. | objects | select(.window != null) | .id'\'' | xargs -I{} i3-msg "[con_id={}] move scratchpad"'
