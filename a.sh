@@ -16,7 +16,7 @@ sudo pacman -S --needed base-devel git --noconfirm --needed && git clone https:/
 sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
 #----Swap-------
 #sudo sed -i 's/^\(GRUB_CMDLINE_LINUX_DEFAULT="\)/\1zswap.enabled=1 zswap.max_pool_percent=50 /' /etc/default/grub && sudo grub-mkconfig -o /boot/grub/grub.cfg
-#sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
+sudo btrfs subvol create /Swap && sudo chattr -R +C /Swap && sudo swapoff -a && sudo fallocate -l 6G /Swap/swapfile && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab && sudo swapon -a
 #-------
 sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media && mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine && sudo mkdir -p /var/lib/flatpak && mkdir -p ~/.local/share/flatpak && sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine
 #---
