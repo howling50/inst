@@ -38,12 +38,12 @@ bindsym $mod+Down move down
 bindsym $mod+Up move up
 bindsym $mod+Right move right
 
-# split in horizontal orientation
-bindsym $mod+h split h
+# split in horizontal/vertical orientation
+#bindsym $mod+h split h
+#bindsym $mod+v split v
 
-# split in vertical orientation
-bindsym $mod+v split v
-bindsym $mod+KP_End autotiling
+# autotiling
+bindsym $mod+KP_End exec autotiling
 
 # change focus between tiling / floating windows
 bindsym $mod+Shift+space floating toggle
