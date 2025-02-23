@@ -34,8 +34,10 @@ else
       fi
       ;;
     Lock)
-      # Lock the screen using i3lock
-      i3lock -i ~/.othercrap/reaper1.png
+      # Confirm before locking
+      if echo -e "y\nn" | rofi -dmenu -p "Confirm Lock? (y/N)" | grep -qi "y"; then
+        i3lock -i ~/.othercrap/reaper1.png
+      fi
       ;;
     *)
       # Handle Cancel/unknown input
@@ -43,4 +45,3 @@ else
       ;;
   esac
 fi
-
