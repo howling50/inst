@@ -52,7 +52,7 @@ wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | gr
 #---xfce--
 mkdir -p ~/.othercrap && wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=$HOME/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=$HOME/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;\nStartupNotify=true\nTerminal=false" > ~/.local/share/applications/stacer.desktop && chmod +x ~/.local/share/applications/stacer.desktop
 #-----
-sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
+sudo systemctl enable input-remapper && sudo systemctl restart input-remapper && sudo systemctl start avahi-daemon && sudo systemctl enable avahi-daemon
 #------------Remote -----------------------------------
 #sudo pacman -S remmina --noconfirm --needed && yay -S --noconfirm remmina-plugin-teamviewer remmina-plugin-ultravnc remmina-plugin-rdesktop remmina-plugin-url remmina-plugin-open remmina-plugin-folder
 #------------------------------------------------------------------
