@@ -64,38 +64,25 @@ sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
 sudo pacman -S apparmor --noconfirm --needed && sudo systemctl start apparmor && sudo systemctl enable apparmor && sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 quiet apparmor=1 security=apparmor"/' /etc/default/grub
 #-----------------------
-sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq'
-sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
-echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null
-echo 'export VISUAL="nvim"' | tee -a ~/.bash_profile  >/dev/null
-sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf
-sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
-sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
+sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
+echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null && echo 'export VISUAL="nvim"' | tee -a ~/.bash_profile  >/dev/null
+sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
+#sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
 sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent kwalletmanager/' /etc/pacman.conf
 #sudo touch /etc/cron.weekly/balance
 #sudo bash -c 'echo -e "#!/usr/bin/env bash\nbtrfs scrub start / >> /home/howling/scrub.txt" >> /etc/cron.weekly/balance'
 #sudo chmod +x /etc/cron.weekly/balance
 #-----------------
-echo 'if [ -f ~/.bashrc ]; then' >> ~/.bash_profile
-echo '    source ~/.bashrc' >> ~/.bash_profile
-echo 'fi' >> ~/.bash_profile
-echo 'if [ -f /root/.bashrc ]; then' | sudo tee -a /root/.bash_profile
-echo '    source /root/.bashrc' | sudo tee -a /root/.bash_profile
-echo 'fi' | sudo tee -a /root/.bash_profile
+echo 'if [ -f ~/.bashrc ]; then' >> ~/.bash_profile && echo '    source ~/.bashrc' >> ~/.bash_profile && echo 'fi' >> ~/.bash_profile && echo 'if [ -f /root/.bashrc ]; then' | sudo tee -a /root/.bash_profile && echo '    source /root/.bashrc' | sudo tee -a /root/.bash_profile && echo 'fi' | sudo tee -a /root/.bash_profile
 #-----------------
 sudo sed -i '$ a unqualified-search-registries=["registry.access.redhat.com", "registry.fedoraproject.org", "docker.io"]' /etc/containers/registries.conf
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/ && curl -O https://i.imgur.com/N51R4iT.jpg && cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
-cd ~/Downloads/inst/
 #wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux && mv yt-dlp_linux yt-dlp && chmod +x yt-dlp && sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
 wget https://github.com/noDRM/DeDRM_tools/releases/download/v10.0.3/DeDRM_tools_10.0.3.zip && wget https://github.com/sc0ty/subsync/releases/download/0.17/subsync-0.17.0-portable-amd64.exe && mv ~/Downloads/inst/subsync-0.17.0-portable-amd64.exe ~/.othercrap/
 #---------------Firewall--------------
 sudo ufw allow proto tcp from 192.168.0.0/24 to any port 1:65535 && sudo ufw allow proto udp from 192.168.0.0/24 to any port 1:65535 && sudo ufw allow 23232/tcp && sudo ufw allow 23232/udp
-sudo ufw default deny incoming 
-sleep 1
-sudo ufw default allow outgoing
-sleep 1
-sudo systemctl enable ufw && sudo systemctl start ufw && sudo ufw enable
+sudo ufw default deny incoming && sleep 1 && sudo ufw default allow outgoing && sleep 1 && sudo systemctl enable ufw && sudo systemctl start ufw && sudo ufw enable
 # ----------------------------------------------
 #konsave -i ~/Downloads/inst/kde2.knsv
 #sleep 1
