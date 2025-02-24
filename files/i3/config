@@ -41,7 +41,7 @@ bindsym $mod+Right move right
 #bindsym $mod+v split v
 
 # autotiling
-bindsym $mod+KP_End exec autotiling
+bindsym $mod+Shift+a exec autotiling
 
 # change focus between tiling / floating windows
 bindsym $mod+Shift+space floating toggle
@@ -92,8 +92,6 @@ bindsym Mod1+Print exec xfce4-screenshooter
 bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindsym Mod1+F4 kill
 bindsym $mod+Shift+w exec --no-startup-id /usr/local/bin/rofi-wifi-menu
-bindsym $mod+Shift+m exec --no-startup-id mousepad
-bindsym $mod+Shift+f exec --no-startup-id firefox
 bindsym Mod1+F9 move scratchpad
 bindsym Mod1+F7 scratchpad show
 bindsym Control+Mod1+d exec --no-startup-id bash -c 'i3-msg -t get_tree | jq -r '\''.. | objects | select(.window != null) | .id'\'' | xargs -I{} i3-msg "[con_id={}] move scratchpad"'
@@ -120,3 +118,15 @@ client.urgent           #cc241d #900000 #ffffff #cc241d   #cc241d
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
+
+# Apps Launched with <SUPER> + <SHIFT> + <KEYPAD 1-9>
+bindsym $mod+Shift+KP_1 exec firefox
+bindsym $mod+Shift+KP_2 exec flatpak run com.brave.Browser
+bindsym $mod+Shift+KP_3 exec flatpak run app.zen_browser.zen
+bindsym $mod+Shift+KP_4 exec mousepad
+bindsym $mod+Shift+KP_5 exec audacious
+bindsym $mod+Shift+KP_6 exec flathub run io.missioncenter.MissionCenter
+bindsym $mod+Shift+KP_7 exec thunar ~/Downloads
+bindsym $mod+Shift+KP_8 exec thunar ~/Media/D
+bindsym $mod+Shift+KP_9 exec thunar ~/Media/E
+
