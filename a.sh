@@ -38,8 +38,8 @@ sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audaci
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep memtest86+ tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pyqt5 python-pip --noconfirm --needed
 #-----------------------------------------------------------------
-#yay -S --noconfirm ffmpeg-full
-yay -S --noconfirm ventoy-bin reflector-simple quickemu quickgui-bin winegui cli-visualizer dxvk-bin input-remapper-git ttf-ms-fonts
+#yay -S --noconfirm dxvk-bin
+yay -S --noconfirm ventoy-bin reflector-simple quickemu quickgui-bin winegui cli-visualizer input-remapper-git ttf-ms-fonts
 #yay -S --noconfirm sublime-text-4 
 #yay -S --noconfirm konsave
 flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub net.mediaarea.MediaInfo && flatpak install --noninteractive flathub org.torproject.torbrowser-launcher && flatpak install --noninteractive flathub io.github.giantpinkrobots.varia && flatpak install --noninteractive flathub io.missioncenter.MissionCenter
