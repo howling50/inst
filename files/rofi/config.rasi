@@ -1,5 +1,16 @@
 configuration {
   modi: "window,drun,run,calc";
   font: "FiraCode Nerd Font Mono Bold 10";
+  show-icons: true;
+  terminal: "kitty";
+  drun-display-format: "{icon} {name}";
+  location: 0;
+  disable-history: false;
+  hide-scrollbar: true;
+  display-drun: " 💻  Drun";
+  display-run: " 🏃  Run ";
+  display-window: " 🪟  Window";
+  display-calc: " 📟  Calc";
+  sidebar-mode: true;
 }
 @theme "material.rasi"
