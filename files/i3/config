@@ -42,6 +42,7 @@ bindsym $mod+Right move right
 
 # autotiling
 bindsym $mod+Shift+a exec autotiling
+#for_window [class="URxvt"] split toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+Shift+space floating toggle
