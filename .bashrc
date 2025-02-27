@@ -211,7 +211,7 @@ rsyncauto() {
 refmirrors() {
   if command -v reflector &> /dev/null; then
     echo "Detected Arch Linux (or derivative). Updating mirrors using reflector..."
-    sudo reflector --verbose -c EE -c FR -c DE -c GR -c LU -c NL -c RO -c SK -c CH -c GB --protocol https --sort rate --latest 10 --download-timeout 20 --save /etc/pacman.d/mirrorlist
+    sudo reflector --verbose -c AT -c BE -c BG -c HR -c CZ -c DK -c EE -c FR -c DE -c GR -c HU -c IL -c LV -c LT -c LU -c NL -c PL -c RO -c CH -c GB --protocol https --sort rate --latest 12 --download-timeout 20
     echo "Mirror list updated successfully."
   elif command -v zypper &> /dev/null; then
     echo "Detected openSUSE. Refreshing repositories using zypper..."
