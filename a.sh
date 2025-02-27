@@ -120,5 +120,5 @@ fi
 #GRUB_DISABLE_SUBMENU=y
 #sudo grub-mkconfig -o /boot/grub/grub.cfg
 #sudo pacman -S gvfs-mtp gvfs-afc pamixer gnome-system-monitor mpv-mpris dunst baobab numlockx pavucontrol tumbler polkit-gnome unzip htop jq xfce4-terminal xfce4-taskmanager imagemagick thunar thunar-volman thunar-archive-plugin gvfs lxappearance --needed && mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null
-#/etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm.conf or /etc/sddm.conf [Autologin] User=howling Session=i3       sudo pacman -S linux-lts linux-lts-headers && sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg
+#/etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm.conf or /etc/sddm.conf [Autologin] User=howling Session=i3       sudo pacman -S linux-lts linux-lts-headers && sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg         other: pika-backup
 #git clone --depth=1 https://github.com/JaKooLit/Arch-Hyprland.git ~/Arch-Hyprland && cd ~/Arch-Hyprland && chmod +x install.sh && ./install.sh
