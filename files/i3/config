@@ -126,7 +126,7 @@ bindsym $mod+Shift+KP_Down exec flatpak run com.brave.Browser
 bindsym $mod+Shift+KP_Page_Down exec flatpak run app.zen_browser.zen
 bindsym $mod+Shift+KP_Left exec mousepad
 bindsym $mod+Shift+KP_Begin exec audacious
-bindsym $mod+Shift+KP_Right exec gnome-system-monitor
+bindsym $mod+Shift+KP_Right exec mpv
 bindsym $mod+Shift+KP_Home exec thunar ~/.othercrap
 bindsym $mod+Shift+KP_Up exec thunar ~/Media/D
 bindsym $mod+Shift+KP_Page_Up exec thunar ~/Media/E
