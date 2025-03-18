@@ -96,8 +96,6 @@ fi
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer  xfce4-i3-workspaces-plugin  (patterns-games-games patterns-kde-kde_pim sudo zypper dup --from vlc --allow-vendor-change -y) (about:profiles, open root profile folder,Clear start up cache" ) sestatus  and /etc/selinux/config , Exec=/usr/bin/xdg-su -c /sbin/yast2  system-config-printer
 #mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --additional-packages "systemd" --home ~/Media/container/arch && distrobox enter arch
-#mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
-#curl -s https://raw.githubusercontent.com/pavinjosdev/zypperoni/main/zypperoni | sudo tee /usr/bin/zypperoni > /dev/null && sudo chmod 755 /usr/bin/zypperoni
 #sudo sed -i 's/^[[:space:]]*#\?[[:space:]]*solver\.onlyRequires[[:space:]]*=[[:space:]]*false/solver.onlyRequires = true/' /etc/zypp/zypp.conf
 #sudo zypper in --no-recommends pamixer gnome-system-monitor mpv-mpris gvfs-backend-afc gvfs-backends gvfs-fuse pavucontrol dunst xfce4-terminal xfce4-taskmanager mousepad numlockx thunar-archive-plugin polkit-gnome htop NetworkManager-applet catfish jq thunar thunar-volman gvfs lxappearance
 #browser: sudo semanage fcontext -a -t user_home_dir_t "/home/howling/Downloads(/.*)?" && sudo restorecon -Rv /home/howling/Downloads
