@@ -146,7 +146,7 @@ listbash() {
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto
 \e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, power-menu.sh
 \e[1;33mOther:\e[0m
-\e[1;36mWindow Shortcuts:\e[0m alt+f10=fullscreen, alt+f7=move, alt+f8=resize, alt+f9=minimize, ctrl+alt+d=minimize all
+\e[1;36mWindow Shortcuts:\e[0m alt+f10=fullscreen, alt+f7=move, alt+f8=resize, alt+f9=minimize, ctrl+alt+d=minimize all  mpv=alt+f (filelist), ctrl+r = resume, shift+enter=playlist
 \e[1;36mfuseiso:\e[0m fuseiso example.iso /mnt , fusermount -u /mnt
 \e[1;36mfzf:\e[0m ctrl+t , alt+c , ctrl+r
 "
