@@ -139,6 +139,9 @@ aria2cauto() {
         aria2c -x16 -s16 -c --retry-wait=5 --max-tries=5 "$1"
     fi
 }
+fcd() {
+     cd "$(find -type d | fzf)"
+}
 listbash() {
     printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mnt, ftex, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image
 \e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m
