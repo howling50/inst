@@ -56,6 +56,7 @@ sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo zypper addlock qbittorrent
 sudo systemctl start cron
+sudo setsebool -P selinuxuser_execmod 1 && sudo setsebool -P selinuxuser_execheap 1 && sudo setsebool -P selinuxuser_execstack 1 
 #-----------------
 sudo firewall-cmd --permanent --new-zone=howling && sudo firewall-cmd --permanent --zone=howling --add-source=192.168.0.0/24 && sudo firewall-cmd --permanent --zone=howling --add-rich-rule='rule family="ipv4" port port="1-65535" protocol="tcp" accept' && sudo firewall-cmd --permanent --zone=howling --add-rich-rule='rule family="ipv4" port port="1-65535" protocol="udp" accept' && sudo firewall-cmd --permanent --zone=howling --add-port=23232/tcp && sudo firewall-cmd --permanent --zone=howling --add-port=23232/udp && sudo firewall-cmd --permanent --zone=howling --set-target=DROP && sudo firewall-cmd --reload && sudo firewall-cmd --set-default-zone=howling
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
@@ -73,7 +74,6 @@ mv ~/Downloads/inst/script/tampermonkey-* ~/.othercrap/
 mv ~/Downloads/inst/script/*.exe ~/.othercrap/
 mv ~/Downloads/inst/script/'XMouseButtonControl 2.20.5 Portable.zip' ~/.othercrap/
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
-cd ~/Downloads/inst/
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=15/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
@@ -100,5 +100,4 @@ fi
 #curl -s https://raw.githubusercontent.com/pavinjosdev/zypperoni/main/zypperoni | sudo tee /usr/bin/zypperoni > /dev/null && sudo chmod 755 /usr/bin/zypperoni
 #sudo sed -i 's/^[[:space:]]*#\?[[:space:]]*solver\.onlyRequires[[:space:]]*=[[:space:]]*false/solver.onlyRequires = true/' /etc/zypp/zypp.conf
 #sudo zypper in --no-recommends pamixer gnome-system-monitor mpv-mpris gvfs-backend-afc gvfs-backends gvfs-fuse pavucontrol dunst xfce4-terminal xfce4-taskmanager mousepad numlockx thunar-archive-plugin polkit-gnome htop NetworkManager-applet catfish jq thunar thunar-volman gvfs lxappearance
-#sudo setsebool -P selinuxuser_execmod 1 && sudo setsebool -P selinuxuser_execheap 1 && sudo setsebool -P selinuxuser_execstack 1 
 #browser: sudo semanage fcontext -a -t user_home_dir_t "/home/howling/Downloads(/.*)?" && sudo restorecon -Rv /home/howling/Downloads
