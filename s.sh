@@ -95,7 +95,7 @@ fi
 #sudo zypper install -y -n xhost && xhost +local:
 #sudo zypper install -y -n conky && cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #zypper in mirrorsorcerer && systemctl enable --now mirrorsorcerer  xfce4-i3-workspaces-plugin  (patterns-games-games patterns-kde-kde_pim sudo zypper dup --from vlc --allow-vendor-change -y) (about:profiles, open root profile folder,Clear start up cache" ) sestatus  and /etc/selinux/config , Exec=/usr/bin/xdg-su -c /sbin/yast2  system-config-printer
-#mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --home ~/Media/container/arch && distrobox enter arch
+#mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --additional-packages "systemd" --home ~/Media/container/arch && distrobox enter arch
 #mkdir -p ~/.config/nvim && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp /home/howling/.config/nvim/* ~/.config/nvim/
 #curl -s https://raw.githubusercontent.com/pavinjosdev/zypperoni/main/zypperoni | sudo tee /usr/bin/zypperoni > /dev/null && sudo chmod 755 /usr/bin/zypperoni
 #sudo sed -i 's/^[[:space:]]*#\?[[:space:]]*solver\.onlyRequires[[:space:]]*=[[:space:]]*false/solver.onlyRequires = true/' /etc/zypp/zypp.conf
