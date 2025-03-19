@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Detect active network interface
+INTERFACE=$(ip route get 1.1.1.1 | awk '{print $5; exit}')
+
+if [[ -z "$INTERFACE" ]]; then
+    echo "No active network interface found!"
+    exit 1
+fi
+
+echo "Detected interface: $INTERFACE"
+
+# Check if NetworkManager is running
+if systemctl is-active --quiet NetworkManager; then
+    echo "Using NetworkManager..."
+    nmcli device disconnect "$INTERFACE"
+    sleep 2
+    nmcli device connect "$INTERFACE"
+elif systemctl is-active --quiet wicked; then
+    echo "Using Wicked..."
+    sudo wicked ifdown "$INTERFACE"
+    sleep 2
+    sudo wicked ifup "$INTERFACE"
+else
+    echo "Neither NetworkManager nor Wicked is active. Cannot proceed."
+    exit 1
+fi
+
+echo "IP renewed successfully!"
