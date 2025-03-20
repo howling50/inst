@@ -104,6 +104,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+alias ff="fastfetch"
 aria2cauto() {
     # Ensure a URL is provided
     if [ -z "$1" ]; then
