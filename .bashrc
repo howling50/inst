@@ -145,7 +145,7 @@ fcd() {
 listbash() {
     printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mnt, ftex, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image
 \e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m
-\e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pacconf
+\e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pacconf, pupdate
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto
 \e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, power-menu.sh
 \e[1;33mOther:\e[0m
@@ -233,6 +233,15 @@ pacinfo() {
     echo "No supported package manager found (pacman or zypper)."
   fi
 }
+pupdate() {
+  if command -v pacman &> /dev/null; then
+    sudo pacman -Syu && flatpak update -y
+  elif command -v zypper &> /dev/null; then
+    sudo zypper dup && flatpak update -y
+  else
+    echo "No supported package manager found (pacman or zypper)."
+  fi
+}
 pacconf() {
   if command -v pacman &> /dev/null; then
     sudoedit /etc/pacman.conf
@@ -269,6 +278,10 @@ rgvim() {
 alias ddgr="BROWSER=w3m ddgr "
 alias mkdir='mkdir -p'
 alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
 alias cd..='cd ..'
 alias bd='cd "$OLDPWD"'
 alias cls='clear'
@@ -300,7 +313,7 @@ delall() {
     clean_flatpak() {
         if command -v flatpak &> /dev/null; then
             echo "Cleaning Flatpak unused packages..."
-            sudo flatpak uninstall --unused -y
+            flatpak uninstall --unused -y
         fi
     }
 
