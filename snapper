@@ -8,6 +8,7 @@ read -p "Please enter root location to work on (example /dev/sda1): " DISK
 
 # Install necessary packages with error handling
 sudo pacman -S btrfs-progs snapper grub-btrfs --noconfirm --needed && yay -S btrfs-assistant btrfsmaintenance --noconfirm --needed
+#sudo pacman -S btrfs-progs snapper grub-btrfs btrfs-assistant btrfsmaintenance --noconfirm --needed
 #sudo pacman -S snap-pac --noconfirm
 
 # Grub Snapshots
