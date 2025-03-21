@@ -1,0 +1,43 @@
+[[manager.prepend_keymap]]
+on   = [ "`", "a" ]
+run  = "plugin compress"
+desc = "Archive selected files"
+
+[[manager.prepend_keymap]]
+on   = [ "`", "m" ]
+run = "plugin mount"
+
+[[manager.prepend_keymap]]
+on  = ["`", "s"]
+run = "plugin what-size"
+desc = "Show file size"
+
+[[manager.prepend_keymap]]
+on = ["g", "D"]
+run = "cd ~/Media/D"
+
+[[manager.prepend_keymap]]
+on = ["g", "E"]
+run = "cd ~/Media/E"
+
+[[manager.prepend_keymap]]
+on = ["g", "o"]
+run = "cd ~/.othercrap"
+
+[[manager.prepend_keymap]]
+on = ["g", "v"]
+run = "cd ~/Videos"
+
+[[manager.prepend_keymap]]
+on = ["g", "m"]
+run = "cd ~/Media"
+
+[[manager.prepend_keymap]]
+on   = "l"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
+
+[[manager.prepend_keymap]]
+on = ["c", "a"]
+run = ["plugin copy-file-contents"]
+desc = "Copy contents of file"
