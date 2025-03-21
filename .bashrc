@@ -221,6 +221,10 @@ refmirrors() {
     echo "Detected openSUSE. Refreshing repositories using zypper..."
     sudo zypper refresh
     echo "Repositories refreshed successfully."
+  elif command -v pacman-mirrors &> /dev/null; then
+    echo "Detected Manjaro. Refreshing repositories using pacman-mirrors..."
+    sudo pacman-mirrors --fasttrack 15
+    echo "Repositories refreshed successfully."
   else
     echo "No supported package manager or tool found (reflector or zypper)."
   fi
