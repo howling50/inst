@@ -32,14 +32,14 @@ sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo s
 #sudo pacman -R parole vim --noconfirm && sudo getent group autologin > /dev/null || sudo groupadd autologin && sudo usermod -aG autologin $USER
 #sudo pacman -Rns kwalletmanager --noconfirm && sudo pacman -R elisa thunderbird vim --noconfirm && sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 audiocd-kio --noconfirm --needed
 sudo pacman -S binutils nmap gcc patch fakeroot bind rofi rofi-calc yazi --noconfirm --needed
-sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android-tools mpv vlc libreoffice-fresh viewnior --noconfirm --needed
+sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android-tools mpv vlc libreoffice-fresh viewnior cava --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks flameshot --noconfirm --needed
 sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audacious lutris net-tools zip unzip lsof unrar gparted filezilla --noconfirm --needed
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep memtest86+ tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
 #-----------------------------------------------------------------
-yay -S --noconfirm dxvk-bin ventoy-bin reflector-simple quickemu quickgui-bin winegui-bin cli-visualizer input-remapper-git ttf-ms-fonts
+yay -S --noconfirm dxvk-bin ventoy-bin reflector-simple quickemu quickgui-bin winegui-bin input-remapper-git ttf-ms-fonts
 #yay -S --noconfirm konsave
 flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub net.mediaarea.MediaInfo && flatpak install --noninteractive flathub org.torproject.torbrowser-launcher && flatpak install --noninteractive flathub io.github.giantpinkrobots.varia
 flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub org.gimp.GIMP && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub app.zen_browser.zen && flatpak install --noninteractive flathub org.shotcut.Shotcut && flatpak install --noninteractive flathub io.github.Hexchat
@@ -58,7 +58,6 @@ sudo systemctl enable input-remapper && sudo systemctl restart input-remapper &&
 #sudo pacman -S remmina --noconfirm --needed && yay -S --noconfirm remmina-plugin-teamviewer remmina-plugin-ultravnc remmina-plugin-rdesktop remmina-plugin-url remmina-plugin-open remmina-plugin-folder
 #------------------------------------------------------------------
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
-mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
 #------------------------------------------rk hunter--------------------------
 #sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
