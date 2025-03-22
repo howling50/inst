@@ -368,7 +368,7 @@ delall() {
             if [ -n "$orphaned_packages" ]; then
                 echo "Removing orphans:"
                 echo "$orphaned_packages"
-                sudo zypper remove --clean-deps -y $orphaned_packages
+                sudo zypper remove --clean-deps $orphaned_packages
             else
                 echo "No orphaned packages found."
             fi
