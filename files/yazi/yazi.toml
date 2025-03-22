@@ -145,7 +145,16 @@ previewers = [
 	# Fallback
 	{ name = "*", run = "file" },
 ]
-
+prepend_preloaders = [
+    # Replace magick, image, video with mediainfo
+    { mime = "{audio,video}/*", run = "mediainfo" },
+    { mime = "application/subrip", run = "mediainfo" },
+]
+prepend_previewers = [
+    # Replace magick, image, video with mediainfo
+    { mime = "{audio,video}/*", run = "mediainfo"},
+    { mime = "application/subrip", run = "mediainfo" },
+]
 [input]
 cursor_blink = false
 
