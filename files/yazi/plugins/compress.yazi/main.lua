@@ -102,6 +102,7 @@ return {
 			["%.tar.bz2$"] = { command = "tar", args = { "rpf" }, compress = "bzip2" },
 			["%.tar.zst$"] = { command = "tar", args = { "rpf" }, compress = "zstd", compress_args = { "--rm" } },
 			["%.tar$"] = { command = "tar", args = { "rpf" } },
+			["%.rar$"] = { command = "rar", args = { "a" } },
 		}
 
 		if is_windows then
