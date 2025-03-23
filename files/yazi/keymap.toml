@@ -41,3 +41,34 @@ desc = "Enter the child directory, or open the file"
 on = ["c", "a"]
 run = ["plugin copy-file-contents"]
 desc = "Copy contents of file"
+
+[[manager.prepend_keymap]]
+on = ["C", "b"]
+run = ["shell --block 'nvim ~/.bashrc'"]
+desc = ".bashrc config"
+
+[[manager.prepend_keymap]]
+on = ["C", "k"]
+run = ["shell --block 'nvim ~/.config/kitty/kitty.conf'"]
+desc = "kitty config"
+
+[[manager.prepend_keymap]]
+on = ["C", "y"]
+run = ["shell --block 'nvim ~/.config/yazi/keymap.toml'"]
+desc = "yazi keymap config"
+
+
+[[manager.prepend_keymap]]
+on = ["C", "p"]
+run = ["shell --block 'nvim ~/.config/polybar/config.ini'"]
+desc = "polybar config"
+
+[[manager.prepend_keymap]]
+on = ["C", "i"]
+run = ["shell --block 'nvim ~/.config/i3/config'"]
+desc = "i3 config"
+
+[[manager.prepend_keymap]]
+on = ["C", "m"]
+run = ["shell --block 'nvim ~/.config/mpv/mpv.conf'"]
+desc = "mpv config"
