@@ -72,3 +72,7 @@ desc = "i3 config"
 on = ["C", "m"]
 run = ["shell --block 'nvim ~/.config/mpv/mpv.conf'"]
 desc = "mpv config"
+
+[[manager.prepend_keymap]]
+on = ["g", "s"]
+run = "cd /usr/local/bin"
