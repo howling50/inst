@@ -60,7 +60,7 @@ sudo systemctl start cron
 sudo setsebool -P selinuxuser_execmod 1 && sudo setsebool -P selinuxuser_execheap 1 && sudo setsebool -P selinuxuser_execstack 1
 sudo hostnamectl set-hostname howling
 #-----------------
-sudo firewall-cmd --permanent --new-zone=howling && sudo firewall-cmd --permanent --zone=howling --add-source=192.168.0.0/24 && sudo firewall-cmd --permanent --zone=howling --add-rich-rule='rule family="ipv4" port port="1-65535" protocol="tcp" accept' && sudo firewall-cmd --permanent --zone=howling --add-rich-rule='rule family="ipv4" port port="1-65535" protocol="udp" accept' && sudo firewall-cmd --permanent --zone=howling --add-port=23232/tcp && sudo firewall-cmd --permanent --zone=howling --add-port=23232/udp && sudo firewall-cmd --permanent --zone=howling --set-target=DROP && sudo firewall-cmd --reload && sudo firewall-cmd --set-default-zone=howling
+sudo firewall-cmd --permanent --new-zone=howling && sudo firewall-cmd --permanent --zone=howling --add-source=192.168.0.0/24 && sudo firewall-cmd --permanent --zone=howling --set-target=ACCEPT && sudo firewall-cmd --permanent --zone=public --add-port=23232/tcp && sudo firewall-cmd --permanent --zone=public --add-port=23232/udp && sudo firewall-cmd --permanent --zone=public --set-target=DROP && sudo firewall-cmd --set-default-zone=public && sudo firewall-cmd --reload
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
 mkdir -p ~/.steam/root/compatibilitytools.d/ && curl -O https://i.imgur.com/N51R4iT.jpg && cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
 #wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux && mv yt-dlp_linux yt-dlp && chmod +x yt-dlp && sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
