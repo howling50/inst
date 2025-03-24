@@ -331,12 +331,12 @@ delall() {
     if command -v pacman &> /dev/null; then
         echo "Running Arch-based system cleanup..."
 
-        # Remove orphans
+        # Remove orphans (safer check)
         orphaned_packages=$(pacman -Qqtd)
         if [ -n "$orphaned_packages" ]; then
             echo "Removing orphaned packages:"
             echo "$orphaned_packages"
-            sudo pacman -Rs --noconfirm -- $orphaned_packages
+            sudo pacman -Rns --noconfirm -- $orphaned_packages
         else
             echo "No orphaned packages found."
         fi
@@ -345,7 +345,7 @@ delall() {
         echo "Cleaning package cache..."
         sudo paccache -rk2
 
-        # YAY cleanup if available
+        # YAY/AUR cleanup
         if command -v yay &> /dev/null; then
             echo "Running yay cleanup..."
             yay -Sc --noconfirm
@@ -356,42 +356,14 @@ delall() {
 
     elif command -v zypper &> /dev/null; then
         echo "Running openSUSE system cleanup..."
-
-        # Clean cache
         echo "Cleaning zypper cache..."
         sudo zypper cc -a
-
-        # Remove orphans
-        if command -v rpmorphan &> /dev/null; then
-            echo "Checking for orphaned packages..."
-            orphaned_packages=$(rpmorphan)
-            if [ -n "$orphaned_packages" ]; then
-                echo "Removing orphans:"
-                echo "$orphaned_packages"
-                sudo zypper remove --clean-deps $orphaned_packages
-            else
-                echo "No orphaned packages found."
-            fi
-        else
-            echo "rpmorphan not installed. Install with: sudo zypper install rpmorphan"
-        fi
 
         clean_flatpak
         clean_journal
 
-        # Podman cleanup
-        if command -v podman &> /dev/null; then
-            read -p "Do you want to clean up Podman resources? (y/n): " podman_choice
-            if [[ "$podman_choice" =~ [yY] ]]; then
-                echo "Cleaning Podman resources..."
-                podman system prune -a --volumes -f
-            else
-                echo "Skipping Podman cleanup."
-            fi
-        fi
-
     else
-        echo "Unsupported package manager. Cleanup aborted."
+        echo "Unsupported package manager. Only pacman/zypper supported."
         return 1
     fi
 
