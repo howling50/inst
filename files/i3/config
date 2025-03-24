@@ -122,7 +122,7 @@ client.background       #ffffff
 
 # Apps Launched with <SUPER> + <SHIFT> + <KEYPAD 1-9>
 bindsym $mod+Shift+KP_End exec firefox
-bindsym $mod+Shift+KP_Down exec flatpak run com.brave.Browser
+bindsym $mod+Shift+KP_Down exec flatpak run one.ablaze.floorp
 bindsym $mod+Shift+KP_Page_Down exec flatpak run app.zen_browser.zen
 bindsym $mod+Shift+KP_Left exec mousepad
 bindsym $mod+Shift+KP_Begin exec audacious
