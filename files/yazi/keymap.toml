@@ -87,10 +87,17 @@ desc = "Pictures"
 
 [[manager.prepend_keymap]]
 on = ["`", "d"]
-run = "shell 'dragon-drop -a -x $@'"
+run = '''
+    shell 'dragon-drop --and-exit --on-top "$@"' --confirm
+'''
 desc = "Dragon"
 
 [[manager.prepend_keymap]]
 on = ["`", "D"]
 run = "shell 'dlfile &'"
 desc = "Dragon Save"
+
+[[manager.prepend_keymap]]
+on = ["`", "!"]
+run = 'shell "$SHELL" --block --confirm'
+desc = "Shell In Dir"
