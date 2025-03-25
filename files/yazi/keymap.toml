@@ -78,8 +78,19 @@ desc = "mpv config"
 [[manager.prepend_keymap]]
 on = ["g", "s"]
 run = "cd /usr/local/bin"
+desc = "Scripts"
+
+[[manager.prepend_keymap]]
+on = ["g", "p"]
+run = "cd ~/Pictures"
+desc = "Pictures"
 
 [[manager.prepend_keymap]]
 on = ["`", "d"]
 run = "shell 'dragon-drop -a -x $@'"
 desc = "Dragon"
+
+[[manager.prepend_keymap]]
+on = ["`", "D"]
+run = "shell 'dlfile &'"
+desc = "Dragon Save"
