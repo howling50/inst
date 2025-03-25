@@ -439,7 +439,7 @@ if [ -z "$1" ]; then
         sudo pacman -Rcns "$1"
     elif command -v zypper &> /dev/null; then
         echo "Removing package with zypper..."
-        sudo zypper rm -u "$1"
+        sudo zypper remove --clean-deps "$1"
     else
         echo "Neither pacman nor zypper found. Cannot remove package."
     fi
