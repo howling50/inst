@@ -104,6 +104,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+alias dragond="dragon-drop -a -x "
 alias rpmorphan="sudo zypper packages --orphaned"
 alias ff="fastfetch"
 alias sba="source ~/.bashrc"
@@ -146,7 +147,7 @@ fcd() {
      cd "$(find -type d | fzf)"
 }
 listbash() {
-    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mnt, ftex, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image
+    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mnt, ftex, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image,dragond
 \e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m, yazi
 \e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pacconf, pupdate, sba
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto
