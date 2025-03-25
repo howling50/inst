@@ -26,14 +26,17 @@ desc = "E"
 [[manager.prepend_keymap]]
 on = ["g", "o"]
 run = "cd ~/.othercrap"
+desc = "Othercrap"
 
 [[manager.prepend_keymap]]
 on = ["g", "v"]
 run = "cd ~/Videos"
+desc = "Videos"
 
 [[manager.prepend_keymap]]
 on = ["g", "m"]
 run = "cd ~/Media"
+desc = "Media"
 
 [[manager.prepend_keymap]]
 on   = "<Enter>"
