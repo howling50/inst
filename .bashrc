@@ -148,7 +148,7 @@ fcd() {
 listbash() {
     printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mnt, ftex, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image,dragond
 \e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m, yazi
-\e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pacconf, pupdate, sba
+\e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto
 \e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, power-menu.sh
 \e[1;33mOther:\e[0m
@@ -249,7 +249,7 @@ pupdate() {
     echo "No supported package manager found (pacman or zypper)."
   fi
 }
-pacconf() {
+pconf() {
   if command -v pacman &> /dev/null; then
     sudoedit /etc/pacman.conf
   elif command -v zypper &> /dev/null; then
