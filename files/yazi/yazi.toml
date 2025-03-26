@@ -18,8 +18,8 @@ title_format   = "Howling: {cwd}"
 
 [preview]
 tab_size        = 2
-max_width       = 1000
-max_height      = 1500
+max_width       = 1200
+max_height      = 1000
 cache_dir       = "~/.cache/yazi"
 image_filter    = "triangle"
 image_quality   = 75
