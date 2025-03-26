@@ -104,3 +104,8 @@ desc = "Dragon Save"
 on = ["`", "!"]
 run = 'shell "$SHELL" --block --confirm'
 desc = "Shell In Dir"
+
+[[manager.prepend_keymap]]
+on = ["C", "u"]
+run = ["shell --block 'nvim ~/.config/update.txt'"]
+desc = "update config"
