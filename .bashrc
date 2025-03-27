@@ -149,7 +149,7 @@ listbash() {
     printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mnt, ftex, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image,dragond
 \e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m, yazi
 \e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba
-\e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto
+\e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto, yt-x-update, ani-cli-update
 \e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, power-menu.sh
 \e[1;33mOther:\e[0m
 \e[1;36mWindow Shortcuts:\e[0m alt+f10=fullscreen, alt+f7=move, alt+f8=resize, alt+f9=minimize, ctrl+alt+d=minimize all  mpv=alt+f (filelist), ctrl+r = resume, shift+enter=playlist
@@ -158,6 +158,8 @@ listbash() {
 "
 }
 alias weather="curl wttr.in"
+alias ani-cli-update="sudo rm /usr/local/bin/ani-cli && wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && sudo mv ani-cli /usr/local/bin"
+alias yt-x-update="sudo rm /usr/local/bin/yt-x && sudo curl -sL "https://raw.githubusercontent.com/Benexl/yt-x/refs/heads/master/yt-x" -o /usr/local/bin/yt-x && sudo chmod +x /usr/local/bin/yt-x"
 alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
 rsyncmnt() {
     # List mounted block devices in clean format
