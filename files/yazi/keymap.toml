@@ -35,8 +35,8 @@ desc = "Videos"
 
 [[manager.prepend_keymap]]
 on = ["g", "m"]
-run = "cd ~/Media"
-desc = "Media"
+run = "cd ~/Music"
+desc = "Music"
 
 [[manager.prepend_keymap]]
 on   = "<Enter>"
