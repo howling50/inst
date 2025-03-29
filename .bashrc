@@ -104,6 +104,34 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+vimhistory() {
+    # Get oldfiles from Neovim
+    mapfile -t oldfiles < <(nvim -u NONE --headless +'lua io.write(table.concat(vim.v.oldfiles, "\n") .. "\n")' +qa)
+
+    # Filter valid files
+    local valid_files=()
+    for file in "${oldfiles[@]}"; do
+        [[ -f "$file" ]] && valid_files+=("$file")
+    done
+
+    # Check if fzf is installed
+    if ! command -v fzf &>/dev/null; then
+        echo "fzf is not installed!" >&2
+        return 1
+    fi
+
+    # Use fzf for selection
+    local files
+    files=$(printf "%s\n" "${valid_files[@]}" | \
+        grep -v '\[.*' | \
+        fzf --multi \
+            --preview 'bat -n --color=always --line-range=:500 {} 2>/dev/null || echo "Error previewing file"' \
+            --height=70% \
+            --layout=default)
+
+    # Open selected files
+    [[ -n "$files" ]] && nvim $files
+}
 alias dragond="dragon-drop -a -x "
 alias rpmorphan="sudo zypper packages --orphaned"
 alias ff="fastfetch"
@@ -147,7 +175,7 @@ fcd() {
      cd "$(find -type d | fzf)"
 }
 listbash() {
-    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mnt, ftex, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image,dragond
+    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mnt, ftex, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, dragond, vimhistory
 \e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m, yazi
 \e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto, yt-x-update, ani-cli-update
