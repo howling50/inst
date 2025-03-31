@@ -89,7 +89,6 @@ bindsym Control+Mod1+Escape exec --no-startup-id xfce4-taskmanager
 bindsym Control+Mod1+a exec kitty distrobox-enter -n arch
 bindsym $mod+e exec thunar
 bindsym Print exec flameshot gui
-bindsym Mod1+Print exec xfce4-screenshooter
 bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindsym Mod1+F4 kill
 bindsym $mod+Shift+w exec --no-startup-id /usr/local/bin/rofi-wifi-menu
@@ -133,3 +132,4 @@ bindsym $mod+Shift+KP_Page_Up exec thunar ~/Media/E
 
 
 
+#ksysguard/xfce4-taskmanager#kitty#xkill#rofi -show drun#yakuake/xfce4-terminal --drop-down#kitty distrobox-enter -n arch#thunar#flameshot gui#power-menu.sh/plasma-shutdown
