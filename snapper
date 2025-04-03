@@ -45,7 +45,7 @@ sudo chattr +C /.snapshots
 # Add entry to /etc/fstab
 #replace uuid from id u get fromm /etc/fstab
 PART_UUID=$(sudo blkid -o value -s UUID "${DISK}")
-echo "UUID=${PART_UUID} /.snapshots    btrfs defaults,ssd,discard,noatime,compress=zstd,space_cache=v2,subvol=snapshots 0 0" | sudo tee -a /etc/fstab > /dev/null || exit 1
+echo "UUID=${PART_UUID} /.snapshots    btrfs defaults,ssd,discard,noatime,compress=no,space_cache=v2,subvol=snapshots 0 0" | sudo tee -a /etc/fstab > /dev/null || exit 1
 
 # Mount all filesystems from /etc/fstab
 sudo mount -a
@@ -56,24 +56,4 @@ sudo snapper -c root create --description "initial snapshot"
 sleep 1
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-#btrfs subvolume get-default /
-# sudo btrfs subv list / get the id of root
-#btrfs subvolume set-default 256 /
-#btrfs subvolume get-default /
-#sed -i 's/rootflags=subvol=@  //g' /boot/grub/grub.cfg
-#sudo nano /boot/grub/grub.cfg
-#removeall = rootflags=subvol=@  
-#sudo snapper rollback 2
-#sudo snapper --ambit classic rollback 2
-#sudo snapper -c root create-config / 
-#snapper status 21..22
-#sudo btrfs subvolume list /
-#snapper list
-#snapper delete
-#snapper diff 71..72 /etc/zypp/zypp.conf
-#snapper undochange 1..2
-#snapper create --description "Snapshot for week 2 2014"
-#sudo snapper -c boot delete-config
-#sudo snapper -c boot create-config /boot  
-#sudo snapper -c boot create --description "1" 
-#sudo chmod a+rx /boot/.snapshots  
+
