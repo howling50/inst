@@ -23,16 +23,12 @@ fi
 echo "Installing required packages..."
 case $DISTRO in
     "manjaro")
-        sudo pacman -S --noconfirm --needed \
-            btrfs-progs snapper grub-btrfs \
-            btrfs-assistant btrfsmaintenance
+        sudo pacman -S btrfs-progs snapper grub-btrfs btrfs-assistant btrfsmaintenance --noconfirm --needed
         ;;
     "arch")
-        sudo pacman -S --noconfirm --needed \
-            btrfs-progs snapper grub-btrfs
+        sudo pacman -S btrfs-progs snapper grub-btrfs --noconfirm --needed
         if command -v yay &>/dev/null; then
-            yay -S --noconfirm --needed \
-                btrfs-assistant btrfsmaintenance
+            yay -S btrfs-assistant btrfsmaintenance --noconfirm --needed
         else
             echo "Yay not found - install AUR packages manually:"
             echo "yay -S btrfs-assistant btrfsmaintenance"
