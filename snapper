@@ -41,7 +41,7 @@ case $DISTRO in
 esac
 
 # Install snap-pac conditionally
-read -p "Install snap-pac for automatic pre/post snapshots? [y/N] " -n 1 -r
+read -p "Install snap-pac for automatic pre/post snapshots? [y/N] " -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     sudo pacman -S snap-pac --noconfirm --needed
