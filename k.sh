@@ -115,7 +115,9 @@ else
     echo "Completed in $SECONDS seconds"
 fi
 #defaults,nodatacow,noatime,autodefrag,compress=zstd,space_cache=v2,nofail 0 0
-#defaults,ssd,discard,noatime,compress=zstd,space_cache=v2 0 0
+#defaults,ssd,noatime,compress=zstd:3,space_cache=v2 0 0
+#snapshots = defaults,ssd,noatime,compress=no,space_cache=v2 0 0
+#ext4 = defaults,noatime,barrier=1,data=ordered,errors=remount-ro,commit=60,nofail 0 2
 #sudo nano /etc/default/grub
 #GRUB_DEFAULT=saved
 #GRUB_SAVEDEFAULT=true
