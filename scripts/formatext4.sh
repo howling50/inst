@@ -42,7 +42,7 @@ mkdir -p "$DESTINATION" || { echo "Failed to create directory"; exit 1; }
 
 # Mount (requires sudo)
 echo "Mounting $DISK to $DESTINATION..."
-sudo mount -o defaults,noatime,nofail "$DISK" "$DESTINATION" || { echo "Mount failed"; exit 1; }
+sudo mount -o defaults,noatime,barrier=1,data=ordered,errors=remount-ro,commit=60,nofail "$DISK" "$DESTINATION" || { echo "Mount failed"; exit 1; }
 
 # Set ownership (requires sudo)
 echo "Setting ownership to $ORIG_USER:$ORIG_GROUP..."
@@ -58,7 +58,7 @@ PART_UUID=$(sudo blkid -o value -s UUID "$DISK")
 if grep -q "$PART_UUID" /etc/fstab; then
   echo "Entry already exists in fstab. Skipping."
 else
-  echo "UUID=$PART_UUID $DESTINATION ext4 defaults,noatime,nofail 0 2" | sudo tee -a /etc/fstab >/dev/null || { echo "fstab update failed"; exit 1; }
+  echo "UUID=$PART_UUID $DESTINATION ext4 defaults,noatime,barrier=1,data=ordered,errors=remount-ro,commit=60,nofail 0 2" | sudo tee -a /etc/fstab >/dev/null || { echo "fstab update failed"; exit 1; }
 fi
 
 # Verify
