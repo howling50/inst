@@ -31,7 +31,7 @@ sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman di
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim gnome-system-monitor
 sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty aria2 fuseiso android-tools q4wine flameshot mediainfo-gui
 #sudo opi -n codecs
-#sudo zypper in piper && sudo systemctl enable ratbagd && sudo systemctl restart ratbagd
+#sudo zypper in piper && sudo systemctl enable ratbagd.service && sudo systemctl restart ratbagd.service && sudo usermod -aG games howling
 #sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #------------------------------------------------------------------
 flatpak install --noninteractive flathub com.heroicgameslauncher.hgl && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub io.github.giantpinkrobots.varia && flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub org.torproject.torbrowser-launcher
