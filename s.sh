@@ -101,4 +101,5 @@ fi
 #cd && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd && rm -rf yay && sudo pacman -S autotiling git fzf eza bat starship zoxide neovim --noconfirm --needed && [ -f ~/.bash_profile ] || echo -e "if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi" > ~/.bash_profile && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp -r /home/howling/.config/nvim ~/.config/ && source ~/.bashrc
 #yay -S --noconfirm bdinfo-git cli-visualizer-git  && mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
 #distrobox-export -b /usr/bin/vis && distrobox-export -b bdinfo
+#gamemode= sudo find /usr/ -name libgamemodeauto.so    sudo usermod -aG gamemode howling steam=gamemoderun %command%
 
