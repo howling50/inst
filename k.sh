@@ -2,6 +2,7 @@
 ##################### sudo chattr -R +C ~/Downloads then git clone in ~/Downloads, then chmod +x k.sh and then ./k.sh ####################################################
 #git clone https://github.com/howling50/Top-5-Bootloader-Themes
 #sudo pacman -R timeshift-autosnap-manjaro --noconfirm && sudo pacman -R timeshift --noconfirm
+MYORIG_USER=$(whoami)
 SECONDS=0
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
@@ -9,7 +10,7 @@ sudo pacman-mirrors --fasttrack 15 && sudo pacman -Syu --noconfirm --needed
 sudo pacman -S yay --noconfirm --needed && yay --sudoloop --save
 sudo pacman -Syu --noconfirm --needed && chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/* /usr/local/bin && mkdir ~/.othercrap && cp ~/Downloads/inst/script/*.png ~/.othercrap/
 sudo pacman -S jq gnome-system-monitor file-roller eza zoxide fzf bat feh zip unzip --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
-mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t /home/howling/.icons/Material-Black-Blueberry-Numix/
+mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$MYORIG_USER/.icons/Material-Black-Blueberry-Numix/"
 #sudo pacman -S i3-wm polybar python-i3ipc autotiling rofi rofi-calc i3lock --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
 sudo pacman -S fastfetch kitty powerline-fonts starship flatpak rsync ttf-firacode-nerd ttf-meslo-nerd ttf-roboto terminus-font noto-fonts-emoji ttf-nerd-fonts-symbols npm --noconfirm --needed
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
@@ -67,10 +68,7 @@ sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel
 echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null && echo 'export VISUAL="nvim"' | tee -a ~/.bash_profile  >/dev/null
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 #sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
-sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent kwalletmanager/' /etc/pacman.conf
-#sudo touch /etc/cron.weekly/balance
-#sudo bash -c 'echo -e "#!/usr/bin/env bash\nbtrfs scrub start / >> /home/howling/scrub.txt" >> /etc/cron.weekly/balance'
-#sudo chmod +x /etc/cron.weekly/balance
+sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent kwalletmanager/' /etc/pacman.conf && sudo usermod -aG gamemode "$MYORIG_USER"
 #-----------------
 echo 'if [ -f ~/.bashrc ]; then' >> ~/.bash_profile && echo '    source ~/.bashrc' >> ~/.bash_profile && echo 'fi' >> ~/.bash_profile && echo 'if [ -f /root/.bashrc ]; then' | sudo tee -a /root/.bash_profile && echo '    source /root/.bashrc' | sudo tee -a /root/.bash_profile && echo 'fi' | sudo tee -a /root/.bash_profile
 #-----------------
