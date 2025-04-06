@@ -60,7 +60,7 @@ sudo setsebool -P selinuxuser_execmod 1 && sudo setsebool -P selinuxuser_exechea
 #-----------------
 sudo firewall-cmd --permanent --new-zone=howling && sudo firewall-cmd --permanent --zone=howling --add-source=192.168.0.0/24 && sudo firewall-cmd --permanent --zone=howling --set-target=ACCEPT && sudo firewall-cmd --permanent --zone=public --add-port=23232/tcp && sudo firewall-cmd --permanent --zone=public --add-port=23232/udp && sudo firewall-cmd --permanent --zone=public --set-target=DROP && sudo firewall-cmd --set-default-zone=public && sudo firewall-cmd --reload
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
-mkdir -p ~/.steam/root/compatibilitytools.d/ && curl -O https://i.imgur.com/N51R4iT.jpg && cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/
+mkdir -p ~/.steam/root/compatibilitytools.d/ && curl -O https://i.imgur.com/N51R4iT.jpg && cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/ && sudo usermod -aG gamemode howling
 #wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux && mv yt-dlp_linux yt-dlp && chmod +x yt-dlp && sudo cp ~/Downloads/inst/yt-dlp /usr/local/bin
 wget $(curl -s https://api.github.com/repos/UniqProject/BDInfo/releases/latest | grep download | grep .zip  | cut -d\" -f4) && mv BDInfo_*.zip ~/.othercrap
 wget $(curl -s https://api.github.com/repos/sc0ty/subsync/releases/latest | grep download | grep portable-amd64.exe   | cut -d\" -f4) && mv subsync-*-portable-amd64.exe ~/.othercrap
@@ -101,5 +101,5 @@ fi
 #cd && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd && rm -rf yay && sudo pacman -S autotiling git fzf eza bat starship zoxide neovim --noconfirm --needed && [ -f ~/.bash_profile ] || echo -e "if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi" > ~/.bash_profile && cp /home/howling/.bash* ~/ && cp /home/howling/.config/starship.toml ~/.config/ && cp -r /home/howling/.config/nvim ~/.config/ && source ~/.bashrc
 #yay -S --noconfirm bdinfo-git cli-visualizer-git  && mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
 #distrobox-export -b /usr/bin/vis && distrobox-export -b bdinfo
-#gamemode= sudo find /usr/ -name libgamemodeauto.so    sudo usermod -aG gamemode howling steam=gamemoderun %command%
+#gamemode= sudo find /usr/ -name libgamemodeauto.so    steam=gamemoderun %command%
 
