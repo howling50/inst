@@ -25,7 +25,7 @@ sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo
 #-----------------------------------------------------
 #sudo zypper remove -y discover6 && sudo zypper addlock discover6 && sudo zypper remove -y kwalletmanager && sudo zypper addlock kwalletmanager patterns-games-games patterns-kde-kde_games patterns-kde-kde_pim && akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clean-deps -y akonadi && sudo zypper addlock akonadi patterns-kde-kde_pim && sudo zypper install -y -n yakuake oxygen6-cursors yast2-theme-oxygen
 #sudo zypper remove -y pragha parole && sudo zypper addlock parole pragha
-sudo zypper install -y -n libreoffice-writer libreoffice-writer-extensions cmatrix cava yazi gimp fbreader dragon-drop exiftool easytag gnome-boxes shotcut hexchat npm
+sudo zypper install -y -n libreoffice-writer libreoffice-writer-extensions cmatrix cava yazi gimp fbreader dragon-drop exiftool easytag gnome-boxes shotcut hexchat npm22
 sudo zypper install -y -n audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvtoolnix-tools mkvtoolnix-gui steam lutris flac
 sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman distrobox bluez blueman rsync 
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim gnome-system-monitor
