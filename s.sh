@@ -3,7 +3,7 @@
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
 #sudo visudo (Defaults timestamp_timeout=60)  (xfce4-terminal --drop-down xfce4-taskmanager kitty distrobox-enter -n arch /etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root)  kernel-longterm
 SECONDS=0
-sudo sed -i 's/^\s*#\?\s*download\.max_concurrent_connections\s*=\s*[0-9]\+/download.max_concurrent_connections = 15/' /etc/zypp/zypp.conf && sudo hostnamectl set-hostname $(whoami)
+sudo sed -i 's/^\s*#\?\s*download\.max_concurrent_connections\s*=\s*[0-9]\+/download.max_concurrent_connections = 15/' /etc/zypp/zypp.conf && sudo hostnamectl set-hostname "$(whoami)"
 cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/ && chmod +x ~/Downloads/inst/scripts/* && sudo cp ~/Downloads/inst/scripts/* /usr/local/bin && mkdir ~/.othercrap && cp ~/Downloads/inst/script/*.png ~/.othercrap/
 #sudo zypper install -y -n i3 nitrogen polybar python313-i3ipc i3lock && chmod +x ~/.config/polybar/launch.sh
 unzip ~/Downloads/inst/script/FiraMono.zip -d ~/Downloads/inst/script/ > /dev/null 2>&1 && rm -f ~/Downloads/inst/script/README.md ~/Downloads/inst/script/LICENSE 2> /dev/null && sudo mkdir -p /usr/share/fonts/opentype && sudo mv ~/Downloads/inst/script/*.otf /usr/share/fonts/opentype/ && sudo fc-cache -f -v
@@ -19,7 +19,7 @@ sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && su
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 zswap.enabled=1 zswap.compressor=lz4 zswap.zpool=z3fold zswap.max_pool_percent=25 zswap.accept_threshold_percent=90"/' /etc/default/grub && sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard 0 0' | sudo tee -a /etc/fstab
 #------------
-sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media && mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine && sudo mkdir -p /var/lib/flatpak && mkdir -p ~/.local/share/flatpak && sudo chattr -R +C ~/.config/qBittorrent && sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine && sudo chattr -R +C /var/lib/flatpak && sudo chattr -R +C ~/.local/share/flatpak
+sudo btrfs subvol create /Media && sudo chown "$(whoami):$(whoami)" /Media && sudo chmod 755 /Media && mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine && sudo mkdir -p /var/lib/flatpak && mkdir -p ~/.local/share/flatpak && sudo chattr -R +C ~/.config/qBittorrent && sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine && sudo chattr -R +C /var/lib/flatpak && sudo chattr -R +C ~/.local/share/flatpak
 #sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #sudo zypper install -y -n system-config-printer-applet cups && sudo systemctl enable --now cups.service cups.socket cups.path
 #-----------------------------------------------------
@@ -92,7 +92,7 @@ fi
 #mkdir -p ~/Media/container/arch && distrobox create -n arch -i quay.io/toolbx/arch-toolbox:latest --init --additional-packages "systemd" --home ~/Media/container/arch && distrobox enter arch
 #sudo sed -i 's/^[[:space:]]*#\?[[:space:]]*solver\.onlyRequires[[:space:]]*=[[:space:]]*false/solver.onlyRequires = true/' /etc/zypp/zypp.conf
 #sudo zypper in --no-recommends pamixer gnome-system-monitor mpv-mpris gvfs-backend-afc gvfs-backends gvfs-fuse pavucontrol dunst xfce4-terminal xfce4-taskmanager mousepad numlockx thunar-archive-plugin polkit-gnome htop NetworkManager-applet catfish jq thunar thunar-volman gvfs lxappearance ffmpegthumbnailer mediainfo
-#browser: sudo semanage fcontext -a -t user_home_dir_t "/home/$(whoami)/Downloads(/.*)?" && sudo restorecon -Rv /home/$(whoami)/Downloads
+#browser: sudo semanage fcontext -a -t user_home_dir_t "/home/$(whoami)/Downloads(/.*)?" && sudo restorecon -Rv "/home/$(whoami)/Downloads"
 #cd && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd && rm -rf yay && sudo pacman -S autotiling git fzf eza bat starship zoxide neovim --noconfirm --needed && [ -f ~/.bash_profile ] || echo -e "if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi" > ~/.bash_profile && cp /home/$(whoami)/.bash* ~/ && cp /home/$(whoami)/.config/starship.toml ~/.config/ && cp -r /home/$(whoami)/.config/nvim ~/.config/ && source ~/.bashrc
 #yay -S --noconfirm bdinfo-git cli-visualizer-git  && mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
 #distrobox-export -b /usr/bin/vis && distrobox-export -b bdinfo
