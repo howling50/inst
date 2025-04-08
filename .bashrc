@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 iatest=$(expr index "$-" i)
-[[ $- != *i* ]] && return
+
 ###################################################
 #if [ -f /usr/bin/fastfetch ]; then
 #	fastfetch
@@ -18,7 +18,16 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 # Disable the bell
-if [[ $iatest -gt 0 ]]; then bind "set bell-style visible"; fi
+if [[ $iatest -gt 0 ]]; then bind "set bell-style none"; fi
+
+# Ignore case on auto-completion
+# Note: bind used instead of sticking these in .inputrc
+if [[ $iatest -gt 0 ]]; then bind "set completion-ignore-case on"; fi
+
+# Show auto-completion list automatically, without double tab
+if [[ $iatest -gt 0 ]]; then bind "set show-all-if-ambiguous On"; fi
+
+
 # Change the window title of X terminals
 case ${TERM} in
 	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
