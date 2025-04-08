@@ -139,7 +139,7 @@ vimhistory() {
             --layout=default)
 
     # Open selected files
-    [[ -n "$files" ]] && nvim $files
+    [[ -n "$files" ]] && nvim "$files"
 }
 alias dragond="dragon-drop -a -x "
 alias rpmorphan="sudo zypper packages --orphaned"
@@ -158,7 +158,7 @@ aria2cauto() {
     # Check if the file exists
     if [ -f "$OUTPUT_FILE" ]; then
         echo "File '$OUTPUT_FILE' already exists."
-        read -p "Do you want to (R)esume or (O)verwrite? [R/O]: " choice
+        read -r -p "Do you want to (R)esume or (O)verwrite? [R/O]: " choice
 
         case "$choice" in
             [Rr]*)
@@ -184,7 +184,7 @@ fcd() {
      cd "$(find -type d | fzf)"
 }
 listbash() {
-    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mntls, ftext, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, dragond, vimhistory
+    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mnt, ftext, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, dragond, vimhistory
 \e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m, yazi
 \e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto, yt-x-update, ani-cli-update
@@ -196,8 +196,31 @@ listbash() {
 "
 }
 alias weather="curl wttr.in"
-alias ani-cli-update="sudo rm /usr/local/bin/ani-cli && wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && sudo mv ani-cli /usr/local/bin"
-alias yt-x-update="sudo rm /usr/local/bin/yt-x && sudo curl -sL "https://raw.githubusercontent.com/Benexl/yt-x/refs/heads/master/yt-x" -o /usr/local/bin/yt-x && sudo chmod +x /usr/local/bin/yt-x"
+ani-cli-update() {
+  local download_url
+
+  download_url=$(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | \
+    grep -E 'browser_download_url.*ani-cli"' | \
+    cut -d'"' -f4)
+
+  if [[ -z "$download_url" ]]; then
+    echo "❌ Failed to fetch download URL."
+    return 1
+  fi
+
+  wget -O ani-cli "$download_url" || return 1
+  chmod +x ani-cli
+  sudo mv ani-cli /usr/local/bin/
+  echo "✅ ani-cli updated successfully!"
+}
+yt-x-update() {
+  local target="/usr/local/bin/yt-x"
+
+  sudo rm -f "$target"
+  sudo curl -sL https://raw.githubusercontent.com/Benexl/yt-x/master/yt-x -o "$target"
+  sudo chmod +x "$target"
+  echo "✅ yt-x updated successfully!"
+}
 alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
 rsyncmnt() {
     # List mounted block devices in clean format
@@ -205,8 +228,8 @@ rsyncmnt() {
     mount | awk -F' ' '$1 ~ /^\/dev\// { printf "%-20s %s\n", $1, $3 }' | sort
 
     # Prompt for paths
-    read -p "Enter source mount location: No / at the end " source_dir
-    read -p "Enter destination mount location: No / at the end " dest_dir
+    read -r -p "Enter source mount location: No / at the end " source_dir
+    read -r -p "Enter destination mount location: No / at the end " dest_dir
 
     # Normalize paths
     source_dir="${source_dir%/}/"
@@ -219,7 +242,7 @@ rsyncmnt() {
     fi
 
     # Confirmation
-    read -p "Sync FROM $source_dir TO $dest_dir? (y/n): " confirm
+    read -r -p "Sync FROM $source_dir TO $dest_dir? (y/n): " confirm
     [[ "$confirm" =~ ^[Yy]$ ]] || { echo "Cancelled"; return 1; }
 
     # Execute rsync
@@ -228,8 +251,8 @@ rsyncmnt() {
 }
 rsyncauto() {
     # Prompt for paths
-    read -p "Enter source dir or file: " source_dir
-    read -p "Enter destination directory: " dest_dir
+    read -r -p "Enter source dir or file: " source_dir
+    read -r -p "Enter destination directory: " dest_dir
 
     # Validate that the source exists (file or directory)
     if [ ! -e "$source_dir" ]; then
@@ -244,7 +267,7 @@ rsyncauto() {
     fi
 
     # Confirmation prompt
-    read -p "Sync FROM '$source_dir' TO '$dest_dir'? (y/n): " confirm
+    read -r -p "Sync FROM '$source_dir' TO '$dest_dir'? (y/n): " confirm
     if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
         echo "Cancelled."
         return 1
@@ -282,9 +305,9 @@ pacinfo() {
 }
 pupdate() {
   if command -v pacman &> /dev/null; then
-    sudo pacman -Syu && flatpak update -y && echo '#### SAVING THE DATE ####' && date "+%d/%m/%Y %H:%M:%S" >> $HOME/.config/update.txt
+    sudo pacman -Syu && flatpak update -y && echo '#### SAVING THE DATE ####' && date "+%d/%m/%Y %H:%M:%S" >> "$HOME/.config/update.txt"
   elif command -v zypper &> /dev/null; then
-    sudo zypper dup && flatpak update -y && echo '#### SAVING THE DATE ####' && date "+%d/%m/%Y %H:%M:%S" >> $HOME/.config/update.txt
+    sudo zypper dup && flatpak update -y && echo '#### SAVING THE DATE ####' && date "+%d/%m/%Y %H:%M:%S" >> "$HOME/.config/update.txt"
   else
     echo "No supported package manager found (pacman or zypper)."
   fi
@@ -303,16 +326,18 @@ autobrr-update() {
     if command -v pacman &> /dev/null; then
         # Arch Linux
         rm autobrr_* && 
-        wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst | cut -d\" -f4) && 
+        wget "$(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst | cut -d\" -f4)" && 
         sudo pacman -U autobrr*.tar.zst --noconfirm --needed;
     elif command -v zypper &> /dev/null; then
         # openSUSE
         rm autobrr_* && 
-        wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep linux_amd64.rpm | cut -d\" -f4) && 
+        wget "$(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep linux_amd64.rpm | cut -d\" -f4)" && 
         sudo zypper --no-gpg-checks install -y -n ~/Downloads/inst/autobrr*.rpm;
     else
         echo "Unsupported OS";
+        return 1
     fi
+    echo "✅ autobrr updated successfully!"
 }
 alias cdi="zi"
 rgvim() {
@@ -378,7 +403,7 @@ delall() {
         if [ -n "$orphaned_packages" ]; then
             echo "Removing orphaned packages:"
             echo "$orphaned_packages"
-            sudo pacman -Rns --noconfirm -- $orphaned_packages && sudo snapper cleanup number
+            sudo pacman -Rns --noconfirm -- "$orphaned_packages" && sudo snapper cleanup number
         else
             echo "No orphaned packages found."
         fi
@@ -411,7 +436,9 @@ delall() {
 
     echo "System cleanup completed!"
 }
-alias mntls="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | grep -E ^/dev/ | sort"
+mntls() {
+  mount | awk '{ print $1, $3 }' | column -t | grep -E '^/dev/' | sort
+}
 finds ()
 {
   find / -iname "$1" 2>/dev/null
@@ -428,30 +455,30 @@ punlock() {
     fi
 }
 extract() {
-	for archive in "$@"; do
-		if [ -f "$archive" ]; then
-			case $archive in
-			*.tar.bz2) tar xvjf $archive ;;
-			*.tar.gz) tar xvzf $archive ;;
-			*.bz2) bunzip2 $archive ;;
-			*.rar) rar x $archive ;;
-			*.gz) gunzip $archive ;;
-			*.tar) tar xvf $archive ;;
-			*.tbz2) tar xvjf $archive ;;
-			*.tgz) tar xvzf $archive ;;
-			*.zip) unzip $archive ;;
-			*.Z) uncompress $archive ;;
-			*.7z) 7z x $archive ;;
-			*) echo "don't know how to extract '$archive'..." ;;
-			esac
-		else
-			echo "'$archive' is not a valid file!"
-		fi
-	done
+  for archive in "$@"; do
+    if [ -f "$archive" ]; then
+      case "$archive" in
+        *.tar.bz2) tar xvjf "$archive" ;;
+        *.tar.gz) tar xvzf "$archive" ;;
+        *.bz2) bunzip2 "$archive" ;;
+        *.rar) rar x "$archive" ;;
+        *.gz) gunzip "$archive" ;;
+        *.tar) tar xvf "$archive" ;;
+        *.tbz2) tar xvjf "$archive" ;;
+        *.tgz) tar xvzf "$archive" ;;
+        *.zip) unzip "$archive" ;;
+        *.Z) uncompress "$archive" ;;
+        *.7z) 7z x "$archive" ;;
+        *) echo "don't know how to extract '$archive'..." ;;
+      esac
+    else
+      echo "'$archive' is not a valid file!"
+    fi
+  done
 }
 alias grep='grep --color'
-alias rm='rm -I --preserve-root'
 alias cp='cp -i'
+alias rm='rm -I --preserve-root'
 alias mv='mv -i'
 alias vim='nvim'
 alias vimrc='nvim ~/.config/nvim/init.lua'
@@ -491,7 +518,7 @@ alias h="history | grep "
 alias plist="ps aux | grep "
 alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 # Count all files (recursively) in the current folder
-alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
+alias countfiles="for t in files links directories; do echo \$(find . -type \${t:0:1} | wc -l) \$t; done 2> /dev/null"
 # Searches for text in all files in the current folder
 ftext() {
 	# -i case-insensitive
@@ -561,7 +588,7 @@ sudo() {
   elif [ "$1" = "nvim" ]; then
     shift
     command sudoedit "$@"
- elif [ "$1" = "cat" ]; then
+  elif [ "$1" = "cat" ]; then
     shift
     command sudo bat  "$@"
   else
