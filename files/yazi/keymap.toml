@@ -117,5 +117,7 @@ desc = "Bottles"
 
 [[manager.prepend_keymap]]
 on = ["`", "u"]
-run = ["shell --block 'urlview *'"]
-desc = "urlview"
+run = '''
+    shell --block 'urlview "$@"'
+'''
+desc = "Urlview"
