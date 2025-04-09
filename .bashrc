@@ -185,7 +185,7 @@ fcd() {
 }
 listbash() {
     printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mntls, ftext, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, dragond, vimhistory
-\e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m, yazi
+\e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m, yazi, urlview
 \e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto, yt-x-update, ani-cli-update
 \e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, power-menu.sh, formatext4.sh, dlfile, killandnotify, ipconfig
@@ -214,11 +214,8 @@ ani-cli-update() {
   echo "✅ ani-cli updated successfully!"
 }
 yt-x-update() {
-  local target="~/.local/bin/yt-x"
-
-  rm -f "$target"
-  curl -sL https://raw.githubusercontent.com/Benexl/yt-x/master/yt-x -o "$target"
-  chmod +x "$target"
+  curl -sL https://raw.githubusercontent.com/Benexl/yt-x/master/yt-x -o ~/.local/bin/yt-x
+  chmod +x ~/.local/bin/yt-x
   echo "✅ yt-x updated successfully!"
 }
 alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
