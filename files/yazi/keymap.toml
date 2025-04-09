@@ -114,3 +114,8 @@ desc = "update config"
 on = ["g", "b"]
 run = "cd ~/.var/app/com.usebottles.bottles/data/bottles/bottles"
 desc = "Bottles"
+
+[[manager.prepend_keymap]]
+on = ["`", "u"]
+run = ["shell --block 'urlview *'"]
+desc = "urlview"
