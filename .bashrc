@@ -142,6 +142,7 @@ vimhistory() {
     [[ -n "$files" ]] && nvim "$files"
 }
 alias dragond="dragon-drop -a -x "
+alias ifconfig="ip addr"
 alias rpmorphan="sudo zypper packages --orphaned"
 alias ff="fastfetch"
 alias sba="source ~/.bashrc"
