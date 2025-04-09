@@ -27,7 +27,7 @@ sudo btrfs subvol create /Media && sudo chown "$(whoami):$(whoami)" /Media && su
 #sudo zypper remove -y pragha parole && sudo zypper addlock parole pragha
 sudo zypper install -y -n libreoffice-writer libreoffice-writer-extensions cmatrix cava yazi gimp fbreader dragon-drop exiftool easytag gnome-boxes shotcut hexchat npm22
 sudo zypper install -y -n audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvtoolnix-tools mkvtoolnix-gui steam lutris flac
-sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman distrobox bluez blueman rsync 
+sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman distrobox bluez blueman rsync w3m-inline-image
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim gnome-system-monitor
 sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty aria2 fuseiso android-tools q4wine flameshot mediainfo-gui
 sudo zypper in piper && sudo systemctl enable ratbagd.service && sudo systemctl restart ratbagd.service && sudo usermod -aG games "$(whoami)"
