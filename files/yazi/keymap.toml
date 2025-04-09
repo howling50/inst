@@ -80,7 +80,7 @@ desc = "mpv config"
 
 [[manager.prepend_keymap]]
 on = ["g", "s"]
-run = "cd /usr/local/bin"
+run = "cd ~/.local/bin"
 desc = "Scripts"
 
 [[manager.prepend_keymap]]
