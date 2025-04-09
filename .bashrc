@@ -210,15 +210,15 @@ ani-cli-update() {
 
   wget -O ani-cli "$download_url" || return 1
   chmod +x ani-cli
-  sudo mv ani-cli /usr/local/bin/
+  mv ani-cli ~/.local/bin/
   echo "✅ ani-cli updated successfully!"
 }
 yt-x-update() {
-  local target="/usr/local/bin/yt-x"
+  local target="~/.local/bin/yt-x"
 
-  sudo rm -f "$target"
-  sudo curl -sL https://raw.githubusercontent.com/Benexl/yt-x/master/yt-x -o "$target"
-  sudo chmod +x "$target"
+  rm -f "$target"
+  curl -sL https://raw.githubusercontent.com/Benexl/yt-x/master/yt-x -o "$target"
+  chmod +x "$target"
   echo "✅ yt-x updated successfully!"
 }
 alias vmshare="sudo mount -t 9p -o trans=virtio /sharepoint share"
