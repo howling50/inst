@@ -97,4 +97,4 @@ fi
 #yay -S --noconfirm bdinfo-git cli-visualizer-git  && mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
 #distrobox-export -b /usr/bin/vis && distrobox-export -b bdinfo
 #gamemode= sudo find /usr/ -name libgamemodeauto.so    steam=gamemoderun %command%
-
+#wget $(curl -s https://api.github.com/repos/VirusTotal/vt-cli/releases/latest | grep download | grep  Linux64.zip | cut -d\" -f4) && unzip ./Linux64.zip -d ~/.local/bin/ && chmod +x ~/.local/bin/vt && printf 'apikey = "%s"\n' "f4936f6a4e48bb6046edd0339e759bd9e23834ba995e3e6fb53be6643f8aa61e" > ~/.vt.toml
