@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-##################### sudo chattr -R +C ~/Downloads then git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
+##################### Check /etc/pacman.conf for multilib,sudo chattr -R +C ~/Downloads then git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
 #git clone https://github.com/howling50/Top-5-Bootloader-Themes 
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 SECONDS=0
