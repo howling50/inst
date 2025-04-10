@@ -127,8 +127,8 @@ bindsym $mod+Shift+KP_Left exec mousepad
 bindsym $mod+Shift+KP_Begin exec audacious
 bindsym $mod+Shift+KP_Right exec mpv --player-operation-mode=pseudo-gui
 bindsym $mod+Shift+KP_Home exec gnome-system-monitor
-bindsym $mod+Shift+KP_Up exec thunar ~/Media/D
-bindsym $mod+Shift+KP_Page_Up exec thunar ~/Media/E
+bindsym $mod+Shift+KP_Up exec bash -c 'thunar "$HOME/Media/D"'
+bindsym $mod+Shift+KP_Page_Up exec bash -c 'thunar "$HOME/Media/E"'
 
 
 
