@@ -3,10 +3,10 @@
 #git clone https://github.com/howling50/Top-5-Bootloader-Themes 
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 SECONDS=0
-for dir in Media Downloads Music Videos Pictures; do [ ! -d "$HOME/$dir" ] && mkdir "$HOME/$dir"; done && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
+for dir in Media Downloads Music Videos Pictures; do [ ! -d "$HOME/$dir" ] && mkdir "$HOME/$dir"; done && mkdir -p ~/.local/bin/ && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
-sudo pacman -Syu --noconfirm --needed && chmod +x ~/Downloads/inst/scripts/* && mkdir -p ~/.local/bin/ && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && mv ~/Downloads/inst/script/*.png ~/.othercrap/
+sudo pacman -Syu --noconfirm --needed && chmod +x ~/Downloads/inst/scripts/* && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && mv ~/Downloads/inst/script/*.png ~/.othercrap/
 sudo pacman -S xclip jq gnome-system-monitor file-roller reflector eza zoxide fzf bat feh zip unzip --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
 mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/"
 #sudo pacman -S i3-wm polybar python-i3ipc autotiling rofi rofi-calc i3lock --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
