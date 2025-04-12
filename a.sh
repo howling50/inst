@@ -40,7 +40,6 @@ sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --nee
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep memtest86+ tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm dxvk-bin ventoy-bin reflector-simple winegui-bin input-remapper-git ttf-ms-fonts dragon-drop heroic-games-launcher-bin urlview
-#yay -S --noconfirm konsave
 flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub org.torproject.torbrowser-launcher && flatpak install --noninteractive flathub io.github.giantpinkrobots.varia
 flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub app.zen_browser.zen
 flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub net.davidotek.pupgui2
@@ -81,7 +80,6 @@ wget --trust-server-names --content-disposition "https://www.highrez.co.uk/scrip
 sudo ufw allow proto tcp from 192.168.0.0/24 to any port 1:65535 && sudo ufw allow proto udp from 192.168.0.0/24 to any port 1:65535 && sudo ufw allow 23232/tcp && sudo ufw allow 23232/udp
 sudo ufw default deny incoming && sleep 1 && sudo ufw default allow outgoing && sleep 1 && sudo systemctl enable ufw && sudo systemctl start ufw && sudo ufw enable
 # ----------------------------------------------
-#konsave -i ~/Downloads/inst/kde2.knsv && sleep 1 && konsave -a kde2
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc
 mkdir -p ~/.othercrap/eac3to
 unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null
