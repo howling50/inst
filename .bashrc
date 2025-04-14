@@ -113,6 +113,8 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+alias trash-restore="trash-restore <<< \n | head -n-1 | fzf | awk '{print \$1;}' | trash-restore" 
+alias t='tldr -l | fzf | xargs -I{} tldr -r {} | bat -pp --theme=gruvbox-dark -lmarkdown' 
 vimhistory() {
     # Get oldfiles from Neovim
     mapfile -t oldfiles < <(nvim -u NONE --headless +'lua io.write(table.concat(vim.v.oldfiles, "\n") .. "\n")' +qa)
@@ -142,7 +144,6 @@ vimhistory() {
     [[ -n "$files" ]] && nvim "$files"
 }
 alias dragond="dragon-drop -a -x "
-alias ifconfig="ip addr"
 alias rpmorphan="sudo zypper packages --orphaned"
 alias ff="fastfetch"
 alias sba="source ~/.bashrc"
@@ -185,8 +186,8 @@ fcd() {
      cd "$(find -type d | fzf)"
 }
 listbash() {
-    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mntls, ftext, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, dragond, vimhistory
-\e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m, yazi, urlview
+    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mntls, ftext, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, dragond, vimhistory, trash-restore
+\e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, vis, ddgr, w3m, yazi
 \e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncmnt, rsyncauto, yt-x-update, ani-cli-update
 \e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, power-menu.sh, formatext4.sh, dlfile, killandnotify, ipconfig
@@ -476,7 +477,11 @@ extract() {
 }
 alias grep='grep --color'
 alias cp='cp -i'
-alias rm='rm -I --preserve-root'
+if command -v trash &> /dev/null; then
+    alias rm='trash -v'
+else
+    alias rm='rm -i'  # fallback to interactive remove
+fi
 alias mv='mv -i'
 alias vim='nvim'
 alias vimrc='nvim ~/.config/nvim/init.lua'
@@ -570,28 +575,54 @@ alias lx="eza --color=always --long  --icons=always --no-time --all --sort=exten
 alias lt="eza --color=always --long  --icons=always --all --reverse --sort=modified"
 alias lf="eza --color=always --long  --icons=always --no-time -f"
 alias ldir="eza --color=always --long  --icons=always --no-time -D"
+# Use trash if available; fallback to rm -i
+if command -v trash &> /dev/null; then
+    alias rm='trash -v'
+else
+    alias rm='rm -i'
+fi
 sudo() {
-  if [ "$1" = "rm" ]; then
-    shift
-    command sudo rm -I --preserve-root "$@"
-  elif [ "$1" = "ls" ]; then
-    shift
-    command sudo eza --color=always --icons=always --no-time --all "$@"
-  elif [ "$1" = "ll" ]; then
-    shift
-    command sudo eza --color=always --long  --icons=always --no-time --all "$@"
-  elif [ "$1" = "vim" ]; then
-    shift
-    command sudoedit "$@"
-  elif [ "$1" = "nvim" ]; then
-    shift
-    command sudoedit "$@"
-  elif [ "$1" = "cat" ]; then
-    shift
-    command sudo bat  "$@"
-  else
-    command sudo "$@"
-  fi
+    local cmd found=
+    # Find the first recognized subcommand
+    for arg in "$@"; do
+        case "$arg" in
+            rm|ls|ll|vim|nvim|cat) cmd="$arg"; found=1; break ;;
+        esac
+    done
+    if [ -n "$found" ]; then
+        shift
+        case "$cmd" in
+            rm)
+                    command sudo rm -Iv --preserve-root "$@"
+                ;;
+            ls)
+                if command -v eza &> /dev/null; then
+                    command sudo eza --color=always --icons=always --no-time --all "$@"
+                else
+                    command sudo ls "$@"
+                fi
+                ;;
+            ll)
+                if command -v eza &> /dev/null; then
+                    command sudo eza --color=always --long --icons=always --no-time --all "$@"
+                else
+                    command sudo ls -l "$@"
+                fi
+                ;;
+            vim|nvim)
+                command sudoedit "$@"
+                ;;
+            cat)
+                if command -v bat &> /dev/null; then
+                    command sudo bat "$@"
+                else
+                    command sudo cat "$@"
+                fi
+                ;;
+        esac
+    else
+        command sudo "$@"
+    fi
 }
 # Show the current distribution
 distro ()
