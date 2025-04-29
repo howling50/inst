@@ -376,7 +376,7 @@ delall() {
         if [ -n "$orphaned_packages" ]; then
             echo "Removing orphaned packages:"
             echo "$orphaned_packages"
-            sudo pacman -Rns --noconfirm -- "$orphaned_packages" && sudo snapper cleanup number
+            sudo pacman -Rns --noconfirm -- $orphaned_packages && sudo snapper cleanup number
         else
             echo "No orphaned packages found."
         fi
