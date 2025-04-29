@@ -278,7 +278,7 @@ pacinfo() {
 }
 pupdate() {
   if command -v pacman &> /dev/null; then
-    sudo pacman -Syu && flatpak update -y && echo '#### SAVING THE DATE ####' && date "+%d/%m/%Y %H:%M:%S" >> "$HOME/.config/update.txt"
+    yay -Syu && flatpak update -y && echo '#### SAVING THE DATE ####' && date "+%d/%m/%Y %H:%M:%S" >> "$HOME/.config/update.txt"
   elif command -v zypper &> /dev/null; then
     sudo zypper dup && flatpak update -y && echo '#### SAVING THE DATE ####' && date "+%d/%m/%Y %H:%M:%S" >> "$HOME/.config/update.txt"
   else
