@@ -707,28 +707,28 @@ _fzf_comprun() {
 
 # Check for updates in Arch official repositories
 if command -v checkupdates &> /dev/null; then
-    updates=$(checkupdates)
-    if [[ -n "$updates" ]]; then
+    update_count=$(checkupdates 2>/dev/null | wc -l)
+    if [[ $update_count -gt 0 ]]; then
         echo -e "\n==== Official Repository Updates (Arch) ===="
-        echo "$updates"
+        echo "$update_count updates available"
     fi
 fi
 
 # Check for updates in AUR
 if command -v yay &> /dev/null; then
-    updates=$(yay -Qua)
-    if [[ -n "$updates" ]]; then
+    update_count=$(yay -Qua 2>/dev/null | wc -l)
+    if [[ $update_count -gt 0 ]]; then
         echo -e "\n==== AUR Updates ===="
-        echo "$updates"
+        echo "$update_count updates available"
     fi
 fi
 
 # Check for updates in Flatpak
 if command -v flatpak &> /dev/null; then
-    updates=$(flatpak remote-ls --updates)
-    if [[ -n "$updates" ]]; then
+    update_count=$(flatpak list --updates --columns=app 2>/dev/null | wc -l)
+    if [[ $update_count -gt 0 ]]; then
         echo -e "\n==== Flatpak Updates ===="
-        echo "$updates"
+        echo "$update_count updates available"
     fi
 fi
 if command -v proxychains &>/dev/null; then
