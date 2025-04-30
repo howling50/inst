@@ -376,7 +376,7 @@ delall() {
         if [ -n "$orphaned_packages" ]; then
             echo "Removing orphaned packages:"
             echo "$orphaned_packages"
-            sudo pacman -Rns --noconfirm -- $orphaned_packages
+            sudo pacman -Rns --noconfirm -- $orphaned_packages && sudo snapper cleanup number
         else
             echo "No orphaned packages found."
         fi
@@ -390,14 +390,14 @@ delall() {
             echo "Running yay cleanup..."
             yay -Scc
         fi
-
+             
         clean_flatpak
         clean_journal
 
     elif command -v zypper &> /dev/null; then
         echo "Running openSUSE system cleanup..."
         echo "Cleaning zypper cache..."
-        sudo zypper cc -a && sudo zypper purge-kernels
+        sudo zypper cc -a && sudo zypper purge-kernels && sudo snapper cleanup number
 
         clean_flatpak
         clean_journal
