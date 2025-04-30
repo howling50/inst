@@ -111,6 +111,7 @@ fi
 #ext4 = defaults,noatime,barrier=1,data=ordered,errors=remount-ro,commit=60,nofail 0 2
 #--
 #sudo pacman -S linux-lts linux-lts-headers && sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg
+#sudo nano /etc/grub.d/10_linux  then Find the line with version_sort -r and remove the -r the save and sudo grub-mkconfig -o /boot/grub/grub.cfg
 #sudo nano /etc/default/grub
 #GRUB_DEFAULT=saved
 #GRUB_SAVEDEFAULT=true
