@@ -376,7 +376,7 @@ delall() {
         if [ -n "$orphaned_packages" ]; then
             echo "Removing orphaned packages:"
             echo "$orphaned_packages"
-            sudo pacman -Rns --noconfirm -- $orphaned_packages && sudo snapper cleanup number
+            sudo pacman -Rns --noconfirm -- $orphaned_packages
         else
             echo "No orphaned packages found."
         fi
@@ -397,7 +397,7 @@ delall() {
     elif command -v zypper &> /dev/null; then
         echo "Running openSUSE system cleanup..."
         echo "Cleaning zypper cache..."
-        sudo zypper cc -a && sudo zypper purge-kernels && sudo snapper cleanup number
+        sudo zypper cc -a && sudo zypper purge-kernels
 
         clean_flatpak
         clean_journal
@@ -557,17 +557,17 @@ else
 fi
 sudo() {
     local cmd found=
-    # Find the first recognized subcommand
-    for arg in "$@"; do
-        case "$arg" in
-            rm|ls|ll|vim|nvim|cat) cmd="$arg"; found=1; break ;;
-        esac
-    done
+    # Check only the first argument
+    cmd="$1"
+    case "$cmd" in
+        rm|ls|ll|vim|nvim|cat) found=1 ;;
+    esac
+
     if [ -n "$found" ]; then
-        shift
+        shift  # Remove the matched command (e.g., "vim") from arguments
         case "$cmd" in
             rm)
-                    command sudo rm -Iv --preserve-root "$@"
+                command sudo rm -Iv --preserve-root "$@"
                 ;;
             ls)
                 if command -v eza &> /dev/null; then
