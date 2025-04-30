@@ -557,7 +557,6 @@ else
 fi
 sudo() {
     local cmd found=
-    # Check only the first argument
     cmd="$1"
     case "$cmd" in
         rm|ls|ll|vim|nvim|cat) found=1 ;;
