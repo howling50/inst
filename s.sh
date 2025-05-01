@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ##################### git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh (also dont forget to change fstab)####################################################
-#sudo visudo (Defaults timestamp_timeout=60)  (/etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root)
+#sudo visudo (Defaults timestamp_timeout=60)  (/etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root) sudo zypper ref && sudo zypper dup && sudo zypper inr
 SECONDS=0
 required_dir="$HOME/Downloads/inst"
 if [[ $(pwd -P) != $(realpath "$required_dir") ]]; then
@@ -70,7 +70,7 @@ cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo
 unzip ~/Downloads/inst/script/FiraMono.zip -d ~/Downloads/inst/script/ > /dev/null 2>&1 && rm -f ~/Downloads/inst/script/README.md ~/Downloads/inst/script/LICENSE 2> /dev/null && sudo mkdir -p /usr/share/fonts/opentype && sudo mv ~/Downloads/inst/script/*.otf /usr/share/fonts/opentype/ && sudo fc-cache -f -v
 sudo zypper install -y -n mediainfo trash-cli urlview htop feh jq lsof google-noto-coloremoji-fonts ImageMagick symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts vlc powerline-fonts starship memtest86+ kitty flatpak tealdeer bat zoxide fzf gdu eza ripgrep && flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo flatpak remote-delete --system flathub
 sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc-codecs && mkdir -p ~/.local/share/vlc/lua/extensions/ && mv ~/Downloads/inst/script/*.lua ~/.local/share/vlc/lua/extensions/ && mkdir -p ~/.local/share/vlc/lua/playlist/ && mv ~/Downloads/inst/script/1/*.lua ~/.local/share/vlc/lua/playlist/
-sudo zypper ref && sudo zypper up && cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
+sudo zypper ref && sudo zypper dup && cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && sudo zypper addlock PackageKit
 #----Swap-------
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 zswap.enabled=1 zswap.compressor=lz4 zswap.zpool=z3fold zswap.max_pool_percent=25 zswap.accept_threshold_percent=90"/' /etc/default/grub && sudo grub2-mkconfig -o /boot/grub2/grub.cfg
