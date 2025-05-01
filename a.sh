@@ -12,7 +12,7 @@ if ! sudo -v; then
     exit 1
 fi
 
-if ! curl -sLf -o /dev/null https://archlinux.org; then
+if ! curl -sLf -o /dev/null https://google.com; then
     echo -e "\033[31mERROR: No internet connection\033[0m" >&2
     exit 1
 fi
