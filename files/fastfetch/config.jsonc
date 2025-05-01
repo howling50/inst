@@ -104,7 +104,7 @@
         "break",
         {
             "type": "custom",
-            "format": "\u001b[93m┌────────────────────Uptime / Age────────────────────┐"
+            "format": "\u001b[93m┌────────────────────Uptime / Age / Update─── ───────┐"
         },
         {
             "type": "command",
@@ -116,6 +116,13 @@
             "type": "uptime",
             "key": "  Uptime ",
             "keyColor": "magenta"
+        },
+        {
+            "type": "command",
+            "key": "  Last Update ",
+            "shell": "/bin/bash",
+            "text": "lastupdate.sh",
+            "keyColor": "magenta",
         },
         {
             "type": "custom",
