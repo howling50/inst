@@ -43,17 +43,14 @@ flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak in
 wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | jq -r '.assets[] | select(.name | test("ani-cli")) | .browser_download_url') -O ani-cli && chmod +x ani-cli && mv ani-cli ~/.local/bin/ && rm ani-cli*
 curl -sL "https://raw.githubusercontent.com/Benexl/yt-x/refs/heads/master/yt-x" -o ~/.local/bin/yt-x && chmod +x ~/.local/bin/yt-x && mkdir -p ~/.local/share/vlc/lua/extensions/ && mv ~/Downloads/inst/script/*.lua ~/.local/share/vlc/lua/extensions/ && mkdir -p ~/.local/share/vlc/lua/playlist/ && mv ~/Downloads/inst/script/1/*.lua ~/.local/share/vlc/lua/playlist/
 curl -sL https://www.rarlab.com/rar/rarlinux-x64-$(curl -sL https://www.rarlab.com/download.htm | grep -oP 'rarlinux-x64-\K[0-9]+\.tar\.gz' | head -n1) -o rarlinux.tar.gz && tar -xzf rarlinux.tar.gz && mv rar/rar ~/.local/bin/ && rm -rf rar rarlinux.tar.gz
-#wget $(curl -s https://api.github.com/repos/ventoy/Ventoy/releases/latest | grep download | grep linux.tar.gz | cut -d\" -f4) > /dev/null 2>&1 && tar -xzf ~/Downloads/inst/ventoy*.tar.gz -C ~/.othercrap/ && ventoy_folder=$(find ~/.othercrap -maxdepth 1 -type d -name "ventoy-*"); mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Ventoy\nExec=$ventoy_folder/VentoyGUI.x86_64\nIcon=$ventoy_folder/icon.png\nType=Application\nCategories=Utility;" > ~/.local/share/applications/Ventoy.desktop
 wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4) && sudo pacman -U autobrr*.tar.zst --noconfirm --needed
 mkdir -p ~/.othercrap && wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=$HOME/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=$HOME/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;\nStartupNotify=true\nTerminal=false" > ~/.local/share/applications/stacer.desktop && chmod +x ~/.local/share/applications/stacer.desktop
 #-----
 sudo systemctl enable input-remapper && sudo systemctl restart input-remapper && sudo systemctl start avahi-daemon && sudo systemctl enable avahi-daemon
-#------------Remote -----------------------------------
-#sudo pacman -S remmina --noconfirm --needed && yay -S --noconfirm remmina-plugin-teamviewer remmina-plugin-ultravnc remmina-plugin-rdesktop remmina-plugin-url remmina-plugin-open remmina-plugin-folder
 #------------------------------------------------------------------
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 #------------------------------------------rk hunter--------------------------
-#sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local
+sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
 sudo pacman -S apparmor --noconfirm --needed && sudo systemctl start apparmor && sudo systemctl enable apparmor && sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 quiet apparmor=1 security=apparmor"/' /etc/default/grub
