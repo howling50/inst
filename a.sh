@@ -1,37 +1,175 @@
 #!/usr/bin/env bash
 ##################### Check /etc/pacman.conf for multilib then go to /etc/fstab and then git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
-#git clone https://github.com/howling50/Top-5-Bootloader-Themes 
-#git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 SECONDS=0
+required_dir="$HOME/Downloads/inst"
+if [[ $(pwd -P) != $(realpath "$required_dir") ]]; then
+    echo -e "\033[31mERROR: Run script from $required_dir\033[0m" >&2
+    exit 1
+fi
+
+if ! sudo -v; then
+    echo -e "\033[31mERROR: Insufficient sudo privileges\033[0m" >&2
+    exit 1
+fi
+
+if ! curl -sLf -o /dev/null https://archlinux.org; then
+    echo -e "\033[31mERROR: No internet connection\033[0m" >&2
+    exit 1
+fi
+
+# GRUB theme installation
+read -p "Do you want to install a new GRUB theme? [Y/n] " -r
+echo
+
+answer=${REPLY:-Y}
+answer=${answer,,}
+
+if [[ $answer == "y" ]]; then
+    echo "Installing GRUB themes..."
+    
+    if ! git clone https://github.com/howling50/Top-5-Bootloader-Themes; then
+        echo "Error: Failed to clone repository!" >&2
+        exit 1
+    fi
+
+    theme_dir="${required_dir}/Top-5-Bootloader-Themes"
+    chmod +x "${theme_dir}/install.sh"
+    sudo "${theme_dir}/install.sh"
+
+    echo "GRUB theme installation completed!"
+else
+    echo "Skipping GRUB theme installation..."
+fi
+
+# Check for NVIDIA GPU and offer driver installation
+if ! command -v lspci &>/dev/null; then
+    sudo pacman -S --noconfirm pciutils
+fi
+if lspci | grep -i NVIDIA >/dev/null; then
+    echo "NVIDIA GPU detected!"
+    read -p "Do you want to install NVIDIA drivers? [Y/n] " -r
+    echo
+    
+    answer=${REPLY:-Y}
+    answer=${answer,,} 
+
+    if [[ $answer == "y" ]]; then
+        echo "Installing NVIDIA drivers..."
+        if ! sudo pacman -S --noconfirm --needed nvidia-dkms nvidia-utils nvidia-settings; then
+            echo "Error: Failed to install NVIDIA packages!" >&2
+            exit 1
+        fi
+        echo "NVIDIA drivers installed successfully!"
+    else
+        echo "Skipping NVIDIA driver installation..."
+    fi
+fi
+
+# Check and install printer support
+if ! pacman -Qq cups &>/dev/null; then
+    read -p "Printer support (CUPS) not installed. Install it? [Y/n] " -r
+    echo
+    
+    answer=${REPLY:-Y}
+    answer=${answer,,}
+
+    if [[ $answer == "y" ]]; then
+        echo "Installing printer support..."
+        if ! sudo pacman -S --noconfirm --needed system-config-printer cups; then
+            echo "Error: Failed to install printer packages!" >&2
+            exit 1
+        fi
+        echo "Enabling CUPS service..."
+        sudo systemctl enable --now cups.service cups.socket cups.path
+        echo "Printer support installed and services enabled!"
+    else
+        echo "Skipping printer support installation..."
+    fi
+else
+    echo "CUPS is already installed, skipping printer setup..."
+fi
+
+# AppArmor installation and configuration
+read -p "Do you want to install and configure AppArmor? [Y/n] " -r
+echo
+
+answer=${REPLY:-Y}
+answer=${answer,,}
+
+if [[ $answer == "y" ]]; then
+    echo "Installing and configuring AppArmor..."
+    
+    if ! sudo pacman -S --noconfirm --needed apparmor; then
+        echo "Error: Failed to install AppArmor!" >&2
+        exit 1
+    fi
+    
+    sudo systemctl start apparmor
+    sudo systemctl enable apparmor
+    
+    if ! sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ apparmor=1 security=apparmor"/' /etc/default/grub; then
+        echo "Error: Failed to modify GRUB configuration!" >&2
+        exit 1
+    fi
+    
+    if ! sudo grub-mkconfig -o /boot/grub/grub.cfg; then
+        echo "Error: Failed to update GRUB!" >&2
+        exit 1
+    fi
+    
+    echo "AppArmor installed and configured successfully!"
+else
+    echo "Skipping AppArmor installation..."
+fi
+
+# Check for KDE Plasma and customize accordingly
+if pacman -Qs plasma-desktop >/dev/null; then
+    echo "KDE Plasma detected! Applying KDE customizations..."
+    
+    sudo pacman -Rns kwalletmanager --noconfirm
+    sudo pacman -R elisa thunderbird --noconfirm
+    rm -rf "${required_dir}/files/gtk-3.0"
+    
+    sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 audiocd-kio --noconfirm --needed
+    
+    git clone https://github.com/yeyushengfan258/Win11OS-kde
+    sudo bash "${required_dir}/Win11OS-kde/install.sh"
+    
+    echo "KDE customization completed!"
+else
+    echo "Non-KDE environment detected. Applying basic customizations..."
+    
+    sudo pacman -R parole --noconfirm
+    sudo pacman -S --noconfirm --needed rofi rofi-calc flameshot gvfs-mtp gvfs-afc mpv-mpris baobab numlockx  tumbler thunar-archive-plugin file-roller fbreader
+    mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
+    sudo getent group autologin >/dev/null || sudo groupadd autologin
+    sudo usermod -aG autologin "$(whoami)"
+    
+    echo "Desktop Specific customization completed!"
+fi
+
 sudo timedatectl set-timezone Asia/Nicosia && sudo timedatectl set-ntp true
 for dir in Media Downloads Music Videos Pictures; do [ ! -d "$HOME/$dir" ] && mkdir "$HOME/$dir"; done && mkdir -p ~/.local/bin/ && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 sudo pacman -Syu --noconfirm --needed && chmod +x ~/Downloads/inst/scripts/* && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && mv ~/Downloads/inst/script/*.png ~/.othercrap/
-sudo pacman -S bash-completion trash-cli xclip pacman-contrib jq gnome-system-monitor file-roller reflector eza zoxide fzf bat feh zip unzip --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
-mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
+sudo pacman -S bash-completion trash-cli xclip pacman-contrib jq gnome-system-monitor reflector eza zoxide fzf bat feh zip unzip --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
 sudo reflector --verbose -c AT -c BE -c BG -c HR -c CZ -c DK -c EE -c FR -c DE -c GR -c HU -c LV -c LT -c LU -c NL -c PL -c RO -c CH -c GB --protocol https --sort rate --latest 20 --number 12 --download-timeout 20 --save /etc/pacman.d/mirrorlist
-#sudo pacman -S nvidia-dkms nvidia-utils nvidia-settings
 sudo pacman -S fastfetch kitty powerline-fonts starship flatpak rsync ttf-firacode-nerd ttf-meslo-nerd ttf-roboto terminus-font noto-fonts-emoji ttf-nerd-fonts-symbols --noconfirm --needed
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
-sudo pacman -S --needed base-devel git --noconfirm --needed && git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save
+sudo pacman -S --needed base-devel git --noconfirm --needed && git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save && rm -rf yay
 #----Swap-------
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 zswap.enabled=1 zswap.compressor=lz4 zswap.zpool=z3fold zswap.max_pool_percent=25 zswap.accept_threshold_percent=90"/' /etc/default/grub && sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard 0 0' | sudo tee -a /etc/fstab
 #-------
 sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media && mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine && sudo mkdir -p /var/lib/flatpak && mkdir -p ~/.local/share/flatpak && sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine
-#---
-#sudo pacman -S system-config-printer cups --noconfirm --needed && sudo systemctl enable --now cups.service cups.socket cups.path
-#sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #-------------qemu---------------------------------
 sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo systemctl enable --now libvirtd && sudo usermod -a -G libvirt $(whoami) && sudo systemctl restart libvirtd && sudo virsh net-define /etc/libvirt/qemu/networks/default.xml && sudo virsh net-autostart default
 #-----------------------------------------------------
-#sudo pacman -R parole vim --noconfirm && sudo getent group autologin > /dev/null || sudo groupadd autologin && sudo usermod -aG autologin $USER
-#sudo pacman -Rns kwalletmanager --noconfirm && sudo pacman -R elisa thunderbird vim --noconfirm && sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 audiocd-kio --noconfirm --needed
-sudo pacman -S binutils nmap gcc patch fakeroot bind rofi rofi-calc yazi gimp easytag mediainfo-gui mediainfo npm xournalpp --noconfirm --needed
-sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android-tools mpv vlc libreoffice-fresh cava fbreader perl-image-exiftool shotcut hexchat gnome-boxes handbrake --noconfirm --needed
+sudo pacman -S binutils nmap gcc patch fakeroot bind yazi gimp easytag mediainfo-gui mediainfo npm xournalpp --noconfirm --needed
+sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android-tools mpv vlc libreoffice-fresh cava perl-image-exiftool shotcut hexchat gnome-boxes handbrake --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
-sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks flameshot --noconfirm --needed
+sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
 sudo pacman -S catfish gufw proxychains tor neovim pkgconf audacious lutris net-tools zip unzip lsof unrar gparted filezilla ffmpegthumbnailer --noconfirm --needed
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep memtest86+ tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
@@ -52,8 +190,6 @@ sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 #------------------------------------------rk hunter--------------------------
 sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
-#-----------------------------------------------------------------------------------
-sudo pacman -S apparmor --noconfirm --needed && sudo systemctl start apparmor && sudo systemctl enable apparmor && sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 quiet apparmor=1 security=apparmor"/' /etc/default/grub
 #-----------------------
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
 echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null && echo 'export VISUAL="nvim"' | tee -a ~/.bash_profile  >/dev/null
