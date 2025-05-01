@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 ##################### Check /etc/pacman.conf for multilib then go to /etc/fstab and then git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
 SECONDS=0
+required_dir="$HOME/Downloads/inst"
 if [[ $(pwd -P) != $(realpath "$required_dir") ]]; then
     echo -e "\033[31mERROR: Run script from $required_dir\033[0m" >&2
     exit 1
@@ -11,13 +12,13 @@ if ! sudo -v; then
     exit 1
 fi
 
-if ! curl -Is https://archlinux.org | grep -q "200 OK"; then
+if ! curl -sLf -o /dev/null https://archlinux.org; then
     echo -e "\033[31mERROR: No internet connection\033[0m" >&2
     exit 1
 fi
 
 # GRUB theme installation
-read -p "Do you want to install a new GRUB theme? [Y/n] " -n 1 -r
+read -p "Do you want to install a new GRUB theme? [Y/n] " -r
 echo
 
 answer=${REPLY:-Y}
@@ -46,7 +47,7 @@ if ! command -v lspci &>/dev/null; then
 fi
 if lspci | grep -i NVIDIA >/dev/null; then
     echo "NVIDIA GPU detected!"
-    read -p "Do you want to install NVIDIA drivers? [Y/n] " -n 1 -r
+    read -p "Do you want to install NVIDIA drivers? [Y/n] " -r
     echo
     
     answer=${REPLY:-Y}
@@ -66,7 +67,7 @@ fi
 
 # Check and install printer support
 if ! pacman -Qq cups &>/dev/null; then
-    read -p "Printer support (CUPS) not installed. Install it? [Y/n] " -n 1 -r
+    read -p "Printer support (CUPS) not installed. Install it? [Y/n] " -r
     echo
     
     answer=${REPLY:-Y}
@@ -89,7 +90,7 @@ else
 fi
 
 # AppArmor installation and configuration
-read -p "Do you want to install and configure AppArmor? [Y/n] " -n 1 -r
+read -p "Do you want to install and configure AppArmor? [Y/n] " -r
 echo
 
 answer=${REPLY:-Y}
