@@ -1,38 +1,89 @@
 #!/usr/bin/env bash
 ##################### git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh (also dont forget to change fstab)####################################################
-#git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh
-#sudo visudo (Defaults timestamp_timeout=60)  (xfce4-terminal --drop-down xfce4-taskmanager kitty distrobox-enter -n arch /etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root)  kernel-longterm
+#sudo visudo (Defaults timestamp_timeout=60)  (/etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root)
 SECONDS=0
+required_dir="$HOME/Downloads/inst"
+if [[ $(pwd -P) != $(realpath "$required_dir") ]]; then
+    echo -e "\033[31mERROR: Run script from $required_dir\033[0m" >&2
+    exit 1
+fi
+
+if ! sudo -v; then
+    echo -e "\033[31mERROR: Insufficient sudo privileges\033[0m" >&2
+    exit 1
+fi
+
+if ! curl -sLf -o /dev/null https://google.com; then
+    echo -e "\033[31mERROR: No internet connection\033[0m" >&2
+    exit 1
+fi
+
+# Check for NVIDIA GPU and offer driver installation
+if ! command -v lspci &>/dev/null; then
+    sudo zypper install -y -n pciutils
+fi
+if lspci | grep -i NVIDIA >/dev/null; then
+    echo "NVIDIA GPU detected!"
+    read -p "Do you want to install NVIDIA drivers? [Y/n] " -r
+    echo
+    
+    answer=${REPLY:-Y}
+    answer=${answer,,} 
+
+    if [[ $answer == "y" ]]; then
+        echo "Installing NVIDIA drivers..."
+        if ! sudo zypper install -y -n openSUSE-repos-Tumbleweed-NVIDIA; then
+            echo "Error: Failed to install NVIDIA packages!" >&2
+            exit 1
+        fi
+        echo "NVIDIA drivers installed successfully!"
+    else
+        echo "Skipping NVIDIA driver installation..."
+    fi
+fi
+
+# Check for KDE Plasma and customize accordingly
+if [ -f /usr/bin/plasmashell ]; then
+    echo "KDE Plasma detected! Applying KDE customizations..."
+    
+    sudo zypper remove -y discover6 kwalletmanager
+    sudo zypper addlock kwalletmanager patterns-games-games patterns-kde-kde_games patterns-kde-kde_pim discover6 akonadi
+    sudo zypper install -y -n yakuake oxygen6-cursors yast2-theme-oxygen 
+    rm -rf "${required_dir}/files/gtk-3.0"    
+    git clone https://github.com/yeyushengfan258/Win11OS-kde
+    sudo bash "${required_dir}/Win11OS-kde/install.sh"
+    
+    echo "KDE customization completed!"
+else
+    echo "Non-KDE environment detected. Applying basic customizations..."
+    
+    sudo zypper remove -y pragha parole
+    sudo zypper addlock parole pragha
+    sudo zypper install -y -n rofi rofi-calc qalculate flameshot numlockx fbreader mpv-mpris gvfs-backend-afc gvfs-backends gvfs-fuse
+    mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
+    
+    echo "Desktop Specific customization completed!"
+fi
+
 sudo sed -i 's/^\s*#\?\s*download\.max_concurrent_connections\s*=\s*[0-9]\+/download.max_concurrent_connections = 15/' /etc/zypp/zypp.conf && sudo hostnamectl set-hostname "$(whoami)"
 cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/ && chmod +x ~/Downloads/inst/scripts/* && mkdir -p ~/.local/bin/ && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && mv ~/Downloads/inst/script/*.png ~/.othercrap/
-#sudo zypper install -y -n i3 nitrogen polybar python313-i3ipc i3lock && chmod +x ~/.config/polybar/launch.sh && sudo zypper in --no-recommends pamixer gnome-system-monitor mpv-mpris gvfs-backend-afc gvfs-backends gvfs-fuse pavucontrol dunst xfce4-terminal xfce4-taskmanager mousepad numlockx thunar-archive-plugin polkit-gnome htop NetworkManager-applet catfish jq thunar thunar-volman gvfs lxappearance ffmpegthumbnailer mediainfo
 unzip ~/Downloads/inst/script/FiraMono.zip -d ~/Downloads/inst/script/ > /dev/null 2>&1 && rm -f ~/Downloads/inst/script/README.md ~/Downloads/inst/script/LICENSE 2> /dev/null && sudo mkdir -p /usr/share/fonts/opentype && sudo mv ~/Downloads/inst/script/*.otf /usr/share/fonts/opentype/ && sudo fc-cache -f -v
-mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
-sudo zypper install -y -n mediainfo trash-cli urlview htop feh jq rofi qalculate rofi-calc lsof google-noto-coloremoji-fonts ImageMagick symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts vlc powerline-fonts starship memtest86+ kitty flatpak tealdeer bat zoxide fzf gdu eza ripgrep && flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo flatpak remote-delete --system flathub
+sudo zypper install -y -n mediainfo trash-cli urlview htop feh jq lsof google-noto-coloremoji-fonts ImageMagick symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts vlc powerline-fonts starship memtest86+ kitty flatpak tealdeer bat zoxide fzf gdu eza ripgrep && flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo flatpak remote-delete --system flathub
 sudo zypper --gpg-auto-import-keys ar -cfp 90 -n VLC http://download.videolan.org/pub/vlc/SuSE/Tumbleweed/ vlc && sudo zypper --gpg-auto-import-keys ref && sudo zypper in -y -n --allow-vendor-change vlc-codecs && mkdir -p ~/.local/share/vlc/lua/extensions/ && mv ~/Downloads/inst/script/*.lua ~/.local/share/vlc/lua/extensions/ && mkdir -p ~/.local/share/vlc/lua/playlist/ && mv ~/Downloads/inst/script/1/*.lua ~/.local/share/vlc/lua/playlist/
 sudo zypper ref && sudo zypper up && cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && sudo zypper addlock PackageKit
-#sudo zypper install openSUSE-repos-Tumbleweed-NVIDIA
-#sudo zypper ar -f https://download.nvidia.com/opensuse/tumbleweed/ nvidia
 #----Swap-------
-#sudo zypper install -y -n systemd-zram-service && sudo systemctl enable --now zramswap.service 
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 zswap.enabled=1 zswap.compressor=lz4 zswap.zpool=z3fold zswap.max_pool_percent=25 zswap.accept_threshold_percent=90"/' /etc/default/grub && sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard 0 0' | sudo tee -a /etc/fstab
 #------------
 sudo btrfs subvol create /Media && sudo chown "$(whoami):$(whoami)" /Media && sudo chmod 755 /Media && mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine && sudo mkdir -p /var/lib/flatpak && mkdir -p ~/.local/share/flatpak && sudo chattr -R +C ~/.config/qBittorrent && sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine && sudo chattr -R +C /var/lib/flatpak && sudo chattr -R +C ~/.local/share/flatpak
-#sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
-#sudo zypper install -y -n system-config-printer-applet cups && sudo systemctl enable --now cups.service cups.socket cups.path
 #-----------------------------------------------------
-#sudo zypper remove -y discover6 && sudo zypper addlock discover6 && sudo zypper remove -y kwalletmanager && sudo zypper addlock kwalletmanager patterns-games-games patterns-kde-kde_games patterns-kde-kde_pim && akonadictl stop && systemctl --user disable akonadi && sudo zypper remove --clean-deps -y akonadi && sudo zypper addlock akonadi patterns-kde-kde_pim && sudo zypper install -y -n yakuake oxygen6-cursors yast2-theme-oxygen
-#sudo zypper remove -y pragha parole && sudo zypper addlock parole pragha
-sudo zypper install -y -n libreoffice-writer libreoffice-writer-extensions cmatrix cava yazi gimp fbreader dragon-drop exiftool easytag gnome-boxes shotcut hexchat npm22
+sudo zypper install -y -n libreoffice-writer libreoffice-writer-extensions cmatrix cava yazi gimp dragon-drop exiftool easytag gnome-boxes shotcut hexchat npm22
 sudo zypper install -y -n audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvtoolnix-tools mkvtoolnix-gui steam lutris flac
 sudo zypper install -y -n gsmartcontrol w3m ddgr xkill firewall-config podman distrobox bluez blueman rsync w3m-inline-image
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim gnome-system-monitor
-sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty aria2 fuseiso android-tools q4wine flameshot mediainfo-gui
+sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty aria2 fuseiso android-tools q4wine mediainfo-gui
 sudo zypper in piper && sudo systemctl enable ratbagd.service && sudo systemctl restart ratbagd.service && sudo usermod -aG games "$(whoami)"
-#sudo opi -n codecs
-#sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #------------------------------------------------------------------
 flatpak install --noninteractive flathub com.github.xournalpp.xournalpp && flatpak install --noninteractive flathub com.heroicgameslauncher.hgl && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub io.github.giantpinkrobots.varia && flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub org.torproject.torbrowser-launcher
 flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub fr.handbrake.ghb && flatpak install --noninteractive flathub net.davidotek.pupgui2
@@ -51,7 +102,6 @@ sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf' && echo 'export VISUAL="nvim"' | sudo tee -a /root/.profile  >/dev/null && echo 'export VISUAL="nvim"' | tee -a ~/.profile  >/dev/null
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo zypper addlock qbittorrent && flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications:create
-#sudo systemctl start cron
 sudo setsebool -P selinuxuser_execmod 1 && sudo setsebool -P selinuxuser_execheap 1 && sudo setsebool -P selinuxuser_execstack 1
 #-----------------
 sudo firewall-cmd --permanent --new-zone=howling && sudo firewall-cmd --permanent --zone=howling --add-source=192.168.0.0/24 && sudo firewall-cmd --permanent --zone=howling --set-target=ACCEPT && sudo firewall-cmd --permanent --zone=public --add-port=23232/tcp && sudo firewall-cmd --permanent --zone=public --add-port=23232/udp && sudo firewall-cmd --permanent --zone=public --set-target=DROP && sudo firewall-cmd --set-default-zone=public && sudo firewall-cmd --reload
@@ -96,4 +146,9 @@ fi
 #yay -S --noconfirm bdinfo-git cli-visualizer-git  && mkdir -p ~/.config/vis/colors/ && echo -e "colors.override.terminal=false\ncolors.scheme=color\n\nvisualizer.spectrum.bar.width=1" > ~/.config/vis/config && echo -e "gradient=false\n4\n12\n6\n14\n2\n10\n11\n3\n5\n1\n13\n9\n7\n15\n0" > ~/.config/vis/colors/color
 #distrobox-export -b /usr/bin/vis && distrobox-export -b bdinfo
 #gamemode= sudo find /usr/ -name libgamemodeauto.so    steam=gamemoderun %command%
+#sudo zypper ar -f https://download.nvidia.com/opensuse/tumbleweed/ nvidia
 #wget $(curl -s https://api.github.com/repos/VirusTotal/vt-cli/releases/latest | grep download | grep  Linux64.zip | cut -d\" -f4) && unzip ./Linux64.zip -d ~/.local/bin/ && chmod +x ~/.local/bin/vt && printf 'apikey = "%s"\n' "f4936f6a4e48bb6046edd0339e759bd9e23834ba995e3e6fb53be6643f8aa61e" > ~/.vt.toml
+#sudo zypper install -y -n i3 nitrogen polybar python313-i3ipc i3lock && chmod +x ~/.config/polybar/launch.sh && sudo zypper in --no-recommends pamixer gnome-system-monitor mpv-mpris gvfs-backend-afc gvfs-backends gvfs-fuse pavucontrol dunst xfce4-terminal xfce4-taskmanager mousepad numlockx thunar-archive-plugin polkit-gnome htop NetworkManager-applet catfish jq ffmpegthumbnailer 
+#sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
+#sudo opi -n codecs
+#sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
