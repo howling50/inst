@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-##################### Check /etc/pacman.conf for multilib,sudo chattr -R +C ~/Downloads then git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
+##################### Check /etc/pacman.conf for multilib then git clone in ~/Downloads, then chmod +x a.sh and then ./a.sh ####################################################
 #git clone https://github.com/howling50/Top-5-Bootloader-Themes 
 #git clone https://github.com/yeyushengfan258/Win11OS-kde && sudo bash ~/Downloads/inst/Win11OS-kde/install.sh && sudo bash ~/Downloads/inst/Win11OS-kde/sddm-dark/install.sh
 SECONDS=0
@@ -15,7 +15,6 @@ sudo reflector --verbose -c AT -c BE -c BG -c HR -c CZ -c DK -c EE -c FR -c DE -
 sudo pacman -S fastfetch kitty powerline-fonts starship flatpak rsync ttf-firacode-nerd ttf-meslo-nerd ttf-roboto terminus-font noto-fonts-emoji ttf-nerd-fonts-symbols --noconfirm --needed
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo pacman -S --needed base-devel git --noconfirm --needed && git clone https://aur.archlinux.org/yay.git && cd ~/Downloads/inst/yay && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save
-#sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
 #----Swap-------
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 zswap.enabled=1 zswap.compressor=lz4 zswap.zpool=z3fold zswap.max_pool_percent=25 zswap.accept_threshold_percent=90"/' /etc/default/grub && sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard 0 0' | sudo tee -a /etc/fstab
@@ -120,7 +119,7 @@ fi
 #cachyosrepo uninst = curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz && tar xvf cachyos-repo.tar.xz && cd cachyos-repo&& sudo ./cachyos-repo.sh --remove && sudo pacman -Syu
 #BlackArch = curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo ./strap.sh && sudo pacman -Syu
 #---------------
-#sudo grub-mkconfig -o /boot/grub/grub.cfg
+##sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
 #sudo pacman -S  i3-wm polybar python-i3ipc autotiling rofi rofi-calc i3lock gvfs-mtp gvfs-afc pamixer mpv-mpris dunst baobab numlockx pavucontrol tumbler polkit-gnome unzip htop jq xfce4-terminal xfce4-taskmanager imagemagick thunar thunar-volman thunar-archive-plugin gvfs lxappearance  --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
 #/etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm.conf or /etc/sddm.conf [Autologin] User=howling Session=i3   other: pika-backup
 #sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/auto-install.sh) or bash <(curl -s https://raw.githubusercontent.com/mylinuxforwork/dotfiles/main/setup-arch.sh)
