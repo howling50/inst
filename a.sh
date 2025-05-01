@@ -115,12 +115,10 @@ fi
 #GRUB_DEFAULT=saved
 #GRUB_SAVEDEFAULT=true
 #GRUB_DISABLE_SUBMENU=y
-#----cachy if you want---
-#cachyosrepo install = curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz && tar xvf cachyos-repo.tar.xz && cd cachyos-repo && sudo ./cachyos-repo.sh
-#cachyosrepo uninst = curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz && tar xvf cachyos-repo.tar.xz && cd cachyos-repo&& sudo ./cachyos-repo.sh --remove
-#cachyoskernel = yay -S linux-cachyos linux-cachyos-headers && sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg
-#---blackarch repo---
-#curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo ./strap.sh
+#----other repos---
+#cachyosrepo install = curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz && tar xvf cachyos-repo.tar.xz && cd cachyos-repo && sudo ./cachyos-repo.sh && sudo pacman -Syu
+#cachyosrepo uninst = curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz && tar xvf cachyos-repo.tar.xz && cd cachyos-repo&& sudo ./cachyos-repo.sh --remove && sudo pacman -Syu
+#BlackArch = curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo ./strap.sh && sudo pacman -Syu
 #---------------
 #sudo grub-mkconfig -o /boot/grub/grub.cfg
 #sudo pacman -S  i3-wm polybar python-i3ipc autotiling rofi rofi-calc i3lock gvfs-mtp gvfs-afc pamixer mpv-mpris dunst baobab numlockx pavucontrol tumbler polkit-gnome unzip htop jq xfce4-terminal xfce4-taskmanager imagemagick thunar thunar-volman thunar-archive-plugin gvfs lxappearance  --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
