@@ -188,7 +188,7 @@ fcd() {
 }
 listbash() {
     printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu, plist, countfiles, mntls, ftext, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, vimhistory, trash-restore
-\e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, cava, ddgr, w3m, yazi
+\e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, cava, ddgr, w3m, yazi, pacseek
 \e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncauto, yt-x-update, ani-cli-update, dragondrop-auto
 \e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, power-menu.sh, formatext4.sh, dlfile, killandnotify, ipconfig, lastupdate.sh
