@@ -23,7 +23,7 @@ sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_ti
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 chmod +x ~/Downloads/inst/scripts/* && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && mv ~/Downloads/inst/script/*.png ~/.othercrap/
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
-sudo pacman -S base-devel git --noconfirm --needed && git clone https://aur.archlinux.org/yay-bin.git && cd ~/Downloads/inst/yay-bin && makepkg --noconfirm -si && cd ~/Downloads/inst && yay --sudoloop --save && rm -rf yay-bin && yay -Syu --noconfirm
+git clone https://aur.archlinux.org/yay-bin.git && cd ~/Downloads/inst/yay-bin && makepkg --noconfirm -si && cd ~/Downloads/inst && rm -rf yay-bin && yay -Syu --noconfirm && yay -Y --sudoloop --save
 
 # GRUB theme installation
 read -p "Do you want to install a new GRUB theme? [Y/n] " -r
@@ -211,7 +211,6 @@ mkdir -p ~/.othercrap/eac3to
 unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null
 mv ~/Downloads/inst/script/*.exe ~/.othercrap/
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
-sed -i 's/"sudoloop": true/"sudoloop": false/' ~/.config/yay/config.json
 sudo sed -i 's/version_sort -r/version_sort/' /etc/grub.d/10_linux
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=15/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
@@ -254,3 +253,4 @@ fi
 #/etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm.conf or /etc/sddm.conf [Autologin] User=howling Session=i3   other: pika-backup
 #sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/auto-install.sh) or bash <(curl -s https://raw.githubusercontent.com/mylinuxforwork/dotfiles/main/setup-arch.sh)
 #sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
+#yay -Y --sudoloop=false --save
