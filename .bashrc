@@ -191,7 +191,7 @@ listbash() {
 \e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus, cava, ddgr, w3m, yazi
 \e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncauto, yt-x-update, ani-cli-update, dragondrop-auto
-\e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, power-menu.sh, formatext4.sh, dlfile, killandnotify, ipconfig
+\e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, power-menu.sh, formatext4.sh, dlfile, killandnotify, ipconfig, lastupdate.sh
 \e[1;33mOther:\e[0m
 \e[1;36mWindow Shortcuts:\e[0m alt+f10=fullscreen, alt+f7=move, alt+f8=resize, alt+f9=minimize, ctrl+alt+d=minimize all  mpv=alt+f (filelist), ctrl+r = resume, shift+enter=playlist
 \e[1;36mfuseiso:\e[0m fuseiso example.iso /mnt , fusermount -u /mnt
