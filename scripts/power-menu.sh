@@ -1,10 +1,6 @@
 #!/bin/bash
 
 # Use XFCE's logout GUI if available
-if command -v xfce4-session-logout >/dev/null; then
-  xfce4-session-logout
-else
-  # Check if rofi is installed
   if ! command -v rofi >/dev/null; then
     echo "Error: rofi is not installed." >&2
     exit 1
