@@ -6,7 +6,6 @@ terminal=kitty
 wallpaper_current="$HOME/.othercrap/reaper.png"
 wallpaper_output="$HOME/.othercrap/.wallpaper_modified"
 SCRIPTSDIR="$HOME/.config/i3/scripts"
-rofi_theme="$HOME/.config/rofi/config-wallpaper-effect.rasi"
 
 # Directory for notifications
 iDIR="$HOME/.config/dunst/icons"
@@ -51,7 +50,7 @@ main() {
         [[ "$effect" != "No Effects" ]] && options+=("$effect")
     done
 
-    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i -config $rofi_theme)
+    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i)
 
     # Process user choice
     if [[ -n "$choice" ]]; then
