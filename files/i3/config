@@ -140,6 +140,7 @@ bindsym $mod+Shift+KP_Right exec mpv --player-operation-mode=pseudo-gui
 bindsym $mod+Shift+KP_Home exec gnome-system-monitor
 bindsym $mod+Shift+KP_Up exec flatpak run com.usebottles.bottles
 bindsym $mod+Shift+KP_Page_Up exec flatpak run org.torproject.torbrowser-launcher
+bindsym $mod+Shift+e exec ~/.config/i3/scripts/WallpaperEffects.sh
 
 # Floating window rules
 for_window [title="^Confirm (Replace|Delete|Dialog|Download|Notification|Error|Splash|Confirm Reset|Branchdialog|Media Viewer|Volume Control|Picture-in-Picture)$"] floating enable
