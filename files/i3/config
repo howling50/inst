@@ -58,18 +58,26 @@ bindsym Mod1+F2 layout tabbed
 bindsym Mod1+F3 layout toggle split
 
 # switch to workspace
-bindsym $mod+F1 workspace 1
-bindsym $mod+F2 workspace 2
-bindsym $mod+F3 workspace 3
-bindsym $mod+F4 workspace 4
-bindsym $mod+F5 workspace 5
-bindsym $mod+F6 workspace 6
-bindsym Control+Mod1+KP_End move container to workspace 1
-bindsym Control+Mod1+KP_Down move container to workspace 2
-bindsym Control+Mod1+KP_Page_Down move container to workspace 3
-bindsym Control+Mod1+KP_Left move container to workspace 4
-bindsym Control+Mod1+KP_Begin move container to workspace 5
-bindsym Control+Mod1+KP_Right move container to workspace 6
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -133,6 +141,41 @@ bindsym $mod+Shift+KP_Home exec gnome-system-monitor
 bindsym $mod+Shift+KP_Up exec flatpak run com.usebottles.bottles
 bindsym $mod+Shift+KP_Page_Up exec flatpak run org.torproject.torbrowser-launcher
 
+# Floating window rules
+for_window [title="^Confirm (Replace|Delete|Dialog|Download|Notification|Error|Splash|Confirm Reset|Branchdialog|Media Viewer|Volume Control|Picture-in-Picture)$"] floating enable
+for_window [class="^(?i)(thunar|nm-applet|nm-connection-editor|blueman-(manager|settings)|org\.blueman\.Blueman|NetworkManager|gnome-network-properties|file-roller|org\.gnome\.FileRoller|pavucontrol|org\.pulseaudio\.pavucontrol|qt[56]ct|yad|lxappearance|rofi|audacious|viewnior|feh|gnome-system-monitor|handbrake|mkvtoolnix-gui|nwg-look)$"] floating enable
+for_window [title="^(Save|Open) File$"] floating enable, move position center
 
+# Disable floating for tooltips/dropdowns
+for_window [title="^(Tooltip|Dropdown|Combo)$"] floating disable
+for_window [title="^(Tooltip|Dropdown|Combo)$"] focus none
 
-#ksysguard/xfce4-taskmanager#kitty#xkill#rofi -show drun#yakuake/xfce4-terminal --drop-down#kitty distrobox-enter -n arch#thunar#flameshot gui#power-menu.sh/plasma-shutdown
+# Fullscreen rules
+for_window [class="^i3lock$" title=".*"] fullscreen enable
+for_window [class="^virt-manager$" title=".*"] fullscreen enable
+for_window [class="^virt-viewer$" title=".*"] fullscreen enable
+
+# Center dialogs
+for_window [title="^Authentication Required$"] floating enable, move position center
+for_window [title="^Add Folder to Workspace$"] floating enable, resize set 70% 60%, move position center
+
+# Workspace assignments
+assign [class="^(?i)firefox(-esr|-bin)?$"] → 2
+assign [class="^(?i)org\.mozilla\.firefox$"] → 2
+assign [class="^(?i)(google-chrome(-beta|-dev|-unstable)?|chrome-.*-default|chromium|librewolf|torbrowser(-launcher)?|microsoft-edge(-stable|-beta|-dev|-unstable)?|brave-browser(-beta|-dev|-unstable)?|thorium-browser|cachy-browser|zen(-alpha)?)$"] → 2
+assign [class="^(?i)thunar$"] → 3
+assign [class="^(?i)mousepad$"] → 3
+assign [class="^(?i)gamescope$"] → 5
+assign [class="^(?i)steam_app_\d+$"] → 5
+assign [class="^(?i)steam$"] → 4
+assign [class="^(?i)lutris$"] → 4
+assign [class="^(?i)com\.heroicgameslauncher\.hgl$"] → 4
+assign [class="^(?i)mpv$"] → 6
+assign [class="^(?i)vlc$"] → 6
+assign [class="^(?i)virt-manager$"] → 7
+assign [class="^(?i)\.virt-manager-wrapped$"] → 7
+
+# Special cases for Steam/VSCodium/Thunar popups
+for_window [class="^(?i)steam$" title="^(?!Steam).*$"] floating enable
+for_window [class="^(?i)codium$" title="^(?!Codium|VSCodium).*$"] floating enable
+for_window [class="^thunar$" title="^File Operation Progress$"] floating enable
