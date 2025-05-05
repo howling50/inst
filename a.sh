@@ -149,7 +149,7 @@ else
     
     sudo pacman -R parole --noconfirm
     sudo pacman -S --noconfirm --needed i3-wm polybar python-i3ipc autotiling i3lock lxappearance udiskie
-    sudo pacman -S --noconfirm --needed bc arandr viewnior rofi rofi-calc flameshot gvfs-mtp gvfs-afc mpv-mpris baobab numlockx tumbler thunar-archive-plugin file-roller fbreader ffmpegthumbnailer catfish pamixer dunst pavucontrol thunar-volman  
+    sudo pacman -S --noconfirm --needed man-db bc arandr viewnior rofi rofi-calc flameshot gvfs-mtp gvfs-afc mpv-mpris baobab numlockx tumbler thunar-archive-plugin file-roller fbreader ffmpegthumbnailer catfish pamixer dunst pavucontrol thunar-volman  
     mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
     sudo getent group autologin >/dev/null || sudo groupadd autologin
     sudo usermod -aG autologin "$(whoami)"
