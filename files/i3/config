@@ -13,6 +13,7 @@ exec --no-startup-id setxkbmap -layout us,gr -option grp:alt_caps_toggle
 exec --no-startup-id numlockx off
 exec --no-startup-id nm-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id udiskie --tray &
 exec --no-startup-id feh --bg-scale --no-fehbg ~/.othercrap/reaper.png
 #exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id xrandr --output $(xrandr --query | grep " connected" | awk '{print $1}') --primary --auto
@@ -155,7 +156,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Floating window rules
 for_window [title="^Confirm (Replace|Delete|Dialog|Download|Notification|Error|Splash|Confirm Reset|Branchdialog|Media Viewer|Volume Control|Picture-in-Picture)$"] floating enable
-for_window [class="^(?i)(nm-applet|nm-connection-editor|blueman-(manager|settings)|org\.blueman\.Blueman|NetworkManager|gnome-network-properties|file-roller|org\.gnome\.FileRoller|pavucontrol|org\.pulseaudio\.pavucontrol|qt[56]ct|yad|lxappearance|rofi|audacious|viewnior|feh|gnome-system-monitor|handbrake|mkvtoolnix-gui|nwg-look)$"] floating enable
+for_window [class="^(?i)(xfce4-taskmanager|nm-applet|nm-connection-editor|blueman-(manager|settings)|org\.blueman\.Blueman|NetworkManager|gnome-network-properties|file-roller|org\.gnome\.FileRoller|pavucontrol|org\.pulseaudio\.pavucontrol|qt[56]ct|yad|lxappearance|rofi|audacious|viewnior|feh|gnome-system-monitor|handbrake|mkvtoolnix-gui|nwg-look)$"] floating enable
 for_window [title="^(Save|Open) File$"] floating enable, move position center
 
 # Disable floating for tooltips/dropdowns
