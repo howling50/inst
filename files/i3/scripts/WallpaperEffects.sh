@@ -5,7 +5,7 @@ wallpaper_output="$HOME/.othercrap/modified.png"
 SCRIPTSDIR="$HOME/.config/i3/scripts"
 
 # Directory for notifications
-iDIR="$HOME/.config/dunst/icons"
+iDIR="$HOME/.config/dunst"
 
 # Define ImageMagick effects
 declare -A effects=(
@@ -33,9 +33,7 @@ declare -A effects=(
 no-effects() {
     feh --bg-fill "$wallpaper_current"
     wait $!
-    # Add any color theming commands here (e.g., pywal)
-    "${SCRIPTSDIR}/Refresh.sh"
-    notify-send -u low -i "$iDIR/info.png" "No effects" "Applied original wallpaper"
+    notify-send -u low -i "$iDIR/normal.png" "No effects" "Applied original wallpaper"
     cp "$wallpaper_current" "$wallpaper_output"
 }
 
@@ -55,18 +53,15 @@ main() {
             no-effects
         elif [[ "${effects[$choice]+exists}" ]]; then
             # Apply selected effect
-            notify-send -u normal -i "$iDIR/image.png"  "Applying:" "$choice effects"
+            notify-send -u normal -i "$iDIR/normal.png"  "Applying:" "$choice effects"
             eval "${effects[$choice]}"
             
             # Set modified wallpaper
-            feh --bg-fill "$wallpaper_output"
-            
-            # Add any color theming commands here (e.g., pywal)
+            feh --bg-fill "$wallpaper_output"        
             sleep 1
-            "${SCRIPTSDIR}/Refresh.sh"
-            notify-send -u low -i "$iDIR/success.png" "$choice" "Effects applied"
+            notify-send -u low -i "$iDIR/normal.png" "$choice" "Effects applied"
         else
-            notify-send -i "$iDIR/error.png" "Error" "Unknown effect: $choice"
+            notify-send -i "$iDIR/critical.png" "Error" "Unknown effect: $choice"
         fi
     fi
 }
