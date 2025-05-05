@@ -1,7 +1,8 @@
 #!/bin/bash
 # Configuration
 WALL_DIR="$HOME/.othercrap/wallpaper"
-CURRENT_WALL="$HOME/.othercrap/current.png"  # This should be an actual image file
+CURRENT_WALL="$HOME/.othercrap/current.png"
+MODIFY_WALL="$HOME/.othercrap/modified.png"
 ROFI_THEME="$HOME/.config/rofi/config-wallpaper.rasi"
 ICON_DIR="$HOME/.config/dunst/icons"
 
@@ -51,6 +52,7 @@ set_wallpaper() {
   # Update current wallpaper file (ACTUAL IMAGE COPY)
   if [[ -f "$wall_path" ]]; then
     cp -f "$wall_path" "$CURRENT_WALL"
+    cp -f "$wall_path" "$MODIFY_WALL"
   else
     notify-send -i "$ICON_DIR/error.png" "Error" "Wallpaper file not found!"
     exit 1
