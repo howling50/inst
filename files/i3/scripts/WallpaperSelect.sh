@@ -10,7 +10,7 @@ ICON_DIR="$HOME/.config/dunst/icons"
 required_commands=("feh" "rofi" "bc")
 for cmd in "${required_commands[@]}"; do
   if ! command -v "$cmd" &>/dev/null; then
-    notify-send -i "$ICON_DIR/error.png" "Missing $cmd" "Please install $cmd first"
+    notify-send -i "$ICON_DIR/critical.png" "Missing $cmd" "Please install $cmd first"
     exit 1
   fi
 done
