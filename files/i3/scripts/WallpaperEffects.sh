@@ -2,7 +2,6 @@
 # Variables
 wallpaper_current="$HOME/.othercrap/reaper.png"
 wallpaper_output="$HOME/.othercrap/modified.png"
-SCRIPTSDIR="$HOME/.config/i3/scripts"
 
 # Directory for notifications
 iDIR="$HOME/.config/dunst"
