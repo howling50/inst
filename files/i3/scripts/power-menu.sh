@@ -32,7 +32,7 @@
     Lock)
       # Confirm before locking
       if echo -e "y\nn" | rofi -dmenu -p "Confirm Lock? (y/N)" | grep -qi "y"; then
-        i3lock -i ~/.othercrap/modified.png
+        i3lock --show-failed-attempts -i ~/.othercrap/modified.png 
       fi
       ;;
     *)
