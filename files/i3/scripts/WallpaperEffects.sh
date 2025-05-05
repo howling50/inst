@@ -1,37 +1,37 @@
 #!/bin/bash
-wallpaper_current="$HOME/.othercrap/wallpaper/reaper.png"
+# Variables
+wallpaper_current="$HOME/.othercrap/reaper.png"
 wallpaper_output="$HOME/.othercrap/modified.png"
 SCRIPTSDIR="$HOME/.config/i3/scripts"
 
 # Directory for notifications
 iDIR="$HOME/.config/dunst"
 
-# Define ImageMagick effects
+# Define ImageMagic effects
 declare -A effects=(
     ["No Effects"]="no-effects"
-    ["Black & White"]="magick $wallpaper_current -colorspace gray -sigmoidal-contrast 10,40% $wallpaper_output"
-    ["Blurred"]="magick $wallpaper_current -blur 0x10 $wallpaper_output"
-    ["Charcoal"]="magick $wallpaper_current -charcoal 0x5 $wallpaper_output"
-    ["Edge Detect"]="magick $wallpaper_current -edge 1 $wallpaper_output"
-    ["Emboss"]="magick $wallpaper_current -emboss 0x5 $wallpaper_output"
-    ["Frame Raised"]="magick $wallpaper_current +raise 150 $wallpaper_output"
-    ["Frame Sunk"]="magick $wallpaper_current -raise 150 $wallpaper_output"
-    ["Negate"]="magick $wallpaper_current -negate $wallpaper_output"
-    ["Oil Paint"]="magick $wallpaper_current -paint 4 $wallpaper_output"
-    ["Posterize"]="magick $wallpaper_current -posterize 4 $wallpaper_output"
-    ["Polaroid"]="magick $wallpaper_current -polaroid 0 $wallpaper_output"
-    ["Sepia Tone"]="magick $wallpaper_current -sepia-tone 65% $wallpaper_output"
-    ["Solarize"]="magick $wallpaper_current -solarize 80% $wallpaper_output"
-    ["Sharpen"]="magick $wallpaper_current -sharpen 0x5 $wallpaper_output"
-    ["Vignette"]="magick $wallpaper_current -vignette 0x3 $wallpaper_output"
-    ["Vignette-black"]="magick $wallpaper_current -background black -vignette 0x3 $wallpaper_output"
-    ["Zoomed"]="magick $wallpaper_current -gravity Center -extent 1:1 $wallpaper_output"
+    ["Black & White"]="convert $wallpaper_current -colorspace gray -sigmoidal-contrast 10,40% $wallpaper_output"
+    ["Blurred"]="convert $wallpaper_current -blur 0x10 $wallpaper_output"
+    ["Charcoal"]="convert $wallpaper_current -charcoal 0x5 $wallpaper_output"
+    ["Edge Detect"]="convert $wallpaper_current -edge 1 $wallpaper_output"
+    ["Emboss"]="convert $wallpaper_current -emboss 0x5 $wallpaper_output"
+    ["Frame Raised"]="convert $wallpaper_current +raise 150 $wallpaper_output"
+    ["Frame Sunk"]="convert $wallpaper_current -raise 150 $wallpaper_output"
+    ["Negate"]="convert $wallpaper_current -negate $wallpaper_output"
+    ["Oil Paint"]="convert $wallpaper_current -paint 4 $wallpaper_output"
+    ["Posterize"]="convert $wallpaper_current -posterize 4 $wallpaper_output"
+    ["Polaroid"]="convert $wallpaper_current -polaroid 0 $wallpaper_output"
+    ["Sepia Tone"]="convert $wallpaper_current -sepia-tone 65% $wallpaper_output"
+    ["Solarize"]="convert $wallpaper_current -solarize 80% $wallpaper_output"
+    ["Sharpen"]="convert $wallpaper_current -sharpen 0x5 $wallpaper_output"
+    ["Vignette"]="convert $wallpaper_current -vignette 0x3 $wallpaper_output"
+    ["Vignette-black"]="convert $wallpaper_current -background black -vignette 0x3 $wallpaper_output"
+    ["Zoomed"]="convert $wallpaper_current -gravity Center -extent 1:1 $wallpaper_output"
 )
 
 # Function to apply no effects
 no-effects() {
     feh --bg-fill "$wallpaper_current"
-    wait $!
     notify-send -u low -i "$iDIR/normal.png" "No effects" "Applied original wallpaper"
     cp "$wallpaper_current" "$wallpaper_output"
 }
@@ -56,8 +56,8 @@ main() {
             eval "${effects[$choice]}"
             
             # Set modified wallpaper
-            feh --bg-fill "$wallpaper_output"        
-            sleep 1
+            feh --bg-fill "$wallpaper_output"
+            
             notify-send -u low -i "$iDIR/normal.png" "$choice" "Effects applied"
         else
             notify-send -i "$iDIR/critical.png" "Error" "Unknown effect: $choice"
