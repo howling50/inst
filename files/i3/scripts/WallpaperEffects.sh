@@ -3,8 +3,8 @@
 
 # Variables
 terminal=kitty
-wallpaper_current="$HOME/.othercrap/reaper.png"
-wallpaper_output="$HOME/.othercrap/.wallpaper_modified"
+wallpaper_current="$HOME/.othercrap/wallpaper/reaper.png"
+wallpaper_output="$HOME/.othercrap/modified.png"
 SCRIPTSDIR="$HOME/.config/i3/scripts"
 
 # Directory for notifications
