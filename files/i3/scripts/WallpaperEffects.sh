@@ -1,7 +1,4 @@
 #!/bin/bash
-# Converted for i3 with feh/dunst/rofi
-
-# Variables
 terminal=kitty
 wallpaper_current="$HOME/.othercrap/wallpaper/reaper.png"
 wallpaper_output="$HOME/.othercrap/modified.png"
