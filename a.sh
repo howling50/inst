@@ -148,7 +148,7 @@ else
     echo "Non-KDE environment detected. Applying basic customizations..."
     
     sudo pacman -R parole --noconfirm
-    sudo pacman -S --noconfirm --needed viewnior rofi rofi-calc flameshot gvfs-mtp gvfs-afc mpv-mpris baobab numlockx tumbler thunar-archive-plugin file-roller fbreader ffmpegthumbnailer catfish
+    sudo pacman -S --noconfirm --needed bc arandr viewnior rofi rofi-calc flameshot gvfs-mtp gvfs-afc mpv-mpris baobab numlockx tumbler thunar-archive-plugin file-roller fbreader ffmpegthumbnailer catfish i3-wm polybar python-i3ipc autotiling i3lock pamixer dunst pavucontrol thunar-volman lxappearance 
     mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
     sudo getent group autologin >/dev/null || sudo groupadd autologin
     sudo usermod -aG autologin "$(whoami)"
@@ -156,7 +156,7 @@ else
     echo "Desktop Specific customization completed!"
 fi
 
-sudo pacman -S bash-completion neovim trash-cli xclip pacman-contrib jq gnome-system-monitor reflector eza zoxide fzf bat feh zip unzip --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
+sudo pacman -S wireplumber playerctl bash-completion neovim trash-cli xclip pacman-contrib jq gnome-system-monitor reflector eza zoxide fzf bat feh zip unzip --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/
 sudo reflector --verbose -c AT -c BE -c BG -c HR -c CZ -c DK -c EE -c FR -c DE -c GR -c HU -c LV -c LT -c LU -c NL -c PL -c RO -c CH -c GB --protocol https --sort rate --latest 20 --number 12 --download-timeout 20 --save /etc/pacman.d/mirrorlist
 sudo pacman -S fastfetch kitty powerline-fonts starship flatpak rsync ttf-firacode-nerd ttf-meslo-nerd ttf-roboto terminus-font noto-fonts-emoji ttf-nerd-fonts-symbols --noconfirm --needed
 #----Swap-------
@@ -249,7 +249,7 @@ fi
 #sudo pacman -S cronie man-db --noconfirm --needed && sudo systemctl enable --now cronie.service
 #faster shutdown: sudo sed -i 's/^#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/' /etc/systemd/system.conf
 #balooctl disable && sudo rm -rf ~/./local/share/baloo
-#sudo pacman -S  i3-wm polybar python-i3ipc autotiling rofi rofi-calc i3lock gvfs-mtp gvfs-afc pamixer mpv-mpris dunst baobab numlockx pavucontrol tumbler polkit-gnome unzip htop jq xfce4-terminal xfce4-taskmanager imagemagick thunar thunar-volman thunar-archive-plugin gvfs lxappearance  --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
+#sudo pacman -S  i3-wm polybar python-i3ipc autotiling i3lock gvfs-mtp gvfs-afc pamixer mpv-mpris dunst baobab numlockx pavucontrol tumbler polkit-gnome unzip htop jq xfce4-terminal xfce4-taskmanager imagemagick thunar thunar-volman thunar-archive-plugin gvfs lxappearance  --noconfirm --needed && chmod +x ~/.config/polybar/launch.sh
 #/etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm.conf or /etc/sddm.conf [Autologin] User=howling Session=i3   other: pika-backup
 #sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/auto-install.sh) or bash <(curl -s https://raw.githubusercontent.com/mylinuxforwork/dotfiles/main/setup-arch.sh)
 #sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
