@@ -15,7 +15,7 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id feh --bg-scale --no-fehbg ~/.othercrap/reaper.png
 #exec --no-startup-id nitrogen --restore
-exec_always --no-startup-id "xrandr --output $(xrandr --query | grep " connected" | awk '{print $1}') --primary --auto"
+exec_always --no-startup-id xrandr --output $(xrandr --query | grep " connected" | awk '{print $1}') --primary --auto
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
