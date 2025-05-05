@@ -54,7 +54,7 @@ set_wallpaper() {
     cp -f "$wall_path" "$CURRENT_WALL"
     cp -f "$wall_path" "$MODIFY_WALL"
   else
-    notify-send -i "$ICON_DIR/error.png" "Error" "Wallpaper file not found!"
+    notify-send -i "$ICON_DIR/critical.png" "Error" "Wallpaper file not found!"
     exit 1
   fi
   
@@ -84,7 +84,7 @@ main() {
 
   # Validate selection
   if [[ -z "$selected_wall" ]] || [[ ! -f "$selected_wall" ]]; then
-    notify-send -i "$ICON_DIR/error.png" "Error" "Wallpaper not found!"
+    notify-send -i "$ICON_DIR/critical.png" "Error" "Wallpaper not found!"
     exit 1
   fi
 
