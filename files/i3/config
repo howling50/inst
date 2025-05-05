@@ -14,7 +14,7 @@ exec --no-startup-id numlockx off
 exec --no-startup-id nm-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id udiskie --tray &
-exec --no-startup-id feh --bg-scale --no-fehbg ~/.othercrap/reaper.png
+exec --no-startup-id feh --bg-scale --no-fehbg ~/.othercrap/modified.png
 #exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id xrandr --output $(xrandr --query | grep " connected" | awk '{print $1}') --primary --auto
 
