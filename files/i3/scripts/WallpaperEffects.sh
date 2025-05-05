@@ -70,6 +70,3 @@ if pidof rofi >/dev/null; then
 fi
 
 main
-
-
-fi
