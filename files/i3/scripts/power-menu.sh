@@ -32,7 +32,7 @@
     Lock)
       # Confirm before locking
       if echo -e "y\nn" | rofi -dmenu -p "Confirm Lock? (y/N)" | grep -qi "y"; then
-        i3lock -i ~/.othercrap/reaper1.png
+        i3lock -i ~/.othercrap/wallpaper/reaper1.png
       fi
       ;;
     *)
