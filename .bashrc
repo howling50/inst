@@ -280,7 +280,7 @@ pupdate() {
   if command -v pacman &> /dev/null; then
     yay -Syu && flatpak update -y && echo '#### SAVING THE DATE ####' && date "+%d/%m/%Y %H:%M:%S" >> "$HOME/.config/update.txt"
   elif command -v zypper &> /dev/null; then
-    sudo zypper dup && flatpak update -y && echo '#### SAVING THE DATE ####' && date "+%d/%m/%Y %H:%M:%S" >> "$HOME/.config/update.txt"
+    sudo zypper ref && sudo zypper dup && flatpak update -y && echo '#### SAVING THE DATE ####' && date "+%d/%m/%Y %H:%M:%S" >> "$HOME/.config/update.txt"
   else
     echo "No supported package manager found (pacman or zypper)."
   fi
