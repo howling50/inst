@@ -1,6 +1,6 @@
 #!/bin/bash
 # Variables
-wallpaper_current="$HOME/.othercrap/reaper.png"
+wallpaper_current="$HOME/.othercrap/current.png"
 wallpaper_output="$HOME/.othercrap/modified.png"
 
 # Directory for notifications
