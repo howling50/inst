@@ -96,6 +96,7 @@ mode "resize" {
 bindsym Mod1+F8 mode "resize"
 
 # other
+bindsym $mod+Shift+s exec ~/.config/i3/scripts/RofiSearch.sh
 bindsym $mod+Shift+h exec ~/.config/i3/scripts/keybind.sh
 bindsym F12 exec xfce4-terminal --drop-down
 bindsym Control+Mod1+Escape exec --no-startup-id xfce4-taskmanager
