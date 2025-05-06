@@ -147,6 +147,7 @@ bindsym $mod+Shift+e exec ~/.config/i3/scripts/WallpaperEffects.sh
 bindsym $mod+Shift+w exec ~/.config/i3/scripts/WallpaperSelect.sh
 bindsym $mod+Mod1+e exec ~/.config/i3/scripts/RofiEmoji.sh
 bindsym $mod+Shift+m exec ~/.config/i3/scripts/RofiBeats.sh
+bindsym $mod+Shift+t exec mpv ~/.othercrap/greek.m3u
 
 # Volume controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
