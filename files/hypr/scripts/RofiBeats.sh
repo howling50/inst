@@ -86,7 +86,7 @@ play_online_music() {
   notification "$choice"
   
   # Play the selected online music using mpv
-  mpv --shuffle --vid=no "$link"
+  mpv --shuffle --no-config --vid=no "$link"
 }
 
 # Function to stop music and kill mpv processes
