@@ -114,7 +114,7 @@ wget $(curl -s https://api.github.com/repos/noDRM/DeDRM_tools/releases/latest | 
 wget --trust-server-names --content-disposition "https://www.highrez.co.uk/scripts/download.asp?package=XMousePortable" && mv XMouseButtonControl*Portable.zip ~/.othercrap
 # ---------------------------------
 mkdir -p ~/.othercrap/eac3to
-unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null
+unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null && unrar x ~/Downloads/inst/script/1.rar ~/.othercrap > /dev/null
 mv ~/Downloads/inst/script/*.exe ~/.othercrap/
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=15/' /etc/default/grub
