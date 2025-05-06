@@ -13,7 +13,7 @@ rofi -i -dmenu -mesg "$msg" -config $rofi_theme | \
 awk '{print $1}' | \
 head -n 1 | \
 tr -d '\n' | \
-xclip
+xclip -selection clipboard
 
 exit
 
