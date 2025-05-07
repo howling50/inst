@@ -5,7 +5,7 @@ set -euo pipefail
 # ---------------------------
 # Configuration
 # ---------------------------
-THRESHOLD=${1:-30}  # Configurable via command line (default: 30)
+THRESHOLD=${1:-20}  # Configurable via command line (default: 30)
 LOG_FILE="/home/howling/ext4_defrag.log"
 LOCK_FILE="/tmp/ext4_defrag.lock"
 
