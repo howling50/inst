@@ -113,7 +113,7 @@ wget $(curl -s https://api.github.com/repos/sc0ty/subsync/releases/latest | grep
 wget $(curl -s https://api.github.com/repos/noDRM/DeDRM_tools/releases/latest | grep download | grep .zip   | cut -d\" -f4) && mv DeDRM_tools_*.zip ~/.othercrap
 wget --trust-server-names --content-disposition "https://www.highrez.co.uk/scripts/download.asp?package=XMousePortable" && mv XMouseButtonControl*Portable.zip ~/.othercrap
 # ---------------------------------
-mkdir -p ~/.othercrap/eac3to && unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null
+mkdir -p ~/.othercrap/eac3to && unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null && rm ~/Downloads/inst/script/*.zip && rm ~/Downloads/inst/script/*.tar && rm ~/Downloads/inst/script/*.rar
 mv ~/Downloads/inst/script/*.exe ~/.othercrap/
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=15/' /etc/default/grub
