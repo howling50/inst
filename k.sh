@@ -108,7 +108,7 @@ sudo ufw default deny incoming && sleep 1 && sudo ufw default allow outgoing && 
 # ----------------------------------------------
 mkdir -p ~/.othercrap/eac3to && unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null && rm ~/Downloads/inst/script/*.zip && rm ~/Downloads/inst/script/*.tar && rm ~/Downloads/inst/script/*.rar
 mv ~/Downloads/inst/script/*.exe ~/.othercrap/
-cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
+mv ~/Downloads/inst/1.mp3 ~/.othercrap/ && rm ~/Downloads/inst/script/autotiling
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=15/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
