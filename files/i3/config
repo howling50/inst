@@ -132,7 +132,6 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
 
-# Apps Launched with <SUPER> + <SHIFT> + <KEYPAD 1-9>
 bindsym $mod+Shift+KP_End exec firefox
 bindsym $mod+Shift+KP_Down exec flatpak run app.zen_browser.zen
 bindsym $mod+Shift+KP_Page_Down exec flatpak run io.gitlab.librewolf-community
@@ -141,7 +140,7 @@ bindsym $mod+Shift+KP_Begin exec audacious
 bindsym $mod+Shift+KP_Right exec mpv --player-operation-mode=pseudo-gui
 bindsym $mod+Shift+KP_Home exec gnome-system-monitor
 bindsym $mod+Shift+KP_Up exec flatpak run com.usebottles.bottles
-bindsym $mod+Shift+KP_Page_Up exec flatpak run org.torproject.torbrowser-launcher
+bindsym $mod+Shift+KP_Page_Up exec torbrowser-launcher
 bindsym $mod+Shift+e exec ~/.config/i3/scripts/WallpaperEffects.sh
 bindsym $mod+Shift+w exec ~/.config/i3/scripts/WallpaperSelect.sh
 bindsym $mod+Mod1+e exec ~/.config/i3/scripts/RofiEmoji.sh
@@ -180,7 +179,7 @@ for_window [title="^Add Folder to Workspace$"] floating enable, resize set 70% 6
 # Workspace assignments
 assign [class="^(?i)firefox(-esr|-bin)?$"] → 2
 assign [class="^(?i)org\.mozilla\.firefox$"] → 2
-assign [class="^(?i)(google-chrome(-beta|-dev|-unstable)?|chrome-.*-default|chromium|librewolf|torbrowser(-launcher)?|microsoft-edge(-stable|-beta|-dev|-unstable)?|brave-browser(-beta|-dev|-unstable)?|thorium-browser|cachy-browser|zen(-alpha)?)$"] → 2
+assign [class="^(?i)(tor browser|google-chrome(-beta|-dev|-unstable)?|chrome-.*-default|chromium|librewolf|torbrowser(-launcher)?|microsoft-edge(-stable|-beta|-dev|-unstable)?|brave-browser(-beta|-dev|-unstable)?|thorium-browser|cachy-browser|zen(-alpha)?)$"] → 2
 assign [class="^(?i)thunar$"] → 3
 assign [class="^(?i)mousepad$"] → 3
 assign [class="^(?i)gamescope$"] → 5
