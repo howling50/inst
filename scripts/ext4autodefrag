@@ -5,7 +5,7 @@ set -euo pipefail
 # Configuration
 # ---------------------------
 THRESHOLD=30               # Defrag if fragmentation score >=30 (0-100 scale)
-LOG_FILE="/var/log/ext4_defrag.log"
+LOG_FILE="/home/howling/ext4_defrag.log"
 LOCK_FILE="/tmp/ext4_defrag.lock"
 
 # ---------------------------
