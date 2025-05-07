@@ -70,13 +70,11 @@ sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audaci
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep memtest86+ tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
 #-----------------------------------------------------------------
-yay -S --noconfirm dxvk-bin winegui-bin input-remapper-bin ttf-ms-fonts heroic-games-launcher-bin urlview pacseek-bin
-flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub io.github.giantpinkrobots.varia
-flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub app.zen_browser.zen
+yay -S --noconfirm dxvk-bin winegui-bin input-remapper-bin ttf-ms-fonts heroic-games-launcher-bin urlview pacseek-bin autobrr-bin zen-browser-bin librewolf-bin varia
+flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub com.github.Matoking.protontricks
 flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub net.davidotek.pupgui2
 wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | grep download | grep ani-cli | cut -d\" -f4) && chmod +x ani-cli && mv ani-cli ~/.local/bin/
 curl -sL "https://raw.githubusercontent.com/Benexl/yt-x/refs/heads/master/yt-x" -o ~/.local/bin/yt-x && chmod +x ~/.local/bin/yt-x && mkdir -p ~/.local/share/vlc/lua/extensions/ && mv ~/Downloads/inst/script/*.lua ~/.local/share/vlc/lua/extensions/ && mkdir -p ~/.local/share/vlc/lua/playlist/ && mv ~/Downloads/inst/script/1/*.lua ~/.local/share/vlc/lua/playlist/
-wget $(curl -s https://api.github.com/repos/autobrr/autobrr/releases/latest | grep download | grep amd64.pkg.tar.zst   | cut -d\" -f4) && sudo pacman -U autobrr*.tar.zst --noconfirm --needed
 mkdir -p ~/.othercrap && wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=$HOME/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=$HOME/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;\nStartupNotify=true\nTerminal=false" > ~/.local/share/applications/stacer.desktop && chmod +x ~/.local/share/applications/stacer.desktop
 #-----
 sudo systemctl enable input-remapper && sudo systemctl restart input-remapper && sudo systemctl start avahi-daemon && sudo systemctl enable avahi-daemon
