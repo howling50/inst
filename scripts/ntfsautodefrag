@@ -4,9 +4,8 @@ set -euo pipefail
 # ---------------------------
 # Configuration & Variables
 # ---------------------------
-LOG_DIR="/home/howling"
-LOG_FILE="$LOG_DIR/autodefrag.log"
-FRAG_THRESHOLD=${1:-10}  # Configurable via command line
+LOG_FILE="/home/howling/autodefrag.log"
+FRAG_THRESHOLD=${1:-20}  # Configurable via command line
 LOCK_FILE="/tmp/autodefrag.lock"
 
 # ---------------------------
@@ -16,42 +15,62 @@ log_message() {
     local log_level="$1"
     local message="$2"
     logger -t "auto_defrag_ntfs" -p "user.${log_level}" "$message"
-    echo "$(date +"%Y-%m-%d %H:%M:%S") [$log_level] $message" >> "$LOG_FILE"
+    echo "$(date +"%Y-%m-%d %H:%M:%S") [${log_level}] ${message}" >> "${LOG_FILE}"
 }
 
-# Ensure log directory and file exist
-mkdir -p "$LOG_DIR" || { echo "Error: Cannot create log directory $LOG_DIR"; exit 1; }
-touch "$LOG_FILE" || { echo "Error: Cannot write to log file $LOG_FILE"; exit 1; }
+# ---------------------------
+# Initial Setup
+# ---------------------------
+# Create log directory with proper permissions
+mkdir -p "${LOG_DIR}" || {
+    echo "Error: Cannot create log directory ${LOG_DIR}" >&2
+    exit 1
+}
+touch "${LOG_FILE}" || {
+    echo "Error: Cannot write to log file ${LOG_FILE}" >&2
+    exit 1
+}
 
-# Lock file to prevent concurrent runs
-if [ -e "$LOCK_FILE" ]; then
+# Lock file handling
+if [ -e "${LOCK_FILE}" ]; then
     log_message "error" "Another instance is already running. Exiting."
     exit 1
 fi
-trap 'rm -f "$LOCK_FILE"; exit' EXIT INT TERM
-touch "$LOCK_FILE"
+trap 'rm -f "${LOCK_FILE}"; exit' EXIT INT TERM
+touch "${LOCK_FILE}"
 
 # ---------------------------
 # Pre-flight Checks
 # ---------------------------
 log_message "info" "Starting automatic NTFS defragmentation."
 
-if [ "$EUID" -ne 0 ]; then
-    log_message "error" "Please run the script as root using sudo."
-    exit 1
-fi
-
-for cmd in ntfsdefrag fuser; do
-    if ! command -v "$cmd" &> /dev/null; then
-        log_message "error" "$cmd not found. Please install the required package."
+# Check dependencies
+for cmd in ntfsdefrag fuser findmnt; do
+    if ! command -v "${cmd}" &>/dev/null; then
+        log_message "error" "${cmd} not found. Please install the required package."
         exit 1
     fi
 done
 
+# Check privileges and sudo access
+if [[ "$EUID" -ne 0 ]]; then
+    for cmd in ntfsdefrag fuser findmnt; do
+        if ! sudo -l "${cmd}" &> /dev/null; then
+            log_message "error" "Missing sudo permission for ${cmd}"
+            exit 1
+        fi
+    done
+else
+    log_message "info" "Running with root privileges"
+fi
+
 # ---------------------------
 # Find Mounted NTFS Drives
 # ---------------------------
-mapfile -t ntfs_mounts < <(findmnt -nt fuseblk,ntfs -o TARGET --raw 2>/dev/null)
+declare -a ntfs_mounts
+while IFS= read -r -d '' mount_point; do
+    ntfs_mounts+=("${mount_point}")
+done < <(sudo findmnt -nt ntfs,fuseblk -o TARGET -N -P0 2>/dev/null)
 
 if [ "${#ntfs_mounts[@]}" -eq 0 ]; then
     log_message "info" "No NTFS drives found. Exiting."
@@ -65,27 +84,37 @@ for mount_point in "${ntfs_mounts[@]}"; do
     log_message "info" "---------------------------------------------"
     log_message "info" "Processing drive mounted at: ${mount_point}"
 
-    if fuser -m "$mount_point" > /dev/null 2>&1; then
+    # Verify mount point existence
+    if [ ! -d "${mount_point}" ]; then
+        log_message "warning" "Mount point ${mount_point} does not exist. Skipping."
+        continue
+    fi
+
+    # Check if drive is in use
+    if sudo fuser -m "${mount_point}" >/dev/null 2>&1; then
         log_message "warning" "Drive at ${mount_point} is in use. Skipping."
         continue
     fi
 
-    frag_output=$(LANG=C ntfsdefrag -n "$mount_point" 2>&1 || true)
-    frag_percentage=$(echo "$frag_output" | grep -i -E "Fragmentation:" | sed -E 's/.*Fragmentation:[[:space:]]*([0-9]+)%.*/\1/')
+    # Check fragmentation
+    local frag_output frag_percentage
+    frag_output=$(LANG=C sudo ntfsdefrag -n -v "${mount_point}" 2>&1 || true)
+    frag_percentage=$(echo "${frag_output}" | awk '/Fragmentation:/ {gsub(/%/,""); print $2}')
 
-    if [ -z "$frag_percentage" ]; then
-        log_message "error" "Could not determine fragmentation for ${mount_point}. Output: $frag_output"
+    # Validate fragmentation percentage
+    if [[ ! "${frag_percentage}" =~ ^[0-9]+$ ]] || [ -z "${frag_percentage}" ]; then
+        log_message "error" "Invalid fragmentation data for ${mount_point}. Output: ${frag_output}"
         continue
     fi
 
     log_message "info" "Fragmentation level: ${frag_percentage}%."
 
-    if [ "$frag_percentage" -gt "$FRAG_THRESHOLD" ]; then
+    if [ "${frag_percentage}" -gt "${FRAG_THRESHOLD}" ]; then
         log_message "info" "Exceeds threshold (${FRAG_THRESHOLD}%). Defragmenting..."
-        if defrag_output=$(ntfsdefrag "$mount_point" 2>&1); then
-            log_message "info" "Defragmentation succeeded."
+        if defrag_output=$(LANG=C sudo ntfsdefrag -f -v "${mount_point}" 2>&1); then
+            log_message "info" "Defragmentation succeeded. Output: ${defrag_output}"
         else
-            log_message "error" "Defragmentation failed: $defrag_output"
+            log_message "error" "Defragmentation failed: ${defrag_output}"
         fi
     else
         log_message "info" "Below threshold. Skipping."
@@ -93,3 +122,4 @@ for mount_point in "${ntfs_mounts[@]}"; do
 done
 
 log_message "info" "Automatic NTFS defragmentation completed."
+exit 0
