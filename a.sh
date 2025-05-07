@@ -21,7 +21,7 @@ sudo timedatectl set-timezone Asia/Nicosia && sudo timedatectl set-ntp true
 for dir in Media Downloads Music Videos Pictures; do [ ! -d "$HOME/$dir" ] && mkdir "$HOME/$dir"; done && mkdir -p ~/.local/bin/ && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
-chmod +x ~/Downloads/inst/scripts/* && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && chmod +x ~/.config/hypr/scripts/* && chmod +x ~/.config/i3/scripts/* && mv ~/Downloads/inst/script/wallpaper ~/.othercrap/
+chmod +x ~/Downloads/inst/scripts/* && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && chmod +x ~/.config/hypr/scripts/* && chmod +x ~/.config/i3/scripts/* && mv ~/Downloads/inst/script/wallpaper ~/.othercrap/ && unrar x ~/Downloads/inst/script/1.rar ~/.othercrap > /dev/null
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 git clone https://aur.archlinux.org/yay-bin.git && cd ~/Downloads/inst/yay-bin && makepkg --noconfirm -si && cd ~/Downloads/inst && rm -rf yay-bin && yay -Syu --noconfirm && yay -Y --sudoloop --save
 
@@ -206,8 +206,7 @@ wget --trust-server-names --content-disposition "https://www.highrez.co.uk/scrip
 sudo ufw allow proto tcp from 192.168.0.0/24 to any port 1:65535 && sudo ufw allow proto udp from 192.168.0.0/24 to any port 1:65535 && sudo ufw allow 23232/tcp && sudo ufw allow 23232/udp
 sudo ufw default deny incoming && sleep 1 && sudo ufw default allow outgoing && sleep 1 && sudo systemctl enable ufw && sudo systemctl start ufw && sudo ufw enable
 # ----------------------------------------------
-mkdir -p ~/.othercrap/eac3to
-unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null && unrar x ~/Downloads/inst/script/1.rar ~/.othercrap > /dev/null
+mkdir -p ~/.othercrap/eac3to && unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null
 cp ~/Downloads/inst/1.mp3 ~/.othercrap/1.mp3
 sudo sed -i 's/version_sort -r/version_sort/' /etc/grub.d/10_linux
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=15/' /etc/default/grub
