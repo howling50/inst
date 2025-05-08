@@ -164,7 +164,7 @@ sudo pacman -S fastfetch kitty powerline-fonts starship flatpak rsync ttf-firaco
 #----Swap-------
 #sudo sh -c 'pacman -S zram-generator --noconfirm --needed && mkdir -p /etc/systemd/ && printf "[zram0]\nzram-size=ram/2\ncompression-algorithm=lz4\nswap-priority=100\n" > /etc/systemd/zram-generator.conf && systemctl daemon-reload && systemctl start systemd-zram-setup@zram0.service && systemctl enable systemd-zram-setup@zram0.service'
 #sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 zswap.enabled=1 zswap.compressor=lz4 zswap.zpool=z3fold zswap.max_pool_percent=25 zswap.accept_threshold_percent=90"/' /etc/default/grub && echo "lz4" | sudo tee /etc/modules-load.d/lz4.conf && sudo sed -i -E '/^MODULES=\(/ { /lz4/! { s/(MODULES=\(.*)\)/\1 lz4)/ } }' /etc/mkinitcpio.conf && sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard 0 0' | sudo tee -a /etc/fstab
+sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0' | sudo tee -a /etc/fstab
 #-------------qemu---------------------------------
 sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo systemctl enable --now libvirtd && sudo usermod -a -G libvirt $(whoami) && sudo systemctl restart libvirtd && sudo virsh net-define /etc/libvirt/qemu/networks/default.xml && sudo virsh net-autostart default
 #-----------------------------------------------------
@@ -236,6 +236,7 @@ else
 fi
 #defaults,nodatacow,noatime,autodefrag,compress=zstd,space_cache=v2,nofail 0 0
 #defaults,ssd,noatime,compress=zstd:3,space_cache=v2 0 0
+#defaults,ssd,noatime,compress=zstd:1,space_cache=v2 0 0
 #snapshots = defaults,ssd,noatime,compress=no,space_cache=v2 0 0
 #ext4 = defaults,noatime,barrier=1,data=ordered,errors=remount-ro,commit=60,nofail 0 2
 #echo "lz4" | sudo tee /etc/modules-load.d/lz4.conf && sudo sed -i -E '/^MODULES=\(/ { /lz4/! { s/(MODULES=\(.*)\)/\1 lz4)/ } }' /etc/mkinitcpio.conf && sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg
