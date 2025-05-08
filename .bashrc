@@ -388,7 +388,7 @@ delall() {
         # YAY/AUR cleanup
         if command -v yay &> /dev/null; then
             echo "Running yay cleanup..."
-            yay -Scc
+            yay -Scc --noconfirm
         fi
              
         clean_flatpak
