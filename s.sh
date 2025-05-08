@@ -18,6 +18,39 @@ if ! curl -sLf -o /dev/null https://google.com; then
     exit 1
 fi
 
+# Prompt for swapfile size
+read -p "Size of Swapfile in GB (just the number): " swap_size
+
+# Validate input
+if ! [[ "$swap_size" =~ ^[0-9]+$ ]]; then
+  echo "Error: Please enter a valid number"
+  exit 1
+fi
+
+# Calculate size in megabytes (for dd)
+swap_mb=$((swap_size * 1024))
+
+# Create swapfile with validation
+sudo btrfs subvol create /Swap || exit 1
+sudo chattr +C /Swap
+sudo swapoff -a
+
+echo "Creating ${swap_size}GB swapfile (this may take a while)..."
+sudo truncate -s 0 /Swap/swapfile
+sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=$swap_mb status=progress conv=fsync
+
+# Configure swap
+sudo chmod 600 /Swap/swapfile
+sudo mkswap /Swap/swapfile
+sudo swapon /Swap/swapfile
+
+# Add to fstab
+echo "/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0" | sudo tee -a /etc/fstab
+
+echo "Swapfile created successfully!"
+echo "New swap configuration:"
+swapon --show
+
 # Check for NVIDIA GPU and offer driver installation
 if ! command -v lspci &>/dev/null; then
     sudo zypper install -y -n pciutils
@@ -76,7 +109,7 @@ sudo systemctl stop packagekit.service && sudo zypper remove -y PackageKit && su
 #----Swap-------
 sudo zypper install -y -n systemd-zram-service && sudo systemctl enable --now zramswap.service
 #sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 zswap.enabled=1 zswap.compressor=lz4 zswap.zpool=z3fold zswap.max_pool_percent=25 zswap.accept_threshold_percent=90"/' /etc/default/grub && sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0' | sudo tee -a /etc/fstab
+#sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0' | sudo tee -a /etc/fstab
 #------------
 sudo btrfs subvol create /Media && sudo chown "$(whoami):$(whoami)" /Media && sudo chmod 755 /Media && mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine && sudo mkdir -p /var/lib/flatpak && mkdir -p ~/.local/share/flatpak && sudo chattr -R +C ~/.config/qBittorrent && sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine && sudo chattr -R +C /var/lib/flatpak && sudo chattr -R +C ~/.local/share/flatpak
 #-----------------------------------------------------
