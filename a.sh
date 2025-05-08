@@ -209,11 +209,16 @@ sudo ufw default deny incoming && sleep 1 && sudo ufw default allow outgoing && 
 # ----------------------------------------------
 mkdir -p ~/.othercrap/eac3to && unrar x ~/Downloads/inst/script/eac3to_3.44.rar ~/.othercrap/eac3to > /dev/null && rm ~/Downloads/inst/script/*.zip && rm ~/Downloads/inst/script/*.tar && rm ~/Downloads/inst/script/*.rar
 mv ~/Downloads/inst/1.mp3 ~/.othercrap/ && rm ~/Downloads/inst/script/autotiling
-sudo sed -i 's/version_sort -r/version_sort/' /etc/grub.d/10_linux
+#sudo sed -i 's/version_sort -r/version_sort/' /etc/grub.d/10_linux
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=15/' /etc/default/grub
 sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i '/^Defaults timestamp_timeout=/s/.*/# Defaults timestamp_timeout=15/' /etc/sudoers
+sudo mkdir -p /etc/pacman.d/hooks/ && printf '[Trigger]\nOperation = Upgrade\nType = Package\nTarget = *\n\n[Action]\nDescription = Checking system for unmerged .pacnew files...\nWhen = PostTransaction\nExec = /usr/bin/pacdiff --output\nDepends = pacman-contrib\n' | sudo tee /etc/pacman.d/hooks/pacdiff.hook >/dev/null  
+sudo mkdir -p /etc/pacman.d/hooks/ && sudo printf '[Trigger]\nOperation = Upgrade\nType = Package\nTarget = pacman-mirrorlist\n\n[Action]\nDescription = Updating pacman-mirrorlist with reflector...\nWhen = PostTransaction\nDepends = reflector\nExec = /bin/sh -c "reflector --verbose -c AT,BE,BG,HR,CZ,DK,EE,FR,DE,GR,HU,LV,LT,LU,NL,PL,RO,CH,GB --protocol https --sort rate --latest 20 --number 12 --download-timeout 20 --save /etc/pacman.d/mirrorlist && rm -f /etc/pacman.d/mirrorlist.pacnew"' | sudo tee /etc/pacman.d/hooks/reflectorupdate.hook >/dev/null
+sudo mkdir -p /etc/pacman.d/hooks/ && sudo printf '[Trigger]\nOperation = Upgrade\nType = Package\nTarget = *\n\n[Action]\nDescription = Cleaning pacman cache...\nWhen = PostTransaction\nDepends = pacman-contrib\nExec = /usr/bin/paccache -rk2\n' | sudo tee /etc/pacman.d/hooks/paccachepacman.hook >/dev/null
+sudo mkdir -p /etc/pacman.d/hooks/ && echo -e '[Trigger]\nType = Package\nOperation = Install\nOperation = Remove\nTarget = linux\nTarget = linux-lts\nTarget = linux-zen\nTarget = linux-headers\nTarget = linux-lts-headers\nTarget = linux-zen-headers\n\n[Action]\nDescription = Regenerate initramfs and update GRUB\nWhen = PostTransaction\nExec = /bin/sh -c '\''/usr/bin/mkinitcpio -P && /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg'\''' | sudo tee /etc/pacman.d/hooks/90-kernel-update.hook > /dev/null
+sudo mkdir -p /etc/pacman.d/hooks/ && sudo printf '[Trigger]\nType = Package\nOperation = Install\nOperation = Upgrade\nTarget = intel-ucode\nTarget = amd-ucode\n\n[Action]\nDescription = Update GRUB after microcode updates\nWhen = PostTransaction\nDepends = grub\nExec = /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg\n' | sudo tee /etc/pacman.d/hooks/95-microcode-grub.hook >/dev/null
 mpg123 ~/.othercrap/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
     let "hours=SECONDS/3600"
