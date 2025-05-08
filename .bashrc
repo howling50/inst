@@ -117,7 +117,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # Alias
 alias trash-restore="trash-restore <<< \n | head -n-1 | fzf | awk '{print \$1;}' | trash-restore" 
 alias t='tldr -l | fzf | xargs -I{} tldr -r {} | bat -pp --theme=gruvbox-dark -lmarkdown' 
-alias pacdiff='sudo -E pacdiff' 
+alias pacdiff='pacdiff -s' 
 vimhistory() {
     # Get oldfiles from Neovim
     mapfile -t oldfiles < <(nvim -u NONE --headless +'lua io.write(table.concat(vim.v.oldfiles, "\n") .. "\n")' +qa)
