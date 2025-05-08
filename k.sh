@@ -117,7 +117,6 @@ sudo sed -i '/^Defaults timestamp_timeout=/s/.*/# Defaults timestamp_timeout=15/
 sudo mkdir -p /etc/pacman.d/hooks/ && printf '[Trigger]\nOperation = Upgrade\nType = Package\nTarget = *\n\n[Action]\nDescription = Checking system for unmerged .pacnew files...\nWhen = PostTransaction\nExec = /usr/bin/pacdiff --output\nDepends = pacman-contrib\n' | sudo tee /etc/pacman.d/hooks/pacdiff.hook >/dev/null  
 sudo mkdir -p /etc/pacman.d/hooks/ && sudo printf '[Trigger]\nOperation = Upgrade\nType = Package\nTarget = pacman-mirrorlist\n\n[Action]\nDescription = Updating pacman-mirrorlist with reflector...\nWhen = PostTransaction\nDepends = reflector\nExec = /bin/sh -c "reflector --verbose -c AT,BE,BG,HR,CZ,DK,EE,FR,DE,GR,HU,LV,LT,LU,NL,PL,RO,CH,GB --protocol https --sort rate --latest 20 --number 12 --download-timeout 20 --save /etc/pacman.d/mirrorlist && rm -f /etc/pacman.d/mirrorlist.pacnew"' | sudo tee /etc/pacman.d/hooks/reflectorupdate.hook >/dev/null
 sudo mkdir -p /etc/pacman.d/hooks/ && sudo printf '[Trigger]\nOperation = Upgrade\nType = Package\nTarget = *\n\n[Action]\nDescription = Cleaning pacman cache...\nWhen = PostTransaction\nDepends = pacman-contrib\nExec = /usr/bin/paccache -rk2\n' | sudo tee /etc/pacman.d/hooks/paccachepacman.hook >/dev/null
-sudo mkdir -p /etc/pacman.d/hooks/ && echo -e '[Trigger]\nType = Package\nOperation = Install\nOperation = Remove\nTarget = linux\nTarget = linux-lts\nTarget = linux-zen\nTarget = linux-headers\nTarget = linux-lts-headers\nTarget = linux-zen-headers\n\n[Action]\nDescription = Regenerate initramfs and update GRUB\nWhen = PostTransaction\nExec = /bin/sh -c '\''/usr/bin/mkinitcpio -P && /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg'\''' | sudo tee /etc/pacman.d/hooks/90-kernel-update.hook > /dev/null
 sudo mkdir -p /etc/pacman.d/hooks/ && sudo printf '[Trigger]\nType = Package\nOperation = Install\nOperation = Upgrade\nTarget = intel-ucode\nTarget = amd-ucode\n\n[Action]\nDescription = Update GRUB after microcode updates\nWhen = PostTransaction\nDepends = grub\nExec = /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg\n' | sudo tee /etc/pacman.d/hooks/95-microcode-grub.hook >/dev/null
 mpg123 ~/.othercrap/1.mp3 > /dev/null 2>&1
 if (( $SECONDS > 3600 )) ; then
@@ -142,7 +141,7 @@ fi
 #GRUB_DISABLE_SUBMENU=y
 #sudo grub-mkconfig -o /boot/grub/grub.cfg
 #sudo pacman -S gvfs-mtp gvfs-afc pamixer mpv-mpris dunst baobab numlockx pavucontrol tumbler polkit-gnome unzip htop jq xfce4-terminal xfce4-taskmanager imagemagick thunar thunar-volman thunar-archive-plugin gvfs lxappearance --needed
-#/etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm.conf or /etc/sddm.conf [Autologin] User=howling Session=i3       sudo pacman -S linux-lts linux-lts-headers && sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg         other: pika-backup
+#/etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm.conf or /etc/sddm.conf [Autologin] User=howling Session=i3          other: pika-backup
 #git clone --depth=1 https://github.com/JaKooLit/Arch-Hyprland.git ~/Arch-Hyprland && cd ~/Arch-Hyprland && chmod +x install.sh && ./install.sh
 #cp ~/Downloads/inst/conky.desktop ~/.config/autostart/conky.desktop && cp ~/Downloads/inst/.conkyrc ~/.conkyrc && conky -c ~/.conkyrc &
 #yay -Y --sudoloop=false --save
