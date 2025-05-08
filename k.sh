@@ -17,6 +17,39 @@ if ! curl -sLf -o /dev/null https://google.com; then
     exit 1
 fi
 
+# Prompt for swapfile size
+read -p "Size of Swapfile in GB (just the number): " swap_size
+
+# Validate input
+if ! [[ "$swap_size" =~ ^[0-9]+$ ]]; then
+  echo "Error: Please enter a valid number"
+  exit 1
+fi
+
+# Calculate size in megabytes (for dd)
+swap_mb=$((swap_size * 1024))
+
+# Create swapfile with validation
+sudo btrfs subvol create /Swap || exit 1
+sudo chattr +C /Swap
+sudo swapoff -a
+
+echo "Creating ${swap_size}GB swapfile (this may take a while)..."
+sudo truncate -s 0 /Swap/swapfile
+sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=$swap_mb status=progress conv=fsync
+
+# Configure swap
+sudo chmod 600 /Swap/swapfile
+sudo mkswap /Swap/swapfile
+sudo swapon /Swap/swapfile
+
+# Add to fstab
+echo "/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0" | sudo tee -a /etc/fstab
+
+echo "Swapfile created successfully!"
+echo "New swap configuration:"
+swapon --show
+
 for dir in Media Downloads Music Videos Pictures; do [ ! -d "$HOME/$dir" ] && mkdir "$HOME/$dir"; done
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
@@ -59,7 +92,7 @@ cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && s
 #----Swap-------
 sudo sh -c 'pacman -S zram-generator --noconfirm --needed && mkdir -p /etc/systemd/ && printf "[zram0]\nzram-size=ram/2\ncompression-algorithm=lz4\nswap-priority=100\n" > /etc/systemd/zram-generator.conf && systemctl daemon-reload && systemctl start systemd-zram-setup@zram0.service && systemctl enable systemd-zram-setup@zram0.service'
 #sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 zswap.enabled=1 zswap.compressor=lz4 zswap.zpool=z3fold zswap.max_pool_percent=25 zswap.accept_threshold_percent=90"/' /etc/default/grub && sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0' | sudo tee -a /etc/fstab
+#sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0' | sudo tee -a /etc/fstab
 #-------
 sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo chmod 755 /Media && mkdir -p ~/.config/qBittorrent && mkdir -p ~/Media && mkdir -p ~/.wine && sudo mkdir -p /var/lib/flatpak && mkdir -p ~/.local/share/flatpak && sudo chattr -R +C ~/Media && sudo chattr -R +C ~/.wine
 #-------------qemu---------------------------------
@@ -131,7 +164,7 @@ else
     echo "Completed in $SECONDS seconds"
 fi
 #defaults,nodatacow,noatime,autodefrag,compress=zstd,space_cache=v2,nofail 0 0
-#defaults,ssd,noatime,compress=zstd:3,space_cache=v2 0 0
+#defaults,ssd,noatime,compress=zstd:1,space_cache=v2 0 0
 #snapshots = defaults,ssd,noatime,compress=no,space_cache=v2 0 0
 #ext4 = defaults,noatime,barrier=1,data=ordered,errors=remount-ro,commit=60,nofail 0 2
 #sudo nano /etc/default/grub
