@@ -17,6 +17,39 @@ if ! curl -sLf -o /dev/null https://google.com; then
     exit 1
 fi
 
+# Prompt for swapfile size
+read -p "Size of Swapfile in GB (just the number): " swap_size
+
+# Validate input
+if ! [[ "$swap_size" =~ ^[0-9]+$ ]]; then
+  echo "Error: Please enter a valid number"
+  exit 1
+fi
+
+# Calculate size in megabytes (for dd)
+swap_mb=$((swap_size * 1024))
+
+# Create swapfile with validation
+sudo btrfs subvol create /Swap || exit 1
+sudo chattr +C /Swap
+sudo swapoff -a
+
+echo "Creating ${swap_size}GB swapfile (this may take a while)..."
+sudo truncate -s 0 /Swap/swapfile
+sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=$swap_mb status=progress conv=fsync
+
+# Configure swap
+sudo chmod 600 /Swap/swapfile
+sudo mkswap /Swap/swapfile
+sudo swapon /Swap/swapfile
+
+# Add to fstab
+echo "/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0" | sudo tee -a /etc/fstab
+
+echo "Swapfile created successfully!"
+echo "New swap configuration:"
+swapon --show
+
 sudo timedatectl set-timezone Asia/Nicosia && sudo timedatectl set-ntp true
 for dir in Media Downloads Music Videos Pictures; do [ ! -d "$HOME/$dir" ] && mkdir "$HOME/$dir"; done && mkdir -p ~/.local/bin/ && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
@@ -164,7 +197,7 @@ sudo pacman -S fastfetch kitty powerline-fonts starship flatpak rsync ttf-firaco
 #----Swap-------
 #sudo sh -c 'pacman -S zram-generator --noconfirm --needed && mkdir -p /etc/systemd/ && printf "[zram0]\nzram-size=ram/2\ncompression-algorithm=lz4\nswap-priority=100\n" > /etc/systemd/zram-generator.conf && systemctl daemon-reload && systemctl start systemd-zram-setup@zram0.service && systemctl enable systemd-zram-setup@zram0.service'
 #sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 zswap.enabled=1 zswap.compressor=lz4 zswap.zpool=z3fold zswap.max_pool_percent=25 zswap.accept_threshold_percent=90"/' /etc/default/grub && echo "lz4" | sudo tee /etc/modules-load.d/lz4.conf && sudo sed -i -E '/^MODULES=\(/ { /lz4/! { s/(MODULES=\(.*)\)/\1 lz4)/ } }' /etc/mkinitcpio.conf && sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0' | sudo tee -a /etc/fstab
+#sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0' | sudo tee -a /etc/fstab
 #-------------qemu---------------------------------
 sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo systemctl enable --now libvirtd && sudo usermod -a -G libvirt $(whoami) && sudo systemctl restart libvirtd && sudo virsh net-define /etc/libvirt/qemu/networks/default.xml && sudo virsh net-autostart default
 #-----------------------------------------------------
