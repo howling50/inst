@@ -235,6 +235,7 @@ else
 fi
 #defaults,nodatacow,noatime,autodefrag,compress=zstd,space_cache=v2,nofail 0 0
 #defaults,ssd,noatime,compress=zstd:3,space_cache=v2 0 0
+#defaults,ssd,noatime,compress=lz4,space_cache=v2 0 0
 #snapshots = defaults,ssd,noatime,compress=no,space_cache=v2 0 0
 #ext4 = defaults,noatime,barrier=1,data=ordered,errors=remount-ro,commit=60,nofail 0 2
 #echo "lz4" | sudo tee /etc/modules-load.d/lz4.conf && sudo sed -i -E '/^MODULES=\(/ { /lz4/! { s/(MODULES=\(.*)\)/\1 lz4)/ } }' /etc/mkinitcpio.conf && sudo mkinitcpio -P && sudo grub-mkconfig -o /boot/grub/grub.cfg
