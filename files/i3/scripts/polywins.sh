@@ -5,7 +5,7 @@ active_text_color="#c0caf5"
 active_bg="#2a2e40"
 active_underline="#ECB3B2"
 
-inactive_text_color="#250F0B"
+inactive_text_color="#808080"
 inactive_bg="#1e1e2e"
 inactive_underline="#3b4048"
 
