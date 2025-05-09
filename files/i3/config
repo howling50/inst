@@ -93,7 +93,7 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
+bindsym $mod+r mode "resize"
 bindsym Mod1+F8 mode "resize"
 
 # other
@@ -108,8 +108,10 @@ bindsym Mod1+Tab exec --no-startup-id rofi -show window
 bindsym $mod+Shift+i exec --no-startup-id rofi-wifi-menu
 bindsym Mod1+F4 kill
 bindsym Mod1+F9 move scratchpad
-bindsym Mod1+F7 scratchpad show
-bindsym Control+Mod1+d exec --no-startup-id bash -c 'i3-msg -t get_tree | jq -r '\''.. | objects | select(.window != null) | .id'\'' | xargs -I{} i3-msg "[con_id={}] move scratchpad"'
+bindsym Mod1+F7 scratchpad show, floating disable
+bindsym $mod+minus move scratchpad
+bindsym $mod+equal scratchpad show, floating disable
+#bindsym Control+Mod1+d exec --no-startup-id bash -c 'i3-msg -t get_tree | jq -r '\''.. | objects | select(.window != null) | .id'\'' | xargs -I{} i3-msg "[con_id={}] move scratchpad"'
 bindsym Control+Mod1+Delete exec --no-startup-id ~/.config/i3/scripts/power-menu.sh
 bindsym $mod+Shift+d exec "killall dunst; dunst & sleep 1 && notify-send 'Dunst Restarted'"
 bindsym $mod+Shift+c exec mousepad ~/.config/i3/config
