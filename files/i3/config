@@ -110,7 +110,7 @@ bindsym Control+Mod1+Escape exec --no-startup-id xfce4-taskmanager
 bindsym Control+Mod1+a exec kitty distrobox-enter -n arch
 bindsym $mod+e exec thunar
 bindsym Print exec flameshot gui
-bindsym Mod1+Tab exec --no-startup-id rofi -show window
+bindsym $mod+Tab focus next
 bindsym $mod+Shift+i exec --no-startup-id rofi-wifi-menu
 bindsym Mod1+F4 kill
 bindsym Mod1+F9 move scratchpad
