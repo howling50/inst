@@ -92,7 +92,7 @@ else
     
     sudo zypper remove -y pragha parole
     sudo zypper addlock parole pragha
-    sudo zypper install -y -n i3 nitrogen polybar python313-i3ipc i3lock pamixer pavucontrol dunst mousepad && chmod +x ~/.config/polybar/launch.sh && chmod +x ~/Downloads/inst/script/autotiling && mv ~/Downloads/inst/script/autotiling ~/.local/bin/
+    sudo zypper install -y -n i3 nitrogen polybar python313-i3ipc i3lock pamixer pavucontrol dunst mousepad wmctrl && chmod +x ~/.config/polybar/launch.sh && chmod +x ~/Downloads/inst/script/autotiling && mv ~/Downloads/inst/script/autotiling ~/.local/bin/
     sudo zypper install -y -n rofi rofi-calc qalculate flameshot numlockx fbreader mpv-mpris gvfs-backend-afc gvfs-backends gvfs-fuse
     mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
     
@@ -182,7 +182,7 @@ fi
 #gamemode= sudo find /usr/ -name libgamemodeauto.so    steam=gamemoderun %command%
 #sudo zypper ar -f https://download.nvidia.com/opensuse/tumbleweed/ nvidia
 #wget $(curl -s https://api.github.com/repos/VirusTotal/vt-cli/releases/latest | grep download | grep  Linux64.zip | cut -d\" -f4) && unzip ./Linux64.zip -d ~/.local/bin/ && chmod +x ~/.local/bin/vt && printf 'apikey = "%s"\n' "f4936f6a4e48bb6046edd0339e759bd9e23834ba995e3e6fb53be6643f8aa61e" > ~/.vt.toml
-#sudo zypper in --no-recommends xfce4-terminal xfce4-taskmanager mousepad polkit-gnome htop NetworkManager-applet ffmpegthumbnailer 
+#sudo zypper in --no-recommends xfce4-terminal xfce4-taskmanager mousepad polkit-gnome htop NetworkManager-applet ffmpegthumbnailer xorg-xprop
 #sudo systemctl stop cups && sudo systemctl disable cups.service cups.socket cups.path
 #sudo opi -n codecs
 #sudo opi -n input-remapper && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
