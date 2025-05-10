@@ -183,7 +183,7 @@ else
     echo "Non-KDE environment detected. Applying basic customizations..."
     
     sudo pacman -R parole --noconfirm
-    sudo pacman -S --noconfirm --needed i3-wm polybar python-i3ipc autotiling i3lock lxappearance udiskie wmctrl xorg-xprop
+    sudo pacman -S --noconfirm --needed i3-wm polybar python-i3ipc autotiling i3lock lxappearance udiskie wmctrl xorg-xprop thunar xfce4-terminal xfce4-taskmanager htop polkit-gnome
     sudo pacman -S --noconfirm --needed man-db bc arandr viewnior rofi rofi-calc flameshot gvfs-mtp gvfs-afc mpv-mpris baobab numlockx tumbler thunar-archive-plugin file-roller fbreader ffmpegthumbnailer catfish pamixer dunst pavucontrol thunar-volman  
     mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
     sudo getent group autologin >/dev/null || sudo groupadd autologin
@@ -205,7 +205,7 @@ sudo pacman -S binutils nmap gcc patch fakeroot bind yazi gimp easytag mediainfo
 sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android-tools mpv vlc libreoffice-fresh cava perl-image-exiftool shotcut hexchat gnome-boxes handbrake --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
-sudo pacman -S gufw proxychains tor pkgconf audacious lutris net-tools zip unzip lsof unrar gparted filezilla --noconfirm --needed
+sudo pacman -S gufw proxychains tor pkgconf audacious lutris net-tools zip lsof unrar gparted filezilla --noconfirm --needed
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
 #-----------------------------------------------------------------
