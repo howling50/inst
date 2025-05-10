@@ -295,3 +295,4 @@ fi
 #sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Arch-Hyprland/main/auto-install.sh) or bash <(curl -s https://raw.githubusercontent.com/mylinuxforwork/dotfiles/main/setup-arch.sh)
 #sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
 #yay -Y --sudoloop=false --save
+#kitty --working-directory %f         cp -f %f ~/.othercrap/current.png && feh --bg-fill "$HOME/.othercrap/current.png"
