@@ -171,7 +171,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Floating window rules
 for_window [title="^Confirm (Replace|Delete|Dialog|Download|Notification|Error|Splash|Confirm Reset|Branchdialog|Media Viewer|Volume Control|Picture-in-Picture)$"] floating enable
-for_window [class="^(?i)(xfce4-taskmanager|nm-applet|nm-connection-editor|blueman-(manager|settings)|org\.blueman\.Blueman|NetworkManager|gnome-network-properties|file-roller|org\.gnome\.FileRoller|pavucontrol|org\.pulseaudio\.pavucontrol|qt[56]ct|yad|lxappearance|rofi|audacious|viewnior|feh|gnome-system-monitor|handbrake|mkvtoolnix-gui|nwg-look)$"] floating enable
+for_window [class="^(?i)(xournalpp|com.github.xournalpp.xournalpp|xfce4-taskmanager|nm-applet|nm-connection-editor|blueman-(manager|settings)|org\.blueman\.Blueman|NetworkManager|gnome-network-properties|file-roller|org\.gnome\.FileRoller|pavucontrol|org\.pulseaudio\.pavucontrol|qt[56]ct|yad|lxappearance|rofi|audacious|viewnior|feh|gnome-system-monitor|handbrake|mkvtoolnix-gui|io.github.giantpinkrobots.varia|com.github.Matoking.protontricks|com.usebottles.bottles|net.davidotek.pupgui2|ventoy|nwg-look)$"] floating enable
 for_window [title="^(Save|Open) File$"] floating enable, move position center
 
 # Disable floating for tooltips/dropdowns
@@ -190,17 +190,18 @@ for_window [title="^Add Folder to Workspace$"] floating enable, resize set 70% 6
 # Workspace assignments
 assign [class="^(?i)firefox(-esr|-bin)?$"] → 2
 assign [class="^(?i)org\.mozilla\.firefox$"] → 2
-assign [class="^(?i)(tor browser|google-chrome(-beta|-dev|-unstable)?|chrome-.*-default|chromium|librewolf|torbrowser(-launcher)?|microsoft-edge(-stable|-beta|-dev|-unstable)?|brave-browser(-beta|-dev|-unstable)?|thorium-browser|cachy-browser|zen(-alpha)?)$"] → 2
+assign [class="^(?i)(tor browser|google-chrome(-beta|-dev|-unstable)?|chrome-.*-default|chromium|librewolf|torbrowser(-launcher)?|microsoft-edge(-stable|-beta|-dev|-unstable)?|brave-browser(-beta|-dev|-unstable)?|thorium-browser|io.gitlab.librewolf-community|app.zen_browser.zen|com.brave.Browser|one.ablaze.floorp|floorp|cachy-browser|zen(-alpha)?)$"] → 2
 assign [class="^(?i)thunar$"] → 3
 assign [class="^(?i)mousepad$"] → 3
 assign [class="^(?i)gamescope$"] → 5
 assign [class="^(?i)steam_app_\d+$"] → 5
 assign [class="^(?i)steam$"] → 4
+assign [class="^(?i)heroic$"] → 4
 assign [class="^(?i)lutris$"] → 4
 assign [class="^(?i)com\.heroicgameslauncher\.hgl$"] → 4
 assign [class="^(?i)mpv$"] → 6
 assign [class="^(?i)vlc$"] → 6
-assign [class="^(?i)virt-manager$"] → 7
+assign [class="^(?i)virt-manager|org.gnome.boxes$"] → 7
 assign [class="^(?i)\.virt-manager-wrapped$"] → 7
 
 # Special cases for Steam/VSCodium/Thunar popups
