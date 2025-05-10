@@ -26,7 +26,7 @@
       # Confirm before logout
       if echo -e "y\nn" | rofi -dmenu -p "Confirm Logout? (y/N)" | grep -qi "y"; then
         # Generic logout (works for most Wayland/X11 environments)
-        loginctl terminate-user "$USER" || i3-msg exit
+        i3-msg exit || loginctl terminate-user "$USER"
       fi
       ;;
     Lock)
