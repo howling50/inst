@@ -209,7 +209,7 @@ sudo pacman -S gufw proxychains tor pkgconf audacious lutris net-tools zip lsof 
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
 #-----------------------------------------------------------------
-yay -S --noconfirm dxvk-bin ventoy-bin winegui-bin input-remapper-bin ttf-ms-fonts dragon-drop heroic-games-launcher-bin urlview pacseek-bin autobrr-bin zen-browser-bin librewolf-bin varia reflector-simple
+yay -S --noconfirm dxvk-bin ventoy-bin winegui-bin ttf-ms-fonts dragon-drop heroic-games-launcher-bin urlview pacseek-bin autobrr-bin zen-browser-bin librewolf-bin varia reflector-simple
 flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub com.github.Matoking.protontricks
 flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub net.davidotek.pupgui2
 wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | jq -r '.assets[] | select(.name | test("ani-cli")) | .browser_download_url') -O ani-cli && chmod +x ani-cli && mv ani-cli ~/.local/bin/ && rm ani-cli*
@@ -217,7 +217,8 @@ curl -sL "https://raw.githubusercontent.com/Benexl/yt-x/refs/heads/master/yt-x" 
 curl -sL https://www.rarlab.com/rar/rarlinux-x64-$(curl -sL https://www.rarlab.com/download.htm | grep -oP 'rarlinux-x64-\K[0-9]+\.tar\.gz' | head -n1) -o rarlinux.tar.gz && tar -xzf rarlinux.tar.gz && mv rar/rar ~/.local/bin/ && rm -rf rar rarlinux.tar.gz
 mkdir -p ~/.othercrap && wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=$HOME/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=$HOME/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;\nStartupNotify=true\nTerminal=false" > ~/.local/share/applications/stacer.desktop && chmod +x ~/.local/share/applications/stacer.desktop
 #-----
-sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
+#sudo pacman -S xbindkeys xorg-xautomation && touch ~/.xbindkeysrc
+yay -S --noconfirm input-remapper-bin && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #sudo systemctl start avahi-daemon && sudo systemctl enable avahi-daemon
 #------------------------------------------------------------------
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
