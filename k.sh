@@ -58,6 +58,39 @@ sudo pacman -S yay --noconfirm --needed && yay -Y --sudoloop --save && yay -Syu 
 chmod +x ~/Downloads/inst/scripts/* && mkdir -p ~/.local/bin/ && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && chmod +x ~/.config/hypr/scripts/* && chmod +x ~/.config/i3/scripts/* && mv ~/Downloads/inst/script/wallpaper ~/.othercrap/
 sudo pacman -S btop wireplumber playerctl bash-completion trash-cli jq gnome-system-monitor file-roller eza zoxide fzf bat feh zip unzip --noconfirm --needed && cp -r ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -r ~/Downloads/inst/files/* /root/.config/ && unzip ~/Downloads/inst/script/1.zip -d ~/.othercrap > /dev/null
 
+# AppArmor installation and configuration
+read -p "Do you want to install and configure AppArmor? [Y/n] " -r
+echo
+
+answer=${REPLY:-Y}
+answer=${answer,,}
+
+if [[ $answer == "y" ]]; then
+    echo "Installing and configuring AppArmor..."
+    
+    if ! sudo pacman -S --noconfirm --needed apparmor; then
+        echo "Error: Failed to install AppArmor!" >&2
+        exit 1
+    fi
+    
+    sudo systemctl start apparmor
+    sudo systemctl enable apparmor
+    
+    if ! sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ apparmor=1 security=apparmor"/' /etc/default/grub; then
+        echo "Error: Failed to modify GRUB configuration!" >&2
+        exit 1
+    fi
+    
+    if ! sudo grub-mkconfig -o /boot/grub/grub.cfg; then
+        echo "Error: Failed to update GRUB!" >&2
+        exit 1
+    fi
+    
+    echo "AppArmor installed and configured successfully!"
+else
+    echo "Skipping AppArmor installation..."
+fi
+
 # Check for KDE Plasma and customize accordingly
 if pacman -Qs plasma-desktop >/dev/null; then
     echo "KDE Plasma detected! Applying KDE customizations..."
@@ -120,8 +153,6 @@ sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
-sudo pacman -S apparmor --noconfirm --needed && sudo systemctl start apparmor && sudo systemctl enable apparmor && sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 quiet apparmor=1 security=apparmor"/' /etc/default/grub
-#-----------------------
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
 echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null && echo 'export VISUAL="nvim"' | tee -a ~/.bash_profile  >/dev/null && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
