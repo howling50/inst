@@ -211,4 +211,5 @@ for_window [class="^(?i)steam$" title="^(?!Steam).*$"] floating enable
 for_window [class="^(?i)codium$" title="^(?!Codium|VSCodium).*$"] floating enable
 for_window [class="^thunar$" title="^File Operation Progress$"] floating enable
 
-
+# NVIDIA Settings for Desktop (Single GPU)
+#exec_always --no-startup-id "bash -c 'export LIBVA_DRIVER_NAME=nvidia; export VDPAU_DRIVER=nvidia; export __GLX_VENDOR_LIBRARY_NAME=nvidia'"
