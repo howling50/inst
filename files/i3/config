@@ -4,8 +4,9 @@ set $mod Mod4
 
 #otherexec
 exec --no-startup-id Polkit.sh
-#exec --no-startup-id xfdesktop
 #exec --no-startup-id picom --config ~/.config/picom/picom.conf
+#exec --no-startup-id nitrogen --restore
+exec --no-startup-id Polkit.sh
 exec --no-startup-id autotiling
 exec --no-startup-id dunst
 exec --no-startup-id log_notifications.sh ~/.othercrap/notification.log
@@ -15,8 +16,11 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id udiskie --tray &
 exec --no-startup-id feh --bg-scale --no-fehbg ~/.othercrap/modified.png
-#exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id xrandr --output $(xrandr --query | grep " connected" | awk '{print $1}') --primary --auto
+#exec_always --no-startup-id xset r rate 250 40
+
+# Font
+font pango:FiraCode Nerd Font Mono Bold
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
