@@ -68,7 +68,7 @@ shuffle_local_music() {
   notification "Shuffle Play local music"
 
   # Play music in $mDIR on shuffle
-  mpv --shuffle --no-config --loop-playlist=inf --vid=no "$mDIR"
+  mpv --shuffle --no-config --script=/usr/lib/mpv-mpris/mpris.so --loop-playlist=inf --vid=no "$mDIR"
 }
 
 # Main function for playing online music
@@ -86,7 +86,7 @@ play_online_music() {
   notification "$choice"
   
   # Play the selected online music using mpv
-  mpv --shuffle --no-config --vid=no "$link"
+  mpv --shuffle --no-config --script=/usr/lib/mpv-mpris/mpris.so --vid=no "$link"
 }
 
 # Function to stop music and kill mpv processes
