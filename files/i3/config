@@ -17,7 +17,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id udiskie --tray &
 exec --no-startup-id feh --bg-scale --no-fehbg ~/.othercrap/modified.png
 exec_always --no-startup-id xrandr --output $(xrandr --query | grep " connected" | awk '{print $1}') --primary --auto
-#exec_always --no-startup-id xset r rate 250 40
+exec_always --no-startup-id xset r rate 250 40
 
 # Font
 font pango:FiraCode Nerd Font Mono Bold
