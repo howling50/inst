@@ -136,3 +136,12 @@ format = 'via [🎁 $version](208 bold) '
 [container]
 style = "bg:#3B4252"
 format = '[$symbol \[$name\]]($style)'
+
+[lua]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
