@@ -137,7 +137,7 @@ sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
 sudo pacman -S catfish pacman-contrib gufw proxychains tor neovim pkgconf audacious lutris net-tools zip unzip lsof unrar gparted filezilla ffmpegthumbnailer --noconfirm --needed
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
-sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xorg-xkill podman distrobox e2fsprogs ripgrep memtest86+ tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
+sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr cmus xdotool podman distrobox e2fsprogs ripgrep memtest86+ tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm dxvk-bin winegui-bin input-remapper-bin ttf-ms-fonts heroic-games-launcher-bin urlview pacseek-bin autobrr-bin zen-browser-bin librewolf-bin varia
 flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub com.github.Matoking.protontricks
