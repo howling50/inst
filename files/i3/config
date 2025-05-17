@@ -7,7 +7,7 @@ exec --no-startup-id Polkit.sh
 #exec --no-startup-id picom --config ~/.config/picom/picom.conf
 #exec --no-startup-id nitrogen --restore
 exec --no-startup-id Polkit.sh
-exec --no-startup-id autotiling
+exec_always --no-startup-id sh -c 'pkill -x autotiling; sleep 1; autotiling'
 exec --no-startup-id dunst
 exec --no-startup-id log_notifications.sh ~/.othercrap/notification.log
 exec --no-startup-id setxkbmap -layout us,gr -option grp:alt_caps_toggle
@@ -50,8 +50,7 @@ bindsym $mod+Shift+Right move right
 #bindsym $mod+h split h
 #bindsym $mod+v split v
 
-# autotiling
-bindsym $mod+Shift+a exec autotiling
+# autotiling without autotiling script
 #for_window [class="URxvt"] split toggle
 
 # change focus between tiling / floating windows
@@ -109,6 +108,8 @@ bindsym $mod+r mode "resize"
 bindsym Mod1+F8 mode "resize"
 
 # other
+bindsym $mod+Shift+a exec ani-cli --rofi
+bindsym $mod+Shift+y exec yt-x -s rofi --disown-streaming-process --disown-downloading-process
 bindsym $mod+Shift+f exec RofiFind.sh -m
 bindsym $mod+Shift+h exec ~/.config/i3/scripts/keybind.sh
 bindsym F12 exec xfce4-terminal --drop-down
