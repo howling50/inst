@@ -43,7 +43,8 @@ inputbar {
   enabled:                     true;
   spacing:                     0px;
   padding:                     100px 40px;
-  background-color:            #44475a;
+  background-color:            transparent;
+  background-image:            url("~/.othercrap/N51R4iT.jpg", width);
   text-color:                  #bd93f9;
   children:                    [ "textbox-prompt-colon", "dummy","prompt"];
 }
