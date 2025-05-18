@@ -141,7 +141,7 @@ sudo setsebool -P selinuxuser_execmod 1 && sudo setsebool -P selinuxuser_exechea
 #-----------------
 sudo firewall-cmd --permanent --new-zone=howling && sudo firewall-cmd --permanent --zone=howling --add-source=192.168.0.0/24 && sudo firewall-cmd --permanent --zone=howling --set-target=ACCEPT && sudo firewall-cmd --permanent --zone=public --add-port=23232/tcp && sudo firewall-cmd --permanent --zone=public --add-port=23232/udp && sudo firewall-cmd --permanent --zone=public --set-target=DROP && sudo firewall-cmd --set-default-zone=public && sudo firewall-cmd --reload
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
-mkdir -p ~/.steam/root/compatibilitytools.d/ && curl -O https://i.imgur.com/N51R4iT.jpg && cp  ~/Downloads/inst/N51R4iT.jpg ~/.othercrap/ && sudo usermod -aG gamemode,wheel,adbusers,libvirt "$(whoami)"
+mkdir -p ~/.steam/root/compatibilitytools.d/ && sudo usermod -aG gamemode,wheel,adbusers,libvirt "$(whoami)"
 wget $(curl -s https://api.github.com/repos/UniqProject/BDInfo/releases/latest | grep download | grep .zip  | cut -d\" -f4) && mv BDInfo_*.zip ~/.othercrap
 wget $(curl -s https://api.github.com/repos/sc0ty/subsync/releases/latest | grep download | grep portable-amd64.exe   | cut -d\" -f4) && mv subsync-*-portable-amd64.exe ~/.othercrap
 wget $(curl -s https://api.github.com/repos/noDRM/DeDRM_tools/releases/latest | grep download | grep .zip   | cut -d\" -f4) && mv DeDRM_tools_*.zip ~/.othercrap
