@@ -112,7 +112,6 @@ bindsym $mod+Shift+f exec RofiFind.sh -m
 bindsym $mod+Shift+h exec ~/.config/i3/scripts/keybind.sh
 bindsym F12 exec xfce4-terminal --drop-down
 bindsym Control+Mod1+Escape exec xfce4-taskmanager
-bindsym Control+Mod1+a exec kitty distrobox-enter -n arch
 bindsym $mod+e exec thunar
 bindsym Print exec flameshot gui
 bindsym Mod1+Tab focus next
