@@ -25,7 +25,7 @@ window {
 
 /* ---- Listview ---- */
 listview {
-  columns: 2;
+  columns: 1;
   lines: 7;
   fixed-height: false;
   background-color: #282a36;
