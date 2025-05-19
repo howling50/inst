@@ -1,7 +1,10 @@
 #!/bin/bash
+# Converted for i3 with feh/dunst/rofi
+
 # Variables
 wallpaper_current="$HOME/.othercrap/current.png"
 wallpaper_output="$HOME/.othercrap/modified.png"
+rofi_theme="$HOME/.config/rofi/config-wallpaper-effect.rasi"
 
 # Directory for notifications
 iDIR="$HOME/.config/dunst"
@@ -43,7 +46,7 @@ main() {
         [[ "$effect" != "No Effects" ]] && options+=("$effect")
     done
 
-    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i)
+    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i -config $rofi_theme)
 
     # Process user choice
     if [[ -n "$choice" ]]; then
