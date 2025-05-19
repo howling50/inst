@@ -12,6 +12,7 @@ window {
 
 /* ---- Mainbox ---- */
 mainbox {
+    background-image:            url("~/.config/rofi/1.jpg", height);
   children:
     [ "inputbar", "listview"];
 }
@@ -19,6 +20,7 @@ mainbox {
 entry {
   expand: true;
   placeholder: " 🎞️ Search / Choose Wallpaper";
+  background-color: #282a36;
   horizontal-align: 0.5;
   horizontal-align: 0.5;
 }
@@ -31,6 +33,7 @@ listview {
   padding: 10px;
   columns: 6;
   lines: 2;
+  background-color: #282a36;
   flow: horizontal;
   fixed-width: true;
   fixed-height: true;
@@ -48,7 +51,7 @@ element {
 }
 
 element selected.normal {
-  background-color: transparent;
+  background-color: #7B6C5B;
 }
 
 element-icon {
