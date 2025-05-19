@@ -12,7 +12,7 @@ window {
 
 /* ---- Mainbox ---- */
 mainbox {
-    background-image:            url("~/.config/rofi/1.jpg", height);
+  background-image:            url("~/.othercrap/modified.png", width);
   children:
     [ "inputbar", "listview"];
 }
