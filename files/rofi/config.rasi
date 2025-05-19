@@ -11,5 +11,25 @@ configuration {
   display-window: " 🪟  Window";
   display-calc: " 📟  Calc";
   sidebar-mode: true;
+  /*---------- Drun settings ----------*/
+  drun-categories: "";
+  drun-match-fields: "name,generic,exec,categories,keywords";
+  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+  drun-show-actions: false;
+  drun-url-launcher: "xdg-open";
+  drun-use-desktop-cache: false;
+  drun-reload-desktop-cache: false;
+  drun {
+  /** Parse user desktop files. */
+  parse-user:   true;
+  /** Parse system desktop files. */
+  parse-system: true;
+    }
+  /*---------- Window switcher settings ----------*/
+  window-match-fields: "title,class,role,name,desktop"; 
+  window-command: "wmctrl -i -R {window}";
+  window-format: "{w} - {c} - {t:0}";
+  window-thumbnail: false;
 }
+
 @theme "material.rasi"
