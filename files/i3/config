@@ -30,7 +30,7 @@ bindsym Control+Mod1+t exec kitty
 bindsym Control+Mod1+x exec wmctrl -c $(xdotool getwindowfocus) -i
 
 # start program launcher
-bindsym $mod+Return exec rofi -show drun
+bindsym $mod+Return exec rofi -show drun -theme ~/.config/rofi/launcher.rasi
 
 # change focus
 bindsym $mod+Left focus left
@@ -114,7 +114,7 @@ bindsym F12 exec xfce4-terminal --drop-down
 bindsym Control+Mod1+Escape exec xfce4-taskmanager
 bindsym $mod+e exec thunar
 bindsym Print exec flameshot gui
-bindsym Mod1+Tab rofi -show window
+bindsym Mod1+Tab rofi -show window -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+i exec rofi-wifi-menu
 bindsym Mod1+F4 kill
