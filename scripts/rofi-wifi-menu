@@ -98,7 +98,7 @@ def dmenu_cmd(num_lines, prompt="Networks", active_lines=None):
                 "bemenu": ["-p", str(prompt)],
                 "wofi": ["-p", str(prompt)],
                 "fuzzel": ["-p", str(prompt), "--log-level", "none"]}
-    command = shlex.split(CONF.get('dmenu', 'dmenu_command', fallback="rofi -dmenu -i -theme ~/.config/rofi/basiceffect.rasi"))
+    command = shlex.split(CONF.get('dmenu', 'dmenu_command', fallback="rofi -dmenu -i -theme ~/.config/rofi/basicnetwork.rasi"))
     cmd_base = basename(command[0])
     command.extend(cli_args())
     command.extend(commands.get(cmd_base, []))
