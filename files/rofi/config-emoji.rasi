@@ -2,6 +2,7 @@
 
 /* ---- Mainbox ---- */
 mainbox {
+  background-image:            url("~/.othercrap/modified.png", width);
   children:
     [ "inputbar", "message", "listview"];
 }
@@ -24,6 +25,7 @@ listview {
   columns: 2;
   lines: 7;
   fixed-height: false;
+  background-color: #282a36;
   scrollbar: true;
   spacing: 6px;
   cycle: true;
