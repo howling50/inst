@@ -1,42 +1,106 @@
-@import "~/.config/rofi/config.rasi"  
+@import "~/.config/rofi/config.rasi"
 
-/* ---- Mainbox ---- */
-mainbox {
-  children:
-    [ "inputbar", "listview"];
-}
-
-/* ---- Entry ---- */ 
-entry {
-  expand: false;
-  width: 25%;
-  width: 25%;
-  placeholder: " 📻 Choose Music Source";
-  horizontal-align: 0.5;
-  horizontal-align: 0.5;
+/*****----- Global Properties -----*****/
+* {
+    font:                        "FiraCode Nerd Font Mono Bold 10";
+    background:                  #282a36;
+    background-alt:              #462D23;
+    foreground:                  #FFFFFF;
+    selected:                    #E25F3E;
+    active:                      #7B6C5B;
+    urgent:                      #934A1C;
 }
 
 /* ---- Window ---- */
 window {
-  width: 28%;
-  height: inherit;
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    width:                       28%;
+    height:                      inherit;
+    border-radius:               15px;
+    background-color:            @background;
+}
+
+/* ---- Mainbox ---- */
+mainbox {
+    children:                   [ "inputbar", "listview" ];
+    background-image:            url("~/.config/rofi/1.jpg", height);
+    spacing:                    0px;
+}
+
+/* ---- Inputbar ----- */
+inputbar {
+    spacing:                    10px;
+    padding:                    15px;
+    border-radius:             10px;
+    background-color:          @background-alt;
+    text-color:                @foreground;
+    children:                  [ "textbox-prompt-colon", "entry" ];
+}
+
+textbox-prompt-colon {
+    str:                       "";
+    background-color:          inherit;
+    text-color:                inherit;
+}
+
+/* ---- Entry ---- */ 
+entry {
+    expand:                    false;
+    width:                     25%;
+    placeholder:              " 📻 Choose Music Source";
+    horizontal-align:          0.5;
+    placeholder-color:         inherit;
+    background-color:          inherit;
+    text-color:                inherit;
+    cursor:                    text;
 }
 
 /* ---- Listview ---- */
 listview {
-  fixed-columns: false;
-  scrollbar: false;
-  colums: 1;
-  lines: 3;
-  spacing: 6px;
-  cycle: true;
+    fixed-columns:            false;
+    scrollbar:                false;
+    columns:                  1;
+    lines:                    3;
+    spacing:                  10px;
+    cycle:                    true;
+    background-color:         #282a36;
+    text-color:               @foreground;
 }
 
-/* ---- Element ---- */
-element-icon {
-  	size: 0%;
+/* ---- Elements ---- */
+element {
+    spacing:                  15px;
+    padding:                  8px;
+    border-radius:            10px;
+    cursor:                   pointer;
 }
+
+element normal.normal {
+    background-color:         transparent;
+    text-color:               @foreground;
+}
+element normal.urgent {
+    background-color:         @urgent;
+    text-color:               @foreground;
+}
+element normal.active {
+    background-color:         @active;
+    text-color:               @foreground;
+}
+element selected.normal {
+    background-color:         @selected;
+    text-color:               @foreground;
+}
+
+element-icon {
+    size:                     0%;
+}
+
 element-text {
-    horizontal-align: 0.5;
-    
+    horizontal-align:         0.5;
+    vertical-align:           0.5;
+    margin:                   0px;
+    padding:                  0px;
 }
