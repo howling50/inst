@@ -1,36 +1,97 @@
-@import "~/.config/rofi/config.rasi" 
+@import "~/.config/rofi/config.rasi"
+
+/*****----- Global Properties -----*****/
+* {
+    font:                        "FiraCode Nerd Font Mono Bold 10";
+    background:                  #282a36;
+    background-alt:              #462D23;
+    foreground:                  #FFFFFF;
+    selected:                    #E25F3E;
+    active:                      #7B6C5B;
+    urgent:                      #934A1C;
+}
 
 /* ---- Window ---- */
 window {
-  width: inherit;
-  height: inherit;
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       1000px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+    border-radius:               15px;
+    background-color:            @background;
 }
 
 /* ---- Mainbox ---- */
 mainbox {
-  children:
-    [ "inputbar", "listview"];
+  children:                    [ "inputbar", "listview" ];
+  background-color:            transparent;
+  spacing:                     0px;
 }
 
 /* ---- Entry ---- */ 
 entry {
   placeholder: "📻 Choose Media or Stations to play";
+  placeholder-color:           inherit;
+  background-color:            inherit;
+  text-color:                  inherit;
+  cursor:                      text;
+}
+
+/* ---- Inputbar ----- */
+inputbar {
+    spacing:                     10px;
+    padding:                     15px;
+    border-radius:               10px;
+    background-color:            @background-alt;
+    text-color:                  @foreground;
+    children:                    [ "textbox-prompt-colon", "entry" ];
+}
+
+textbox-prompt-colon {
+    str:                         "";
+    background-color:            inherit;
+    text-color:                  inherit;
 }
 
 /* ---- Listview ---- */
 listview {
   columns: 2;
   lines: 7;
-  fixed-height: false;
   margin: 10px;
-  scrollbar: true;
-  spacing: 6px;
+  spacing: 10px;
   cycle: true;
+  scrollbar:                   false;
+  background-color:            transparent;
+  text-color:                  @foreground;
 }
 
 /* ---- Elements ---- */
 element {
   orientation: horizontal;
+  spacing:                     15px;
+  padding:                     8px;
+  border-radius:               10px;
+  cursor:                      pointer;
+}
+
+element normal.normal {
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+element normal.urgent {
+    background-color:            @urgent;
+    text-color:                  @foreground;
+}
+element normal.active {
+    background-color:            @active;
+    text-color:                  @foreground;
+}
+element selected.normal {
+    background-color:            @selected;
+    text-color:                  @foreground;
 }
 
 element-icon {
