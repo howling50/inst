@@ -4,7 +4,7 @@
 # Variables
 wallpaper_current="$HOME/.othercrap/current.png"
 wallpaper_output="$HOME/.othercrap/modified.png"
-rofi_theme="$HOME/.config/rofi/config-wallpaper-effect.rasi"
+rofi_theme="$HOME/.config/rofi/basiceffect.rasi"
 
 # Directory for notifications
 iDIR="$HOME/.config/dunst"
