@@ -113,8 +113,7 @@ element-text {
 }
 
 element selected.normal {
-  background-color:            #8bf10c;
-  text-color:                  #000000;
+  background-color: #7B6C5B;
 }
 
 /*****----- Message -----*****/
