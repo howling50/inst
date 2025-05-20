@@ -90,8 +90,7 @@ element normal.active {
     text-color:               @foreground;
 }
 element selected.normal {
-    background-color:         @selected;
-    text-color:               @foreground;
+  background-color: #7B6C5B;
 }
 
 element-icon {
