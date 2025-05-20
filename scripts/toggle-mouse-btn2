@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+id="$(xinput list \
+     | grep -i 'slave\s\+pointer' \
+     | grep -i mouse \
+     | grep -Eo 'id=[0-9]+' \
+     | head -n1 \
+     | cut -d= -f2)"
+
+if [ -z "$id" ]; then
+  notify-send "Mouse Toggle" "No mouse device found!" -u critical
+  exit 1
+fi
+btn2="$(xinput get-button-map "$id" | awk '{print $2}')"
+
+if [ "$btn2" -eq 0 ]; then
+  # re-enable middle click
+  xinput set-button-map "$id" 1 2 3 4 5 6 7 8 9 \
+    && notify-send "Mouse Toggle" "Middle-click enabled ✅"
+else
+  # disable middle click
+  xinput set-button-map "$id" 1 0 3 4 5 6 7 8 9 \
+    && notify-send "Mouse Toggle" "Middle-click disabled ❌"
+fi
