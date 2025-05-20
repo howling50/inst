@@ -188,7 +188,7 @@ element selected.urgent {
     text-color:                  @foreground;
 }
 element selected.active {
-    background-color:            @urgent;
+    background-color:            #7B6C5B;
     text-color:                  @foreground;
 }
 element-icon {
