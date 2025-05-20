@@ -46,3 +46,7 @@ element-text {
   margin: 0px;
   padding: 0px;
 }
+
+element selected.normal {
+  background-color: #7B6C5B;
+}
