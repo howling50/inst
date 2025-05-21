@@ -115,7 +115,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
-alias ffarch="kitten icat -n --place 25x20@0x8 --scale-up --align left ~/.config/fastfetch/arch.gif | fastfetch --logo-width 21 --raw -" 
+alias ff="kitten icat -n --place 25x20@0x8 --scale-up --align left ~/.config/fastfetch/arch.gif | fastfetch --logo-width 21 --raw -" 
 sddmthemeauto() {
     sudo cp -rf "$1" "/usr/share/sddm/themes/sequoia/backgrounds/default"
 }
@@ -152,7 +152,6 @@ vimhistory() {
 }
 alias dragondrop-auto="dragon-drop -a -x "
 alias rpmorphan="sudo zypper packages --orphaned"
-alias ff="fastfetch"
 alias sba="source ~/.bashrc"
 aria2cauto() {
     # Ensure a URL is provided
