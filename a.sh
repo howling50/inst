@@ -86,25 +86,50 @@ fi
 
 # Check for NVIDIA GPU and offer driver installation
 if ! command -v lspci &>/dev/null; then
-    sudo pacman -S --noconfirm pciutils
+    echo "Installing pciutils for hardware detection..."
+    sudo pacman -S --noconfirm pciutils || { echo "Failed to install pciutils!" >&2; exit 1; }
 fi
-if lspci | grep -i NVIDIA >/dev/null; then
+
+# Detect NVIDIA GPU
+if lspci | grep -iq "nvidia"; then
     echo "NVIDIA GPU detected!"
     read -p "Do you want to install NVIDIA drivers? [Y/n] " -r
-    echo
-    
+    echo  
+
     answer=${REPLY:-Y}
-    answer=${answer,,} 
+    answer=${answer,,}
 
     if [[ $answer == "y" ]]; then
-        echo "Installing NVIDIA drivers..."
-        if ! sudo pacman -S --noconfirm --needed nvidia-dkms nvidia-utils nvidia-settings; then
+        echo "Installing NVIDIA drivers and configuration..."
+
+        # Install packages
+        if ! sudo pacman -S --needed --noconfirm \
+            nvidia-dkms nvidia-utils nvidia-settings \
+            libva-nvidia-driver lib32-nvidia-utils opencl-nvidia; then
             echo "Error: Failed to install NVIDIA packages!" >&2
             exit 1
         fi
-        echo "NVIDIA drivers installed successfully!"
+
+        # Add NVIDIA kernel parameter to GRUB
+        if grep -q "^GRUB_CMDLINE_LINUX_DEFAULT=" /etc/default/grub; then
+            sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ nvidia-drm.modeset=1"/' /etc/default/grub
+            echo "Updated GRUB kernel parameters for NVIDIA."
+            
+            # Regenerate GRUB config (only if GRUB is installed)
+            if command -v grub-mkconfig &>/dev/null && [ -d /boot/grub ]; then
+                echo "Regenerating GRUB configuration..."
+                sudo grub-mkconfig -o /boot/grub/grub.cfg
+            else
+                echo "Warning: GRUB not detected. Update your bootloader config manually!"
+            fi
+        else
+            echo "Error: GRUB_CMDLINE_LINUX_DEFAULT not found in /etc/default/grub!" >&2
+            exit 1
+        fi
+
+        echo "NVIDIA drivers installed successfully! Reboot to apply changes."
     else
-        echo "Skipping NVIDIA driver installation..."
+        echo "Skipping NVIDIA driver installation."
     fi
 fi
 
@@ -247,7 +272,7 @@ mkdir -p ~/.othercrap/eac3to && unrar x ~/Downloads/inst/script/eac3to_3.44.rar 
 mv ~/Downloads/inst/1.mp3 ~/.othercrap/ && rm ~/Downloads/inst/script/autotiling
 #sudo sed -i 's/version_sort -r/version_sort/' /etc/grub.d/10_linux
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=15/' /etc/default/grub
-sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 usbcore.autosuspend=-1"/' /etc/default/grub
+sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ usbcore.autosuspend=-1"/' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo sed -i '/^Defaults timestamp_timeout=/s/.*/# Defaults timestamp_timeout=15/' /etc/sudoers
 sudo mkdir -p /etc/pacman.d/hooks/ && printf '[Trigger]\nOperation = Upgrade\nType = Package\nTarget = *\n\n[Action]\nDescription = Checking system for unmerged .pacnew files...\nWhen = PostTransaction\nExec = /usr/bin/pacdiff --output\nDepends = pacman-contrib\n' | sudo tee /etc/pacman.d/hooks/pacdiff.hook >/dev/null  
