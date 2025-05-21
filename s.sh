@@ -99,6 +99,8 @@ else
     echo "Desktop Specific customization completed!"
 fi
 
+grep -qF '[[ -f ~/.bashrc ]] && . ~/.bashrc' ~/.bash_profile || echo -e '\n# Source .bashrc\n[[ -f ~/.bashrc ]] && . ~/.bashrc' >> ~/.bash_profile; grep -qF '[[ -f ~/.profile ]] && . ~/.profile' ~/.bash_profile || echo -e '\n# Source .profile\n[[ -f ~/.profile ]] && . ~/.profile' >> ~/.bash_profile; grep -qF 'export EDITOR=nvim' ~/.bash_profile || echo -e '\n# Core Exports\nexport EDITOR=nvim\nexport VISUAL=nvim\nexport PATH="$HOME/.local/bin:$PATH"\nexport TERMINAL="kitty"\nexport DIFFPROG="nvim -d"' >> ~/.bash_profile
+sudo bash -c 'grep -qF "[[ -f ~/.bashrc ]] && . ~/.bashrc" /root/.bash_profile || echo -e "\n# Source .bashrc\n[[ -f ~/.bashrc ]] && . ~/.bashrc" >> /root/.bash_profile; grep -qF "[[ -f ~/.profile ]] && . ~/.profile" /root/.bash_profile || echo -e "\n# Source .profile\n[[ -f ~/.profile ]] && . ~/.profile" >> /root/.bash_profile; grep -qF "export EDITOR=nvim" /root/.bash_profile || echo -e "\n# Core Exports\nexport EDITOR=nvim\nexport VISUAL=nvim\nexport PATH=\"\$HOME/.local/bin:\$PATH\"\nexport TERMINAL=\"kitty\"\nexport DIFFPROG=\"nvim -d\"" >> /root/.bash_profile'
 sudo sed -i 's/^\s*#\?\s*download\.max_concurrent_connections\s*=\s*[0-9]\+/download.max_concurrent_connections = 15/' /etc/zypp/zypp.conf && sudo hostnamectl set-hostname "$(whoami)"
 chmod +x ~/.config/hypr/scripts/* && chmod +x ~/.config/i3/scripts/* && cp -rf ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -rf ~/Downloads/inst/files/* /root/.config/ && chmod +x ~/Downloads/inst/scripts/* && mkdir -p ~/.local/bin/ && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && mv ~/Downloads/inst/script/wallpaper ~/.othercrap/ && unzip -o ~/Downloads/inst/script/1.zip -d ~/.othercrap > /dev/null
 unzip ~/Downloads/inst/script/FiraMono.zip -d ~/Downloads/inst/script/ > /dev/null 2>&1 && rm -f ~/Downloads/inst/script/README.md ~/Downloads/inst/script/LICENSE 2> /dev/null && sudo mkdir -p /usr/share/fonts/opentype && sudo mv ~/Downloads/inst/script/*.otf /usr/share/fonts/opentype/ && sudo fc-cache -f -v
@@ -135,7 +137,7 @@ sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 #------------------------------------------rkhunter--------------------------
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
-sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf' && echo 'export VISUAL="nvim"' | sudo tee -a /root/.profile  >/dev/null && echo 'export VISUAL="nvim"' | tee -a ~/.profile  >/dev/null
+sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo zypper addlock qbittorrent && flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications:create
 sudo setsebool -P selinuxuser_execmod 1 && sudo setsebool -P selinuxuser_execheap 1 && sudo setsebool -P selinuxuser_execstack 1
