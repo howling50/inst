@@ -17,6 +17,55 @@ if ! curl -sLf -o /dev/null https://google.com; then
     exit 1
 fi
 
+# Nvidia Install
+if ! command -v lspci &>/dev/null; then
+    echo "Installing pciutils for hardware detection..."
+    sudo pacman -S --noconfirm pciutils || { echo "Failed to install pciutils!" >&2; exit 1; }
+fi
+
+# Detect NVIDIA GPU
+if lspci | grep -iq "nvidia"; then
+    echo "NVIDIA GPU detected!"
+    read -p "Do you want to install NVIDIA drivers? [Y/n] " -r
+    echo  # Add a new line after prompt
+
+    answer=${REPLY:-Y}
+    answer=${answer,,}  # Convert to lowercase
+
+    if [[ $answer == "y" ]]; then
+        echo "Installing NVIDIA drivers and configuration..."
+
+        # Install packages
+        if ! sudo pacman -S --needed --noconfirm \
+            nvidia-dkms nvidia-utils nvidia-settings \
+            libva-nvidia-driver lib32-nvidia-utils opencl-nvidia; then
+            echo "Error: Failed to install NVIDIA packages!" >&2
+            exit 1
+        fi
+
+        # Add NVIDIA kernel parameter to GRUB
+        if grep -q "^GRUB_CMDLINE_LINUX_DEFAULT=" /etc/default/grub; then
+            sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ nvidia-drm.modeset=1"/' /etc/default/grub
+            echo "Updated GRUB kernel parameters for NVIDIA."
+            
+            # Regenerate GRUB config (only if GRUB is installed)
+            if command -v grub-mkconfig &>/dev/null && [ -d /boot/grub ]; then
+                echo "Regenerating GRUB configuration..."
+                sudo grub-mkconfig -o /boot/grub/grub.cfg
+            else
+                echo "Warning: GRUB not detected. Update your bootloader config manually!"
+            fi
+        else
+            echo "Error: GRUB_CMDLINE_LINUX_DEFAULT not found in /etc/default/grub!" >&2
+            exit 1
+        fi
+
+        echo "NVIDIA drivers installed successfully! Reboot to apply changes."
+    else
+        echo "Skipping NVIDIA driver installation."
+    fi
+fi
+
 # Prompt for swapfile size
 read -p "Size of Swapfile in GB (just the number): " swap_size
 
