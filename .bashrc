@@ -741,3 +741,9 @@ _fzf_comprun() {
 eval "$(fzf --bash)"
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
+
+
+# Auto-start DWM if we're on TTY1 and .xinitrc contains "exec i3"
+#if [[ "$(tty)" == "/dev/tty1" ]] && [ -f "$HOME/.xinitrc" ] && grep -q "^exec i3" "$HOME/.xinitrc"; then
+#    startx
+#fi
