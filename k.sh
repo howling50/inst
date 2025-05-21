@@ -203,11 +203,11 @@ sudo cp ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------------------------------------------------------------------
 sudo bash -c 'echo "244" > /proc/sys/kernel/sysrq' && sudo bash -c 'echo "kernel.sysrq = 244" >> /etc/sysctl.d/99-sysctl.conf'
-echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null && echo 'export VISUAL="nvim"' | tee -a ~/.bash_profile  >/dev/null && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent kwalletmanager/' /etc/pacman.conf && sudo usermod -aG gamemode,wheel,adbusers "$(whoami)" && flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications:create
 #-----------------
-echo 'if [ -f ~/.bashrc ]; then' >> ~/.bash_profile && echo '    source ~/.bashrc' >> ~/.bash_profile && echo 'fi' >> ~/.bash_profile && echo 'if [ -f /root/.bashrc ]; then' | sudo tee -a /root/.bash_profile && echo '    source /root/.bashrc' | sudo tee -a /root/.bash_profile && echo 'fi' | sudo tee -a /root/.bash_profile
+grep -qF '[[ -f ~/.bashrc ]] && . ~/.bashrc' ~/.bash_profile || echo -e '\n# Source .bashrc\n[[ -f ~/.bashrc ]] && . ~/.bashrc' >> ~/.bash_profile; grep -qF '[[ -f ~/.profile ]] && . ~/.profile' ~/.bash_profile || echo -e '\n# Source .profile\n[[ -f ~/.profile ]] && . ~/.profile' >> ~/.bash_profile; grep -qF 'export EDITOR=nvim' ~/.bash_profile || echo -e '\n# Core Exports\nexport EDITOR=nvim\nexport VISUAL=nvim\nexport PATH="$HOME/.local/bin:$PATH"\nexport TERMINAL="kitty"\nexport DIFFPROG="nvim -d"' >> ~/.bash_profile
+sudo bash -c 'grep -qF "[[ -f ~/.bashrc ]] && . ~/.bashrc" /root/.bash_profile || echo -e "\n# Source .bashrc\n[[ -f ~/.bashrc ]] && . ~/.bashrc" >> /root/.bash_profile; grep -qF "[[ -f ~/.profile ]] && . ~/.profile" /root/.bash_profile || echo -e "\n# Source .profile\n[[ -f ~/.profile ]] && . ~/.profile" >> /root/.bash_profile; grep -qF "export EDITOR=nvim" /root/.bash_profile || echo -e "\n# Core Exports\nexport EDITOR=nvim\nexport VISUAL=nvim\nexport PATH=\"\$HOME/.local/bin:\$PATH\"\nexport TERMINAL=\"kitty\"\nexport DIFFPROG=\"nvim -d\"" >> /root/.bash_profile'
 #-----------------
 sudo sed -i '$ a unqualified-search-registries=["registry.access.redhat.com", "registry.fedoraproject.org", "docker.io"]' /etc/containers/registries.conf
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
