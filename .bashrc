@@ -95,8 +95,6 @@ PROMPT_COMMAND='history -a'
 export EDITOR=nvim
 export VISUAL=nvim
 export PATH="$HOME/.local/bin:$PATH"
-export TERMINAL="kitty"
-export DIFFPROG="nvim -d"
 # Expand the history size
 export HISTFILESIZE=10000
 export HISTSIZE=3000
