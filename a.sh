@@ -94,7 +94,7 @@ fi
 if lspci | grep -iq "nvidia"; then
     echo "NVIDIA GPU detected!"
     read -p "Do you want to install NVIDIA drivers? [Y/n] " -r
-    echo  
+    echo
 
     answer=${REPLY:-Y}
     answer=${answer,,}
@@ -102,7 +102,7 @@ if lspci | grep -iq "nvidia"; then
     if [[ $answer == "y" ]]; then
         echo "Installing NVIDIA drivers and configuration..."
 
-        # Install packages
+        # Install packages with error handling
         if ! sudo pacman -S --needed --noconfirm \
             nvidia-dkms nvidia-utils nvidia-settings \
             libva-nvidia-driver lib32-nvidia-utils opencl-nvidia; then
@@ -110,24 +110,52 @@ if lspci | grep -iq "nvidia"; then
             exit 1
         fi
 
-        # Add NVIDIA kernel parameter to GRUB
+        # Configure GRUB parameters
         if grep -q "^GRUB_CMDLINE_LINUX_DEFAULT=" /etc/default/grub; then
-            sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ nvidia-drm.modeset=1"/' /etc/default/grub
-            echo "Updated GRUB kernel parameters for NVIDIA."
-            
-            # Regenerate GRUB config (only if GRUB is installed)
+            # Add nvidia-drm.modeset=1 if not already present
+            if ! grep -q "nvidia-drm.modeset=1" /etc/default/grub; then
+                sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/s/"$/ nvidia-drm.modeset=1"/' /etc/default/grub
+                echo "Added NVIDIA kernel parameter to GRUB"
+            else
+                echo "NVIDIA kernel parameter already exists in GRUB"
+            fi
+
+            # Modify mkinitcpio.conf safely
+            if [ -f /etc/mkinitcpio.conf ]; then
+                # Remove 'kms' hook if present
+                sudo sed -i.bak '/^HOOKS=/s/\<kms\>//g; s/  */ /g; s/( /(/g; s/ )/)/g' /etc/mkinitcpio.conf
+                # Ensure dkms hook is present
+                if ! grep -q "dkms" /etc/mkinitcpio.conf; then
+                    sudo sed -i '/^HOOKS=/s/)/ dkms)/' /etc/mkinitcpio.conf
+                fi
+                # Regenerate initramfs
+                if ! sudo mkinitcpio -P; then
+                    echo "Error: Failed to regenerate initramfs!" >&2
+                    exit 1
+                fi
+            fi
+
+            # Regenerate GRUB config if available
             if command -v grub-mkconfig &>/dev/null && [ -d /boot/grub ]; then
                 echo "Regenerating GRUB configuration..."
-                sudo grub-mkconfig -o /boot/grub/grub.cfg
+                if ! sudo grub-mkconfig -o /boot/grub/grub.cfg; then
+                    echo "Error: Failed to regenerate GRUB config!" >&2
+                    exit 1
+                fi
             else
-                echo "Warning: GRUB not detected. Update your bootloader config manually!"
+                echo "Note: For non-GRUB bootloaders, add these parameters manually:"
+                echo "Kernel parameters: nvidia-drm.modeset=1"
+                echo "Initramfs hooks: Ensure 'kms' is removed and 'dkms' is present"
             fi
         else
-            echo "Error: GRUB_CMDLINE_LINUX_DEFAULT not found in /etc/default/grub!" >&2
+            echo "Error: GRUB configuration missing required line!" >&2
+            echo "Add this line to /etc/default/grub:"
+            echo 'GRUB_CMDLINE_LINUX_DEFAULT="quiet nvidia-drm.modeset=1"'
             exit 1
         fi
 
-        echo "NVIDIA drivers installed successfully! Reboot to apply changes."
+        echo -e "\nNVIDIA drivers installed successfully!"
+        echo "A system reboot is required to apply changes."
     else
         echo "Skipping NVIDIA driver installation."
     fi
