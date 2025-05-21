@@ -51,7 +51,7 @@ echo "New swap configuration:"
 swapon --show
 
 sudo timedatectl set-timezone Asia/Nicosia && sudo timedatectl set-ntp true
-for dir in Media Downloads Music Videos Pictures; do [ ! -d "$HOME/$dir" ] && mkdir "$HOME/$dir"; done && mkdir -p ~/.local/bin/ && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
+for dir in Media Downloads Music Videos Pictures; do [ ! -d "$HOME/$dir" ] && mkdir "$HOME/$dir"; done && mkdir -p ~/.local/bin/
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 git clone https://aur.archlinux.org/yay-bin.git && cd ~/Downloads/inst/yay-bin && makepkg --noconfirm -si && cd ~/Downloads/inst && rm -rf yay-bin && yay -Syu --noconfirm && yay -Y --sudoloop --save
@@ -251,11 +251,11 @@ sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
 sudo mv ~/Downloads/inst/rkhunter.conf.local  /etc/rkhunter.conf.local
 sudo bash -c 'echo  "PermitRootLogin no" >> /etc/ssh/sshd_config'
 #-----------------------
-echo 'export VISUAL="nvim"' | sudo tee -a /root/.bash_profile  >/dev/null && echo 'export VISUAL="nvim"' | tee -a ~/.bash_profile  >/dev/null
 sudo sed -i 's/^#dynamic_chain/dynamic_chain/' /etc/proxychains.conf && sudo sed -i 's/^strict_chain/#strict_chain/' /etc/proxychains.conf
 sudo sed -i 's/^#IgnorePkg   =/IgnorePkg = qbittorrent kwalletmanager/' /etc/pacman.conf && flatpak override com.usebottles.bottles --user --filesystem=xdg-data/applications:create
 #-----------------
-echo 'if [ -f ~/.bashrc ]; then' >> ~/.bash_profile && echo '    source ~/.bashrc' >> ~/.bash_profile && echo 'fi' >> ~/.bash_profile && echo 'if [ -f /root/.bashrc ]; then' | sudo tee -a /root/.bash_profile && echo '    source /root/.bashrc' | sudo tee -a /root/.bash_profile && echo 'fi' | sudo tee -a /root/.bash_profile
+grep -qF '[[ -f ~/.bashrc ]] && . ~/.bashrc' ~/.bash_profile || echo -e '\n# Source .bashrc\n[[ -f ~/.bashrc ]] && . ~/.bashrc' >> ~/.bash_profile; grep -qF '[[ -f ~/.profile ]] && . ~/.profile' ~/.bash_profile || echo -e '\n# Source .profile\n[[ -f ~/.profile ]] && . ~/.profile' >> ~/.bash_profile; grep -qF 'export EDITOR=nvim' ~/.bash_profile || echo -e '\n# Core Exports\nexport EDITOR=nvim\nexport VISUAL=nvim\nexport PATH="$HOME/.local/bin:$PATH"\nexport TERMINAL="kitty"\nexport DIFFPROG="nvim -d"' >> ~/.bash_profile
+sudo bash -c 'grep -qF "[[ -f ~/.bashrc ]] && . ~/.bashrc" /root/.bash_profile || echo -e "\n# Source .bashrc\n[[ -f ~/.bashrc ]] && . ~/.bashrc" >> /root/.bash_profile; grep -qF "[[ -f ~/.profile ]] && . ~/.profile" /root/.bash_profile || echo -e "\n# Source .profile\n[[ -f ~/.profile ]] && . ~/.profile" >> /root/.bash_profile; grep -qF "export EDITOR=nvim" /root/.bash_profile || echo -e "\n# Core Exports\nexport EDITOR=nvim\nexport VISUAL=nvim\nexport PATH=\"\$HOME/.local/bin:\$PATH\"\nexport TERMINAL=\"kitty\"\nexport DIFFPROG=\"nvim -d\"" >> /root/.bash_profile'
 #-----------------
 sudo sed -i '$ a unqualified-search-registries=["registry.access.redhat.com", "registry.fedoraproject.org", "docker.io"]' /etc/containers/registries.conf
 sudo systemctl enable fstrim.timer && sudo systemctl start fstrim.timer
