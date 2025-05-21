@@ -115,6 +115,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+alias ffarch="kitten icat -n --place 30x30@0x6 --scale-up --align left ~/.config/fastfetch/arch.gif | fastfetch --logo-width 30 --raw -" 
 sddmthemeauto() {
     sudo cp -rf "$1" "/usr/share/sddm/themes/sequoia/backgrounds/default"
 }
