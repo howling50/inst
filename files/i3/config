@@ -188,7 +188,7 @@ bindsym XF86Calculator exec --no-startup-id gnome-calculator
 
 # Floating window rules
 for_window [title="^Confirm (Replace|Delete|Dialog|Download|Notification|Error|Splash|Confirm Reset|Branchdialog|Media Viewer|Volume Control|Picture-in-Picture)$"] floating enable
-for_window [class="^(?i)(calibre|gnome-calculator|varia|xournalpp|com.github.xournalpp.xournalpp|xfce4-taskmanager|nm-applet|nm-connection-editor|blueman-(manager|settings)|org\.blueman\.Blueman|NetworkManager|gnome-network-properties|file-roller|org\.gnome\.FileRoller|pavucontrol|org\.pulseaudio\.pavucontrol|qt[56]ct|yad|lxappearance|rofi|audacious|viewnior|feh|gnome-system-monitor|handbrake|mkvtoolnix-gui|io.github.giantpinkrobots.varia|com.github.Matoking.protontricks|com.usebottles.bottles|net.davidotek.pupgui2|ventoy|nwg-look)$"] floating enable
+for_window [class="^(?i)(Btrfs Assistant|calibre|gnome-calculator|varia|xournalpp|com.github.xournalpp.xournalpp|xfce4-taskmanager|nm-applet|nm-connection-editor|blueman-(manager|settings)|org\.blueman\.Blueman|NetworkManager|gnome-network-properties|file-roller|org\.gnome\.FileRoller|pavucontrol|org\.pulseaudio\.pavucontrol|qt[56]ct|yad|lxappearance|rofi|audacious|viewnior|feh|gnome-system-monitor|handbrake|mkvtoolnix-gui|io.github.giantpinkrobots.varia|com.github.Matoking.protontricks|com.usebottles.bottles|net.davidotek.pupgui2|ventoy|nwg-look)$"] floating enable
 for_window [title="^(Save|Open) File$"] floating enable, move position center
 
 # Disable floating for tooltips/dropdowns
