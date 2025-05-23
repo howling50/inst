@@ -9,6 +9,17 @@ else
     DISTRO="arch"
 fi
 
+# Check for vanilla Arch snapshot configuration in fstab
+if [ ! -f /etc/fstab ]; then
+    echo "Error: /etc/fstab not found." >&2
+    exit 1
+fi
+
+if grep -v '^[[:space:]]*#' /etc/fstab | grep -q -E '/\.snapshots[[:space:]]+|subvol=[^ ]*@\.snapshots'; then
+    echo "Remove existing /.snapshots mount or @.snapshots subvolume from fstab before running script!" >&2
+    exit 1
+fi
+
 # Print disk layout
 lsblk
 
