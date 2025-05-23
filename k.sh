@@ -17,6 +17,32 @@ if ! curl -sLf -o /dev/null https://google.com; then
     exit 1
 fi
 
+# Check multilib status
+if grep -q '^\[multilib\]' /etc/pacman.conf; then
+    echo "Multilib is already enabled."
+else
+    if grep -q '^#\[multilib\]' /etc/pacman.conf; then
+        echo "Enabling multilib repository..."
+        
+        # Backup original config
+        backup_file="/etc/pacman.conf.$(date +%Y%m%d%H%M%S).bak"
+        sudo cp /etc/pacman.conf "$backup_file"
+        
+        # Enable multilib
+        sudo sed -i \
+            -e 's/^#\[multilib\]$/\[multilib\]/' \
+            -e '/^\[multilib\]$/{n;s/^#\(Include[[:space:]]*=[[:space:]]*\/etc\/pacman.d\/mirrorlist\)/\1/}' \
+            /etc/pacman.conf
+        sudo pacman -Syu --noconfirm
+
+        echo "Multilib enabled successfully. Backup created at $backup_file"
+        echo "Consider running 'sudo pacman -Syu' to update package lists"
+    else
+        echo "Error: No multilib section found in /etc/pacman.conf" >&2
+        exit 1
+    fi
+fi
+
 # Nvidia Install
 if ! command -v lspci &>/dev/null; then
     echo "Installing pciutils for hardware detection..."
@@ -138,6 +164,33 @@ if [[ $answer == "y" ]]; then
     echo "AppArmor installed and configured successfully!"
 else
     echo "Skipping AppArmor installation..."
+fi
+
+# Check if SDDM is enabled as the display manager
+if systemctl is-enabled sddm &>/dev/null; then
+    echo "SDDM detected - configuring Sequoia theme..."
+    
+    # Clone theme repository and prepare files
+    git clone https://codeberg.org/minMelody/sddm-sequoia.git ~/sequoia || { echo "Git clone failed"; exit 1; }
+    rm -rf ~/sequoia/.git
+    sudo mv ~/sequoia /usr/share/sddm/themes/ || { echo "Theme move failed"; exit 1; }
+
+    # Configure theme settings
+    sudo mkdir -p /etc/sddm.conf.d
+    echo -e "[Theme]\nCurrent = sequoia" | sudo tee "/etc/sddm.conf.d/theme.conf.user" >/dev/null
+
+    # Install custom wallpaper
+    sudo cp -rf "$HOME/.othercrap/wallpaper/monkey.png" "/usr/share/sddm/themes/sequoia/backgrounds/default" || { echo "Wallpaper copy failed"; exit 1; }
+    
+    # Update theme configuration
+    sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' "/usr/share/sddm/themes/sequoia/theme.conf" 2>/dev/null
+
+    # Configure autologin for current user
+    # echo -e "[Autologin]\nUser=$(whoami)" | sudo tee "/etc/sddm.conf" >/dev/null
+
+    echo "SDDM theme configuration completed successfully!"
+else
+    echo "SDDM not detected - skipping theme configuration."
 fi
 
 # Check for KDE Plasma and customize accordingly
