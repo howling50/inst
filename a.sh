@@ -17,6 +17,32 @@ if ! curl -sLf -o /dev/null https://google.com; then
     exit 1
 fi
 
+# Check multilib status
+if grep -q '^\[multilib\]' /etc/pacman.conf; then
+    echo "Multilib is already enabled."
+else
+    if grep -q '^#\[multilib\]' /etc/pacman.conf; then
+        echo "Enabling multilib repository..."
+        
+        # Backup original config
+        backup_file="/etc/pacman.conf.$(date +%Y%m%d%H%M%S).bak"
+        sudo cp /etc/pacman.conf "$backup_file"
+        
+        # Enable multilib
+        sudo sed -i \
+            -e 's/^#\[multilib\]$/\[multilib\]/' \
+            -e '/^\[multilib\]$/{n;s/^#\(Include[[:space:]]*=[[:space:]]*\/etc\/pacman.d\/mirrorlist\)/\1/}' \
+            /etc/pacman.conf
+        sudo pacman -Syu --noconfirm
+
+        echo "Multilib enabled successfully. Backup created at $backup_file"
+        echo "Consider running 'sudo pacman -Syu' to update package lists"
+    else
+        echo "Error: No multilib section found in /etc/pacman.conf" >&2
+        exit 1
+    fi
+fi
+
 # Prompt for swapfile size
 read -p "Size of Swapfile in GB (just the number): " swap_size
 
