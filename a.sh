@@ -244,6 +244,33 @@ else
     echo "Skipping AppArmor installation..."
 fi
 
+# Check if SDDM is enabled as the display manager
+if systemctl is-enabled sddm &>/dev/null; then
+    echo "SDDM detected - configuring Sequoia theme..."
+    
+    # Clone theme repository and prepare files
+    git clone https://codeberg.org/minMelody/sddm-sequoia.git ~/sequoia || { echo "Git clone failed"; exit 1; }
+    rm -rf ~/sequoia/.git
+    sudo mv ~/sequoia /usr/share/sddm/themes/ || { echo "Theme move failed"; exit 1; }
+
+    # Configure theme settings
+    sudo mkdir -p /etc/sddm.conf.d
+    echo -e "[Theme]\nCurrent = sequoia" | sudo tee "/etc/sddm.conf.d/theme.conf.user" >/dev/null
+
+    # Install custom wallpaper
+    sudo cp -rf "$HOME/.othercrap/wallpaper/monkey.png" "/usr/share/sddm/themes/sequoia/backgrounds/default" || { echo "Wallpaper copy failed"; exit 1; }
+    
+    # Update theme configuration
+    sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' "/usr/share/sddm/themes/sequoia/theme.conf" 2>/dev/null
+
+    # Configure autologin for current user
+    # echo -e "[Autologin]\nUser=$(whoami)" | sudo tee "/etc/sddm.conf" >/dev/null
+
+    echo "SDDM theme configuration completed successfully!"
+else
+    echo "SDDM not detected - skipping theme configuration."
+fi
+
 # Check for KDE Plasma and customize accordingly
 if pacman -Qs plasma-desktop >/dev/null; then
     echo "KDE Plasma detected! Applying KDE customizations..."
@@ -262,7 +289,7 @@ else
     echo "Non-KDE environment detected. Applying basic customizations..."
     
     sudo pacman -R parole --noconfirm
-    sudo pacman -S --noconfirm --needed mousepad xorg-xev i3-wm polybar python-i3ipc autotiling i3lock wmctrl xorg-xprop thunar gvfs gvfs-mtp gvfs-afc xfce4-terminal xfce4-taskmanager htop polkit-gnome xorg-xinput network-manager-applet lxappearance
+    sudo pacman -S --noconfirm --needed mousepad xorg-xev i3-wm polybar python-i3ipc autotiling i3lock wmctrl xorg-xprop thunar gvfs gvfs-mtp gvfs-afc xfce4-terminal xfce4-taskmanager htop polkit-gnome xorg-xinput network-manager-applet lxappearance && chmod +x ~/.config/polybar/launch.sh
     sudo pacman -S --noconfirm --needed gnome-calculator man-db bc arandr viewnior rofi rofi-calc flameshot mpv-mpris baobab numlockx tumbler thunar-archive-plugin file-roller fbreader ffmpegthumbnailer catfish pamixer dunst pavucontrol thunar-volman file-roller
     mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
     sudo getent group autologin >/dev/null || sudo groupadd autologin
