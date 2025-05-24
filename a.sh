@@ -136,7 +136,10 @@ if lspci | grep -iq "nvidia"; then
         # Install packages with error handling
         if ! sudo pacman -S --needed --noconfirm \
             nvidia-dkms nvidia-utils nvidia-settings \
-            libva-nvidia-driver lib32-nvidia-utils opencl-nvidia; then
+            libva-nvidia-driver lib32-nvidia-utils \
+            lib32-opencl-nvidia opencl-nvidia \
+            libvdpau libxnvctrl \
+            vulkan-icd-loader lib32-vulkan-icd-loader; then
             echo "Error: Failed to install NVIDIA packages!" >&2
             exit 1
         fi
