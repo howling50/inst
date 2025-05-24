@@ -73,12 +73,7 @@ run_cmd() {
                 systemctl reboot
                 ;;
             --logout)
-                case "$DESKTOP_SESSION" in
-                    openbox)  openbox --exit ;;
-                    bspwm)    bspc quit ;;
-                    i3)       i3-msg exit ;;
-                    plasma)   qdbus org.kde.ksmserver /KSMServer logout 0 0 0 ;;
-                esac
+                i3-msg exit
                 ;;
             --lock)
                 if command -v betterlockscreen &>/dev/null; then
