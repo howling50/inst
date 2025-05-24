@@ -76,6 +76,11 @@ echo "Swapfile created successfully!"
 echo "New swap configuration:"
 swapon --show
 
+if ! command -v zramctl >/dev/null || ! [[ -f /usr/lib/systemd/system-generators/zram-generator ]]; then
+  echo "Installing zram-generator..."
+  sudo sh -c 'pacman -S zram-generator --noconfirm --needed && mkdir -p /etc/systemd/ && printf "[zram0]\nzram-size=ram/2\ncompression-algorithm=lz4\nswap-priority=100\n" > /etc/systemd/zram-generator.conf && systemctl daemon-reload && systemctl start systemd-zram-setup@zram0.service && systemctl enable systemd-zram-setup@zram0.service'
+fi
+
 sudo timedatectl set-timezone Asia/Nicosia && sudo timedatectl set-ntp true
 for dir in Media Downloads Music Videos Pictures; do [ ! -d "$HOME/$dir" ] && mkdir "$HOME/$dir"; done && mkdir -p ~/.local/bin/
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
