@@ -257,6 +257,7 @@ if systemctl is-enabled sddm &>/dev/null; then
     echo "SDDM detected - configuring Sequoia theme..."
     
     # Clone theme repository and prepare files
+    sudo pacman -S --noconfirm --needed qt6-5compat qt6-declarative qt6-svg
     git clone https://codeberg.org/minMelody/sddm-sequoia.git ~/sequoia || { echo "Git clone failed"; exit 1; }
     rm -rf ~/sequoia/.git
     sudo mv ~/sequoia /usr/share/sddm/themes/ || { echo "Theme move failed"; exit 1; }
