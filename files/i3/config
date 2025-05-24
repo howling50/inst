@@ -108,7 +108,7 @@ bindsym Mod1+F8 mode "resize"
 # other
 bindsym $mod+Shift+a exec ani-cli --rofi
 bindsym $mod+Shift+y exec yt-x -s rofi --disown-streaming-process --disown-downloading-process
-bindsym $mod+Shift+f exec RofiFind.sh -m
+bindsym $mod+Shift+f exec RofiFind.sh -m -H
 bindsym $mod+Shift+h exec ~/.config/i3/scripts/keybind.sh
 bindsym F12 exec xfce4-terminal --drop-down
 bindsym Control+Mod1+Escape exec xfce4-taskmanager
@@ -224,7 +224,7 @@ assign [class="^(?i)\.virt-manager-wrapped$"] → 7
 # Special cases for Steam/VSCodium/Thunar popups
 for_window [class="^(?i)steam$" title="^(?!Steam).*$"] floating enable
 for_window [class="^(?i)codium$" title="^(?!Codium|VSCodium).*$"] floating enable
-for_window [class="^thunar$" title="^File Operation Progress$"] floating enable
+#for_window [class="^thunar$" title="^File Operation Progress$"] floating enable
 
 # NVIDIA Settings for Desktop (Single GPU)
 #exec_always --no-startup-id "systemctl --user import-environment LIBVA_DRIVER_NAME VDPAU_DRIVER __GLX_VENDOR_LIBRARY_NAME"
