@@ -333,7 +333,7 @@ curl -sL https://www.rarlab.com/rar/rarlinux-x64-$(curl -sL https://www.rarlab.c
 mkdir -p ~/.othercrap && wget https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/Stacer-1.1.0-x64.AppImage && chmod +x Stacer-1.1.0-x64.AppImage && cp Stacer-1.1.0-x64.AppImage ~/.othercrap/ && mkdir -p ~/.local/share/applications/ && echo -e "[Desktop Entry]\nName=Stacer\nExec=$HOME/.othercrap/Stacer-1.1.0-x64.AppImage\nIcon=$HOME/.othercrap/Stacer/icon.png\nType=Application\nCategories=Utility;\nStartupNotify=true\nTerminal=false" > ~/.local/share/applications/stacer.desktop && chmod +x ~/.local/share/applications/stacer.desktop
 #-----
 #sudo pacman -S xbindkeys xorg-xautomation && touch ~/.xbindkeysrc
-yay -S --noconfirm input-remapper-bin && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
+#yay -S --noconfirm input-remapper-bin && sudo systemctl enable input-remapper && sudo systemctl restart input-remapper
 #sudo systemctl start avahi-daemon && sudo systemctl enable avahi-daemon
 #------------------------------------------------------------------
 sudo bash -c 'echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf'
