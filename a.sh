@@ -264,7 +264,7 @@ if systemctl is-enabled sddm &>/dev/null; then
     sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' "/usr/share/sddm/themes/sequoia/theme.conf" 2>/dev/null
 
     # Configure autologin for current user
-    # echo -e "[Autologin]\nUser=$(whoami)" | sudo tee "/etc/sddm.conf" >/dev/null
+    echo -e "[Autologin]\nUser=$(whoami)" | sudo tee "/etc/sddm.conf" >/dev/null
 
     echo "SDDM theme configuration completed successfully!"
 else
