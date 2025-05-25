@@ -5,7 +5,7 @@ set -euo pipefail
 # Configuration & Variables
 # ---------------------------
 LOG_FILE="/home/howling/autodefrag.log"
-FRAG_THRESHOLD=${1:-20}  # Configurable via command line
+FRAG_THRESHOLD=${1:-30}  # Configurable via command line
 LOCK_FILE="/tmp/autodefrag.lock"
 
 # ---------------------------
@@ -49,9 +49,14 @@ done
 
 # Check privileges and sudo access
 if [[ "$EUID" -ne 0 ]]; then
+    log_message "info" "Checking passwordless sudo access for required commands."
+    if ! sudo -n true 2>/dev/null; then
+        log_message "error" "Passwordless sudo not configured. Exiting."
+        exit 1
+    fi
     for cmd in ntfsdefrag fuser findmnt; do
-        if ! sudo -l "${cmd}" &> /dev/null; then
-            log_message "error" "Missing sudo permission for ${cmd}"
+        if ! sudo -n command -v "${cmd}" >/dev/null 2>&1; then
+            log_message "error" "Passwordless sudo access for ${cmd} not available. Exiting."
             exit 1
         fi
     done
@@ -65,7 +70,7 @@ fi
 declare -a ntfs_mounts
 while IFS= read -r -d '' mount_point; do
     ntfs_mounts+=("${mount_point}")
-done < <(sudo findmnt -nt ntfs,fuseblk -o TARGET -N -P0 2>/dev/null)
+done < <(sudo findmnt -nt ntfs,fuseblk -o TARGET 2>/dev/null)
 
 if [ "${#ntfs_mounts[@]}" -eq 0 ]; then
     log_message "info" "No NTFS drives found. Exiting."
@@ -92,7 +97,6 @@ for mount_point in "${ntfs_mounts[@]}"; do
     fi
 
     # Check fragmentation
-    local frag_output frag_percentage
     frag_output=$(LANG=C sudo ntfsdefrag -n -v "${mount_point}" 2>&1 || true)
     frag_percentage=$(echo "${frag_output}" | awk '/Fragmentation:/ {gsub(/%/,""); print $2}')
 
