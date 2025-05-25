@@ -36,7 +36,6 @@ else
         sudo pacman -Syu --noconfirm
 
         echo "Multilib enabled successfully. Backup created at $backup_file"
-        echo "Consider running 'sudo pacman -Syu' to update package lists"
     else
         echo "Error: No multilib section found in /etc/pacman.conf" >&2
         exit 1
