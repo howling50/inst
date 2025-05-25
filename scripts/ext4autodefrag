@@ -20,9 +20,15 @@ log() {
 
 get_frag_score() {
     local mount_point="$1"
-    local output
+    local output exit_code
     output=$(sudo e4defrag -c "$mount_point" 2>&1)
-    echo "$output" | sed -n 's/.*Fragmentation score[[:space:]]\+\([0-9]\+\).*/\1/p'
+    exit_code=$?
+    if [[ $exit_code -ne 0 ]]; then
+        log "ERROR: e4defrag -c failed for $mount_point (exit code $exit_code). Output: $output"
+        echo ""
+        return 1
+    fi
+    echo "$output" | sed -n 's/.*Fragmentation score[[:space:]]*:*[[:space:]]*\([0-9]\+\).*/\1/p'
 }
 
 # ---------------------------
@@ -31,8 +37,8 @@ get_frag_score() {
 # Check privileges and dependencies
 if [[ "$EUID" -ne 0 ]]; then
   for cmd in e4defrag findmnt; do
-    if ! sudo -l "$cmd" &> /dev/null; then
-      log "ERROR: Missing sudo permission for $cmd"
+    if ! sudo -n "$cmd" --help &>/dev/null; then
+      log "ERROR: Missing passwordless sudo permission for $cmd"
       exit 1
     fi
   done
@@ -46,8 +52,8 @@ if [ -f "$LOCK_FILE" ]; then
     exit 1
 fi
 
-touch "$LOCK_FILE"  # Always create with current user's permissions
-trap 'rm -f "$LOCK_FILE"' EXIT  # Now matches creation context
+touch "$LOCK_FILE"
+trap 'rm -f "$LOCK_FILE"' EXIT
 
 # Check dependencies
 for cmd in e4defrag findmnt; do
