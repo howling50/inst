@@ -5,7 +5,7 @@ set -euo pipefail
 # ---------------------------
 # Configuration
 # ---------------------------
-THRESHOLD=${1:-20}  # Configurable via command line
+THRESHOLD=${1:-30}  # Configurable via command line
 LOG_FILE="/home/howling/ext4_defrag.log"
 LOCK_FILE="/tmp/ext4_defrag.lock"
 
@@ -46,12 +46,8 @@ if [ -f "$LOCK_FILE" ]; then
     exit 1
 fi
 
-if [[ "$EUID" -eq 0 ]]; then
-    touch "$LOCK_FILE"
-else
-    sudo touch "$LOCK_FILE"
-fi
-trap 'rm -f "$LOCK_FILE"' EXIT
+touch "$LOCK_FILE"  # Always create with current user's permissions
+trap 'rm -f "$LOCK_FILE"' EXIT  # Now matches creation context
 
 # Check dependencies
 for cmd in e4defrag findmnt; do
