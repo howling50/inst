@@ -36,7 +36,6 @@ else
         sudo pacman -Syu --noconfirm
 
         echo "Multilib enabled successfully. Backup created at $backup_file"
-        echo "Consider running 'sudo pacman -Syu' to update package lists"
     else
         echo "Error: No multilib section found in /etc/pacman.conf" >&2
         exit 1
@@ -64,7 +63,10 @@ if lspci | grep -iq "nvidia"; then
         # Install packages
         if ! sudo pacman -S --needed --noconfirm \
             nvidia-dkms nvidia-utils nvidia-settings \
-            libva-nvidia-driver lib32-nvidia-utils opencl-nvidia; then
+            libva-nvidia-driver lib32-nvidia-utils \
+            lib32-opencl-nvidia opencl-nvidia \
+            libvdpau libxnvctrl \
+            vulkan-icd-loader lib32-vulkan-icd-loader; then
             echo "Error: Failed to install NVIDIA packages!" >&2
             exit 1
         fi
@@ -171,6 +173,7 @@ if systemctl is-enabled sddm &>/dev/null; then
     echo "SDDM detected - configuring Sequoia theme..."
     
     # Clone theme repository and prepare files
+    sudo pacman -S --noconfirm --needed qt6-5compat qt6-declarative qt6-svg
     git clone https://codeberg.org/minMelody/sddm-sequoia.git ~/sequoia || { echo "Git clone failed"; exit 1; }
     rm -rf ~/sequoia/.git
     sudo mv ~/sequoia /usr/share/sddm/themes/ || { echo "Theme move failed"; exit 1; }
