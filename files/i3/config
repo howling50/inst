@@ -146,10 +146,10 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 bindsym $mod+Shift+KP_End exec firefox
-#bindsym $mod+Shift+KP_Down exec flatpak run app.zen_browser.zen
-#bindsym $mod+Shift+KP_Page_Down exec flatpak run io.gitlab.librewolf-community
-bindsym $mod+Shift+KP_Down exec zen-browser
-bindsym $mod+Shift+KP_Page_Down exec librewolf
+bindsym $mod+Shift+KP_Down exec flatpak run app.zen_browser.zen
+bindsym $mod+Shift+KP_Page_Down exec flatpak run io.gitlab.librewolf-community
+#bindsym $mod+Shift+KP_Down exec zen-browser
+#bindsym $mod+Shift+KP_Page_Down exec librewolf
 bindsym $mod+Shift+KP_Left exec mousepad
 bindsym $mod+Shift+KP_Begin exec audacious
 bindsym $mod+Shift+KP_Right exec mpv --player-operation-mode=pseudo-gui
