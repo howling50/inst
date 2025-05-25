@@ -1,6 +1,6 @@
 #!/bin/bash
 # Configuration
-WALL_DIR="$HOME/.othercrap/wallpaper"
+WALL_DIR="$HOME/Pictures/wallpaper"
 CURRENT_WALL="$HOME/.othercrap/current.png"
 MODIFY_WALL="$HOME/.othercrap/modified.png"
 ROFI_THEME="$HOME/.config/rofi/config-wallpaper.rasi"
