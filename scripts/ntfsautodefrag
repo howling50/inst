@@ -21,11 +21,6 @@ log_message() {
 # ---------------------------
 # Initial Setup
 # ---------------------------
-# Create log directory with proper permissions
-mkdir -p "${LOG_DIR}" || {
-    echo "Error: Cannot create log directory ${LOG_DIR}" >&2
-    exit 1
-}
 touch "${LOG_FILE}" || {
     echo "Error: Cannot write to log file ${LOG_FILE}" >&2
     exit 1
