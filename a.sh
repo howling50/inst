@@ -291,8 +291,10 @@ if pacman -Qs plasma-desktop >/dev/null; then
     sudo pacman -S yakuake oxygen-icons gwenview okular kvantum-qt5 audiocd-kio --noconfirm --needed
     
     git clone https://github.com/yeyushengfan258/Win11OS-kde
+    cd "${required_dir}/Win11OS-kde"
+    chmod +x "${required_dir}/Win11OS-kde/install.sh"
     sudo bash "${required_dir}/Win11OS-kde/install.sh"
-    
+    cd "${required_dir}"
     echo "KDE customization completed!"
 else
     echo "Non-KDE environment detected. Applying basic customizations..."
