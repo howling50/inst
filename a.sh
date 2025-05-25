@@ -107,9 +107,10 @@ if [[ $answer == "y" ]]; then
     fi
 
     theme_dir="${required_dir}/Top-5-Bootloader-Themes"
+    cd "${theme_dir}"
     chmod +x "${theme_dir}/install.sh"
     sudo "${theme_dir}/install.sh"
-
+    cd "${required_dir}"
     echo "GRUB theme installation completed!"
 else
     echo "Skipping GRUB theme installation..."
