@@ -44,16 +44,6 @@ case $DISTRO in
             echo "Yay not found - install AUR packages manually:"
             echo "yay -S btrfs-assistant btrfsmaintenance"
         fi
-        mkinitcpio_has_grub_btrfs_overlayfs_hook() {
-            grep -qe "^HOOKS=.*grub-btrfs-overlayfs" /etc/mkinitcpio.conf
-        }
-        if ! mkinitcpio_has_grub_btrfs_overlayfs_hook; then
-            sudo sed -i -E \
-                's/^(HOOKS=\([^)]*)/\1 grub-btrfs-overlayfs/' \
-                /etc/mkinitcpio.conf
-            echo "Added grub-btrfs-overlayfs hook to mkinitcpio.conf"
-        fi
-        sudo mkinitcpio -P
         ;;
 esac
 
