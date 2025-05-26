@@ -37,30 +37,22 @@ case $DISTRO in
         sudo pacman -S btrfs-progs snapper grub-btrfs btrfs-assistant btrfsmaintenance --noconfirm --needed
         ;;
     "arch")
-        # Install core packages
         sudo pacman -S btrfs-progs snapper grub-btrfs --noconfirm --needed
-
-        # Install AUR packages (including grub-btrfs-overlayfs)
         if command -v yay &>/dev/null; then
             yay -S btrfs-assistant btrfsmaintenance --noconfirm --needed
         else
             echo "Yay not found - install AUR packages manually:"
             echo "yay -S btrfs-assistant btrfsmaintenance"
         fi
-
-        # Add grub-btrfs-overlayfs hook to mkinitcpio if missing
         mkinitcpio_has_grub_btrfs_overlayfs_hook() {
             grep -qe "^HOOKS=.*grub-btrfs-overlayfs" /etc/mkinitcpio.conf
         }
         if ! mkinitcpio_has_grub_btrfs_overlayfs_hook; then
-            # Safely add the hook to the existing HOOKS array
             sudo sed -i -E \
                 's/^(HOOKS=\([^)]*)/\1 grub-btrfs-overlayfs/' \
                 /etc/mkinitcpio.conf
             echo "Added grub-btrfs-overlayfs hook to mkinitcpio.conf"
         fi
-
-        # Rebuild initramfs
         sudo mkinitcpio -P
         ;;
 esac
