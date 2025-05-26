@@ -111,5 +111,21 @@ echo "Adding Snapper Support..."
 printf "[Unit]\nDescription=Regenerate grub-btrfs.cfg\n\n[Service]\nType=oneshot\nEnvironment=\"PATH=/sbin:/bin:/usr/sbin:/usr/bin\"\nEnvironmentFile=/etc/default/grub-btrfs/config\nExecStart=bash -c 'if [[ -z \$(/usr/bin/findmnt -n / | /usr/bin/grep --fixed-strings \".snapshots\") ]]; then if [ -s \"\${GRUB_BTRFS_GRUB_DIRNAME:-/boot/grub}/grub-btrfs.cfg\" ]; then /etc/grub.d/41_snapshots-btrfs; else \${GRUB_BTRFS_MKCONFIG:-grub-mkconfig} -o \${GRUB_BTRFS_GRUB_DIRNAME:-/boot/grub}/grub.cfg; fi; fi'\n" | sudo tee /etc/systemd/system/grub-btrfs-snapper.service > /dev/null
 printf "[Unit]\nDescription=Monitors for new snapshots\n\n[Path]\nPathModified=/.snapshots\n\n[Install]\nWantedBy=multi-user.target\n" | sudo tee /etc/systemd/system/grub-btrfs-snapper.path > /dev/null
 sudo systemctl daemon-reload && sudo systemctl enable --now grub-btrfs-snapper.path
+mkinitcpio_has_grub_btrfs_overlayfs_hook() {
+    grep -qe "^HOOKS=.*grub-btrfs-overlayfs" /etc/mkinitcpio.conf
+}
+if ! mkinitcpio_has_grub_btrfs_overlayfs_hook; then
+    sudo sed -r -e 's/(^HOOKS=[\"|(][^")]+)/\1 grub-btrfs-overlayfs/gi' \
+        -i /etc/mkinitcpio.conf
+    echo "Added grub-btrfs-overlayfs hook to mkinitcpio.conf"
+fi
+sudo mkinitcpio -P
 
 echo "Setup complete! Reboot recommended."
+
+
+
+
+
+
+
