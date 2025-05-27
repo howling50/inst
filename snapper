@@ -101,6 +101,12 @@ if ! grep -q "@snapshots" /etc/fstab; then
     echo "UUID=$UUID /.snapshots btrfs defaults,ssd,discard,noatime,compress=no,space_cache=v2,subvol=@snapshots 0 0" | sudo tee -a /etc/fstab
 fi
 
+# Adding Snapper Support
+echo "Adding Snapper Support..."
+printf "[Unit]\nDescription=Regenerate grub-btrfs.cfg\n\n[Service]\nType=oneshot\nEnvironment=\"PATH=/sbin:/bin:/usr/sbin:/usr/bin\"\nEnvironmentFile=/etc/default/grub-btrfs/config\nExecStart=bash -c 'if [[ -z \$(/usr/bin/findmnt -n / | /usr/bin/grep --fixed-strings \".snapshots\") ]]; then if [ -s \"\${GRUB_BTRFS_GRUB_DIRNAME:-/boot/grub}/grub-btrfs.cfg\" ]; then /etc/grub.d/41_snapshots-btrfs; else \${GRUB_BTRFS_MKCONFIG:-grub-mkconfig} -o \${GRUB_BTRFS_GRUB_DIRNAME:-/boot/grub}/grub.cfg; fi; fi'\nExecStartPost=/bin/bash -c 'latest=\$(ls -1d /.snapshots/[0-9]* | sort -V | tail -n1)/snapshot; btrfs property set -ts \"\$latest\" ro false'\n" | sudo tee /etc/systemd/system/grub-btrfs-snapper.service > /dev/null
+printf "[Unit]\nDescription=Monitors for new snapshots\n\n[Path]\nPathModified=/.snapshots\n\n[Install]\nWantedBy=multi-user.target\n" | sudo tee /etc/systemd/system/grub-btrfs-snapper.path > /dev/null
+sudo systemctl daemon-reload && sudo systemctl enable --now grub-btrfs-snapper.path
+
 # Mount and create initial snapshot
 sudo mount -a
 echo "Creating initial snapshot..."
@@ -110,15 +116,6 @@ sudo snapper -c root create --description "Initial system state"
 echo "Generating GRUB configuration..."
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-# Adding Snapper Support
-echo "Adding Snapper Support..."
-printf "[Unit]\nDescription=Regenerate grub-btrfs.cfg\n\n[Service]\nType=oneshot\nEnvironment=\"PATH=/sbin:/bin:/usr/sbin:/usr/bin\"\nEnvironmentFile=/etc/default/grub-btrfs/config\nExecStart=bash -c 'if [[ -z \$(/usr/bin/findmnt -n / | /usr/bin/grep --fixed-strings \".snapshots\") ]]; then if [ -s \"\${GRUB_BTRFS_GRUB_DIRNAME:-/boot/grub}/grub-btrfs.cfg\" ]; then /etc/grub.d/41_snapshots-btrfs; else \${GRUB_BTRFS_MKCONFIG:-grub-mkconfig} -o \${GRUB_BTRFS_GRUB_DIRNAME:-/boot/grub}/grub.cfg; fi; fi'\n" | sudo tee /etc/systemd/system/grub-btrfs-snapper.service > /dev/null
-printf "[Unit]\nDescription=Monitors for new snapshots\n\n[Path]\nPathModified=/.snapshots\n\n[Install]\nWantedBy=multi-user.target\n" | sudo tee /etc/systemd/system/grub-btrfs-snapper.path > /dev/null
-sudo systemctl daemon-reload && sudo systemctl enable --now grub-btrfs-snapper.path
-printf '%s\n' '[Unit]' 'Description=Make all Snapper snapshots read-write' '' '[Service]' 'Type=oneshot' "ExecStart=/usr/bin/bash -c 'for snap in /.snapshots/*/snapshot; do [ -d \"\$snap\" ] && btrfs property set -ts \"\$snap\" ro false; done'" | sudo tee /etc/systemd/system/snapshots-rw.service > /dev/null
-printf '%s\n' '[Unit]' 'Description=Daily timer to fix Snapper snapshot permissions' '' '[Timer]' 'OnCalendar=daily' 'Persistent=true' '' '[Install]' 'WantedBy=timers.target' | sudo tee /etc/systemd/system/snapshots-rw.timer > /dev/null
-sudo systemctl daemon-reload && sudo systemctl enable --now snapshots-rw.timer
-
 echo "Setup complete! Reboot recommended."
 
 
@@ -127,3 +124,7 @@ echo "Setup complete! Reboot recommended."
 
 
 
+#printf '%s\n' '[Unit]' 'Description=Make all Snapper snapshots read-write' '' '[Service]' 'Type=oneshot' "ExecStart=/usr/bin/bash -c 'for snap in /.snapshots/*/snapshot; do [ -d \"\$snap\" ] && btrfs property set -ts \"\$snap\" ro false; done'" | sudo tee /etc/systemd/system/snapshots-rw.service > /dev/null
+#printf '%s\n' '[Unit]' 'Description=Daily timer to fix Snapper snapshot permissions' '' '[Timer]' 'OnCalendar=daily' 'Persistent=true' '' '[Install]' 'WantedBy=timers.target' | sudo tee /etc/systemd/system/snapshots-rw.timer > /dev/null
+#sudo systemctl daemon-reload && sudo systemctl enable --now snapshots-rw.timer
+#sudo btrfs property get -ts /.snapshots/1/snapshot ro
