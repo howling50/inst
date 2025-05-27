@@ -47,6 +47,18 @@ case $DISTRO in
         ;;
 esac
 
+# Create Btrfs subvolume
+sudo sed -i.bak '/^[^#]*[[:space:]]\/[[:space:]]/s/,subvol=\/@//' /etc/fstab
+sudo mkdir -p /mnt/btrfs
+sudo mount "$DISK" /mnt/btrfs || exit 1
+ROOT_ID=$(sudo btrfs subvolume list /mnt/btrfs \
+  | awk '$NF == "@" { print $2 }')
+sudo btrfs subvolume set-default "$ROOT_ID" /mnt/btrfs
+sudo btrfs subvolume delete /mnt/btrfs/@.snapshots 2>/dev/null
+sudo btrfs subvolume create /mnt/btrfs/@snapshots
+sudo umount /mnt/btrfs
+sudo rmdir /mnt/btrfs
+
 # Install snap-pac conditionally
 read -p "Install snap-pac for automatic pre/post snapshots? [y/N] " -r
 echo
@@ -77,14 +89,6 @@ sudo sed -i 's/^NUMBER_LIMIT=.*/NUMBER_LIMIT="20"/' /etc/snapper/configs/root
 sudo sed -i 's/^NUMBER_LIMIT_IMPORTANT=.*/NUMBER_LIMIT_IMPORTANT="5"/' /etc/snapper/configs/root
 sudo sed -i 's/^EMPTY_PRE_POST_MIN_AGE=.*/EMPTY_PRE_POST_MIN_AGE="1800"/' /etc/snapper/configs/root
 
-# Create Btrfs subvolume
-sudo mkdir -p /mnt/btrfs
-sudo mount "$DISK" /mnt/btrfs || exit 1
-sudo btrfs subvolume delete /mnt/btrfs/@.snapshots 2>/dev/null
-sudo btrfs subvolume create /mnt/btrfs/@snapshots
-sudo umount /mnt/btrfs
-sudo rmdir /mnt/btrfs
-
 # Create mount point and set permissions
 sudo mkdir -p /.snapshots
 sudo chmod 750 /.snapshots
@@ -111,6 +115,26 @@ echo "Adding Snapper Support..."
 printf "[Unit]\nDescription=Regenerate grub-btrfs.cfg\n\n[Service]\nType=oneshot\nEnvironment=\"PATH=/sbin:/bin:/usr/sbin:/usr/bin\"\nEnvironmentFile=/etc/default/grub-btrfs/config\nExecStart=bash -c 'if [[ -z \$(/usr/bin/findmnt -n / | /usr/bin/grep --fixed-strings \".snapshots\") ]]; then if [ -s \"\${GRUB_BTRFS_GRUB_DIRNAME:-/boot/grub}/grub-btrfs.cfg\" ]; then /etc/grub.d/41_snapshots-btrfs; else \${GRUB_BTRFS_MKCONFIG:-grub-mkconfig} -o \${GRUB_BTRFS_GRUB_DIRNAME:-/boot/grub}/grub.cfg; fi; fi'\n" | sudo tee /etc/systemd/system/grub-btrfs-snapper.service > /dev/null
 printf "[Unit]\nDescription=Monitors for new snapshots\n\n[Path]\nPathModified=/.snapshots\n\n[Install]\nWantedBy=multi-user.target\n" | sudo tee /etc/systemd/system/grub-btrfs-snapper.path > /dev/null
 sudo systemctl daemon-reload && sudo systemctl enable --now grub-btrfs-snapper.path
+sudo tee /etc/systemd/system/snapshots-rw.service > /dev/null << 'EOF'
+[Unit]
+Description=Make all Snapper snapshots read-write
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c 'for snap in /.snapshots/*/snapshot; do [ -d "$snap" ] && btrfs property set -ts "$snap" ro false; done'
+EOF
+sudo tee /etc/systemd/system/snapshots-rw.timer > /dev/null << 'EOF'
+[Unit]
+Description=Daily timer to fix Snapper snapshot permissions
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
+sudo systemctl daemon-reload && sudo systemctl enable --now snapshots-rw.timer
 
 echo "Setup complete! Reboot recommended."
 
