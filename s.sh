@@ -27,12 +27,21 @@ if ! [[ "$swap_size" =~ ^[0-9]+$ ]]; then
   exit 1
 fi
 
+# Get root filesystem type
+fstype=$(findmnt -n -o FSTYPE /)
+
+# Create swap directory based on filesystem
+if [[ "$fstype" == "btrfs" ]]; then
+  sudo btrfs subvol create /Swap || exit 1
+  sudo chattr +C /Swap
+else
+  sudo mkdir -p /Swap || exit 1
+fi
+
 # Calculate size in megabytes (for dd)
 swap_mb=$((swap_size * 1024))
 
 # Create swapfile with validation
-sudo btrfs subvol create /Swap || exit 1
-sudo chattr +C /Swap
 sudo swapoff -a
 
 echo "Creating ${swap_size}GB swapfile (this may take a while)..."
@@ -44,8 +53,12 @@ sudo chmod 600 /Swap/swapfile
 sudo mkswap /Swap/swapfile
 sudo swapon /Swap/swapfile
 
-# Add to fstab
-echo "/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0" | sudo tee -a /etc/fstab
+# Add to fstab with appropriate options
+if [[ "$fstype" == "btrfs" ]]; then
+  echo "/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0" | sudo tee -a /etc/fstab
+else
+  echo "/Swap/swapfile none swap defaults,discard,noatime 0 0" | sudo tee -a /etc/fstab
+fi
 
 echo "Swapfile created successfully!"
 echo "New swap configuration:"
