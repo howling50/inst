@@ -86,7 +86,7 @@ fi
 
 echo "Swapfile created successfully!"
 echo "New swap configuration:"
-swapon --show
+sudo swapon --show
 
 if ! command -v zramctl >/dev/null || ! [[ -f /usr/lib/systemd/system-generators/zram-generator ]]; then
   echo "Installing zram-generator..."
