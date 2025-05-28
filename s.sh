@@ -18,6 +18,72 @@ if ! curl -sLf -o /dev/null https://google.com; then
     exit 1
 fi
 
+detect_display_manager() {
+    if [ -L /etc/alternatives/default-displaymanager ]; then
+        dm_bin=$(readlink -f /etc/alternatives/default-displaymanager)
+        dm_name=$(basename "$dm_bin")
+        echo "$dm_name"
+        return 0
+    fi
+
+    if systemctl is-active sddm &>/dev/null; then
+        echo "sddm"
+        return 0
+    elif systemctl is-active lightdm &>/dev/null; then
+        echo "lightdm"
+        return 0
+    fi
+
+    if [ -f /etc/sysconfig/displaymanager ]; then
+        source /etc/sysconfig/displaymanager
+        if [ -n "$DISPLAYMANAGER" ]; then
+            echo "${DISPLAYMANAGER,,}"  # Convert to lowercase
+            return 0
+        fi
+    fi
+
+    return 1
+}
+
+CURRENT_DM=$(detect_display_manager)
+
+case $CURRENT_DM in
+    sddm)
+        echo "SDDM detected - proceeding with autologin configuration"
+        ;;
+    lightdm)
+        echo "LightDM detected - switching to SDDM"
+        sudo zypper remove -y -n lightdm lightdm-gtk-greeter
+        sudo zypper addlock lightdm lightdm-gtk-greeter
+        sudo zypper install -y -n sddm
+        sudo systemctl enable sddm --now
+        CURRENT_DM="sddm"
+        echo "Display manager switched to SDDM"
+        ;;
+    *)
+        echo "Error: Could not detect SDDM or LightDM display manager"
+        echo "Detected display manager: '$CURRENT_DM'"
+        echo "Please ensure SDDM is installed and configured"
+        exit 1
+        ;;
+esac
+
+if [ "$CURRENT_DM" = "sddm" ]; then    
+    echo "Configuring autologin for user $(whoami)..."
+    sudo mkdir -p /etc/sddm.conf.d
+    echo -e "[Autologin]\nUser=$(whoami)\nSession=plasma" | sudo tee /etc/sddm.conf.d/20-autologin.conf >/dev/null
+    
+    echo "Applying openSUSE-specific settings..."
+    sudo touch /etc/sddm.conf
+    sudo sed -i '/^\[Autologin\]/,/^\[/{/^\[Autologin\]/!d}' /etc/sddm.conf
+    sudo sed -i '/^User=.*/d' /etc/sddm.conf
+    sudo sed -i '/^Session=.*/d' /etc/sddm.conf
+    echo -e "\n[Autologin]\nUser=$(whoami)\nSession=plasma" | sudo tee -a /etc/sddm.conf >/dev/null
+else
+    echo "ERROR: SDDM not active after configuration"
+    exit 1
+fi
+
 sudo addlock openbox
 cp -rf ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -rf ~/Downloads/inst/files/* /root/.config/ && chmod +x ~/Downloads/inst/scripts/* && mkdir -p ~/.local/bin/ && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && mv ~/Downloads/inst/script/wallpaper ~/Pictures/ && unzip -o ~/Downloads/inst/script/1.zip -d ~/.othercrap > /dev/null && chmod +x ~/.config/hypr/scripts/* && chmod +x ~/.config/i3/scripts/*
 sudo zypper ref && sudo zypper dup -y && cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
@@ -78,73 +144,6 @@ if lspci | grep -i NVIDIA >/dev/null; then
     else
         echo "Skipping NVIDIA driver installation..."
     fi
-fi
-
-detect_display_manager() {
-    if [ -L /etc/alternatives/default-displaymanager ]; then
-        dm_bin=$(readlink -f /etc/alternatives/default-displaymanager)
-        dm_name=$(basename "$dm_bin")
-        echo "$dm_name"
-        return 0
-    fi
-
-    if systemctl is-active sddm &>/dev/null; then
-        echo "sddm"
-        return 0
-    elif systemctl is-active lightdm &>/dev/null; then
-        echo "lightdm"
-        return 0
-    fi
-
-    if [ -f /etc/sysconfig/displaymanager ]; then
-        source /etc/sysconfig/displaymanager
-        if [ -n "$DISPLAYMANAGER" ]; then
-            echo "${DISPLAYMANAGER,,}"  # Convert to lowercase
-            return 0
-        fi
-    fi
-
-    return 1
-}
-
-CURRENT_DM=$(detect_display_manager)
-
-case $CURRENT_DM in
-    sddm)
-        echo "SDDM detected - proceeding with theme configuration"
-        sudo zypper install -y -n qt6-qt5compat-devel qt6-declarative-devel qt6-svg-devel
-        ;;
-    lightdm)
-        echo "LightDM detected - switching to SDDM"
-        sudo zypper remove -y -n lightdm lightdm-gtk-greeter
-        sudo zypper addlock lightdm lightdm-gtk-greeter
-        sudo zypper install -y -n sddm qt6-qt5compat-devel qt6-declarative-devel qt6-svg-devel
-        sudo systemctl enable sddm --now
-        CURRENT_DM="sddm"
-        echo "Display manager switched to SDDM"
-        ;;
-    *)
-        echo "Error: Could not detect SDDM or LightDM display manager"
-        echo "Detected display manager: '$CURRENT_DM'"
-        echo "Please ensure SDDM is installed and configured"
-        exit 1
-        ;;
-esac
-
-if [ "$CURRENT_DM" = "sddm" ]; then    
-    echo "Configuring autologin for user $(whoami)..."
-    sudo mkdir -p /etc/sddm.conf.d
-    echo -e "[Autologin]\nUser=$(whoami)\nSession=plasma" | sudo tee /etc/sddm.conf.d/20-autologin.conf >/dev/null
-    
-    echo "Applying openSUSE-specific settings..."
-    sudo touch /etc/sddm.conf
-    sudo sed -i '/^\[Autologin\]/,/^\[/{/^\[Autologin\]/!d}' /etc/sddm.conf
-    sudo sed -i '/^User=.*/d' /etc/sddm.conf
-    sudo sed -i '/^Session=.*/d' /etc/sddm.conf
-    echo -e "\n[Autologin]\nUser=$(whoami)\nSession=plasma" | sudo tee -a /etc/sddm.conf >/dev/null
-else
-    echo "ERROR: SDDM not active after configuration"
-    exit 1
 fi
 
 # Check for KDE Plasma and customize accordingly
