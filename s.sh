@@ -75,8 +75,6 @@ if lspci | grep -i NVIDIA >/dev/null; then
     fi
 fi
 
-#!/bin/bash
-
 # Improved display manager detection for openSUSE
 detect_display_manager() {
     # Method 1: Check alternatives system (primary openSUSE method)
