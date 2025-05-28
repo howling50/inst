@@ -75,6 +75,34 @@ if lspci | grep -i NVIDIA >/dev/null; then
     fi
 fi
 
+# Check if SDDM is enabled as the display manager
+if systemctl is-enabled sddm &>/dev/null; then
+    echo "SDDM detected - configuring Sequoia theme..."
+    
+    # Clone theme repository and prepare files
+    sudo zypper in -y -n qt6-qt5compat-devel  qt6-declarative-devel qt6-svg-devel
+    git clone https://codeberg.org/minMelody/sddm-sequoia.git ~/sequoia || { echo "Git clone failed"; exit 1; }
+    rm -rf ~/sequoia/.git
+    sudo mv ~/sequoia /usr/share/sddm/themes/ || { echo "Theme move failed"; exit 1; }
+
+    # Configure theme settings
+    sudo mkdir -p /etc/sddm.conf.d
+    echo -e "[Theme]\nCurrent = sequoia" | sudo tee "/etc/sddm.conf.d/theme.conf.user" >/dev/null
+
+    # Install custom wallpaper
+    sudo cp -rf "$HOME/Pictures/wallpaper/monkey.png" "/usr/share/sddm/themes/sequoia/backgrounds/default" || { echo "Wallpaper copy failed"; exit 1; }
+    
+    # Update theme configuration
+    sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' "/usr/share/sddm/themes/sequoia/theme.conf" 2>/dev/null
+
+    # Configure autologin for current user
+    echo -e "[Autologin]\nUser=$(whoami)" | sudo tee "/etc/sddm.conf" >/dev/null
+
+    echo "SDDM theme configuration completed successfully!"
+else
+    echo "SDDM not detected - skipping theme configuration."
+fi
+
 # Check for KDE Plasma and customize accordingly
 if [ -f /usr/bin/plasmashell ]; then
     echo "KDE Plasma detected! Applying KDE customizations..."
