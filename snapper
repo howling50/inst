@@ -48,12 +48,12 @@ case $DISTRO in
 esac
 
 # Create Btrfs subvolume
-sudo sed -i.bak '/^[^#]*[[:space:]]\/[[:space:]]/s/,subvol=\/@//' /etc/fstab
+#sudo sed -i.bak '/^[^#]*[[:space:]]\/[[:space:]]/s/,subvol=\/@//' /etc/fstab
 sudo mkdir -p /mnt/btrfs
 sudo mount "$DISK" /mnt/btrfs || exit 1
-ROOT_ID=$(sudo btrfs subvolume list /mnt/btrfs \
-  | awk '$NF == "@" { print $2 }')
-sudo btrfs subvolume set-default "$ROOT_ID" /mnt/btrfs
+#ROOT_ID=$(sudo btrfs subvolume list /mnt/btrfs \
+#  | awk '$NF == "@" { print $2 }')
+#sudo btrfs subvolume set-default "$ROOT_ID" /mnt/btrfs
 sudo btrfs subvolume delete /mnt/btrfs/@.snapshots 2>/dev/null
 sudo btrfs subvolume create /mnt/btrfs/@snapshots
 sudo umount /mnt/btrfs
