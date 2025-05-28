@@ -131,64 +131,7 @@ case $CURRENT_DM in
         ;;
 esac
 
-if [ "$CURRENT_DM" = "sddm" ]; then
-    echo "Configuring Sequoia theme for SDDM..."
-    
-    echo "Downloading theme..."
-    if [ ! -d ~/sequoia ]; then
-        git clone https://codeberg.org/minMelody/sddm-sequoia.git ~/sequoia || \
-        { echo "ERROR: Git clone failed"; exit 1; }
-    fi
-    
-    rm -rf ~/sequoia/.git
-    
-    echo "Installing theme..."
-    sudo mkdir -p /usr/share/sddm/themes/
-    sudo cp -r ~/sequoia /usr/share/sddm/themes/ || \
-    { echo "ERROR: Theme installation failed"; exit 1; }
-    
-    echo "Configuring theme for openSUSE..."
-    sudo mkdir -p /etc/sddm.conf.d/
-    if [ ! -f /etc/sddm.conf ]; then
-        echo "Creating new /etc/sddm.conf file"
-        echo -e "[Theme]\nCurrent=sequoia\n" | sudo tee /etc/sddm.conf >/dev/null
-    else
-        sudo sed -i '/^\[Theme\]/,/^\[/{/^\[Theme\]/!d}' /etc/sddm.conf
-        sudo sed -i '/^Current=.*/d' /etc/sddm.conf
-        
-        if grep -q '^\[Theme\]' /etc/sddm.conf; then
-            sudo sed -i '/^\[Theme\]/a Current=sequoia' /etc/sddm.conf
-        else
-            echo -e "\n[Theme]\nCurrent=sequoia" | sudo tee -a /etc/sddm.conf >/dev/null
-        fi
-    fi
-    
-    echo -e "[Theme]\nCurrent=sequoia" | sudo tee /etc/sddm.conf.d/10-theme.conf >/dev/null
-    
-    WALLPAPER_SOURCE="$HOME/Pictures/wallpaper/monkey.png"
-    WALLPAPER_DEST="/usr/share/sddm/themes/sequoia/backgrounds/default"
-    
-    if [ -f "$WALLPAPER_SOURCE" ]; then
-        echo "Installing custom wallpaper..."
-        sudo mkdir -p "$(dirname "$WALLPAPER_DEST")"
-        sudo cp -f "$WALLPAPER_SOURCE" "$WALLPAPER_DEST" || \
-        echo "WARNING: Wallpaper installation failed - using default background"
-    else
-        echo "WARNING: Custom wallpaper not found at $WALLPAPER_SOURCE"
-        echo "Using default theme background"
-    fi
-    
-    THEME_CONF="/usr/share/sddm/themes/sequoia/theme.conf"
-    if [ -f "$THEME_CONF" ]; then
-        sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' "$THEME_CONF"
-        sudo sed -i 's|^background=".*"|background="backgrounds/default"|' "$THEME_CONF"
-        
-        sudo sed -i 's|^type=.*|type="image"|' "$THEME_CONF"
-        sudo sed -i 's|^color=.*|color="#000000"|' "$THEME_CONF"
-    else
-        echo "WARNING: Theme configuration not found at $THEME_CONF"
-    fi
-    
+if [ "$CURRENT_DM" = "sddm" ]; then    
     echo "Configuring autologin for user $(whoami)..."
     sudo mkdir -p /etc/sddm.conf.d
     echo -e "[Autologin]\nUser=$(whoami)\nSession=plasma" | sudo tee /etc/sddm.conf.d/20-autologin.conf >/dev/null
@@ -199,15 +142,6 @@ if [ "$CURRENT_DM" = "sddm" ]; then
     sudo sed -i '/^User=.*/d' /etc/sddm.conf
     sudo sed -i '/^Session=.*/d' /etc/sddm.conf
     echo -e "\n[Autologin]\nUser=$(whoami)\nSession=plasma" | sudo tee -a /etc/sddm.conf >/dev/null
-    
-    echo "Applying permissions..."
-    sudo chmod 644 /etc/sddm.conf /etc/sddm.conf.d/*.conf
-    sudo chown -R root:root /usr/share/sddm/themes/sequoia
-    
-    # Refresh SDDM configuration
-    echo "Refreshing SDDM configuration..."
-    sudo sddm --example-config > /dev/null 2>&1
-    
 else
     echo "ERROR: SDDM not active after configuration"
     exit 1
