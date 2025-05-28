@@ -75,32 +75,135 @@ if lspci | grep -i NVIDIA >/dev/null; then
     fi
 fi
 
-# Check if SDDM is enabled as the display manager
-if systemctl is-enabled sddm &>/dev/null; then
-    echo "SDDM detected - configuring Sequoia theme..."
+#!/bin/bash
+
+# Improved display manager detection for openSUSE
+detect_display_manager() {
+    # Method 1: Check alternatives system (primary openSUSE method)
+    if [ -L /etc/alternatives/default-displaymanager ]; then
+        dm_bin=$(readlink -f /etc/alternatives/default-displaymanager)
+        dm_name=$(basename "$dm_bin")
+        echo "$dm_name"
+        return 0
+    fi
+
+    # Method 2: Check running services
+    if systemctl is-active sddm &>/dev/null; then
+        echo "sddm"
+        return 0
+    elif systemctl is-active lightdm &>/dev/null; then
+        echo "lightdm"
+        return 0
+    fi
+
+    # Method 3: Check running processes
+    if pgrep -x sddm &>/dev/null; then
+        echo "sddm"
+        return 0
+    elif pgrep -x lightdm &>/dev/null; then
+        echo "lightdm"
+        return 0
+    fi
+
+    # Method 4: Check display manager configuration
+    if [ -f /etc/sysconfig/displaymanager ]; then
+        source /etc/sysconfig/displaymanager
+        if [ -n "$DISPLAYMANAGER" ]; then
+            echo "${DISPLAYMANAGER,,}"  # Convert to lowercase
+            return 0
+        fi
+    fi
+
+    return 1
+}
+
+# Detect current display manager
+CURRENT_DM=$(detect_display_manager)
+
+case $CURRENT_DM in
+    sddm)
+        echo "SDDM detected - proceeding with theme configuration"
+        ;;
+    lightdm)
+        echo "LightDM detected - switching to SDDM"
+        sudo zypper --non-interactive remove lightdm lightdm-gtk-greeter
+        sudo zypper addlock lightdm lightdm-gtk-greeter
+        sudo zypper --non-interactive install sddm qt6-qt5compat-devel qt6-declarative-devel qt6-svg-devel
+        sudo systemctl enable sddm --now
+        CURRENT_DM="sddm"
+        echo "Display manager switched to SDDM"
+        ;;
+    *)
+        echo "Error: Could not detect SDDM or LightDM display manager"
+        echo "Detected display manager: '$CURRENT_DM'"
+        echo "Please ensure SDDM is installed and configured"
+        exit 1
+        ;;
+esac
+
+# Only proceed if we're using SDDM at this point
+if [ "$CURRENT_DM" = "sddm" ]; then
+    echo "Configuring Sequoia theme for SDDM..."
     
-    # Clone theme repository and prepare files
-    sudo zypper in -y -n qt6-qt5compat-devel  qt6-declarative-devel qt6-svg-devel
-    git clone https://codeberg.org/minMelody/sddm-sequoia.git ~/sequoia || { echo "Git clone failed"; exit 1; }
+    # Clone theme repository
+    echo "Downloading theme..."
+    if [ ! -d ~/sequoia ]; then
+        git clone https://codeberg.org/minMelody/sddm-sequoia.git ~/sequoia || \
+        { echo "ERROR: Git clone failed"; exit 1; }
+    fi
+    
+    # Clean up repository files
     rm -rf ~/sequoia/.git
-    sudo mv ~/sequoia /usr/share/sddm/themes/ || { echo "Theme move failed"; exit 1; }
-
+    
+    # Install theme
+    echo "Installing theme..."
+    sudo mkdir -p /usr/share/sddm/themes/
+    sudo cp -r ~/sequoia /usr/share/sddm/themes/ || \
+    { echo "ERROR: Theme installation failed"; exit 1; }
+    
     # Configure theme settings
+    echo "Configuring theme..."
     sudo mkdir -p /etc/sddm.conf.d
-    echo -e "[Theme]\nCurrent = sequoia" | sudo tee "/etc/sddm.conf.d/theme.conf.user" >/dev/null
-
+    echo -e "[Theme]\nCurrent=sequoia" | sudo tee /etc/sddm.conf.d/10-theme.conf >/dev/null
+    
     # Install custom wallpaper
-    sudo cp -rf "$HOME/Pictures/wallpaper/monkey.png" "/usr/share/sddm/themes/sequoia/backgrounds/default" || { echo "Wallpaper copy failed"; exit 1; }
+    WALLPAPER_SOURCE="$HOME/Pictures/wallpaper/monkey.png"
+    WALLPAPER_DEST="/usr/share/sddm/themes/sequoia/backgrounds/default"
+    
+    if [ -f "$WALLPAPER_SOURCE" ]; then
+        echo "Installing custom wallpaper..."
+        sudo mkdir -p "$(dirname "$WALLPAPER_DEST")"
+        sudo cp -f "$WALLPAPER_SOURCE" "$WALLPAPER_DEST" || \
+        echo "WARNING: Wallpaper installation failed - using default background"
+    else
+        echo "WARNING: Custom wallpaper not found at $WALLPAPER_SOURCE"
+        echo "Using default theme background"
+    fi
     
     # Update theme configuration
-    sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' "/usr/share/sddm/themes/sequoia/theme.conf" 2>/dev/null
-
-    # Configure autologin for current user
-    echo -e "[Autologin]\nUser=$(whoami)" | sudo tee "/etc/sddm.conf" >/dev/null
-
+    THEME_CONF="/usr/share/sddm/themes/sequoia/theme.conf"
+    if [ -f "$THEME_CONF" ]; then
+        sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' "$THEME_CONF"
+        sudo sed -i 's|^background=".*"|background="backgrounds/default"|' "$THEME_CONF"
+    else
+        echo "WARNING: Theme configuration not found at $THEME_CONF"
+    fi
+    
+    # Configure autologin
+    echo "Configuring autologin for user $(whoami)..."
+    echo -e "[Autologin]\nUser=$(whoami)\nSession=plasma" | sudo tee /etc/sddm.conf.d/20-autologin.conf >/dev/null
+    
+    # Final steps
+    echo "Applying permissions..."
+    sudo chmod 644 /etc/sddm.conf.d/*.conf
+    sudo chown -R root:root /usr/share/sddm/themes/sequoia
+    
     echo "SDDM theme configuration completed successfully!"
+    echo "Changes will take effect on next reboot"
+    echo "You can reboot now with: sudo systemctl reboot"
 else
-    echo "SDDM not detected - skipping theme configuration."
+    echo "ERROR: SDDM not active after configuration"
+    exit 1
 fi
 
 # Check for KDE Plasma and customize accordingly
