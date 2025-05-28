@@ -18,6 +18,7 @@ if ! curl -sLf -o /dev/null https://google.com; then
     exit 1
 fi
 
+sudo addlock openbox
 cp -rf ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -rf ~/Downloads/inst/files/* /root/.config/ && chmod +x ~/Downloads/inst/scripts/* && mkdir -p ~/.local/bin/ && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && mv ~/Downloads/inst/script/wallpaper ~/Pictures/ && unzip -o ~/Downloads/inst/script/1.zip -d ~/.othercrap > /dev/null && chmod +x ~/.config/hypr/scripts/* && chmod +x ~/.config/i3/scripts/*
 sudo zypper ref && sudo zypper dup -y && cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config/ && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 sudo zypper install -y -n btop torbrowser-launcher mediainfo trash-cli urlview htop feh jq lsof google-noto-coloremoji-fonts ImageMagick symbols-only-nerd-fonts fetchmsttfonts meslo-lg-fonts vlc powerline-fonts starship kitty flatpak tealdeer bat zoxide fzf gdu eza ripgrep && flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo flatpak remote-delete --system flathub
@@ -79,12 +80,19 @@ if lspci | grep -i NVIDIA >/dev/null; then
     fi
 fi
 
-# Improved display manager detection for openSUSE
 detect_display_manager() {
     if [ -L /etc/alternatives/default-displaymanager ]; then
         dm_bin=$(readlink -f /etc/alternatives/default-displaymanager)
         dm_name=$(basename "$dm_bin")
         echo "$dm_name"
+        return 0
+    fi
+
+    if systemctl is-active sddm &>/dev/null; then
+        echo "sddm"
+        return 0
+    elif systemctl is-active lightdm &>/dev/null; then
+        echo "lightdm"
         return 0
     fi
 
@@ -99,18 +107,18 @@ detect_display_manager() {
     return 1
 }
 
-# Detect current display manager
 CURRENT_DM=$(detect_display_manager)
 
 case $CURRENT_DM in
     sddm)
         echo "SDDM detected - proceeding with theme configuration"
+        sudo zypper install -y -n qt6-qt5compat-devel qt6-declarative-devel qt6-svg-devel
         ;;
     lightdm)
         echo "LightDM detected - switching to SDDM"
-        sudo zypper --non-interactive remove lightdm lightdm-gtk-greeter
+        sudo zypper remove -y -n lightdm lightdm-gtk-greeter
         sudo zypper addlock lightdm lightdm-gtk-greeter
-        sudo zypper --non-interactive install sddm qt6-qt5compat-devel qt6-declarative-devel qt6-svg-devel
+        sudo zypper install -y -n sddm qt6-qt5compat-devel qt6-declarative-devel qt6-svg-devel
         sudo systemctl enable sddm --now
         CURRENT_DM="sddm"
         echo "Display manager switched to SDDM"
@@ -123,32 +131,40 @@ case $CURRENT_DM in
         ;;
 esac
 
-# Only proceed if we're using SDDM at this point
 if [ "$CURRENT_DM" = "sddm" ]; then
     echo "Configuring Sequoia theme for SDDM..."
     
-    # Clone theme repository
     echo "Downloading theme..."
     if [ ! -d ~/sequoia ]; then
         git clone https://codeberg.org/minMelody/sddm-sequoia.git ~/sequoia || \
         { echo "ERROR: Git clone failed"; exit 1; }
     fi
     
-    # Clean up repository files
     rm -rf ~/sequoia/.git
     
-    # Install theme
     echo "Installing theme..."
     sudo mkdir -p /usr/share/sddm/themes/
     sudo cp -r ~/sequoia /usr/share/sddm/themes/ || \
     { echo "ERROR: Theme installation failed"; exit 1; }
     
-    # Configure theme settings
-    echo "Configuring theme..."
-    sudo mkdir -p /etc/sddm.conf.d
+    echo "Configuring theme for openSUSE..."
+    sudo mkdir -p /etc/sddm.conf.d/
+    if [ ! -f /etc/sddm.conf ]; then
+        echo "Creating new /etc/sddm.conf file"
+        echo -e "[Theme]\nCurrent=sequoia\n" | sudo tee /etc/sddm.conf >/dev/null
+    else
+        sudo sed -i '/^\[Theme\]/,/^\[/{/^\[Theme\]/!d}' /etc/sddm.conf
+        sudo sed -i '/^Current=.*/d' /etc/sddm.conf
+        
+        if grep -q '^\[Theme\]' /etc/sddm.conf; then
+            sudo sed -i '/^\[Theme\]/a Current=sequoia' /etc/sddm.conf
+        else
+            echo -e "\n[Theme]\nCurrent=sequoia" | sudo tee -a /etc/sddm.conf >/dev/null
+        fi
+    fi
+    
     echo -e "[Theme]\nCurrent=sequoia" | sudo tee /etc/sddm.conf.d/10-theme.conf >/dev/null
     
-    # Install custom wallpaper
     WALLPAPER_SOURCE="$HOME/Pictures/wallpaper/monkey.png"
     WALLPAPER_DEST="/usr/share/sddm/themes/sequoia/backgrounds/default"
     
@@ -162,27 +178,36 @@ if [ "$CURRENT_DM" = "sddm" ]; then
         echo "Using default theme background"
     fi
     
-    # Update theme configuration
     THEME_CONF="/usr/share/sddm/themes/sequoia/theme.conf"
     if [ -f "$THEME_CONF" ]; then
         sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' "$THEME_CONF"
         sudo sed -i 's|^background=".*"|background="backgrounds/default"|' "$THEME_CONF"
+        
+        sudo sed -i 's|^type=.*|type="image"|' "$THEME_CONF"
+        sudo sed -i 's|^color=.*|color="#000000"|' "$THEME_CONF"
     else
         echo "WARNING: Theme configuration not found at $THEME_CONF"
     fi
     
-    # Configure autologin
     echo "Configuring autologin for user $(whoami)..."
+    sudo mkdir -p /etc/sddm.conf.d
     echo -e "[Autologin]\nUser=$(whoami)\nSession=plasma" | sudo tee /etc/sddm.conf.d/20-autologin.conf >/dev/null
     
-    # Final steps
+    echo "Applying openSUSE-specific settings..."
+    sudo touch /etc/sddm.conf
+    sudo sed -i '/^\[Autologin\]/,/^\[/{/^\[Autologin\]/!d}' /etc/sddm.conf
+    sudo sed -i '/^User=.*/d' /etc/sddm.conf
+    sudo sed -i '/^Session=.*/d' /etc/sddm.conf
+    echo -e "\n[Autologin]\nUser=$(whoami)\nSession=plasma" | sudo tee -a /etc/sddm.conf >/dev/null
+    
     echo "Applying permissions..."
-    sudo chmod 644 /etc/sddm.conf.d/*.conf
+    sudo chmod 644 /etc/sddm.conf /etc/sddm.conf.d/*.conf
     sudo chown -R root:root /usr/share/sddm/themes/sequoia
     
-    echo "SDDM theme configuration completed successfully!"
-    echo "Changes will take effect on next reboot"
-    echo "You can reboot now with: sudo systemctl reboot"
+    # Refresh SDDM configuration
+    echo "Refreshing SDDM configuration..."
+    sudo sddm --example-config > /dev/null 2>&1
+    
 else
     echo "ERROR: SDDM not active after configuration"
     exit 1
