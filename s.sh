@@ -77,7 +77,6 @@ fi
 
 # Improved display manager detection for openSUSE
 detect_display_manager() {
-    # Method 1: Check alternatives system (primary openSUSE method)
     if [ -L /etc/alternatives/default-displaymanager ]; then
         dm_bin=$(readlink -f /etc/alternatives/default-displaymanager)
         dm_name=$(basename "$dm_bin")
@@ -85,25 +84,6 @@ detect_display_manager() {
         return 0
     fi
 
-    # Method 2: Check running services
-    if systemctl is-active sddm &>/dev/null; then
-        echo "sddm"
-        return 0
-    elif systemctl is-active lightdm &>/dev/null; then
-        echo "lightdm"
-        return 0
-    fi
-
-    # Method 3: Check running processes
-    if pgrep -x sddm &>/dev/null; then
-        echo "sddm"
-        return 0
-    elif pgrep -x lightdm &>/dev/null; then
-        echo "lightdm"
-        return 0
-    fi
-
-    # Method 4: Check display manager configuration
     if [ -f /etc/sysconfig/displaymanager ]; then
         source /etc/sysconfig/displaymanager
         if [ -n "$DISPLAYMANAGER" ]; then
