@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ##################### git clone in ~/Downloads, then chmod +x s.sh and then ./s.sh (also dont forget to change fstab)####################################################
-#sudo visudo (Defaults timestamp_timeout=60)  (/etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root) sudo zypper ref && sudo zypper dup && sudo zypper inr
+#sudo visudo (Defaults timestamp_timeout=60 %wheel ALL=(ALL:ALL) ALL  #Defaults targetpw  #ALL   ALL=(ALL) ALL)  (/etc/sysconfig/btrfsmaintenance /etc/snapper/configs/root) sudo zypper ref && sudo zypper dup && sudo zypper inr
 SECONDS=0
 required_dir="$HOME/Downloads/inst"
 if [[ $(pwd -P) != $(realpath "$required_dir") ]]; then
