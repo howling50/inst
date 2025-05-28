@@ -49,7 +49,7 @@ echo "/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0" | sudo te
 
 echo "Swapfile created successfully!"
 echo "New swap configuration:"
-swapon --show
+sudo swapon --show
 
 # Check for NVIDIA GPU and offer driver installation
 if ! command -v lspci &>/dev/null; then
