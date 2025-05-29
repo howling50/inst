@@ -110,7 +110,7 @@ bindsym $mod+Shift+k exec rofikill.sh
 bindsym $mod+Shift+o exec output_switch.sh
 bindsym $mod+Shift+d exec define.sh
 bindsym $mod+Shift+a exec ani-cli --rofi
-bindsym $mod+Shift+y exec yt-x -s rofi --disown-streaming-process --disown-downloading-process
+bindsym $mod+Shift+y exec yt-x -s rofi --rofi-theme ~/.config/rofi/basiceffect.rasi
 bindsym $mod+Shift+f exec RofiFind.sh -m -H
 bindsym $mod+Shift+h exec ~/.config/i3/scripts/keybind.sh
 bindsym F12 exec xfce4-terminal --drop-down
