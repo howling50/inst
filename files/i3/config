@@ -106,6 +106,9 @@ bindsym $mod+r mode "resize"
 bindsym Mod1+F8 mode "resize"
 
 # other
+bindsym $mod+Shift+k exec rofikill.sh
+bindsym $mod+Shift+o exec output_switch.sh
+bindsym $mod+Shift+d exec define.sh
 bindsym $mod+Shift+a exec ani-cli --rofi
 bindsym $mod+Shift+y exec yt-x -s rofi --disown-streaming-process --disown-downloading-process
 bindsym $mod+Shift+f exec RofiFind.sh -m -H
@@ -124,7 +127,6 @@ bindsym $mod+minus move scratchpad
 bindsym $mod+equal scratchpad show, floating disable
 bindsym Control+Mod1+d exec bash -c 'i3-msg -t get_tree | jq -r '\''.. | objects | select(.window != null) | .id'\'' | xargs -I{} i3-msg "[con_id={}] move scratchpad"'
 bindsym Control+Mod1+Delete exec ~/.config/i3/scripts/power-menu.sh
-bindsym $mod+Shift+d exec "killall dunst; dunst & sleep 1 && notify-send 'Dunst Restarted'"
 bindsym $mod+Shift+c exec mousepad ~/.config/i3/config
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
