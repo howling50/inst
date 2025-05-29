@@ -1,6 +1,7 @@
 #!/bin/bash
 wallpaper_current="$HOME/.othercrap/current.png"
 wallpaper_output="$HOME/.othercrap/modified.png"
+rofi_theme="$HOME/.config/rofi/basiceffect.rasi"
 
 # Directory for swaync
 iDIR="$HOME/.config/swaync/images"
@@ -43,7 +44,7 @@ main() {
         [[ "$effect" != "No Effects" ]] && options+=("$effect")
     done
 
-    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i)
+    choice=$(printf "%s\n" "${options[@]}" | LC_COLLATE=C sort | rofi -dmenu -i -config $rofi_theme)
 
     # Process user choice
     if [[ -n "$choice" ]]; then
