@@ -15,7 +15,7 @@ display_lines=$(grep -oP '(?<=bindsym ).*' "$config_file" | sed -E '
 mapfile -t execute_commands < <(grep -oP '(?<=bindsym ).*' "$config_file" | sed -E 's/^[^ ]+ //')
 
 # Show Rofi and get selection index
-selected_index=$(echo "$display_lines" | rofi -dmenu -p "Keybinds" -format i)
+selected_index=$(echo "$display_lines" | rofi -dmenu -p "Keybinds" -format i -theme ~/.config/rofi/basiceffect.rasi)
 
 # Execute corresponding command if valid
 if [[ -n "$selected_index" ]]; then
