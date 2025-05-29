@@ -113,7 +113,15 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
-alias ff="kitten icat -n --place 25x20@0x8 --scale-up --align left ~/.config/fastfetch/arch.gif | fastfetch --logo-width 21 --raw -" 
+function ff {
+  if command -v pacman >/dev/null 2>&1; then
+    kitten icat -n --place 25x20@0x8 --scale-up --align left ~/.config/fastfetch/arch.gif | fastfetch --logo-width 21 --raw -
+  elif command -v zypper >/dev/null 2>&1; then
+    kitten icat -n --place 25x20@0x8 --scale-up --align left ~/.config/fastfetch/suse.gif | fastfetch --logo-width 21 --raw -
+  else
+    fastfetch --logo ~/.config/fastfetch/1.jpg --logo-width 30 --logo-height 15 --logo-padding-top 5 --logo-padding-left 1
+  fi
+}
 sddmthemeauto() {
     sudo cp -rf "$1" "/usr/share/sddm/themes/sequoia/backgrounds/default"
 }
