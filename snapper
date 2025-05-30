@@ -103,6 +103,9 @@ fi
 
 # Adding Snapper Support
 echo "Adding Snapper Support..."
+if [[ $(/usr/bin/systemctl is-enabled grub-btrfs.path) == "enabled" ]]; then
+	/usr/bin/systemctl disable --now grub-btrfs.path
+fi
 sudo systemctl stop grub-btrfsd.service
 sudo systemctl disable grub-btrfsd.service
 printf "[Unit]\nDescription=Regenerate grub-btrfs.cfg\n\n[Service]\nType=oneshot\nEnvironment=\"PATH=/sbin:/bin:/usr/sbin:/usr/bin\"\nEnvironmentFile=/etc/default/grub-btrfs/config\nExecStart=bash -c 'if [[ -z \$(/usr/bin/findmnt -n / | /usr/bin/grep --fixed-strings \".snapshots\") ]]; then if [ -s \"\${GRUB_BTRFS_GRUB_DIRNAME:-/boot/grub}/grub-btrfs.cfg\" ]; then /etc/grub.d/41_snapshots-btrfs; else \${GRUB_BTRFS_MKCONFIG:-grub-mkconfig} -o \${GRUB_BTRFS_GRUB_DIRNAME:-/boot/grub}/grub.cfg; fi; fi'\nExecStartPost=/bin/bash -c 'latest=\$(ls -1d /.snapshots/[0-9]* | sort -V | tail -n1)/snapshot; btrfs property set -ts \"\$latest\" ro false'\n" | sudo tee /etc/systemd/system/grub-btrfs-snapper.service > /dev/null
