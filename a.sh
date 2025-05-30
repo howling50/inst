@@ -337,7 +337,7 @@ sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
 sudo pacman -S gufw proxychains tor pkgconf audacious lutris net-tools zip lsof unrar gparted filezilla --noconfirm --needed
-sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam --noconfirm --needed
+sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam gameconqueror --noconfirm --needed
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr termusic xdotool podman distrobox e2fsprogs ripgrep tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm --needed dxvk-bin ventoy-bin winegui-bin ttf-ms-fonts dragon-drop urlview pacseek-bin autobrr-bin reflector-simple
