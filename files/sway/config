@@ -2,16 +2,14 @@
 set $mod Mod4
 
 # Exec
-exec_always {
-    dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-    systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-    Polkit.sh
-    nm-applet --indicator
-    swaybg -m fill -i ~/.othercrap/modified.png
-    swaync
-    autotiling
-    waybar
-}
+exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec_always systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec_always Polkit.sh
+exec_always nm-applet --indicator
+exec_always swaybg -m fill -i ~/.othercrap/modified.png
+exec_always swaync
+exec_always autotiling
+exec_always waybar
 
 # Font
 font pango:FiraCode Nerd Font Mono Bold
@@ -96,7 +94,7 @@ for_window [class="^(?i)codium$" title="^(?!Codium|VSCodium).*$"] floating enabl
 
 # Application launchers
 bindsym $mod Return exec pkill rofi || rofi -show drun -theme ~/.config/rofi/launcher.rasi
-bindsym $ctrl+$alt+t exec kitty
+bindsym Control+Mod1+t exec kitty
 bindsym $mod+e exec thunar
 bindsym Control+Mod1+x kill
 bindsym $mod+Shift+b exec Bright.sh
@@ -213,9 +211,8 @@ bindsym Mod1+F8 mode "resize"
 floating_modifier $mod
 bindsym $mod+button4 workspace prev
 bindsym $mod+button5 workspace next
-bindsym button8 exec --no-startup-id xdotool key --clearmodifiers 0
-bindsym button9 exec --no-startup-id xdotool key --clearmodifiers 9
-#bindsym button2 nop
+bindsym button8 exec wtype -k 0
+bindsym button9 exec wtype -k 9
 
 # Environment variables
 env EDITOR=nvim
