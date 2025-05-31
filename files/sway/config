@@ -1,0 +1,226 @@
+# Key bindings
+set $mod Mod4
+
+# Exec
+exec_always {
+    dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    Polkit.sh
+    nm-applet --indicator
+    swaybg -m fill -i ~/.othercrap/modified.png
+    swaync
+    autotiling
+    waybar
+}
+
+# Font
+font pango:FiraCode Nerd Font Mono Bold
+
+# Monitor configuration
+output * {
+    resolution preferred
+    scale 1
+}
+
+# Input configuration
+input "type:keyboard" {
+    xkb_layout us,gr
+    xkb_options grp:alt_caps_toggle
+    repeat_delay 300
+    repeat_rate 50
+    numlock enabled false
+}
+
+input "type:touchpad" {
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+    dwt enabled
+}
+
+# Window appearance
+gaps inner 4
+gaps outer 2
+smart_gaps on
+smart_borders on
+hide_edge_borders both
+for_window [class=".*"] border pixel 2
+
+client.focused          #d65d0e #d65d0e #1a1826 #d65d0e   #d65d0e
+client.focused_inactive #ebdbb2 #5f676a #ffffff #ebdbb2   #ebdbb2
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #cc241d #900000 #ffffff #cc241d   #cc241d
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+# Floating window rules
+for_window [title="^Confirm (Replace|Delete|Dialog|Download|Notification|Error|Splash|Confirm Reset|Branchdialog|Media Viewer|Volume Control|Picture-in-Picture)$"] floating enable
+for_window [class="^(?i)(Btrfs Assistant|calibre|gnome-calculator|varia|xournalpp|com.github.xournalpp.xournalpp|xfce4-taskmanager|nm-applet|nm-connection-editor|blueman-(manager|settings)|org\.blueman\.Blueman|NetworkManager|gnome-network-properties|file-roller|org\.gnome\.FileRoller|pavucontrol|org\.pulseaudio\.pavucontrol|qt[56]ct|yad|lxappearance|rofi|audacious|viewnior|feh|gnome-system-monitor|handbrake|mkvtoolnix-gui|io.github.giantpinkrobots.varia|com.github.Matoking.protontricks|com.usebottles.bottles|net.davidotek.pupgui2|ventoy|nwg-look)$"] floating enable
+for_window [title="^(Save|Open) File$"] floating enable, move position center
+
+# Disable floating for tooltips/dropdowns
+for_window [title="^(Tooltip|Dropdown|Combo)$"] floating disable
+for_window [title="^(Tooltip|Dropdown|Combo)$"] focus none
+
+# Fullscreen rules
+for_window [class="^i3lock$" title=".*"] fullscreen enable
+for_window [class="^virt-manager$" title=".*"] fullscreen enable
+for_window [class="^virt-viewer$" title=".*"] fullscreen enable
+
+# Center dialogs
+for_window [title="^Authentication Required$"] floating enable, move position center
+for_window [title="^Add Folder to Workspace$"] floating enable, resize set 70% 60%, move position center
+
+# Workspace assignments
+assign [class="^(?i)firefox(-esr|-bin)?$"] → 2
+assign [class="^(?i)org\.mozilla\.firefox$"] → 2
+assign [class="^(?i)(tor browser|google-chrome(-beta|-dev|-unstable)?|chrome-.*-default|chromium|librewolf|torbrowser(-launcher)?|microsoft-edge(-stable|-beta|-dev|-unstable)?|brave-browser(-beta|-dev|-unstable)?|thorium-browser|io.gitlab.librewolf-community|app.zen_browser.zen|com.brave.Browser|one.ablaze.floorp|floorp|cachy-browser|zen(-alpha)?)$"] → 2
+assign [class="^(?i)com.obsproject.Studio$"] → 3
+assign [class="^(?i)mousepad$"] → 3
+assign [class="^(?i)gamescope$"] → 5
+assign [class="^(?i)steam_app_\d+$"] → 5
+assign [class="^(?i)steam$"] → 4
+assign [class="^(?i)heroic$"] → 4
+assign [class="^(?i)lutris$"] → 4
+assign [class="^(?i)com\.heroicgameslauncher\.hgl$"] → 4
+assign [class="^(?i)mpv$"] → 6
+assign [class="^(?i)vlc$"] → 6
+assign [class="^(?i)virt-manager|org.gnome.boxes$"] → 7
+assign [class="^(?i)\.virt-manager-wrapped$"] → 7
+
+# Special cases for Steam/VSCodium/Thunar popups
+for_window [class="^(?i)steam$" title="^(?!Steam).*$"] floating enable
+for_window [class="^(?i)codium$" title="^(?!Codium|VSCodium).*$"] floating enable
+#for_window [class="^thunar$" title="^File Operation Progress$"] floating enable
+
+# Application launchers
+bindsym $mod Return exec pkill rofi || rofi -show drun -theme ~/.config/rofi/launcher.rasi
+bindsym $ctrl+$alt+t exec kitty
+bindsym $mod+e exec thunar
+bindsym Control+Mod1+x kill
+bindsym $mod+Shift+b exec Bright.sh
+bindsym $mod+Shift+k exec rofikill.sh
+bindsym $mod+Shift+o exec output_switch.sh
+bindsym $mod+Shift+d exec define.sh
+bindsym $mod+Shift+a exec ani-cli --rofi
+bindsym $mod+Shift+y exec yt-x -s rofi --rofi-theme ~/.config/rofi/basiceffect.rasi
+bindsym $mod+Shift+f exec RofiFind.sh -m -H
+bindsym $mod+Shift+h exec ~/.config/i3/scripts/keybind.sh
+bindsym Control+Mod1+Escape exec rofikill.sh
+bindsym Print exec flameshot gui
+bindsym Mod1+Tab exec rofi -show window -theme ~/.config/rofi/launcher.rasi
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+i exec rofi-wifi-menu
+bindsym Mod1+F4 exec pkill -9 -f $(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .app_id // .window_properties.class')
+bindsym Mod1+F9 move scratchpad
+bindsym Mod1+F7 scratchpad show, floating disable
+bindsym $mod+minus move scratchpad
+bindsym $mod+equal scratchpad show, floating disable
+bindsym Control+Mod1+d exec bash -c 'i3-msg -t get_tree | jq -r '\''.. | objects | select(.window != null) | .id'\'' | xargs -I{} i3-msg "[con_id={}] move scratchpad"'
+bindsym Control+Mod1+Delete exec ~/.config/hypr/scripts/Wlogout.sh
+bindsym $mod+Shift+c exec mousepad ~/.config/sway/config
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+KP_End exec firefox
+bindsym $mod+Shift+KP_Down exec flatpak run app.zen_browser.zen
+bindsym $mod+Shift+KP_Page_Down exec flatpak run io.gitlab.librewolf-community
+#bindsym $mod+Shift+KP_Down exec zen-browser
+#bindsym $mod+Shift+KP_Page_Down exec librewolf
+bindsym $mod+Shift+KP_Left exec mousepad
+bindsym $mod+Shift+KP_Begin exec audacious
+bindsym $mod+Shift+KP_Right exec mpv --player-operation-mode=pseudo-gui
+bindsym $mod+Shift+KP_Home exec gnome-system-monitor
+bindsym $mod+Shift+KP_Up exec flatpak run com.usebottles.bottles
+bindsym $mod+Shift+KP_Page_Up exec torbrowser-launcher
+bindsym $mod+Shift+e exec ~/.config/hypr/scripts/WallpaperEffects.sh
+bindsym $mod+Shift+w exec ~/.config/hypr/scripts/WallpaperSelect.sh
+bindsym $mod+Mod1+e exec ~/.config/hypr/scripts/RofiEmoji.sh
+bindsym $mod+Shift+m exec ~/.config/hypr/scripts/RofiBeats.sh
+bindsym $mod+Shift+t exec vlctv.sh
+
+# System controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMedia exec --no-startup-id vlc
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86Mail exec --no-startup-id xdg-open https://www.gmail.com
+bindsym XF86HomePage exec --no-startup-id qbittorrent
+bindsym XF86ScreenSaver exec --no-startup-id ~/.config/i3/scripts/keybind.sh
+bindsym XF86Calculator exec --no-startup-id gnome-calculator
+
+# Window management
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+space floating toggle
+bindsym Mod1+F10 fullscreen
+bindsym $mod++f fullscreen
+bindsym Control+Mod1+d exec bash -c 'swaymsg -t get_tree | jq -r '\''.. | select(.type? == "workspace" and .focused? == true).nodes[].nodes[] | .. | select(.pid?).id'\'' | xargs -I{} swaymsg "[con_id={}] move scratchpad"'
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym Mod1+F1 layout stacking
+bindsym Mod1+F2 layout tabbed
+bindsym Mod1+F3 layout toggle split
+
+# Workspaces
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+bindsym Mod1+F8 mode "resize"
+
+# Mouse controls
+floating_modifier $mod
+bindsym $mod+button4 workspace prev
+bindsym $mod+button5 workspace next
+bindsym button8 exec --no-startup-id xdotool key --clearmodifiers 0
+bindsym button9 exec --no-startup-id xdotool key --clearmodifiers 9
+#bindsym button2 nop
+
+# Environment variables
+env EDITOR=nvim
+env MOZ_ENABLE_WAYLAND=1
+env QT_QPA_PLATFORM=wayland;xcb
+env GDK_BACKEND=wayland,x11
+env SDL_VIDEODRIVER=wayland
+env XDG_CURRENT_DESKTOP=sway
