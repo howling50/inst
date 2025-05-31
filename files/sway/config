@@ -212,7 +212,7 @@ bindsym $mod+r mode "resize"
 bindsym Mod1+F8 mode "resize"
 
 # Mouse controls
-floating_modifier $mod
+floating_modifier $mod normal
 bindsym $mod+button4 workspace prev
 bindsym $mod+button5 workspace next
 bindsym button8 exec wtype -k 0
