@@ -249,7 +249,7 @@ sudo btrfs subvol create /Media && sudo chown $(whoami):$(whoami) /Media && sudo
 #-------------qemu---------------------------------
 sudo pacman -S dnsmasq bridge-utils qemu-full virt-manager --noconfirm && sudo systemctl enable --now libvirtd && sudo usermod -a -G libvirt $(whoami) && sudo systemctl restart libvirtd && sudo virsh net-define /etc/libvirt/qemu/networks/default.xml && sudo virsh net-autostart default
 #-----------------------------------------------------
-sudo pacman -S binutils nmap gcc patch fakeroot bind yazi ventoy gimp fbreader dragon-drop perl-image-exiftool easytag shotcut hexchat gnome-boxes mediainfo-gui mediainfo handbrake torbrowser-launcher --noconfirm --needed
+sudo pacman -S binutils nmap gcc patch fakeroot bind yazi ventoy gimp fbreader dragon-drop perl-image-exiftool shotcut hexchat gnome-boxes mediainfo-gui mediainfo handbrake torbrowser-launcher --noconfirm --needed
 sudo pacman -S qbittorrent putty aria2 bluez bluez-utils blueman fuseiso android-tools mpv vlc libreoffice-fresh cava xournalpp --noconfirm --needed
 sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst-plugins-bad gst-plugins-ugly --noconfirm --needed
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
