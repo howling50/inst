@@ -163,7 +163,7 @@ else
     
     sudo zypper remove -y pragha parole && sudo zypper addlock parole pragha
     sudo zypper remove -y -n icewm && sudo zypper addlock icewm
-    sudo zypper install -y -n bc xfce4-terminal xfce4-taskmanager polkit-gnome htop NetworkManager-applet ffmpegthumbnailer xprop i3 nitrogen thunar polybar python313-i3ipc i3lock pamixer pavucontrol dunst mousepad wmctrl && chmod +x ~/.config/polybar/launch.sh && chmod +x ~/Downloads/inst/script/autotiling && mv ~/Downloads/inst/script/autotiling ~/.local/bin/
+    sudo zypper install -y -n bc polkit-gnome htop NetworkManager-applet ffmpegthumbnailer xprop i3 nitrogen thunar polybar python313-i3ipc i3lock pamixer pavucontrol dunst mousepad wmctrl && chmod +x ~/.config/polybar/launch.sh && chmod +x ~/Downloads/inst/script/autotiling && mv ~/Downloads/inst/script/autotiling ~/.local/bin/
     sudo zypper install -y -n rofi rofi-calc qalculate flameshot numlockx fbreader mpv-mpris gvfs-backend-afc gvfs-backends gvfs-fuse lxappearance
     mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
     
@@ -183,7 +183,7 @@ sudo zypper install -y -n systemd-zram-service && sudo systemctl enable --now zr
 #sudo sed -i 's/\(^GRUB_CMDLINE_LINUX_DEFAULT=".*\)"/\1 zswap.enabled=1 zswap.compressor=lz4 zswap.zpool=z3fold zswap.max_pool_percent=25 zswap.accept_threshold_percent=90"/' /etc/default/grub && sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 #sudo btrfs subvol create /Swap && sudo chattr +C /Swap && sudo swapoff -a && sudo truncate -s 0 /Swap/swapfile && sudo dd if=/dev/zero of=/Swap/swapfile bs=1M count=6144 status=progress conv=fsync && sudo chmod 600 /Swap/swapfile && sudo mkswap /Swap/swapfile && sudo swapon /Swap/swapfile && echo '/Swap/swapfile none swap defaults,nodatacow,discard,noatime 0 0' | sudo tee -a /etc/fstab
 #-----------------------------------------------------
-sudo zypper install -y -n libreoffice-writer libreoffice-writer-extensions cmatrix cava yazi gimp dragon-drop exiftool easytag gnome-boxes shotcut hexchat npm22
+sudo zypper install -y -n libreoffice-writer libreoffice-writer-extensions cmatrix cava yazi gimp dragon-drop exiftool gnome-boxes shotcut hexchat npm22
 sudo zypper install -y -n audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvtoolnix-tools mkvtoolnix-gui steam lutris flac
 sudo zypper install -y -n gsmartcontrol w3m ddgr xdotool firewall-config podman distrobox bluez blueman rsync w3m-inline-image
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim gnome-system-monitor
