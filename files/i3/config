@@ -114,8 +114,7 @@ bindsym $mod+Shift+a exec ani-cli --rofi
 bindsym $mod+Shift+y exec yt-x -s rofi --rofi-theme ~/.config/rofi/basiceffect.rasi
 bindsym $mod+Shift+f exec RofiFind.sh -m -H
 bindsym $mod+Shift+h exec ~/.config/i3/scripts/keybind.sh
-bindsym F12 exec xfce4-terminal --drop-down
-bindsym Control+Mod1+Escape exec xfce4-taskmanager
+bindsym Control+Mod1+Escape exec gnome-system-monitor
 bindsym $mod+e exec thunar
 bindsym Print exec flameshot gui
 bindsym Mod1+Tab exec rofi -show window -theme ~/.config/rofi/launcher.rasi
@@ -156,7 +155,7 @@ bindsym $mod+Shift+KP_Page_Down exec flatpak run io.gitlab.librewolf-community
 bindsym $mod+Shift+KP_Left exec mousepad
 bindsym $mod+Shift+KP_Begin exec audacious
 bindsym $mod+Shift+KP_Right exec mpv --player-operation-mode=pseudo-gui
-bindsym $mod+Shift+KP_Home exec gnome-system-monitor
+bindsym $mod+Shift+KP_Home exec ~/.othercrap/Stacer-1.1.0-x64.AppImage
 bindsym $mod+Shift+KP_Up exec flatpak run com.usebottles.bottles
 bindsym $mod+Shift+KP_Page_Up exec torbrowser-launcher
 bindsym $mod+Shift+e exec ~/.config/i3/scripts/WallpaperEffects.sh
