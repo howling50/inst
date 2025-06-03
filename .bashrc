@@ -199,7 +199,7 @@ fcd() {
 }
 listbash() {
     printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu/topram, plist, countfiles, mntls, ftext, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, vimhistory, trash-restore, sddmthemeauto
-\e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus/termusic, cava, ddgr, w3m, yazi, pacseek
+\e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus/termusic, cava, ddgr, w3m, yazi, pacseek, watch, wormhole, procs
 \e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncauto, yt-x-update, ani-cli-update, dragondrop-auto
 \e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, dlfile, killandnotify, ipconfig, lastupdate.sh, formatext4.sh, ext4autodefrag, ntfsautodefrag, toggle-stereo-swap.sh, RofiFind.sh
@@ -502,8 +502,8 @@ if [ -z "$1" ]; then
 alias h="history | grep "
 # Search running processes
 alias plist="ps aux | grep "
-alias topram="/bin/ps -eo pmem,pid,user,args | sort -k 1 -nr | head -10"
-alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
+alias topram="procs --sortd mem"
+alias topcpu="procs --sortd cpu"
 # Count all files (recursively) in the current folder
 alias countfiles="for t in files links directories; do echo \$(find . -type \${t:0:1} | wc -l) \$t; done 2> /dev/null"
 # Searches for text in all files in the current folder
