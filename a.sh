@@ -313,7 +313,7 @@ else
     echo "Non-KDE environment detected. Applying basic customizations..."
     
     sudo pacman -R parole --noconfirm
-    sudo pacman -S --noconfirm --needed mousepad xorg-xev i3-wm polybar python-i3ipc autotiling i3lock wmctrl xorg-xprop thunar gvfs gvfs-mtp gvfs-afc htop polkit-gnome xorg-xinput network-manager-applet lxappearance && chmod +x ~/.config/polybar/launch.sh
+    sudo pacman -S --noconfirm --needed xfburn mousepad xorg-xev i3-wm polybar python-i3ipc autotiling i3lock wmctrl xorg-xprop thunar gvfs gvfs-mtp gvfs-afc htop polkit-gnome xorg-xinput network-manager-applet lxappearance && chmod +x ~/.config/polybar/launch.sh
     sudo pacman -S --noconfirm --needed gnome-calculator man-db bc arandr viewnior rofi rofi-calc flameshot mpv-mpris baobab numlockx tumbler thunar-archive-plugin file-roller fbreader ffmpegthumbnailer catfish pamixer dunst pavucontrol thunar-volman file-roller
     mkdir -p ~/.themes && tar -xvf ~/Downloads/inst/script/Material-Black-Blueberry-2.9.9-07.tar -C ~/.themes > /dev/null && mkdir -p ~/.icons && unzip ~/Downloads/inst/script/Material-Black-Blueberry-Numix_1.9.3.zip -d ~/.icons > /dev/null && gtk-update-icon-cache -f -t "/home/$(whoami)/.icons/Material-Black-Blueberry-Numix/" && wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
     sudo getent group autologin >/dev/null || sudo groupadd autologin
