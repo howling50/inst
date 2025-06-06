@@ -8,6 +8,7 @@ rofi_theme_1="$HOME/.config/rofi/config-rofi-Beats-menu.rasi"
 # Online Stations. Edit as required
 declare -A online_music=(
     ["Kiss FM Cyprus (Int'l Hits) 💋"]="https://kissfm.com.cy/live/"
+    ["Trito Live 🎧"]="http://r1.cloudskep.com/cybcr/cybc3/icecast.audio"
     ["Mix FM Cyprus (Pop/Dance) 🎧"]="https://strm.mixlive.eu/mixfm/index.m3u8"
     ["Mix FM Cyprus (Greek) 🎧"]="https://stream.radiojar.com/1nu68206schvv?n=28da446b432d6ce41647"
     ["Zenith 🎧"]="https://live3.istoikona.net:9836/stream?n=69b4cb687affa0a0b4ce"
@@ -21,6 +22,7 @@ declare -A online_music=(
     ["Radio Sfera 🤘"]="https://securestreams3.autopo.st:1417/sfera?n=1b73d561983690508d61"
     ["Rock FM 🤘"]="https://live3.istoikona.net/proxy/rockfm/stream?n=5708b4b60d93814ac2a4"
     ["SuperFM 🎚️"]="https://live3.istoikona.net:18826/stream?n=5b68efe5a138c5af4966"
+    ["Proto Live 🎚️"]="http://r1.cloudskep.com/cybcr/cybc1/icecast.audio"
     ["Metal Music 🎧🎶"]="https://tunein.com/radio/mETaLmuSicRaDio-s119867/"
     ["Top 100 Songs Global 📹🎶"]="https://youtube.com/playlist?list=PL4fGSI1pDJn6puJdseH2Rt9sMvt9E2M4i&si=5jsyfqcoUXBCSLeu"
 )
