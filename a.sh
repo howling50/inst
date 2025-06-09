@@ -433,4 +433,4 @@ fi
 #sudo pacman -Rns lightdm lightdm-gtk-greeter && sudo systemctl stop lightdm && sudo systemctl disable lightdm 
 #sudo pacman -S --noconfirm --needed  sddm qt6-5compat qt6-declarative qt6-svg && sudo systemctl enable sddm && git clone https://codeberg.org/minMelody/sddm-sequoia.git ~/sequoia && rm -rf ~/sequoia/.git && sudo mv ~/sequoia /usr/share/sddm/themes/ && sudo mkdir -p /etc/sddm.conf.d && echo -e "[Theme]\nCurrent = sequoia" | sudo tee "/etc/sddm.conf.d/theme.conf.user" > /dev/null && sudo cp -rf "$HOME/.othercrap/wallpaper/monkey.png" "/usr/share/sddm/themes/sequoia/backgrounds/default" 2>&1 && sudo sed -i 's|^wallpaper=".*"|wallpaper="backgrounds/default"|' "/usr/share/sddm/themes/sequoia/theme.conf" 2>&1 && echo -e "[Autologin]\nUser=$(whoami)" | sudo tee "/etc/sddm.conf" > /dev/null
 # /etc/mkinitcpio.conf MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)      nvidia-drm.fbdev=1
-# /home/howling = gtk-3.0/bookmarks   ,  scripts/ext4autodefrag , dunst/dunstrc, scripts/ntfsautodefrag
+# /home/howling = gtk-3.0/bookmarks   ,  scripts/ext4autodefrag , dunst/dunstrc, scripts/ntfsautodefrag                                    projectm-pulseaudio
