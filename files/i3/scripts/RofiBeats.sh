@@ -10,6 +10,7 @@ declare -A online_music=(
     ["Kiss FM Cyprus (Int'l Hits) 💋"]="https://kissfm.com.cy/live/"
     ["Proto Live 🎧"]="http://r1.cloudskep.com/cybcr/cybc1/icecast.audio"
     ["Trito Live 🎧"]="http://r1.cloudskep.com/cybcr/cybc3/icecast.audio"
+    ["Diesi Cyprus 🎧"]="http://r1.cloudskep.com/radio/diesi/icecast.audio"
     ["Mix FM Cyprus (Pop/Dance) 🎧"]="https://strm.mixlive.eu/mixfm/index.m3u8"
     ["Mix FM Cyprus (Greek) 🎧"]="https://stream.radiojar.com/1nu68206schvv?n=28da446b432d6ce41647"
     ["Zenith 🎧"]="https://live3.istoikona.net:9836/stream?n=69b4cb687affa0a0b4ce"
