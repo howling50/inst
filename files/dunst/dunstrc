@@ -255,15 +255,11 @@
     background = "#28143c"
     foreground = "#ffffff"
     timeout = 5
-    # Icon for notifications with low urgency, uncomment to enable
-    icon = /home/howling/.config/dunst/normal.png
 
 [urgency_normal]
     background = "#28143c"
     foreground = "#ffffff"
     timeout = 5
-    # Icon for notifications with normal urgency, uncomment to enable
-    icon = /home/howling/.config/dunst/normal.png
 
 [urgency_critical]
     background = "#28143c"
