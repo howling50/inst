@@ -85,7 +85,7 @@ play_online_music() {
   fi
 
   link="${online_music[$choice]}"
-
+  echo "$choice" > /tmp/current_radio_station
   notification "$choice"
   
   # Play the selected online music using mpv
