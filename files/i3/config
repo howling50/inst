@@ -27,7 +27,7 @@ floating_modifier $mod
 bindsym Control+Mod1+t exec kitty
 
 # kill window
-bindsym Control+Mod1+x exec wmctrl -c $(xdotool getwindowfocus) -i
+bindsym Control+Mod1+x exec xkill
 
 # start program launcher
 bindsym $mod+Return exec rofi -show drun -theme ~/.config/rofi/launcher.rasi
