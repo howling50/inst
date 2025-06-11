@@ -140,10 +140,6 @@ case "$1" in
         pavucontrol &
         ;;
 
-    # Legacy aliases and music controls
-    volume_mute)   $0 mute   ;;
-    volume_up)     $0 up     ;;
-    volume_down)   $0 down   ;;
     play_pause)    playerctl play-pause && default_show_volume_notif ;;
     next_track)    playerctl next        && default_show_volume_notif ;;
     prev_track)    playerctl previous    && default_show_volume_notif ;;
