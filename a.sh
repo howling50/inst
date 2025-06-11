@@ -98,7 +98,7 @@ for dir in Media Downloads Music Videos Pictures; do [ ! -d "$HOME/$dir" ] && mk
 sudo cp /etc/sudoers /etc/sudoers.tmp && sudo sed -i '/^# Defaults.*timestamp_timeout/s/^# //' /etc/sudoers.tmp && echo 'Defaults timestamp_timeout=60' | sudo tee -a /etc/sudoers.tmp > /dev/null && sudo cp /etc/sudoers.tmp /etc/sudoers && sudo rm -rf /etc/sudoers.tmp
 sudo sh -c 'for option in "Color" "ILoveCandy" "VerbosePkgLists"; do grep -qx "$option" /etc/pacman.conf || sed -i "/\[options\]/a $option" /etc/pacman.conf; done' && sudo sed -i 's/^#Para/Para/' /etc/pacman.conf
 git clone https://aur.archlinux.org/yay-bin.git && cd ~/Downloads/inst/yay-bin && makepkg --noconfirm -si && cd ~/Downloads/inst && rm -rf yay-bin && yay -Syu --noconfirm && yay -Y --sudoloop --save
-sudo pacman -S brightnessctl inotify-tools btop wireplumber playerctl bash-completion neovim trash-cli xclip pacman-contrib jq gnome-system-monitor reflector eza zoxide fzf bat feh zip unzip --noconfirm --needed && cp -rf ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -rf ~/Downloads/inst/files/* /root/.config/
+sudo pacman -S brightnessctl inotify-tools btop wireplumber playerctl bash-completion neovim trash-cli xclip pacman-contrib jq gnome-system-monitor reflector eza zoxide fzf bat feh zip unzip ripgrep tree gdu less tldr --noconfirm --needed && cp -rf ~/Downloads/inst/files/* ~/.config/ && sudo mkdir -p /root/.config && sudo cp -rf ~/Downloads/inst/files/* /root/.config/
 chmod +x ~/Downloads/inst/scripts/* && mv ~/Downloads/inst/scripts/* ~/.local/bin/ && mkdir ~/.othercrap && chmod +x ~/.config/hypr/scripts/* && chmod +x ~/.config/i3/scripts/* && mv ~/Downloads/inst/script/wallpaper ~/Pictures/ && unzip -o ~/Downloads/inst/script/1.zip -d ~/.othercrap > /dev/null && chmod +x ~/.config/sway/scripts/*
 cp ~/Downloads/inst/starship.toml ~/.config/ && sudo mkdir -p /root/.config && sudo cp ~/Downloads/inst/starship.toml /root/.config/ && sudo rm -rf /root/.bashrc && sudo cp ~/Downloads/inst/.bashrc /root/.bashrc && sudo rm -rf ~/.bashrc && cp ~/Downloads/inst/.bashrc ~/.bashrc
 
@@ -338,7 +338,7 @@ sudo pacman -S ffmpeg libfdk-aac gst-plugins-base gst-libav gst-plugins-good gst
 sudo pacman -S wine wine-gecko wine-mono wine-nine winetricks --noconfirm --needed
 sudo pacman -S gufw proxychains tor pkgconf audacious lutris net-tools zip lsof unrar gparted filezilla --noconfirm --needed
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam gameconqueror --noconfirm --needed
-sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr termusic xdotool podman distrobox e2fsprogs ripgrep tree gdu less mpg123 imagemagick tldr feh alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
+sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr termusic xdotool podman distrobox e2fsprogs mpg123 imagemagick alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
 #-----------------------------------------------------------------
 yay -S --noconfirm --needed dxvk-bin ventoy-bin winegui-bin ttf-ms-fonts dragon-drop urlview pacseek-bin autobrr-bin reflector-simple
 flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub app.zen_browser.zen
