@@ -189,7 +189,7 @@ sudo zypper install -y -n audacious yt-dlp cmus cmus-plugins-all mpv mpg123 mkvt
 sudo zypper install -y -n gsmartcontrol w3m ddgr xdotool firewall-config podman distrobox bluez blueman rsync w3m-inline-image
 sudo zypper install -y -n dxvk hardinfo opi feh fastfetch nmap fakeroot bind wine-gecko catfish wine-mono winetricks proxychains-ng tor neovim gnome-system-monitor
 sudo zypper install -y -n gamemode zip unrar gparted filezilla qbittorrent putty aria2 fuseiso android-tools q4wine mediainfo-gui
-sudo zypper install -y -n gnome-calculator xorg-xinput xfburn
+sudo zypper install -y -n xkill gnome-calculator xinput xfburn
 #sudo zypper in piper && sudo systemctl enable ratbagd.service && sudo systemctl restart ratbagd.service && sudo usermod -aG games "$(whoami)"
 #------------------------------------------------------------------
 flatpak install --noninteractive flathub app.drey.Warp && flatpak install --noninteractive flathub com.github.xournalpp.xournalpp && flatpak install --noninteractive flathub com.heroicgameslauncher.hgl && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub io.github.giantpinkrobots.varia && flatpak install --noninteractive flathub com.github.tchx84.Flatseal
