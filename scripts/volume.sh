@@ -15,7 +15,6 @@ volume_step=5
 max_volume=100
 notification_timeout=5000
 
-download_album_art=false
 show_album_art=true
 show_music_in_volume_indicator=true
 
