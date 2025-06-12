@@ -15,7 +15,7 @@ volume_step=5
 max_volume=100
 notification_timeout=5000
 
-show_album_art=true
+show_album_art=false
 show_music_in_volume_indicator=true
 
 get_volume() {
