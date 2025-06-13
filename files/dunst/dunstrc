@@ -248,21 +248,21 @@
     foreground = "#ebdbb2"
     frame_color = "#b8bb26"
     timeout = 10
-    icon = /home/howling/.config/dunst/normal.png
+    icon = /home/howling/.config/dunst/icons/normal.png
 
 [urgency_normal]
     background = "#282828"
     foreground = "#ebdbb2"
     frame_color = "#b8bb26"
     timeout = 10
-    icon = /home/howling/.config/dunst/normal.png
+    icon = /home/howling/.config/dunst/icons/normal.png
 
 [urgency_critical]
     background = "#282828"
     foreground = "#ebdbb2"
     frame_color = "#fb4934"
     timeout = 0
-    icon = /home/howling/.config/dunst/critical.png
+    icon = /home/howling/.config/dunst/icons/critical.png
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
