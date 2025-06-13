@@ -7,7 +7,7 @@ wallpaper_output="$HOME/.othercrap/modified.png"
 rofi_theme="$HOME/.config/rofi/basiceffect.rasi"
 
 # Directory for notifications
-iDIR="$HOME/.config/dunst"
+iDIR="$HOME/.config/dunst/icons"
 
 # Define ImageMagic effects
 declare -A effects=(
