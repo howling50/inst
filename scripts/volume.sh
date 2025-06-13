@@ -18,6 +18,12 @@ notification_timeout=5000
 show_album_art=false
 show_music_in_volume_indicator=true
 
+# Icon paths for notifications
+ICON_MUTE="$HOME/.config/dunst/icons/volume-mute.png"
+ICON_LOW="$HOME/.config/dunst/icons/volume-low.png"
+ICON_MID="$HOME/.config/dunst/icons/volume-mid.png"
+ICON_HIGH="$HOME/.config/dunst/icons/volume-high.png"
+
 get_volume() {
     pactl get-sink-volume @DEFAULT_SINK@ \
         | grep -Po '[0-9]{1,3}(?=%)' \
@@ -58,21 +64,44 @@ get_formatted_icon() {
     printf "%%{F%s}%s%%{F-}" "$color" "$raw"
 }
 
-# Send notifications using unformatted icon and explicit text
+# Get icon path based on volume level
+get_icon_path() {
+    local vol=$1
+    if [ $vol -eq 0 ]; then
+        echo "$ICON_MUTE"
+    elif [ $vol -lt 20 ]; then
+        echo "$ICON_LOW"
+    elif [ $vol -le 60 ]; then
+        echo "$ICON_MID"
+    else
+        echo "$ICON_HIGH"
+    fi
+}
+
+# Send notifications using local icons when album art is disabled
 default_show_volume_notif() {
     local vol=$(get_volume)
     local mute=$(get_mute)
-    local raw_icon=$(get_raw_icon)
+    local icon_path=""
+
+    # Determine icon path when album art is disabled
+    if [ "$show_album_art" = "false" ]; then
+        icon_path=$(get_icon_path $vol)
+    fi
 
     if [ "$mute" = "yes" ]; then
-        # Muted: only show icon + Muted
+        # For muted, always use mute icon if album art is disabled
+        if [ "$show_album_art" = "false" ]; then
+            icon_path="$ICON_MUTE"
+        fi
         notify-send -t $notification_timeout \
             -h string:x-dunst-stack-tag:volume_notif \
-            "${raw_icon} Muted"
+            -i "$icon_path" \
+            "Muted"
         return
     fi
 
-    # Not muted: show "Volume X%" explicitly
+    # Not muted
     if [ "$show_music_in_volume_indicator" = "true" ]; then
         stream_url="$(playerctl -f "{{xesam:url}}" metadata 2>/dev/null)"
         if [[ "$stream_url" =~ ^https?:// ]]; then
@@ -84,22 +113,29 @@ default_show_volume_notif() {
         else
         current_song="$(playerctl -f '{{title}} - {{artist}}' metadata 2>/dev/null)"         
         fi
+        
         local art=""
         if [ "$show_album_art" = "true" ]; then
             art_path=$(playerctl -f "{{mpris:artUrl}}" metadata | sed -e 's|^file://||' -e 's|.*/||;q')
             art="/tmp/$art_path"
             [ -f "$art" ] || wget -qO "$art" "$(playerctl -f "{{mpris:artUrl}}" metadata)"
         fi
+        
+        # Use album art if available, otherwise use volume-based icon
+        local notification_icon=${art:-$icon_path}
+        
         notify-send -t $notification_timeout \
             -h string:x-dunst-stack-tag:volume_notif \
             -h int:value:$vol \
-            -i "$art" \
+            -i "$notification_icon" \
             "Volume $vol%" \
             "$current_song"
     else
+        # Without music info
         notify-send -t $notification_timeout \
             -h string:x-dunst-stack-tag:volume_notif \
             -h int:value:$vol \
+            -i "$icon_path" \
             "Volume $vol%"
     fi
 }
