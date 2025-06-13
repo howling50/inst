@@ -1,9 +1,44 @@
 #!/usr/bin/env bash
-# Unified display brightness control for X11 and Wayland
-# Supports: xrandr (X11), wlr-randr (wlroots), and brightnessctl (generic)
 
 ROFI="${ROFI:-rofi}"
 CURRENT_MODE=""
+NOTIFY="${NOTIFY:-dunstify}"
+
+# Set UTF-8 environment to fix icon issues
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# Detect notification command
+detect_notifier() {
+    if command -v dunstify &> /dev/null; then
+        NOTIFY="dunstify -r 1000 -u low"
+    elif command -v notify-send &> /dev/null; then
+        NOTIFY="notify-send"
+    else
+        NOTIFY="echo"
+    fi
+}
+
+# Show notification with brightness level
+brightness_notification() {
+    local level=$(current_bright_perc)
+    local icon
+    
+    # Select appropriate icon based on brightness level
+    if [ "$level" -ge 100 ]; then
+         icon="$HOME/.config/swaync/icons/brightness-100.png"
+    elif [ "$level" -ge 80 ]; then
+        icon="$HOME/.config/swaync/icons/brightness-80.png"
+    elif [ "$level" -ge 60 ]; then
+        icon="$HOME/.config/swaync/icons/brightness-60.png"
+    elif [ "$level" -ge 40 ]; then
+        icon="$HOME/.config/swaync/icons/brightness-40.png"
+    else
+        icon="$HOME/.config/swaync/icons/brightness-20.png"
+    fi
+
+    $NOTIFY "Brightness: $level%" -h "int:value:$level" -i "$icon"
+}
 
 # Detect environment
 detect_environment() {
@@ -51,14 +86,14 @@ current_bright_perc() {
     current_bright | awk '{printf "%.0f", $1 * 100}'
 }
 
-# Calculate increased brightness
+# Calculate increased brightness (5% increment)
 increase_bright() {
-    awk -v b="$1" 'BEGIN {bright = b + 0.1; print (bright > 1.0) ? 1.0 : bright}'
+    awk -v b="$1" 'BEGIN {bright = b + 0.05; print (bright > 1.0) ? 1.0 : bright}'
 }
 
-# Calculate decreased brightness
+# Calculate decreased brightness (5% decrement)
 decrease_bright() {
-    awk -v b="$1" 'BEGIN {bright = b - 0.1; print (bright < 0.0) ? 0.0 : bright}'
+    awk -v b="$1" 'BEGIN {bright = b - 0.05; print (bright < 0.0) ? 0.0 : bright}'
 }
 
 # Set brightness (0.0-1.0)
@@ -80,6 +115,7 @@ set_bright() {
 
 ## Main
 detect_environment
+detect_notifier  # Initialize notification system
 options="Increase\nDecrease\nOptimal"
 row=0
 
@@ -88,14 +124,17 @@ while chosen="$(echo -e "$options" | $ROFI -dmenu -i -p "Brightness $(current_br
     case $chosen in
         "Increase")
             set_bright "$(increase_bright "$(current_bright)")"
+            brightness_notification
             row=0
             ;;
         "Decrease")
             set_bright "$(decrease_bright "$(current_bright)")"
+            brightness_notification
             row=1
             ;;
         "Optimal")
             set_bright 0.75
+            brightness_notification
             row=2
             ;;
     esac
