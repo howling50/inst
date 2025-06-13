@@ -61,7 +61,7 @@ set_wallpaper() {
   # Set with feh using the copied file
   feh --bg-fill "$CURRENT_WALL"
   
-  notify-send -i "$ICON_DIR/normal.png" "Wallpaper Set" "$(basename "$wall_path")"
+  notify-send -i "$CURRENT_WALL" "Wallpaper Set" "$(basename "$wall_path")"
 }
 
 # Main function (rest remains the same)
