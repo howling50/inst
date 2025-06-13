@@ -1,5 +1,4 @@
 #!/bin/bash
-# Converted for i3 with feh/dunst/rofi
 
 # Variables
 wallpaper_current="$HOME/.othercrap/current.png"
