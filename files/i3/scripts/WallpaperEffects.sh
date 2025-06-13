@@ -34,7 +34,7 @@ declare -A effects=(
 # Function to apply no effects
 no-effects() {
     feh --bg-fill "$wallpaper_current"
-    notify-send -u low -i "$iDIR/normal.png" "No effects" "Applied original wallpaper"
+    notify-send -u low -i "$wallpaper_current" "No effects" "Applied original wallpaper"
     cp "$wallpaper_current" "$wallpaper_output"
 }
 
@@ -54,13 +54,13 @@ main() {
             no-effects
         elif [[ "${effects[$choice]+exists}" ]]; then
             # Apply selected effect
-            notify-send -u normal -i "$iDIR/normal.png"  "Applying:" "$choice effects"
+            notify-send -u normal -i "$wallpaper_current" "Applying:" "$choice effects"
             eval "${effects[$choice]}"
             
             # Set modified wallpaper
             feh --bg-fill "$wallpaper_output"
             
-            notify-send -u low -i "$iDIR/normal.png" "$choice" "Effects applied"
+            notify-send -u low -i "$wallpaper_output" "$choice" "Effects applied"
         else
             notify-send -i "$iDIR/critical.png" "Error" "Unknown effect: $choice"
         fi
