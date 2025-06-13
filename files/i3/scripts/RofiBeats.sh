@@ -1,7 +1,7 @@
 #!/bin/bash
 # Variables
 mDIR="$HOME/Music/"
-iDIR="$HOME/.config/dunst"
+iDIR="$HOME/.config/swaync/icons"
 rofi_theme="$HOME/.config/rofi/config-rofi-Beats.rasi"
 rofi_theme_1="$HOME/.config/rofi/config-rofi-Beats-menu.rasi"
 
@@ -40,7 +40,7 @@ populate_local_music() {
 
 # Function for displaying notifications
 notification() {
-  notify-send -u normal -i "$iDIR/normal.png" "Now Playing:" "$@"
+  notify-send -u normal -i "$iDIR/music.png" "Now Playing:" "$@"
 }
 
 # Main function for playing local music
@@ -104,7 +104,7 @@ stop_music() {
         kill -9 "$pid" || true
       fi
     done
-    notify-send -u low -i "$iDIR/normal.png" "Music stopped" || true
+    notify-send -u low -i "$iDIR/music.png" "Music stopped" || true
   fi
 }
 
