@@ -6,13 +6,10 @@ time=$(date "+%d-%b_%H-%M-%S")
 dir="$HOME/Pictures"
 file="Screenshot_${time}_${RANDOM}.png"
 
-iDIR="$HOME/.config/swaync/icons"
-iDoR="$HOME/.config/swaync/images"
-
 # Notification commands
 notify_cmd_base="notify-send -t 10000 -A action1=Open -A action2=Delete -h string:x-canonical-private-synchronous:shot-notify"
-notify_cmd_shot="${notify_cmd_base} -i ${iDIR}/picture.png"
-notify_cmd_NOT="notify-send -u low -i ${iDoR}/note.png"
+notify_cmd_shot="${notify_cmd_base}"
+notify_cmd_NOT="notify-send -u low error"
 
 # Notify and view screenshot
 notify_view() {
@@ -54,7 +51,7 @@ notify_view() {
 # Countdown
 countdown() {
     for sec in $(seq $1 -1 1); do
-        notify-send -t 1000 -i "$iDIR/timer.png" "Taking shot" "in: $sec secs"
+        notify-send -t 1000 "Taking shot" "in: $sec secs"
         sleep 1
     done
 }
