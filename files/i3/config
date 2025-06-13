@@ -106,7 +106,6 @@ bindsym $mod+r mode "resize"
 bindsym Mod1+F8 mode "resize"
 
 # other
-bindsym $mod+Shift+b exec Bright.sh
 bindsym $mod+Shift+k exec rofikill.sh
 bindsym $mod+Shift+o exec output_switch.sh
 bindsym $mod+Shift+d exec define.sh
