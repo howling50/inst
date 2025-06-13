@@ -1,137 +1,128 @@
 #!/bin/bash
+# Screenshots script for Sway
 
 # Variables
 time=$(date "+%d-%b_%H-%M-%S")
 dir="$HOME/Pictures"
 file="Screenshot_${time}_${RANDOM}.png"
 
+iDIR="$HOME/.config/swaync/icons"
+iDoR="$HOME/.config/swaync/images"
+
 # Notification commands
-notify_cmd_base="notify-send -t 10000 -h string:x-canonical-private-synchronous:shot-notify"
-notify_cmd_NOT="notify-send -u low -t 5000"
+notify_cmd_base="notify-send -t 10000 -A action1=Open -A action2=Delete -h string:x-canonical-private-synchronous:shot-notify"
+notify_cmd_shot="${notify_cmd_base} -i ${iDIR}/picture.png"
+notify_cmd_NOT="notify-send -u low -i ${iDoR}/note.png"
 
-# Notify and handle actions
+# Notify and view screenshot
 notify_view() {
-    local type="$1"
-    local title msg resp
-
-    case "$type" in
+    case "$1" in
         active)
-            title="Screenshot of active window"
-            msg="${active_window_class}"
+            if [[ -e "${dir}/${active_window_file}" ]]; then
+                resp=$(timeout 5 ${notify_cmd_shot} "Screenshot of:" "${active_window_class} Saved")
+                case "$resp" in
+                    action1) xdg-open "${dir}/${active_window_file}" & ;;
+                    action2) rm "${dir}/${active_window_file}" & ;;
+                esac
+            else
+                ${notify_cmd_NOT} "Screenshot of:" "${active_window_class} NOT Saved"
+            fi
             ;;
+
         swappy)
-            title="Screenshot for editing"
-            msg="Captured by Swappy"
+            resp=$(timeout 5 ${notify_cmd_shot} "Screenshot:" "Captured by Swappy")
+            case "$resp" in
+                action1) swappy -f "$tmpfile" ;;
+                action2) rm "$tmpfile" ;;
+            esac
             ;;
+
         *)
-            title="Screenshot"
-            msg="Saved to $dir"
+            if [[ -e "${dir}/${file}" ]]; then
+                resp=$(timeout 5 ${notify_cmd_shot} "Screenshot" "Saved")
+                case "$resp" in
+                    action1) xdg-open "${dir}/${file}" & ;;
+                    action2) rm "${dir}/${file}" & ;;
+                esac
+            else
+                ${notify_cmd_NOT} "Screenshot" "NOT Saved"
+            fi
             ;;
     esac
-
-    if [[ -e "$file_path" ]]; then
-        resp=$($notify_cmd_base -A "open=Open" -A "delete=Delete" "$title" "$msg")
-        case "$resp" in
-            "open")
-                xdg-open "$file_path" &
-                ;;
-            "delete")
-                rm "$file_path"
-                $notify_cmd_NOT "Screenshot deleted" "$file_path"
-                ;;
-        esac
-    else
-        $notify_cmd_NOT "Screenshot failed" "Could not save image"
-    fi
 }
 
-# Countdown function
+# Countdown
 countdown() {
-    for sec in $(seq "$1" -1 1); do
-        notify-send -t 1000 "Taking shot in: $sec seconds"
+    for sec in $(seq $1 -1 1); do
+        notify-send -t 1000 -i "$iDIR/timer.png" "Taking shot" "in: $sec secs"
         sleep 1
     done
 }
 
-# Screenshot functions
-capture_and_handle() {
-    local file_path="$1"
-    local type="$2"
-    
-    if grim "$file_path"; then
-        wl-copy < "$file_path"
-        notify_view "$type"
-    else
-        $notify_cmd_NOT "Screenshot failed" "grim command failed"
-    fi
-}
-
+# Take shots
 shotnow() {
-    capture_and_handle "${dir}/${file}" "default"
+    grim "${dir}/${file}" && wl-copy < "${dir}/${file}"
+    notify_view
 }
 
 shot5() {
     countdown 5
-    shotnow
+    grim "${dir}/${file}" && wl-copy < "${dir}/${file}"
+    notify_view
 }
 
 shot10() {
     countdown 10
-    shotnow
+    grim "${dir}/${file}" && wl-copy < "${dir}/${file}"
+    notify_view
 }
 
 shotwin() {
     focused_window=$(swaymsg -t get_tree | jq -r '.. | select(.focused? == true)')
     geometry=$(echo "$focused_window" | jq -r '"\(.rect.x),\(.rect.y) \(.rect.width)x\(.rect.height)"')
     grim -g "$geometry" "${dir}/${file}" && wl-copy < "${dir}/${file}"
-    notify_view "default"
+    notify_view
 }
 
 shotarea() {
-    local geometry
-    if geometry=$(slurp -d 2>/dev/null); then
-        grim -g "$geometry" "${dir}/${file}" && wl-copy < "${dir}/${file}"
-        notify_view "default"
+    tmpfile=$(mktemp).png
+    grim -g "$(slurp -d)" "$tmpfile"
+    
+    if [[ -s "$tmpfile" ]]; then
+        wl-copy < "$tmpfile"
+        mv "$tmpfile" "${dir}/${file}"
+        notify_view
     else
-        $notify_cmd_NOT "Screenshot cancelled" "Selection cancelled"
+        rm -f "$tmpfile"
+        ${notify_cmd_NOT} "Screenshot" "Selection cancelled"
     fi
 }
 
 shotactive() {
     focused_window=$(swaymsg -t get_tree | jq -r '.. | select(.focused? == true)')
     active_window_class=$(echo "$focused_window" | jq -r '.app_id // .window_properties.class // "unknown"')
-    active_window_file="Screenshot_${time}_${active_window_class//[^[:alnum:]._-/_}.png"  # Sanitized filename
+    active_window_file="Screenshot_${time}_${active_window_class}.png"
     geometry=$(echo "$focused_window" | jq -r '"\(.rect.x),\(.rect.y) \(.rect.width)x\(.rect.height)"')
     
-    file_path="${dir}/${active_window_file}"
-    if grim -g "$geometry" "$file_path"; then
-        wl-copy < "$file_path"
-        notify_view "active"
-    else
-        $notify_cmd_NOT "Active window capture failed" "Could not save image"
-    fi
+    grim -g "$geometry" "${dir}/${active_window_file}"
+    notify_view active
 }
 
 shotswappy() {
-    local tmpfile geometry
-    tmpfile=$(mktemp --suffix=.png) || return 1
+    tmpfile=$(mktemp).png
+    grim -g "$(slurp -d)" "$tmpfile"
     
-    if geometry=$(slurp -d 2>/dev/null); then
-        if grim -g "$geometry" "$tmpfile"; then
-            wl-copy < "$tmpfile"
-            swappy -f "$tmpfile"  # Open directly in swappy
-        else
-            rm -f "$tmpfile"
-            $notify_cmd_NOT "Screenshot failed" "Could not capture area"
-        fi
+    if [[ -s "$tmpfile" ]]; then
+        wl-copy < "$tmpfile"
+        notify_view swappy
     else
         rm -f "$tmpfile"
-        $notify_cmd_NOT "Screenshot cancelled" "Selection cancelled"
+        ${notify_cmd_NOT} "Screenshot" "Selection cancelled"
     fi
 }
 
 # Main execution
-mkdir -p "$dir"  # Ensure directory exists
+[[ ! -d "$dir" ]] && mkdir -p "$dir"
 
 case "$1" in
     --now)      shotnow ;;
