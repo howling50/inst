@@ -26,15 +26,15 @@ brightness_notification() {
     
     # Select appropriate icon based on brightness level
     if [ "$level" -ge 100 ]; then
-         icon="$HOME/.config/dunst/brightness-100.png"
+         icon="$HOME/.config/dunst/icons/brightness-100.png"
     elif [ "$level" -ge 80 ]; then
-        icon="$HOME/.config/dunst/brightness-80.png"
+        icon="$HOME/.config/dunst/icons/brightness-80.png"
     elif [ "$level" -ge 60 ]; then
-        icon="$HOME/.config/dunst/brightness-60.png"
+        icon="$HOME/.config/dunst/icons/brightness-60.png"
     elif [ "$level" -ge 40 ]; then
-        icon="$HOME/.config/dunst/brightness-40.png"
+        icon="$HOME/.config/dunst/icons/brightness-40.png"
     else
-        icon="$HOME/.config/dunst/brightness-20.png"
+        icon="$HOME/.config/dunst/icons/brightness-20.png"
     fi
 
     $NOTIFY "Brightness: $level%" -h "int:value:$level" -i "$icon"
