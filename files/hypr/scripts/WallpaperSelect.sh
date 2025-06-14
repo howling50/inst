@@ -4,13 +4,13 @@ WALL_DIR="$HOME/Pictures/wallpaper"
 CURRENT_WALL="$HOME/.othercrap/current.png"
 MODIFY_WALL="$HOME/.othercrap/modified.png"
 ROFI_THEME="$HOME/.config/rofi/config-wallpaper.rasi"
-ICON_DIR="$HOME/.config/swaync/images"
+ICON_DIR="$HOME/.config/dunst/icons"
 
 # Check dependencies
 required_commands=("bc" "jq")
 for cmd in "${required_commands[@]}"; do
   if ! command -v "$cmd" &>/dev/null; then
-    notify-send -i "$ICON_DIR/error.png" "Missing $cmd" "Please install $cmd first"
+    notify-send -i "$ICON_DIR/critical.png" "Missing $cmd" "Please install $cmd first"
     exit 1
   fi
 done
@@ -52,7 +52,7 @@ set_wallpaper() {
     cp -f "$wall_path" "$CURRENT_WALL"
     cp -f "$wall_path" "$MODIFY_WALL"
   else
-    notify-send -i "$ICON_DIR/error.png" "Error" "Wallpaper file not found!"
+    notify-send -i "$ICON_DIR/critical.png" "Error" "Wallpaper file not found!"
     exit 1
   fi
   
@@ -60,7 +60,7 @@ set_wallpaper() {
   killall -q swaybg
   swaybg -m fill -i "$CURRENT_WALL" &
   
-  notify-send -i "$ICON_DIR/normal.png" "Wallpaper Set" "$(basename "$wall_path")"
+  notify-send -i "$CURRENT_WALL" "Wallpaper Set" "$(basename "$wall_path")"
 }
 
 # Main function
@@ -83,7 +83,7 @@ main() {
 
   # Validate selection
   if [[ -z "$selected_wall" ]] || [[ ! -f "$selected_wall" ]]; then
-    notify-send -i "$ICON_DIR/error.png" "Error" "Wallpaper not found!"
+    notify-send -i "$ICON_DIR/critical.png" "Error" "Wallpaper not found!"
     exit 1
   fi
 
