@@ -19,10 +19,10 @@ show_album_art=false
 show_music_in_volume_indicator=true
 
 # Icon paths for notifications
-ICON_MUTE="$HOME/.config/dunst/icons/volume-mute.png"
-ICON_LOW="$HOME/.config/dunst/icons/volume-low.png"
-ICON_MID="$HOME/.config/dunst/icons/volume-mid.png"
-ICON_HIGH="$HOME/.config/dunst/icons/volume-high.png"
+ICON_MUTE="$HOME/.config/dunst/icons/Volume-Mute.png"
+ICON_LOW="$HOME/.config/dunst/icons/Volume-Low.png"
+ICON_MID="$HOME/.config/dunst/icons/Volume-Mid.png"
+ICON_HIGH="$HOME/.config/dunst/icons/Volume-High.png"
 
 get_volume() {
     pactl get-sink-volume @DEFAULT_SINK@ \
