@@ -1,7 +1,7 @@
 #!/bin/bash
 # Variables
 mDIR="$HOME/Music/"
-iDIR="$HOME/.config/swaync/icons"
+iDIR="$HOME/.config/dunst/icons"
 rofi_theme="$HOME/.config/rofi/config-rofi-Beats.rasi"
 rofi_theme_1="$HOME/.config/rofi/config-rofi-Beats-menu.rasi"
 
