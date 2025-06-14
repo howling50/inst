@@ -3,9 +3,6 @@ wallpaper_current="$HOME/.othercrap/current.png"
 wallpaper_output="$HOME/.othercrap/modified.png"
 rofi_theme="$HOME/.config/rofi/basiceffect.rasi"
 
-# Directory for swaync
-iDIR="$HOME/.config/swaync/images"
-
 # Define ImageMagic effects
 declare -A effects=(
     ["No Effects"]="no-effects"
@@ -32,7 +29,7 @@ declare -A effects=(
 no-effects() {
     pkill swaybg || true
     swaybg -i "$wallpaper_current" &&
-    notify-send -u low -i "$iDIR/ja.png" "No wallpaper" "effects applied"
+    notify-send -u low -i "$wallpaper_current" "No wallpaper" "effects applied"
     cp "$wallpaper_current" "$wallpaper_output"
 }
 
@@ -52,14 +49,14 @@ main() {
             no-effects
         elif [[ "${effects[$choice]+exists}" ]]; then
             # Apply selected effect
-            notify-send -u normal -i "$iDIR/ja.png"  "Applying:" "$choice effects"
+            notify-send -u normal -i "$wallpaper_current"  "Applying:" "$choice effects"
             eval "${effects[$choice]}"
             
             # Set modified wallpaper
             pkill swaybg || true
             swaybg -i "$wallpaper_output" &
 
-            notify-send -u low -i "$iDIR/ja.png" "$choice" "effects applied"
+            notify-send -u low -i "$wallpaper_output" "$choice" "effects applied"
         else
             echo "Effect '$choice' not recognized."
         fi
