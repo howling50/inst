@@ -168,7 +168,8 @@
     # Align icons left/right/off
     icon_position = left
 
-    # Scale larger icons down to this size, set to 0 to disable
+    # Icon Size
+    min_icon_size = 32
     max_icon_size = 32
 
     # Paths to default icons.
