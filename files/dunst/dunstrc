@@ -249,14 +249,14 @@
     foreground = "#ebdbb2"
     frame_color = "#b8bb26"
     timeout = 10
-    icon = /home/howling/.config/dunst/icons/normal.png
+    icon = /home/howling/.config/dunst/icons/bell.png
 
 [urgency_normal]
     background = "#282828"
     foreground = "#ebdbb2"
     frame_color = "#b8bb26"
     timeout = 10
-    icon = /home/howling/.config/dunst/icons/normal.png
+    icon = /home/howling/.config/dunst/icons/bell.png
 
 [urgency_critical]
     background = "#282828"
