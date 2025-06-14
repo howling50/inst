@@ -6,13 +6,12 @@ time=$(date "+%d-%b_%H-%M-%S")
 dir="$HOME/Pictures"
 file="Screenshot_${time}_${RANDOM}.png"
 
-iDIR="$HOME/.config/swaync/icons"
-iDoR="$HOME/.config/swaync/images"
+iDIR="$HOME/.config/dunst/icons"
 
 # Notification commands
 notify_cmd_base="notify-send -t 10000 -A action1=Open -A action2=Delete -h string:x-canonical-private-synchronous:shot-notify"
 notify_cmd_shot="${notify_cmd_base} -i ${iDIR}/picture.png"
-notify_cmd_NOT="notify-send -u low -i ${iDoR}/note.png"
+notify_cmd_NOT="notify-send -u low -i ${iDIR}/note.png"
 
 # Notify and view screenshot
 notify_view() {
