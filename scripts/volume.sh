@@ -15,7 +15,7 @@ volume_step=5
 max_volume=100
 notification_timeout=5000
 
-show_album_art=false
+show_album_art=true
 show_music_in_volume_indicator=true
 
 # Icon paths for notifications
@@ -82,21 +82,12 @@ get_icon_path() {
 default_show_volume_notif() {
     local vol=$(get_volume)
     local mute=$(get_mute)
-    local icon_path=""
-
-    # Determine icon path when album art is disabled
-    if [ "$show_album_art" = "false" ]; then
-        icon_path=$(get_icon_path $vol)
-    fi
+    local volume_icon=$(get_icon_path $vol)
 
     if [ "$mute" = "yes" ]; then
-        # For muted, always use mute icon if album art is disabled
-        if [ "$show_album_art" = "false" ]; then
-            icon_path="$ICON_MUTE"
-        fi
         notify-send -t $notification_timeout \
             -h string:x-dunst-stack-tag:volume_notif \
-            -i "$icon_path" \
+            -i "$ICON_MUTE" \
             "Muted"
         return
     fi
@@ -105,25 +96,36 @@ default_show_volume_notif() {
     if [ "$show_music_in_volume_indicator" = "true" ]; then
         stream_url="$(playerctl -f "{{xesam:url}}" metadata 2>/dev/null)"
         if [[ "$stream_url" =~ ^https?:// ]]; then
-              if [ -r /tmp/current_radio_station ]; then
-               current_song="$(< /tmp/current_radio_station)"
-              else
-               current_song="Live Radio Stream"
-              fi
+            if [ -r /tmp/current_radio_station ]; then
+                current_song="$(< /tmp/current_radio_station)"
+            else
+                current_song="Live Radio Stream"
+            fi
         else
-        current_song="$(playerctl -f '{{title}} - {{artist}}' metadata 2>/dev/null)"         
+            current_song="$(playerctl -f '{{title}} - {{artist}}' metadata 2>/dev/null)"         
         fi
         
-        local art=""
-        if [ "$show_album_art" = "true" ]; then
-            art_path=$(playerctl -f "{{mpris:artUrl}}" metadata | sed -e 's|^file://||' -e 's|.*/||;q')
-            art="/tmp/$art_path"
-            [ -f "$art" ] || wget -qO "$art" "$(playerctl -f "{{mpris:artUrl}}" metadata)"
+        local notification_icon="$volume_icon"  # Default to volume icon
+        
+        # Only try to use album art if both flags are enabled
+        if [ "$show_album_art" = "true" ] && [ "$show_music_in_volume_indicator" = "true" ]; then
+            art_url=$(playerctl -f "{{mpris:artUrl}}" metadata 2>/dev/null)
+            if [ -n "$art_url" ]; then
+                art_path=$(echo "$art_url" | sed -e 's|^file://||' -e 's|.*/||;q')
+                art="/tmp/$art_path"
+                
+                # Only download if we don't have a valid file
+                if [ ! -f "$art" ] || [ ! -s "$art" ]; then
+                    wget -qO "$art" "$art_url" 2>/dev/null || rm -f "$art"
+                fi
+                
+                # Use art only if it exists and is non-empty
+                if [ -f "$art" ] && [ -s "$art" ]; then
+                    notification_icon="$art"
+                fi
+            fi
         fi
-        
-        # Use album art if available, otherwise use volume-based icon
-        local notification_icon=${art:-$icon_path}
-        
+
         notify-send -t $notification_timeout \
             -h string:x-dunst-stack-tag:volume_notif \
             -h int:value:$vol \
@@ -135,7 +137,7 @@ default_show_volume_notif() {
         notify-send -t $notification_timeout \
             -h string:x-dunst-stack-tag:volume_notif \
             -h int:value:$vol \
-            -i "$icon_path" \
+            -i "$volume_icon" \
             "Volume $vol%"
     fi
 }
