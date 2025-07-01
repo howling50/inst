@@ -64,6 +64,9 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Alias
+fzfyay () {
+  yay -Slq | fzf -m --preview 'bat <(yay -Si {1}) <(yay -Fl {1} | awk "{print \$2}")' | xargs -ro  yay -S
+}
 function ff {
   if command -v pacman >/dev/null 2>&1; then
     kitten icat -n --place 25x20@0x8 --scale-up --align left ~/.config/fastfetch/arch.gif | fastfetch --logo-width 21 --raw -
@@ -152,7 +155,7 @@ fcd() {
 listbash() {
     printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu/topram, plist, countfiles, mntls, ftext, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, vimhistory, trash-restore, sddmthemeauto
 \e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus/termusic, cava, ddgr, w3m, yazi, pacseek, watch, wormhole, procs
-\e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba
+\e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba, fzfyay
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncauto, yt-x-update, ani-cli-update, dragondrop-auto
 \e[1;36mScripts:\e[0m 1, 2, ani-cli, yt-x, timer, checkerror, rofi-wifi-menu, dlfile, killandnotify, ipconfig, lastupdate.sh, formatext4.sh, ext4autodefrag, ntfsautodefrag, toggle-stereo-swap.sh, RofiFind.sh
 \e[1;33mOther:\e[0m
