@@ -340,7 +340,7 @@ sudo pacman -S gufw proxychains tor pkgconf audacious lutris net-tools zip lsof 
 sudo pacman -S flac yt-dlp mkvtoolnix-cli mkvtoolnix-gui steam gameconqueror projectm-pulseaudio --noconfirm --needed
 sudo pacman -S cpu-x gamemode gsmartcontrol cmatrix w3m ddgr termusic xdotool podman distrobox e2fsprogs mpg123 imagemagick alsa-utils gptfdisk ntfs-3g os-prober python-pip --noconfirm --needed
 #-----------------------------------------------------------------
-yay -S --noconfirm --needed dxvk-bin ventoy-bin winegui-bin ttf-ms-fonts dragon-drop urlview pacseek-bin autobrr-bin reflector-simple
+yay -S --noconfirm --needed dxvk-bin ventoy-bin winegui-bin ttf-ms-fonts dragon-drop urlview autobrr-bin reflector-simple
 flatpak install --noninteractive flathub com.github.tchx84.Flatseal && flatpak install --noninteractive flathub com.calibre_ebook.calibre && flatpak install --noninteractive flathub com.github.Matoking.protontricks && flatpak install --noninteractive flathub io.gitlab.librewolf-community && flatpak install --noninteractive flathub app.zen_browser.zen
 flatpak install --noninteractive flathub io.github.dvlv.boxbuddyrs && flatpak install --noninteractive flathub com.usebottles.bottles && flatpak install --noninteractive flathub net.davidotek.pupgui2 && flatpak install --noninteractive flathub com.heroicgameslauncher.hgl
 wget $(curl -s https://api.github.com/repos/pystardust/ani-cli/releases/latest | jq -r '.assets[] | select(.name | test("ani-cli")) | .browser_download_url') -O ani-cli && chmod +x ani-cli && mv ani-cli ~/.local/bin/ && rm ani-cli*
