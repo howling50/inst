@@ -1,0 +1,125 @@
+@define-color background #282c34;
+@define-color foreground #c0caf5;
+@define-color primary #51afef;
+@define-color secondary #8ABEB7;
+@define-color alert #e06c75;
+@define-color disabled #707880;
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Symbols Nerd Font", "FiraCode Nerd Font Mono", "NotoColorEmoji", sans-serif;
+    font-size: 10pt;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @background;
+    color: @foreground;
+    border-radius: 6px;
+}
+
+/* Workspaces */
+#workspaces button {
+    padding: 0 2px;
+    background: transparent;
+    color: @foreground;
+    border-bottom: 3px solid transparent;
+}
+#workspaces button.focused {
+    border-bottom: 3px solid @primary;
+}
+#workspaces button.urgent {
+    background: @alert;
+}
+
+/* Focused window title */
+#window {
+    color: #d65d0e;
+}
+
+/* Clock */
+#clock {
+    color: #88fd08;
+}
+
+/* Memory */
+#memory {
+    color: @foreground;
+}
+#memory .icon {
+    color: @primary;
+}
+
+/* CPU */
+#cpu {
+    color: @foreground;
+}
+#cpu .icon {
+    color: @primary;
+}
+
+/* Disk */
+#disk {
+    color: @secondary;
+}
+
+/* Uptime */
+#custom-uptime {
+    color: @foreground;
+}
+#custom-uptime .icon {
+    color: @primary;
+}
+
+/* Package updates */
+#custom-updates {
+    color: @foreground;
+}
+#custom-updates .icon {
+    color: @primary;
+}
+
+/* Keyboard layout */
+#custom-keyboard-layout {
+    color: @foreground;
+}
+#custom-keyboard-layout .icon {
+    color: @primary;
+}
+
+/* Weather */
+#custom-weather {
+    color: @foreground;
+}
+
+/* Polywins (custom window list) */
+#custom-polywins {
+    color: @foreground;
+}
+
+/* Media player (MPRIS) */
+#mpris {
+    color: @foreground;
+}
+#mpris .icon {
+    color: @primary;
+}
+
+/* Kernel version */
+#custom-kernel {
+    color: @primary;
+}
+
+/* Power menu */
+#custom-power {
+    color: @primary;
+}
+
+/* PulseAudio volume */
+#pulseaudio {
+    color: @foreground;
+}
+#pulseaudio .icon {
+    /* For per‑level colors you would need a custom script */
+}
