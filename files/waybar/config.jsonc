@@ -1,0 +1,144 @@
+{
+  "layer": "top",
+  "height": 13,
+  "width": "100%",
+  "spacing": 1,
+  "modules-left": ["sway/workspaces", "tray", "custom/polywins", "sway/window"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "custom/weather",
+    "custom/uptime",
+    "custom/updates",
+    "custom/keyboard-layout",
+    "pulseaudio",
+    "mpris",
+    "custom/power"
+  ],
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "icon-1": "1",
+    "icon-2": "2",
+    "icon-3": "3",
+    "icon-4": "4",
+    "icon-5": "5",
+    "icon-6": "6",
+    "icon-7": "7",
+    "icon-8": "8",
+    "icon-9": "9",
+    "icon-10": "10"
+  },
+
+  "sway/window": {
+    "max-length": 60,
+    "rewrite": {
+      "(.*)": "$1"
+    }
+  },
+
+  "tray": {
+    "spacing": 5
+  },
+
+  "clock": {
+    "format": "{:%a %b %d, %Y  %H:%M}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "interval": 5
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " Muted",
+    "format-icons": {
+      "default": ["", "", "", ""]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+  },
+
+  "memory": {
+    "format": " {}",
+    "interval": 10,
+    "on-click-right": "kitty -e btop"
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+    "interval": 2
+  },
+
+  "disk": {
+    "path": "/",
+    "format": "󰋊: {free} free",
+    "interval": 30
+  },
+
+  "custom/uptime": {
+    "exec": "uptime | awk -F, '{sub(\".*up \",x,$1);print $1}'",
+    "interval": 100,
+    "format": "󰥔 {}",
+    "on-click-right": "mousepad ~/.othercrap/notification.log"
+  },
+
+  "custom/updates": {
+    "exec": "sh -c 'echo \"$(checkupdates 2>/dev/null | wc -l),$(yay -Qua 2>/dev/null | wc -l),$(flatpak update --app 2>&1 | awk \"BEGIN {count=0} /^[[:space:]]*[0-9]+\\./ {count++} END {print count}\")\"'",
+    "interval": 2000,
+    "format": "󰚰 {}",
+    "on-click-right": "mousepad ~/.config/update.txt"
+  },
+
+  "custom/keyboard-layout": {
+    "exec": "~/.config/waybar/scripts/keyboard-layout.sh",
+    "interval": 1,
+    "format": " {}",
+    "on-click": "~/.config/waybar/scripts/toggle-layout.sh"
+  },
+
+  "custom/weather": {
+    "exec": "~/.config/i3/scripts/i3weather",
+    "interval": 1800,
+    "format": "{}",
+    "on-click-right": "kitty -e w3m wttr.in/Nicosia"
+  },
+
+  "custom/polywins": {
+    "exec": "~/.config/i3/scripts/polywins.sh 2>/dev/null",
+    "interval": 1,
+    "format": "{}"
+  },
+
+  "mpris": {
+    "format": "{player_icon} {title}",
+    "format-paused": "{status_icon} {title}",
+    "status-icons": {
+      "paused": "",
+      "playing": "",
+      "stopped": ""
+    },
+    "player-icons": {
+      "default": ""
+    },
+    "on-click-right": "projectM-pulseaudio",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+
+  "custom/kernel": {
+    "exec": "uname -r",
+    "interval": 3600,
+    "max-length": 20,
+    "format": "❤ {}",
+  },
+
+  "custom/power": {
+    "exec": "echo '⏻'",
+    "format": "{}",
+    "on-click": "~/.config/i3/scripts/power-menu.sh",
+    "on-click-right": "rofi-wifi-menu"
+  }
+}
