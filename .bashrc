@@ -111,6 +111,7 @@ vimhistory() {
     # Open selected files
     [[ -n "$files" ]] && nvim "$files"
 }
+alias bfree='/usr/sbin/btrfs fi usage / 2>/dev/null | grep "Free (estimated)"'
 alias dragondrop-auto="dragon-drop -a -x "
 alias rpmorphan="sudo zypper packages --orphaned"
 alias sba="source ~/.bashrc"
@@ -153,7 +154,7 @@ fcd() {
      cd "$(find -type d | fzf)"
 }
 listbash() {
-    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu/topram, plist, countfiles, mntls, ftext, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, vimhistory, trash-restore, sddmthemeauto
+    printf "\e[1;33mSimple Alias:\e[0m weather, vmshare, cpp, topcpu/topram, plist, countfiles, mntls, ftext, rgvim, extract, alert, systemcheck, listen, speedtest, myip, freeram, image, vimhistory, trash-restore, sddmthemeauto, bfree 
 \e[1;36mTerminal Apps:\e[0m autobrr, nmap, proxychains, aria2c, gdu, distrobox, cmus/termusic, cava, ddgr, w3m, yazi, pacseek, watch, wormhole, procs, surge
 \e[1;36mDistro:\e[0m ver, distro, makegrub, delall, depdel, punlock, pacinfo, refmirrors, pconf, pupdate, sba, fzfyay
 \e[1;36mAuto:\e[0m autobrr-update, nmapauto, aria2cauto, rsyncauto, yt-x-update, ani-cli-update, dragondrop-auto
